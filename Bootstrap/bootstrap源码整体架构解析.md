@@ -10,17 +10,17 @@
    + popovers  --> popups over      弹出式窗口
    
 
-- Core variables and mixins
+- 1.Core variables and mixins
     + @import "variables.less";             // 定义变量，方便后面调用
     + @import "mixins.less";                // 定义混合 这类似定义函数或者宏，在mixins文件夹中可看到所定义的函数
                 
 
-- Reset and dependencies
+- 2.Reset and dependencies
     + @import "normalize.less";             // 标准化css，这是一个专门将不同浏览器的默认css特性设置为统一效果的css库，编译后对应源码为8~190行 
     + @import "print.less";                 // 打印样式，编译后对应源码为192~266行
     + @import "glyphicons.less";            // 图标样式，编译后对应源码为267~885行
               
-- Core CSS  核心CSS
+- 3.Core CSS  核心CSS
     + @import "scaffolding.less";           // 脚手架，相当于全局样式，编译后对应源码为886~989行   
     + @import "type.less";                  // 排版样式，编译后对应源码为990~1335行                   
     + @import "code.less";                  // 代码样式，编译后对应源码为1336~1389行   
@@ -29,7 +29,7 @@
     + @import "forms.less";                 // 表单样式，编译后对应源码为2297~2781行              
     + @import "buttons.less";               // 按钮样式，编译后对应源码为2782~3171行
            
-- Components  组件
+- 4.Components  组件
     + @import "component-animations.less";  // 组件中折叠和隐藏动画，编译后对应源码为2782~3171行
     + @import "dropdowns.less";             // 下拉菜单及下三角符号，编译后对应源码为3209~3348行        
     + @import "button-groups.less";         // 按钮组，编译后对应源码为3349~3520行    
@@ -56,7 +56,7 @@
     + @import "popovers.less";              // 弹出框，编译后对应源码为5721~5841行     
     + @import "carousel.less";              // 轮播，编译后对应源码为5842~6063行
 
-- Utility classes
+- 5.Utility classes
     + @import "utilities.less";             // 实用工具类，编译后对应源码为6064~6147行
     + @import "responsive-utilities.less";  // 响应式工具类，编译后对应源码为6148~6357行
   
