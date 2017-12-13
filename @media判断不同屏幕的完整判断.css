@@ -1,0 +1,127 @@
+/*几种写法总结: 一般这一个就够了*/
+    @media only screen and (max-width:480px){
+        /* styles for mobile browsers smaller than 480px; (iPhone) */
+        /*max-width:480px:(不大于480px)的手机，包含了iphone 4, 5, 6, 6+*/
+    }
+    @media only screen and (min-width:480px) and (max-width:960px){
+        /*大于480px小于960px的判断*/
+    }
+    @media only screen and (min-width:960px){
+        /* styles for browsers larger than 960px : 不小于960px屏幕*/
+    }
+    @media only screen and (min-width:1440px){
+        /* styles for browsers larger than 1440px : 不小于1440px的屏幕 */
+    }
+/*几种写法总结: 一般这一个就够了*/
+
+
+/*Bootstrap 的 @media 属性写法*/
+@media (max-width: 767px) {
+    /*col-xs*/
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    /*col-sm*/
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    /*col-md*/
+}
+@media (min-width: 1200px) {
+    /*col-lg*/
+}
+/*Bootstrap 的 @media 属性写法*/
+
+
+
+
+
+
+
+/*判断ipad的媒体查询*/
+    @media only screen and (device-width: 768px) {
+        /* For general iPad layouts : 一般的ipad布局*/
+    }
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+        /* For portrait layouts only : 仅适用于ipad竖屏布局*/
+    }
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        /* For landscape layouts only : 仅适用ipad横向布局*/
+    }
+/*判断ipad的媒体查询*/
+
+
+/*stackOverflow上的媒体查询写法*/
+    /* default styles here for older browsers. I tend to go for a 600px - 960px width max but using percentages*/
+    @media only screen and (max-device-width:480px){
+        /* styles for mobile browsers smaller than 480px; (iPhone) */
+    }
+    @media only screen and (device-width:768px){
+        /* default iPad screens */
+    }
+    @media only screen and (min-width:960px){
+        /* styles for browsers larger than 960px; */
+    }
+    @media only screen and (min-width:1440px){
+        /* styles for browsers larger than 1440px; */
+    }
+    @media only screen and (min-width:2000px){
+        /* for sumo sized (mac) screens */
+    }
+    /* different techniques for iPad screening */
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+        /* For portrait layouts only */
+    }
+
+    @media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+        /* For landscape layouts only */
+    }
+/*stackOverflow上的媒体查询写法*/
+
+
+
+
+/*网友总结: apple 的 @media 属性写法 ( 含 Retina ) PS：前文顺序不同 因为其定义的选择器不是同一组 下列代码笔者已经修改*/
+    @media only screen and (max-width: 1441px){
+        .container::after{ content: "1441"; }
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 1441px), only screen and (max-width: 1441px) and (min-resolution: 1.5dppx), only screen and (max-width: 1441px) and (min-resolution: 144dpi){
+        .container::after{ content: "1441 Retina"; }
+    }
+
+    @media only screen and (min-width: 1068px) and (max-width: 1441px){
+        .container::after{ content: "1068 - 1441"; }
+    }
+
+    @media only screen and (max-width: 1068px){
+        .container::after{ content: "1068"; }
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 1068px), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi){
+        .container::after{ content: "1068 Retina"; }
+    }
+
+    @media only screen and (max-width: 1068px) and (min-width: 735px){
+        .container::after{ content: "735 - 1068"; }
+    }
+
+    @media only screen and (max-width: 735px){
+        .container::after{ content: "735"; }
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 735px), only screen and (max-width: 735px) and (min-resolution: 1.5dppx), only screen and (max-width: 735px) and (min-resolution: 144dpi){
+        .container::after{ content: "735 Retina"; }
+    }
+
+    @media only screen and (max-width: 340px){
+        .container::after{ content: "340"; }
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 340px), only screen and (max-width: 340px) and (min-resolution: 1.5dppx), only screen and (max-width: 340px) and (min-resolution: 144dpi){
+        .container::after{ content: "340 Retina"; }
+    }
+
+    @media only screen and (min-width: 1441px) {
+        .container::after{ content: "1441"; }
+    }
+/*网友总结: apple 的 @media 属性写法 ( 含 Retina ) PS：前文顺序不同 因为其定义的选择器不是同一组 下列代码笔者已经修改*/

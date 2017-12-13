@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解 off-canvas</title>
+    <style type="text/css">
+        *{
+            margin:0; padding:0; border:0;
+            font: 14px/1.5 "PingFangSC", Helvetica Neue, Helvetica, Arial, sans-serif;
+            border-radius:4px;
+            box-sizing: border-box;  outline: none;
+        }
+
+        .container{ overflow:hidden; }
+        .transformer.is-open{
+            transform: translateX(18em);
+        }
+        .off-canvas{
+            position:absolute; width:18em;
+            left: -18em; top: 0; bottom:0;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        /**
+         * off-canvas是Web和App经常用到的一种展示菜单面板的形式，安卓习惯称为"抽屉菜单"，
+         *
+         */
+    </script>
+
+</head>
+<body>
+    <!--off-canvas 一般布局-->
+    <div class="container">
+        <div class="transformer">
+            <div class="off-canvas"></div>
+            <div class="main"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        const Tools = {
+
+            arrIndexOf: function(arr, item){
+                if(typeof arr.indexOf === "function"){
+                    return arr.indexOf(item);
+                }
+                let i = 0,
+                    len = arr.length;
+                for(; i < len; i++){
+                    if(arr[i] === item){
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            hasClass : function(ele, cla){
+                // split(): 基于制定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中。
+                let names = ele.className.split(/\s+/);
+
+                if(this.arrIndexOf(names, cla) >= 0){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            addClass: function(ele, cla){
+                if(this.hasClass(ele, cla)){
+                    return null;
+                }
+                ele.className = (ele.className || "") + " " + cla;
+            },
+            removeClass: function(ele, cla){
+                let names = ele.className.split(/\s+/);
+                let i =0,
+                    len = names.length,
+                    arr = [];
+                for(; i < len;  i++){
+                    if(names[i] !== cla){
+                        arr.push(names[i])
+                    }
+                }
+                // join()方法: 只接受一个参数，即用作分隔符的字符串，然后返回包含所有数组项的字符串。
+                ele.className = arr.join(" ");
+            }
+
+        };
+
+
+        window.onload = function(){
+            const box = document.getElementById("box");
+
+        }
+    </script>
+</body>
+</html>

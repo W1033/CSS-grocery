@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author">
+    <title>X号</title>
+    <style type="text/css">
+        /*---详细的实例见这个链接: http://www.uiplayground.in/css3-icons/ ---*/
+
+        /*------------cross X号------------*/
+        .cross::before, .cross::after {
+            content: '';
+            height: 6px;
+            width: 40px;
+            display: block;
+            background: #333;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            position: absolute;
+            top: 16px;
+            left: 0;
+
+        }
+        .cross::before{ 
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+        }
+
+        .cross::after{ 
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+        }
+        /*------------cross X号------------*/
+        
+        
+        /*------------plus +号------------*/
+        .plus::before, .plus::after {
+            content: '';
+            height: 8px;
+            width: 40px;
+            display: block;
+            background: #333;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            position: absolute;
+            top: 16px;
+            left: 0;
+        }
+        .plus::after{
+            height: 40px;
+            width: 8px;
+            top: 0;
+            left: 16px;
+        }
+        /*------------plus +号------------*/
+
+    </style>
+</head>
+<body>
+    <div style="margin:100px;  background: #ccc; height:20rem; width:20rem;">
+        <p style="margin-top:1rem; position: relative; overflow:hidden; height:3rem; width:100%; background:#99CC66;">
+            <span class="cross"></span>
+        </p>
+
+       <p style="margin-top:1rem; position: relative;  overflow:hidden; height:3rem; width:100%; background:lightcoral;">
+           <span class="plus"></span>
+       </p>
+    </div>
+</body>
+</html>

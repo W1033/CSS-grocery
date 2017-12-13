@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3画网格线</title>
+    <style type="text/css">
+        *{
+            margin:0; padding:0; border:0;
+            font: 14px/1.5 Helvetica, Arial, Simsun, Sans-serif;
+            border-radius:4px;
+        }
+
+        html, body{height:100%; overflow:hidden;}
+        .pos-relative{position: relative;}
+        .pos-absolute{position: absolute;}
+
+        .left0{left:0;}
+        .bottom0{bottom:0;}
+
+        .min-hei-100per{min-height:100%;}
+        .hei-80px{height:80px;}
+        .hei-660px{height:660px;}
+        .mar-top-30{margin-top:30px;}
+
+        .over-hidden{overflow:hidden;}
+
+        .bor-bottom{border-bottom:1px solid #8c8c8c;}
+
+        .green-bg{background:darkseagreen;}
+        .blue-bg{background:lightskyblue;}
+        .coral-bg{background:lightcoral;}
+
+        .footer{width:100%;}
+
+
+        /* 具体教程: http://www.cnblogs.com/stoneniqiu/p/5706670.html */
+
+        .grid{
+            width:100%;
+            /*1. 线性渐变从中间(水平方向)开始*/
+             /*background: linear-gradient(0, grey, white);*/
+            /* background: linear-gradient(to top, grey, white); */
+            /* background: linear-gradient(to bottom, grey, white); */
+
+            /*1-2. 线性渐变从顶部(垂直方向)开始*/
+            /* background: linear-gradient(45deg, grey, white);*/
+             background: linear-gradient(90deg, grey, white);
+           /* background: linear-gradient(to right, grey, white);*/
+
+            /*1-3. 线性渐变自定义角度(70度角): 角度是指水平线与渐变线之间的角度，以逆时针方向旋转。
+                   总之，0deg创建一个从底部到顶部的垂直渐变，当变成90deg时声称一个从左到右的水平渐变。*/
+            /*background: linear-gradient(70deg, grey, white);*/
+
+            /*1-4. 线性渐变-色标: 三个色标 */
+            /*background: linear-gradient(to bottom, grey, white 50%, lightcoral);*/
+
+            /*1-5. 线性渐变-色标: 等间距色标*/
+            /*background: linear-gradient(to right, lightgrey, white, lightskyblue, lightgreen, lightsalmon);*/
+
+            /*1-6. 线性渐变-透明和渐变: 渐变是支持透明度的，可以叠加多个背景层，使用这个在背景图片上来创建淡入淡出的效果。*/
+            /*background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url("img.png") no-repeat center;*/
+        }
+
+        .grid2{
+            /*-- 径向渐变: 径向渐变使用radial-gradient函数语法，这个语法和线性渐变很类似，除了你可以指定渐变结束时的形状(可能是一个
+                圆形或者一个椭圆形)以及它的大小，魔人来说，结束形状是一个椭圆形并且和容器的大小比例保持一致。 --*/
+            /*2. 径向渐变-色标: 等间距色标。 你可以想在linear gradient中一样指定色标。渐变线从起始位置向各个方向延伸。默认来说，像
+                线性渐变一样，色标之间是等间距的。*/
+            /*background:radial-gradient(lightcoral,lightgrey, rgb(255, 140, 140));*/
+
+            /*2-1. 径向渐变-色标: 指定间距色标*/
+            /*background: radial-gradient(lightsalmon 2%, lightgreen 25%, lightsteelblue 50%);*/
+
+            /*2-2. 径向渐变-大小: 这是径向渐变和线性渐变其中的一个不同之处。你可以用一个尺寸值来指定定义圆形或者椭圆形的大小的点。
+                   例子: 椭圆的最近端: 这个椭圆使用最近端的值，这就意味着从开始点(中心点)到封闭盒子的最近端的距离来指定椭圆的尺寸。
+                        (实际上即是: 当前元素所在的正方形/长方形的最短边)  ellipse /ɪ'lɪps/ 椭圆*/
+            /*background: radial-gradient(ellipse closest-side, lightcoral, lightgreen 10%, lightsteelblue 50%, lightsteelblue);*/
+
+            /*2-3. 径向渐变-大小: 椭圆的最远端 farthest-corner*/
+            /*background:radial-gradient(ellipse farthest-corner, lightcoral, lightgreen 10%, lightsteelblue 50%, lightsteelblue) ;*/
+
+            /*2-4. 径向渐变-大小: 圆形的最近端 closest-side : 使用closest-side来指定开始点(中心)和最远端的距离为圆的尺寸。*/
+            /*background: radial-gradient(circle closest-side, lightcoral, lightgreen 10%, lightsteelblue 50%, lightsteelblue);*/
+        }
+
+        .grid3{
+            /*1&&2. 重复的渐变: repeating-linear-gradient 和 repeating-radial-gradient*/
+            /*重复的渐变 : 重复的线性渐变*/
+            /*background:repeating-linear-gradient(0deg, coral, coral 5px, white 5px, white 10px);*/
+
+
+           /* background-image: repeating-linear-gradient( 0deg, white, white 10px, red 10px, red 20px);*/
+
+            /*这种用repeating-linear-gradient画的背景网格,在chrome下会出现一条粗一条细的现象，但是在friefox下是完好的。*/
+            /*background-color: rgba(32,178,170,.6);
+            background-image: repeating-linear-gradient(0deg, transparent,
+                                        transparent 50px,
+                                        #ff7f50 50px,
+                                        #ff7f50 51px),
+                              repeating-linear-gradient(90deg, transparent,
+                                        transparent 50px,
+                                        #ff7f50 50px,
+                                        #ff7f50 51px);*/
+
+            /*均匀分布的颜色条*/
+            /*background-image: linear-gradient(to bottom,
+                                    #FF0000 14.28%,
+                                #FFA500 14.28%, #FFA500 28.57%,
+                                #FFFF00 28.57%, #FFFF00 42.85%,
+                                #008000 42.85%, #008000 57.14%,
+                                #0000FF 57.14%, #0000FF 71.42%,
+                                #4B0082 71.42%, #4B0082 85.71%,
+                                #800880 85.71%, #800880 100%);*/
+
+
+            /* MDN：更复杂的背景方格 */
+           /*  background-color: #000;  !*黑色背景*!
+            background-image:
+                 !*重复渐变1*!
+                 repeating-linear-gradient(90deg, transparent,  !**!
+                    transparent 50px,
+                    rgba(255, 127, 0, 0.25) 50px,
+                    rgba(255, 127, 0, 0.25) 56px,
+                    transparent 56px,
+                    transparent 63px,
+                    rgba(255, 127, 0, 0.25) 63px,
+                    rgba(255, 127, 0, 0.25) 69px,
+                    transparent 69px,
+                    transparent 116px,
+                    rgba(255, 206, 0, 0.25) 116px,
+                    rgba(255, 206, 0, 0.25) 166px),  !*这里都是逗号不是分号*!
+                 !*重复渐变2*!
+                 repeating-linear-gradient(0deg, transparent,
+                    transparent 50px,
+                    rgba(255, 127, 0, 0.25) 50px,
+                    rgba(255, 127, 0, 0.25) 56px,
+                    transparent 56px,
+                    transparent 63px,
+                    rgba(255, 127, 0, 0.25) 63px,
+                    rgba(255, 127, 0, 0.25) 69px,
+                    transparent 69px,
+                    transparent 116px,
+                    rgba(255, 206, 0, 0.25) 116px,
+                    rgba(255, 206, 0, 0.25) 166px),
+                 !*重复渐变3*!
+                 repeating-linear-gradient(-45deg, transparent,
+                    transparent 5px,
+                    rgba(143, 77, 63, 0.25) 5px,
+                    rgba(143, 77, 63, 0.25) 10px),
+                 !*重复渐变4*!
+                 repeating-linear-gradient(45deg, transparent,
+                    transparent 5px,
+                    rgba(143, 77, 63, 0.25) 5px,
+                    rgba(143, 77, 63, 0.25) 10px);*/
+
+            /*背景重复方格--完整代码: 这种方式算是最优解决方案，虽然在firefox下还是会出现部分线条的颜色白色变成了浅灰色的问题，
+                但比起重复渐变(repeating-linear-gradient)在chrome下出现线条粗细不均的问题，这个算较好的解决方案。*/
+
+            /*
+                linear-gradient([ [ <angle> | to <side-or-corner> ] ,]? <color-stop>[, <color-stop>]+)
+                : 第一参数是渐变方向，是可选的。可以是角度，angle的值是度数，比如45deg，90deg。也可以使用to side-or-corner.
+                  比如 to left（从右到左） ,to bottom(从上到下)；第二个和第三个参数都是渐变颜色.
+            */
+
+            /* 具体教程: http://www.cnblogs.com/stoneniqiu/p/5706670.html */
+
+            background-color: #58a;
+            background-image:
+                    linear-gradient(rgba(255,255,255,.3) 1px, transparent 0),
+                    linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 0)/*,
+                    linear-gradient(white 1px, transparent 0),
+                    linear-gradient(90deg, white 1px, transparent 0)*/;
+            background-size: 15px 15px/*, 15px 15px, 75px 75px, 75px 75px*/;
+
+            /*背景重复方格--完整代码讲解:
+                //线性渐变角度为0度，即渐变方向是向上的(水平方向)。底部1px为半透明白色，底部以上的14px为透明白色。最后一个0为:
+                   linear-gradient中的color-stop,如果位置
+                background-image: linear-gradient(rgba(255,255,255, .3) 1px, transparent 0);
+                background-size: 15px 15px;
+            */
+        }
+
+        .grid4{
+       /*     !*桌布效果*!
+            background-color: rgba(79, 79, 79, 1);
+            background-image:
+                    linear-gradient(rgba(255,255,255,.3) 1px, transparent 0),
+                    linear-gradient(90deg, rgba(255, 255, 255, .3) 1px, transparent 0);
+            background-size: 15px 15px;*/
+        }
+    </style>
+</head>
+<body>
+    <!-- MDN: https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Using_CSS_gradients
+        css渐变: 是在CSS3 Image Module中新增的<image>类型。
+            浏览器支持2种类型的渐变:
+            - (1.)线性渐变(linear [/'lɪnɪə/ 直线的]): 通过 linear-gradient (gradient /'greɪdɪənt/ 倾斜度，梯度)函数定义。
+            - (2.)径向渐变(radial [/'reɪdɪəl/ 光线的，星形的]): 通过radial-gradient 函数定义。
+            - (1&&2)重复的渐变: repeating-linear-gradient 和 repeating-radial-gradient
+      -->
+
+    <div class="wall pos-relative min-hei-100per">
+        <!-- head~~start -->
+        <div class="head hei-80px grid bor-bottom"></div>
+        <!-- head~~over -->
+
+        <!-- main~~start -->
+        <div class="main over-hidden mar-top-30 " style="">
+            <div class="main-inner grid2" style="margin:auto; height:200px; width:200px; background:lightsteelblue"></div>
+
+            <div class="grid3" style="height:400px; width:80%; margin:auto; margin-top:30px;"></div>
+        </div>
+        <!-- main~~over -->
+
+        <!-- footer~~start -->
+        <div class="footer pos-absolute left0 bottom0 hei-80px blue-bg grid4"></div>
+        <!-- footer~~over -->
+    </div>
+
+    <script type="text/javascript">
+       window.onload = function(){
+        /*   var screenHei = window.innerHeight;
+           var wall = document.getElementsByClassName("wall")[0];
+           wall.style.height = screenHei + "px";*/
+       }
+    </script>
+</body>
+</html>

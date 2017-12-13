@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用CSS弹性盒子</title>
+    <style type="text/css">
+        *{  margin:0; padding:0; list-style:None;
+            font: 14px normal  Arial, Microsoft YaHei;}
+        #container{margin:48px auto; width:60%;  background:lightcoral; padding:10px;}
+        .flex {
+            /* 基本样式 */
+            width:100%;
+            height: 12rem;
+           /* border: 1px solid #555;*/
+            font: 14px Arial;
+
+            /*  建立弹性框 */
+            display: -webkit-flex;
+            -webkit-flex-direction: row;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items:stretch;
+            direction:ltr;
+            text-align:center;
+        }
+
+        .flex > div {
+            -webkit-flex: 1 1 auto;
+            /*flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，描述弹性项目整体的伸缩性。*/
+            flex: 1 1 auto;
+
+            width: 30px; /* 让过渡表现良好。（从/到"width:auto"的过渡
+                      至少在 Gecko 和 Webkit 上是有 bug 的。
+                      更多信息参见 http://bugzil.la/731886 ） */
+
+            -webkit-transition: width 0.7s ease-out;
+            transition: width 0.7s ease-out;
+        }
+        /* colors */
+        .flex > div:nth-child(1){ background : #009246; }
+        .flex > div:nth-child(2){ background : #F1F2F1; }
+        .flex > div:nth-child(3){ background : #CE2B37; }
+        .flex > div:nth-child(4){ background : lightblue; }
+        .flex > div:nth-child(5){ background : lightsteelblue; }
+        .flex > div:nth-child(6){ background : lightseagreen; }
+
+        .flex > div:hover {  width: 200px;  }
+
+
+        .flex-cont{
+            width:48%; min-height:14rem; margin:60px auto; padding:10px;
+            display: -webkit-flex ; display:flex; background:lightskyblue;
+            flex-wrap:wrap;
+            /*align-content:stretch;*/
+        }
+        .flex-item{
+            -webkit-flex: 1 1 auto;  flex: 1 1 auto;
+            width:30px;
+            -webkit-transition:width 0.5s ease-out;
+            transition: width 0.5s ease-out;
+        }
+        .flex-cont > div:nth-child(1){background:#c0a16b; }
+        .flex-cont > div:nth-child(2){background:lightcoral;}
+        .flex-cont > div:nth-child(3){background:lightseagreen;}
+        .flex-cont > div:nth-child(4){background:lightpink;}
+        .flex-cont > div:nth-child(5){background:lightslategray;}
+        .flex-cont > div:nth-child(6){background:lightyellow;}
+
+        .flex-cont > div:hover{ width:200px;}
+    </style>
+</head>
+<body>
+    <!--<div id="container">
+        <p>Flexbox nuovo</p>
+        <div class="flex">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </div>
+    </div>-->
+
+    <!--自己练习示例-->
+    <div class="flex-cont">
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+    </div>
+    <!--自己练习示例-->
+
+    <!--自己练习示例-->
+    <div class="flex-cont">
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+    </div>
+    <!--自己练习示例-->
+</body>
+</html>

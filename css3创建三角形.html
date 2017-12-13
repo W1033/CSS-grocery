@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .myBox{
+            width:0; height:0;
+            border-style:solid;
+            border-width:20px;
+            border-color: transparent transparent transparent #ccc;
+        }
+        .myBox2{
+            width:0; height:0;
+            border-style:solid;
+            border-width:20px;
+            border-color: transparent transparent transparent red;
+        }
+
+      /*  !*添加三角形伪类: 大三角*!
+        .batchImpFileBox:before{
+            border:dashed; border-width:13px;
+            border-color: transparent transparent #d2d2d2 transparent;
+            content:" ";  position:absolute;
+            left:43.5%;  top:-25px;
+        }
+        !*添加三角形伪类: 小三角*!
+        .batchImpFileBox:after{
+            border:dashed;  border-width:13px;
+            border-color: transparent transparent #fff transparent;
+            content:" ";  position:absolute;
+            left:43.5%;  top:-23.7px;
+        }*/
+    </style>
+    <link rel="stylesheet" href="publicScript%20&&%20publicCss/publicStyle.css">
+</head>
+<body>
+    <div class="">
+        <div class="fl myBox marBot20 "></div>
+        <div class="fl myBox2 marBot20"></div>
+    </div>
+
+    <!--第二种方式: 利用 :before和:after伪类来画三角形，但是这个伪类画的三角形默认就是显示的-->
+    <div class="height100 width198 lightGreyBor3 borRadius4 marLeft130 whiteBg posRelative batchImpFileBox"></div>
+
+</body>
+</html>

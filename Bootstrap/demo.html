@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap </title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <style type="text/css">
+        body, button, input, select, textarea{
+            font:14px/1.5 "Microsoft YaHei", Tahoma, Helvetica, Arial,SimSun;
+        }
+
+        .wall{background:#c4e3f3; height:10rem; margin-top:5rem;}
+
+        .first-column{background:#8a6d3b; height:4rem;}
+        .second-column{background:#00AA88; height:4rem;}
+        .third-column{background:whitesmoke; height:4rem;}
+        .fourth-column{background:goldenrod; height:4rem;}
+        .fifth-column{background:darkseagreen; height:4rem;}
+        .sixth-column{background:dodgerblue; height:4rem;}
+        .seventh-column{background:indianred; height:4rem;}
+        .eighth-column{background:coral; height:4rem;}
+        .ninth-column{background:mediumpurple; height:4rem;}
+        .tenth-column{background:#CCCCCC; height:4rem;}
+        .eleven-column{background:yellowgreen; height:4rem;}
+        .twelfth-column{background:palegoldenrod; height:4rem;}
+
+        .container {
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .row {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1{
+            padding-left:5px;
+            padding-right:5px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--font-awesome在线示例: http://www.fontawesome.com.cn/examples/ -->
+    <div class="container wall">
+        <!--row的负margin值主要是为了消除最左边和最右边的column元素和container的边距-->
+        <div class="row">
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 first-column">
+                <i class="fa fa-envelope-o fa-fw fa-2x"></i>
+                <span >第1列</span>
+            </p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 second-column">
+                <span >第2列</span>
+            </p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 third-column">
+                <span >第3列</span>
+            </p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 fourth-column">
+                <span >第4列</span>
+            </p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 fifth-column">
+                <i class="fa fa-envelope-o fa-fw fa-lg"></i>
+            </p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 sixth-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 seventh-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 eighth-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ninth-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 tenth-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 eleven-column"></p>
+            <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1 twelfth-column"></p>
+        </div>
+    </div>
+</body>
+</html>
