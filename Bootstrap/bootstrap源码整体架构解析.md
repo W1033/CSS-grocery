@@ -7,7 +7,7 @@
    * pagination     /ˌpædʒɪ'neʃən/  n. 分页，页码
    + badge          /bædʒ/          n. 徽章，标记
    + thumbnail      /'θʌmnel/       n. 极小的东西，拇指甲。   ajd. 极小的，极短的
-   + popovers  --> popups over      弹出式窗口
+   + popovers  -->  popups over     弹出式窗口
    
 
 - 1.Core variables and mixins
@@ -51,12 +51,14 @@
     + @import "responsive-embed.less";      // 具有响应式特性的嵌入内容，编译后对应源码为5427~5452行
     + @import "wells.less";                 // well效果，编译后对应源码为5453~5474行    
     + @import "close.less";                 // 关闭按钮图标，编译后对应源码为5475~5499行
+    
+- 4-1. Components w/ JavaScript
     + @import "modals.less";                // 模态框，编译后对应源码为5500~5622行           
     + @import "tooltip.less";               // 工具提示，编译后对应源码为5623~5720行        
     + @import "popovers.less";              // 弹出框，编译后对应源码为5721~5841行     
     + @import "carousel.less";              // 轮播，编译后对应源码为5842~6063行
 
-- 5.Utility classes
+- 6.Utility classes
     + @import "utilities.less";             // 实用工具类，编译后对应源码为6064~6147行
     + @import "responsive-utilities.less";  // 响应式工具类，编译后对应源码为6148~6357行
   
