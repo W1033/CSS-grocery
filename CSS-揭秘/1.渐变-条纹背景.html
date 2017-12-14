@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS线性渐变 + background-size</title>
+    <style type="text/css">
+        *{
+            margin:0; padding:0; border:0;
+            font: 14px/1.5 "PingFangSC", Helvetica Neue, Helvetica, Arial, sans-serif;
+            border-radius:4px;
+            box-sizing: border-box;  outline: none;
+        }
+        #box{
+            width:60%; height:100vh;
+            margin: 0 auto;
+
+            /*1.垂直渐变*/
+            /*background:linear-gradient(#fb3, #58a);*/
+
+            /*2.渐变出现在总高度60%的区域(即是:20%~80%),上下20%显示为实色*/
+            /*background:linear-gradient(#fb3 20%, #58a 80%);*/
+
+            /*3.同2: 渐变区域为(40%~60%)*/
+            /*background:linear-gradient(#fb3 40%, #58a 60%);*/
+
+            /*4.上下分别为50%的纯色*/
+
+            background:linear-gradient(#fb3 50%, #2f8ac6 50%);
+            background-size: 100% 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>
