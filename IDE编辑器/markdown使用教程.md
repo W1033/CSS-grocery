@@ -1,3 +1,7 @@
+
+# [详细使用教程](http://itmyhome.com/markdown/article/extension/strikethrougn.html)
+
+
 1. #### 标题 `#, ##, ###, ####, #####, ######`
     # 一级标题
     ## 二级标题
