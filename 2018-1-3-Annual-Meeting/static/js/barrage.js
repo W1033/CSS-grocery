@@ -11,3 +11,17 @@ function Barrage () {
         return new Barrage();
     }
 }
+
+/*
+Barrage.prototype.defaults = {
+    origin:     "bottom",
+    distance:   "20px",
+    duration:   500,
+    delay:      0,
+    opacity:    0,
+    scale:      0.9,
+    easing:     "cubic-bezier(0.6, 0.2, 0.1, 1)",
+    container:  window.document.documentElement,
+};
+*/
+

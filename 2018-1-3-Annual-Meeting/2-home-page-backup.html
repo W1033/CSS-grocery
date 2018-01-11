@@ -208,6 +208,35 @@
                 // 创建弹幕元素: 默认隐藏
                 eleConfMap.brgContainer.appendChild(mainMap.fnCreateEle());
 
+                var config = {
+                    origin:     "left",
+                    distance:   "0",
+                    duration:   2000,
+                    delay:      0,
+                    opacity:    0,
+                    scale:      0.6,
+                    easing:     "cubic-bezier(0.6, 0.2, 0.1, 1)",
+                    container:  window.document.documentElement
+                };
+
+
+                function generateTransform (config) {
+                    var cssDistance;
+                    var transform = {
+                        initial :
+                    }
+                    if (config.origin === "top" || config.origin === "left") {
+                    }
+                }
+
+
+
+                var i = 0,
+                    brgDiv = getClassName("barrage-div", "barrage-container"),
+                    len = brgDiv.length;
+                for (; i < len; i++) {
+
+                }
             })();
 
 
