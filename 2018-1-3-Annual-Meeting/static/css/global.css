@@ -39,7 +39,7 @@ body {
 
 .absolute-bg {
     position:absolute; left:0; top:0;
-    z-index: -1;
+    z-index: -10;
     width:100%; height:100vh;
 }
 .absolute-bg > img {
@@ -50,7 +50,7 @@ body {
 
 /* 左侧边--弹幕开关按钮 */
 .side-left {
-    margin-top:20%;
+    margin-top:4%;
     position:absolute; left:2.2%;
     font-size:32px;  width:45px;
     overflow:hidden; text-align:center;
@@ -58,7 +58,6 @@ body {
 .side-left > .switch-btn {
     width:100%; height:108px;
     line-height:108px; cursor:pointer;
-
 }
 .switch-btn-default-bg {
     background:url("../img/side-button-bg-md.png") no-repeat center;
