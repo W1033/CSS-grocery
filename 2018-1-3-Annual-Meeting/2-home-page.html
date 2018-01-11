@@ -18,188 +18,82 @@
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/scrollreveal/scrollreveal.min.js"></script>
     <script type="text/javascript" src="static/js/global-functions-new.js"></script>
+    <script type="text/javascript" src="static/js/barrage.js"></script>
     <script type="text/javascript">
-        // 加载scrollReveal
+        // 加载 Barrage
         (function(){
-            window.sr = ScrollReveal();
+            window.brg = Barrage();
         }());
     </script>
 
     <style type="text/css">
+
         .wall { position: relative; }
-        .container {
-            margin-top:18%;
+
+        /* 头部弹幕 */
+        .barrage-container {
+            position:absolute;
+            left:0; top:0;
+            height:12em; opacity:.6;
+            background:#ccc;
+        }
+        .barrage-div { padding: 7px; }
+        .barrage-div > p:nth-child(1) {
+            float:left; margin-right:30px;
+            width:50px; height:50px;
+            overflow: hidden;
+            border: 2px solid #c30f23;
+            border-radius: 50%;
+        }
+        .barrage-div > p > img.portrait {
+            width:100%; height:100%;
         }
 
-        /* 左侧按钮 */
-        .side-left > .history-record {
-            width:100%; height:185px;
-            padding-top:.8em;
-            margin-bottom:1em;
-            cursor:pointer;
-        }
-
-        .history-default-bg {
-            background:url("static/img/side-button-bg-lg.png") no-repeat center;
-            color:#c30f23;
-        }
-        .history-bg-hover {
-            background:url("static/img/side-button-bg-lg-hover.png") no-repeat center;
-            color:#fff;
-        }
-
-
-
-        /* 中间奖项 */
-        .awards-btn {
-            display:block; overflow:hidden;
-            font-size:50px;  color:#ffffff;
-            text-shadow:0 2px 4px rgba(0,0,0,0.50);
-            margin:0 auto; line-height:106px;
-            text-align:center;
-            width:435px; height:105px;
-        }
-        .img-default-bg {
-            background:url("static/img/button-bg-lg.png") no-repeat center;
-        }
-        .img-hover-bg {
-            background:url("static/img/button-bg-lg-hover.png") no-repeat center;
-        }
-        .row {
-            margin-bottom:8em;
-        }
 
     </style>
 </head>
 
 <body>
 
+    <!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕, 火力网 -->
+    <div class="barrage-container">
+        <div class="barrage-div">
+            <p>
+                <img class="portrait" src="static/img/user-head/default-avatar.png" alt="portrait">
+            </p>
+            <p class="barrage-font">人而无信，不知其可也</p>
+        </div>
+        <div class="barrage-div">
+            <img class="portrait" src="static/img/user-head/default-avatar.png" alt="portrait">
+            <p class="barrage-font">一个人不讲信用，不知道怎么能行</p>
+        </div>
+    </div>
 
     <div class="wall">
-
         <!--绝对定位背景大图-->
         <div class="absolute-bg">
             <img src="static/img/bg.png" alt="">
-        </div>
-
-        <!--左侧竖排按钮-->
-        <div class="side-left">
-            <p class="history-record history-default-bg">历史记录</p>
-            <p class="switch-btn switch-btn-default-bg">关</p>
-        </div>
-
-
-        <div class="container">
-            <div class="row">
-                <p class="col-lg-6 col-md-6">
-                    <a href="javascript:">
-                        <span class="awards-btn img-default-bg">一等奖</span>
-                    </a>
-                </p>
-                <p class="col-lg-6 col-md-6">
-                    <a href="javascript:">
-                        <span class="awards-btn img-default-bg">二等奖</span>
-                    </a>
-                </p>
-            </div>
-            <div class="row">
-                <p class="col-lg-6 col-md-6">
-                    <a href="javascript:">
-                        <span class="awards-btn img-default-bg">三等奖</span>
-                    </a>
-                </p>
-                <p class="col-lg-6 col-md-6">
-                    <a href="javascript:">
-                        <span class="awards-btn img-default-bg">留言幸运奖</span>
-                    </a>
-                </p>
-            </div>
-
-
         </div>
     </div>
 
 
     <script type="text/javascript">
 
-        // 元素配置表: 缓存静态html元素
-        var eleConfMap = {
+        // element config map (元素配置表): 缓存静态html元素
+        var eleMap = {
+            brgContainer: getClassName("barrage-container")[0],
 
-            // 左侧边2个按钮
-            $historyRecord:     $(".history-record"),
-            $switchBtn:         $(".switch-btn"),
+        };
 
-            // 中间奖项按钮
-            $awardsBtn:         $(".awards-btn")
+        // main config map (主要配置图): 封装零散的方法到对象
+        var mainMap = {
+
         };
 
 
         window.onload = function(){
-
-            var i = 0,
-                len =eleConfMap.$awardsBtn.length;
-            for (; i < len; i++) {
-                if(i < 2){
-                    sr.reveal(eleConfMap.$awardsBtn[i], {
-                        origin:     "bottom",
-                        distance:   "80px",
-                        opacity:    0,
-                        scale:      1,
-                        delay:      200,
-                        easing:     "ease",
-                        reset:      false,
-                        mobile:     true,
-                        duration:   600
-                    });
-                } else {
-                    sr.reveal(eleConfMap.$awardsBtn[i], {
-                        origin:     "bottom",
-                        distance:   "80px",
-                        opacity:    0,
-                        scale:      1,
-                        delay:      600,
-                        easing:     "ease",
-                        reset:      false,
-                        mobile:     true,
-                        duration:   600
-                    });
-                }
-            }
-
-            // 左侧"历史记录"
-            eleConfMap.$historyRecord.click(function () {
-                if($(this).hasClass("history-default-bg")){
-                    $(this).removeClass("history-default-bg").addClass("history-bg-hover");
-                } else {
-                    $(this).removeClass("history-bg-hover").addClass("history-default-bg");
-                }
-            });
-
-
-            // 左侧弹幕开关按钮hover效果
-            eleConfMap.$switchBtn.click(function () {
-                if($(this).hasClass("switch-btn-default-bg")){
-                    $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
-                    $(this).html("开");
-                } else {
-                    $(this).removeClass("switch-btn-bg-hover").addClass("switch-btn-default-bg");
-                    $(this).html("关");
-                }
-            });
-
-            // 4个奖项按钮hover效果
-            eleConfMap.$awardsBtn.each(function(){
-                $(this).hover(
-                   function () {
-                       if($(this).hasClass("img-default-bg")){
-                           $(this).removeClass("img-default-bg").addClass("img-hover-bg");
-                       } else {
-                           $(this).removeClass("img-hover-bg").addClass("img-default-bg");
-                       }
-                   }
-                )
-            })
-
+            eleMap.brgContainer.style.width = window.innerWidth + "px";
+            console.log(eleMap.brgContainer.offsetWidth);
         }
     </script>
 </body>
