@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>1-扫码登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+
+    <!--<link rel="stylesheet" href="static/css/bootstrap.css">-->
+    <link rel="stylesheet" href="static/css/reset.css">
+    <link rel="stylesheet" href="static/css/global.css">
+
+
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="static/js/scrollreveal/scrollreveal.min.js"></script>-->
+    <script type="text/javascript" src="static/js/global-functions-new.js"></script>
+    <script type="text/javascript">
+        // 加载scrollReveal
+        /*(function(){
+            window.sr = ScrollReveal();
+        }());*/
+    </script>
+
+    <style type="text/css">
+
+        .middle-qr-code {
+            margin:2em auto;
+            width:460px; height:460px;
+            overflow:hidden;
+            background:url("static/img/QR-code-frame.png") no-repeat center center;
+            background-size:cover;
+        }
+        .middle-qr-code > img {
+            width:350px; height:350px;
+            background:#f2dede;
+            display:block; margin:55px auto;
+        }
+
+        h1 {
+            text-align:center; font-size:108px;
+            margin-top:12%;
+            letter-spacing:13px;
+        }
+        /*h3 {
+            font-size:40px;  text-align:center;
+            margin-top:3%;
+        }*/
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wall">
+
+        <!--绝对定位背景大图-->
+        <div class="absolute-bg">
+            <img src="static/img/bg.png" alt="">
+        </div>
+
+        <!--中部二维码-->
+        <h1>智付钱包 扫码签到</h1>
+        <div class="middle-qr-code">
+            <img src="static/img/QR-code.jpg" alt="二维码" id="qr-code-img">
+        </div>
+        <!--<h3>用智付钱包APP，扫码签到</h3>-->
+    </div>
+
+
+    <script type="text/javascript">
+
+        // 元素配置表: 缓存静态html元素
+        var eleConfMap = {
+            qrCodeImg: getId("qr-code-img")
+        };
+
+
+        window.onload = function(){
+
+            /* if(window.sr){
+                sr.reveal(eleConfMap.centerLogo, {
+                    origin:     "bottom",
+                    distance:   "40px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      200,
+                    easing:     "ease-in-out",
+                    reset:      false,
+                    mobile:     true,
+                    duration:   600
+                });
+            }*/
+
+        }
+    </script>
+</body>
+</html>
