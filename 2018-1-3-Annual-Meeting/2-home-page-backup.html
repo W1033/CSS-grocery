@@ -34,24 +34,23 @@
 
         /* 头部弹幕 */
         .barrage-container {
-            position:absolute;
-            left:0; top:0;
+            position:fixed;
+            right:0; top:0;
             height:20em; width:100%;
             /*background:rgba(185,198,192, .8);*/
             overflow:hidden;
         }
         .barrage-div {
-            float:left;
+            position:absolute; right:0;
             padding: 4px 8px 2px;
-            margin-top:18px; margin-left:2px; margin-right:40px;
-            background:rgba(0, 0, 0, .5);
-            overflow:hidden;
+            margin-top:20px; margin-left:10px;
+            background:rgba(0, 0, 0, .6);
             box-shadow:0 3px 6px 0 rgba(0,0,0,0.50);
             border-radius:100px;
         }
         .barrage-div > p:nth-child(1) {
             float:left; margin-right:20px;
-            width:50px; height:50px;
+            width:46px; height:46px;
             overflow: hidden;
             border: 2px solid #c30f23;
             border-radius: 50%;
@@ -62,12 +61,15 @@
         .barrage-div > p.barrage-font {
             margin-right:20px;
             float:left; max-width:780px;
-            font-size:30px;
+            font-size:28px;
             line-height:160%;
             color:#ffffff;
             letter-spacing:0;
             text-align:left;
         }
+        .mar-top-20 { margin-top:20px; }
+        .mar-top-86 { margin-top:86px;}
+        .mar-top-152 { margin-top:152px; }
 
 
         /* 左侧按钮 */
@@ -111,6 +113,24 @@
 
     <!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕, 火力网 -->
     <div class="barrage-container">
+        <!--<div class="barrage-div" data-brg-id="0">
+            <p>
+                <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="0" alt="portrait">
+            </p>
+            <p class="barrage-font">0岁闪亮登场</p>
+        </div>
+        <div class="barrage-div" data-brg-id="0" style="margin-top:86px">
+            <p>
+                <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="0" alt="portrait">
+            </p>
+            <p class="barrage-font">10岁茁壮成长</p>
+        </div>
+        <div class="barrage-div" data-brg-id="0" style="margin-top:152px">
+            <p>
+                <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="0" alt="portrait">
+            </p>
+            <p class="barrage-font">20岁为爱痴狂</p>
+        </div>-->
     </div>
 
     <!--绝对定位背景大图-->
@@ -171,9 +191,24 @@
         };
 
         // main config map 主配置图
+        var winWidth = window.innerWidth;
+
+        var revealConfig = {
+            origin:     "left",
+            distance:   winWidth,       // 需要往左运行的距离(屏幕的宽度)
+            duration:   9800,
+            delay:      100,
+            opacity:    1,
+            scale:      1,
+            easing:     "linear",
+            container:  eleConfMap.brgContainer
+        };
+
+
         var mainMap = {
+
             // 创建弹幕元素
-            fnCreateEle:    function () {
+            fnCreateEle:            function () {
                 var fragment = document.createDocumentFragment();
                 var i = 0,
                     len = brgJson.length;
@@ -181,23 +216,79 @@
                     for (; i < len; i++) {
                         var brgDiv = document.createElement("div");
                         brgDiv.className = "barrage-div";
-                        brgDiv.style.visibility = "hidden";
+                        // brgDiv.style.visibility = "hidden";
+
                         var firstP = document.createElement("p");
                         var portrait = document.createElement("img");
                         portrait.className = "portrait";
-                        portrait.setAttribute("src", "static/img/user-head/default-avatar.png");
+                        portrait.setAttribute("src", brgJson[i].userProfile);
+                        portrait.setAttribute("data-id", brgJson[i].memberId);
                         portrait.setAttribute("alt", "portrait");
                         firstP.appendChild(portrait);
+
                         var brgFont = document.createElement("p");
                         brgFont.className = "barrage-font";
                         brgFont.innerHTML = brgJson[i].sendMsg;
+
                         brgDiv.appendChild(firstP);
                         brgDiv.appendChild(brgFont);
                         fragment.appendChild(brgDiv);
                     }
                 }
                 return fragment;
+            },
+
+
+            // style
+            fnStyle:                function (elem) {
+                if (!elem.styles) {
+                    elem.styles = {
+                        transition: {},
+                        transform:  {},
+                        computed:   {}
+                    }
+                }
+                return elem.styles;
+            },
+
+
+            // 生成 transition
+            fnGenerateTransition:   function (elem, config) {
+
+                var axis;
+                var cssDistance;
+
+                // 用来确定是 X/Y， left/right -->X轴，  top/bottom --> Y轴
+                if (config.origin === "top" || config.origin === "bottom") {
+                    axis = "Y";
+                }else {
+                    axis = "X";
+                }
+
+                // 给往 top/left 方向上运动的加上"负号"
+                if (config.origin === "top" || config.origin === "left") {
+
+                    cssDistance = /^-/.test(config.distance) ?
+                        config.distance.substr(1):
+                        "-" + config.distance;
+                } else {
+                    cssDistance = config.distance
+                }
+
+                var styles = this.fnStyle(elem);
+
+                var transform = styles.transform;
+                transform.initial = " translate" + axis + "(" + cssDistance  + "px)";
+                // console.log(styles.transform.initial);
+
+                return "transform: " + styles.transform.initial +
+                    "; transition: " +
+                    "transform " + config.duration / 1000 + "s " +
+                    config.easing + ", opacity " +
+                    config.duration / 1000 + "s " +
+                    config.easing + ";"
             }
+
         };
 
 
@@ -205,38 +296,85 @@
 
             // 弹幕
             (function () {
+
                 // 创建弹幕元素: 默认隐藏
                 eleConfMap.brgContainer.appendChild(mainMap.fnCreateEle());
 
-                var config = {
-                    origin:     "left",
-                    distance:   "0",
-                    duration:   2000,
-                    delay:      0,
-                    opacity:    0,
-                    scale:      0.6,
-                    easing:     "cubic-bezier(0.6, 0.2, 0.1, 1)",
-                    container:  window.document.documentElement
-                };
 
-
-                function generateTransform (config) {
-                    var cssDistance;
-                    var transform = {
-                        initial :
-                    }
-                    if (config.origin === "top" || config.origin === "left") {
-                    }
-                }
-
-
-
+                // 给创建的元素添加默认样式
                 var i = 0,
-                    brgDiv = getClassName("barrage-div", "barrage-container"),
+                    brgDiv = getClassName("barrage-div", eleConfMap.brgContainer),
                     len = brgDiv.length;
                 for (; i < len; i++) {
+                    if (i % 3 === 1) {
+                        addClass("mar-top-20", brgDiv[i]);
+                        brgDiv[i] = function (num) {
+                            var timeId;
+                            if (num % 3 === 1) {
+                                timeId = setTimeout(function () {
+                                    var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                    brgDiv[num].setAttribute("style", styles);
+                                }, 1000);
+                            }
+                        }(i);
+                    }
+                    if (i % 3 === 2) {
+                        addClass("mar-top-86", brgDiv[i]);
+                        brgDiv[i] = function (num) {
+                            var timeId;
+                            if (num % 3 === 2) {
+                                timeId = setTimeout(function () {
+                                    var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                    brgDiv[num].setAttribute("style", styles);
+                                }, 3000);
+                            }
+                        }(i);
+                    }
+                    if (i % 3 === 0) {
+                        addClass("mar-top-152", brgDiv[i]);
+                        brgDiv[i] = function (num) {
+                            var timeId;
+                            if (num % 3 === 2) {
+                                timeId = setTimeout(function () {
+                                    var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                    brgDiv[num].setAttribute("style", styles);
+                                }, 3000);
+                            }
+
+                        }(i);
+                    }
+
+                    if (!brgDiv[i].hasAttribute("data-brg-id")) {
+                        // 给弹幕div设置 data-brg-div 属性
+                        brgDiv[i].setAttribute("data-brg-id", i);
+                    }
+
+                    // 生成默认的 transform 和 transition
+                    brgDiv[i] = function (num) {
+                        var timeId;
+                        if (num % 3 === 1) {
+                            timeId = setTimeout(function () {
+                                var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                brgDiv[num].setAttribute("style", styles);
+                            }, 1000);
+                        }
+                        if (num % 3 === 2) {
+                            timeId = setTimeout(function () {
+                                var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                brgDiv[num].setAttribute("style", styles);
+                            }, 3000);
+                        }
+                        if (num % 3 === 0) {
+                            timeId = setTimeout(function () {
+                                var styles = mainMap.fnGenerateTransition(brgDiv[num], revealConfig);
+                                brgDiv[num].setAttribute("style", styles);
+                            }, 2000);
+                        }
+                    }(i);
 
                 }
+
+
             })();
 
 
