@@ -298,14 +298,94 @@
             (function () {
 
                 // 创建弹幕元素: 默认隐藏
-                eleConfMap.brgContainer.appendChild(mainMap.fnCreateEle());
+                // eleConfMap.brgContainer.appendChild(mainMap.fnCreateEle());
+
+                function  createEle (num, curJson) {
+                    console.log(num);
+                    var fragment = document.createDocumentFragment();
+                    var brgDiv = document.createElement("div");
+                    brgDiv.className = "barrage-div";
+                    brgDiv.setAttribute("data-brg-id", num);
+                    brgDiv.style.visibility = "hidden";
+
+                    var firstP = document.createElement("p");
+                    var portrait = document.createElement("img");
+                    portrait.className = "portrait";
+                    portrait.setAttribute("src", curJson.userProfile);
+                    portrait.setAttribute("data-id", curJson.memberId);
+                    portrait.setAttribute("alt", "portrait");
+                    firstP.appendChild(portrait);
+
+                    var brgFont = document.createElement("p");
+                    brgFont.className = "barrage-font";
+                    brgFont.innerHTML = brgJson[i].sendMsg;
+
+                    brgDiv.appendChild(firstP);
+                    brgDiv.appendChild(brgFont);
+                    fragment.appendChild(brgDiv);
+                    return fragment;
+                }
+
+
+
+                var firstLineArr = [];
+                var secondLineArr = [];
+                var thirdLineArr = [];
+
+                var i = 0,
+                    len = brgJson.length;
+                var now = new Date().getTime();
+                var fragment;
+                var timeId;
+                if (len > 0) {
+                    for (; i < len; i++) {
+
+                        if (i % 3 === 1) {
+                            // 创建元素
+                            fragment  = createEle(i, brgJson[i]);
+                            firstLineArr.push(fragment);
+                            var j =0,
+                                len1 = firstLineArr.length;
+                            for (; j < len1; j++) {
+                                firstLineArr[j] = function (num) {
+                                    timeId = setTimeout(function () {
+                                        var styles = mainMap.fnGenerateTransition(firstLineArr[num], revealConfig);
+                                        firstLineArr[num].setAttribute("style", styles);
+                                    }, (now + 100));
+                                }(j);
+                            }
+                        }
+                        if (i % 3 === 2) {
+                            var x =0,
+                                len2 = secondLineArr.length;
+                            fragment  = createEle(i, brgJson[i]);
+                            firstLineArr.push(fragment);
+                        }
+                        if (i % 3 === 0) {
+                            var z =0,
+                                len3 = thirdLineArr.length;
+                            fragment  = createEle(i, brgJson[i]);
+                            firstLineArr.push(fragment);
+                        }
+
+
+
+                    }
+                }
+                return fragment;
+
+
+
+
+
+
 
 
                 // 给创建的元素添加默认样式
-                var i = 0,
+               /* var i = 0,
                     brgDiv = getClassName("barrage-div", eleConfMap.brgContainer),
-                    len = brgDiv.length;
-                for (; i < len; i++) {
+                    len = brgDiv.length;*/
+                /*for (; i < len; i++) {
                     if (i % 3 === 1) {
                         addClass("mar-top-20", brgDiv[i]);
                         brgDiv[i] = function (num) {
@@ -372,7 +452,7 @@
                         }
                     }(i);
 
-                }
+                }*/
 
 
             })();
