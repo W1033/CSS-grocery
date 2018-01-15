@@ -4,7 +4,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 20em;
+    max-height: 24em;
     width: 100%;
     /* background:rgba(185,198,192, .8);*/
     overflow: hidden;
@@ -27,7 +27,7 @@
 .barrage-div {
     position: absolute;
     max-width: 760px;
-    margin-left: 2680px;
+   /* margin-left: 2680px;*/
     overflow: hidden;
     margin-top:2px;
     padding: 2px 6px;

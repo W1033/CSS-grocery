@@ -24,6 +24,7 @@ var mainMap = {
         var fragment = document.createDocumentFragment();
         var brgDiv = document.createElement("div");
         brgDiv.className = "barrage-div";
+        brgDiv.style.marginLeft = (window.innerWidth + 780) + "px"
         // brgDiv.style.visibility = "hidden";
 
         var firstP = document.createElement("p");
@@ -57,6 +58,15 @@ var mainMap = {
         return fragment;
     },
 
+    // 生成 transform
+    fnGenerateTransform:    function (elem) {
+        var elems = {}
+        // 取得当前 elem 上的所有 style 样式
+        elems.init  = elem.getAttribute("style");
+        console.log(elems.init);
+        elems.target = elems.init + "transform: translateX(" + window.innerWidth + elem.offsetWidth +
+    },
+
     // 向左滚动
     fnScroll:               function (time, aDiv) {
         var i = 0,
@@ -64,6 +74,9 @@ var mainMap = {
         for (; i < len; i++) {
             aDiv[i] = function (num) {
                 setTimeout(function () {
+
+                    mainMap.fnGenerateTransform(aDiv[num]);
+
                     var brgFont = aDiv[num].getElementsByClassName("barrage-font")[0];
                     // console.log(brgFont.innerHTML.length);
                     // 如果字体的长度大于12，就把左滚的速度增快
