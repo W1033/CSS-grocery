@@ -17,16 +17,71 @@ function Barrage () {
 }
 
 
-/*
-Barrage.prototype.defaults = {
-    origin:     "bottom",
-    distance:   "20px",
-    duration:   500,
-    delay:      0,
-    opacity:    0,
-    scale:      0.9,
-    easing:     "cubic-bezier(0.6, 0.2, 0.1, 1)",
-    container:  window.document.documentElement,
+var mainMap = {
+
+    // 创建弹幕元素
+    fnCreateEle:            function  (num, curJson) {
+        var fragment = document.createDocumentFragment();
+        var brgDiv = document.createElement("div");
+        brgDiv.className = "barrage-div";
+        // brgDiv.style.visibility = "hidden";
+
+        var firstP = document.createElement("p");
+        var hatSpan = document.createElement("span");
+        hatSpan.className = "hat";
+        hatSpan.style.display = "none";
+        var hatSpanImg = document.createElement("img");
+        hatSpanImg.setAttribute("src", "static/img/user-head/hat.png");
+        hatSpan.appendChild(hatSpanImg);
+        firstP.appendChild(hatSpan);
+
+        var portrait = document.createElement("img");
+        portrait.className = "portrait";
+        portrait.setAttribute("src", curJson.userProfile);
+        portrait.setAttribute("data-id", curJson.memberId);
+        firstP.appendChild(portrait);
+
+        var brgFont = document.createElement("p");
+        brgFont.className = "barrage-font";
+        brgFont.innerHTML = brgJson[num].realName + "：" +  brgJson[num].sendMsg;
+
+        brgDiv.appendChild(firstP);
+        brgDiv.appendChild(brgFont);
+        fragment.appendChild(brgDiv);
+
+        if (parseInt(brgJson[num].memberId, 10) === 1) {
+            brgDiv.style.backgroundColor = "rgba(216, 188, 125, .9)";
+            hatSpan.style.display = "block";
+            brgFont.style.color = "#414141";
+        }
+        return fragment;
+    },
+
+    // 向左滚动
+    fnScroll:               function (time, aDiv) {
+        var i = 0,
+            len = aDiv.length;
+        for (; i < len; i++) {
+            aDiv[i] = function (num) {
+                setTimeout(function () {
+                    var brgFont = aDiv[num].getElementsByClassName("barrage-font")[0];
+                    // console.log(brgFont.innerHTML.length);
+                    // 如果字体的长度大于12，就把左滚的速度增快
+                    if ( brgFont.innerHTML.length > 15 ) {
+                        if ( hasClass("brg-div-after-faster", aDiv[num]) === false) {
+                            addClass("brg-div-after-faster", aDiv[num]);
+                        }
+                    } else {
+                        // 否则就按正常速度
+                        if ( hasClass("brg-div-after", aDiv[num]) === false) {
+                            addClass("brg-div-after", aDiv[num]);
+                        }
+                    }
+
+                }, time + i*1600 );
+            }(i)
+        }
+    }
+
 };
-*/
 
