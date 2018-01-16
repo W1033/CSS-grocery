@@ -76,34 +76,19 @@
         <img src="static/img/bg.png" alt="">
     </div>
 
-    <!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕, 火力网 -->
+
+    <!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕 -->
     <div class="barrage-container">
-
         <!-- first line -- 第1行 -->
-        <div class="line1-wall every-line-wall">
-            <!-- first line -- 第1行 -->
-            <!--<div class="line1-wall every-line-wall">
-                <div class="barrage-div" style="background: rgba(216, 188, 125, .9)">
-                    <p>
-                    <span class="hat" style="display:block;">
-                        <img src="static/img/user-head/hat.png" alt="">
-                    </span>
-                        <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="0">
-                    </p>
-                    <p class="barrage-font" style="color:#414141">XXX：祝大家2018年事事如意，财源滚滚。</p>
-                </div>
-            </div>-->
-        </div>
-
+        <div class="line1-wall every-line-wall"></div>
         <!-- second line -- 第2行 -->
         <div class="line2-wall every-line-wall"></div>
-
         <!-- third line -- 第3行 -->
         <div class="line3-wall every-line-wall"></div>
-
         <!-- fourth line -- 第4行 -->
         <div class="line4-wall every-line-wall"></div>
     </div>
+
 
     <!--绝对定位背景大图-->
     <div class="absolute-bg">
@@ -175,24 +160,22 @@
 
             // 按固定间隔时间读取数据
             ajaxGetJson:        function () {
+                var getJson = null;
                 $.ajax({
                     url:'https://m.dinpay.com:8443/annualMeeting/showBarrage.htm',
-                    type:'get',
+                    type:'post',
                     data:null,
-                    async : false, //默认为true 异步
-                    error:function(){
-                    },
+                    async : false, // false 同步
+                    error:function(){ },
                     success:function(data){
-                        debugger;
+                        getJson = data;
+                        console.log(data);
                     }
-                })
-
+                });
+                return getJson;
             }
 
         };
-
-
-
 
 
 
@@ -201,11 +184,14 @@
             // 弹幕
             (function () {
 
-                // 创建弹幕 div
+                // console.log(ajaxMap.ajaxGetJson());
+
                 var i = 0,
                     len = brgJson.length;
                 var fragment;
                 if (len > 0) {
+
+                    // 创建弹幕 div
                     for (; i < len; i++) {
 
                         if (i % 4 === 1) {
@@ -229,22 +215,21 @@
                             eleConfMap.line4Wall.appendChild(fragment);
                         }
                     }
+
+                    // 滚动弹幕: 第一行:
+                    var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
+                    mainMap.fnScroll(600, aLin1DIV);
+                    // 滚动弹幕: 第二行
+                    var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
+                    mainMap.fnScroll(400, aLin2DIV);
+                    // 滚动弹幕: 第三行
+                    var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
+                    mainMap.fnScroll(500, aLin3DIV);
+                    // 滚动弹幕: 第四行
+                    var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
+                    mainMap.fnScroll(200, aLin4DIV);
                 }
 
-
-
-                var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
-                // 向左滚动
-                mainMap.fnScroll(600, aLin1DIV);
-
-                var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
-                mainMap.fnScroll(400, aLin2DIV);
-
-                var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
-                mainMap.fnScroll(500, aLin3DIV);
-
-                var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
-                mainMap.fnScroll(200, aLin4DIV);
 
             })();
 

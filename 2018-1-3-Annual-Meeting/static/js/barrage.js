@@ -24,7 +24,7 @@ var mainMap = {
         var fragment = document.createDocumentFragment();
         var brgDiv = document.createElement("div");
         brgDiv.className = "barrage-div";
-        brgDiv.style.marginLeft = (window.innerWidth + 780) + "px"
+        brgDiv.style.marginLeft = (window.innerWidth + 780) + "px";
         // brgDiv.style.visibility = "hidden";
 
         var firstP = document.createElement("p");
@@ -32,6 +32,8 @@ var mainMap = {
         hatSpan.className = "hat";
         hatSpan.style.display = "none";
         var hatSpanImg = document.createElement("img");
+        /*if (curJson.userProfile == "" || ) {}*/
+
         hatSpanImg.setAttribute("src", "static/img/user-head/hat.png");
         hatSpan.appendChild(hatSpanImg);
         firstP.appendChild(hatSpan);
@@ -52,6 +54,7 @@ var mainMap = {
 
         if (parseInt(brgJson[num].memberId, 10) === 1) {
             brgDiv.style.backgroundColor = "rgba(216, 188, 125, .9)";
+            brgDiv.style.zIndex = "20";
             hatSpan.style.display = "block";
             brgFont.style.color = "#414141";
         }
@@ -59,12 +62,22 @@ var mainMap = {
     },
 
     // 生成 transform
-    fnGenerateTransform:    function (elem) {
-        var elems = {}
+    fnGenerateTransform:    function (elem, milSeconds) {
+        var elems = {};
         // 取得当前 elem 上的所有 style 样式
         elems.init  = elem.getAttribute("style");
-        console.log(elems.init);
-        elems.target = elems.init + "transform: translateX(" + window.innerWidth + elem.offsetWidth +
+
+        var maxWidth = String(getStyle(elem, "max-width"));
+        var totalWidth = Number(window.innerWidth) +  Number(maxWidth.substring(0, maxWidth.length-2));
+        elems.target = elems.init +
+            " transform: translateX(-" + totalWidth + "px); " +
+            "translate: transform " + milSeconds + "s linear;";
+        // console.log(elems.target);
+
+
+        return  elems.init + " transform: translateX(-" + totalWidth + "px); " +
+            "; transition: " +
+            "transform " + milSeconds + "s linear;";
     },
 
     // 向左滚动
@@ -74,21 +87,27 @@ var mainMap = {
         for (; i < len; i++) {
             aDiv[i] = function (num) {
                 setTimeout(function () {
-
                     mainMap.fnGenerateTransform(aDiv[num]);
 
                     var brgFont = aDiv[num].getElementsByClassName("barrage-font")[0];
                     // console.log(brgFont.innerHTML.length);
+
+                    var styles;
                     // 如果字体的长度大于12，就把左滚的速度增快
-                    if ( brgFont.innerHTML.length > 15 ) {
-                        if ( hasClass("brg-div-after-faster", aDiv[num]) === false) {
-                            addClass("brg-div-after-faster", aDiv[num]);
-                        }
+                    if ( brgFont.innerHTML.length <= 8 ){
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 14);
+                        aDiv[num].setAttribute("style", styles);
+                    }
+                    if ( brgFont.innerHTML.length > 8 && brgFont.innerHTML.length <= 12  ){
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 11);
+                        aDiv[num].setAttribute("style", styles);
+                    }
+                    if ( brgFont.innerHTML.length > 12 &&  brgFont.innerHTML.length <= 15 ) {
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 9);
+                        aDiv[num].setAttribute("style", styles);
                     } else {
-                        // 否则就按正常速度
-                        if ( hasClass("brg-div-after", aDiv[num]) === false) {
-                            addClass("brg-div-after", aDiv[num]);
-                        }
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 6);
+                        aDiv[num].setAttribute("style", styles);
                     }
 
                 }, time + i*1600 );

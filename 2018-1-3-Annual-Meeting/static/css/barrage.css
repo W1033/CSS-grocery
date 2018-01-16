@@ -35,7 +35,7 @@
     border-radius: 100px;
 }
 
-.brg-div-after {
+/*.brg-div-after {
     transform: translateX(-2680px);
     transition: transform 8s linear;
 }
@@ -43,9 +43,7 @@
 .brg-div-after-faster {
     transform: translateX(-2680px);
     transition: transform 6s linear;
-}
-
-
+}*/
 
 
 .barrage-div > p:nth-child(1) {
