@@ -1,0 +1,92 @@
+/*margin-top*/
+.mar-top-neg02{margin-top: -.2em;}
+.mar-top-01{margin-top:.1em;}
+.mar-top-02{margin-top:.2em;}
+.mar-top-03{margin-top:.3em;}
+.mar-top-04{margin-top:.4em;}
+.mar-top-05{margin-top:.5em;}
+.mar-top-06{margin-top:.6em;}
+.mar-top-08{margin-top:.8em;}
+.mar-top-1{margin-top:1em;}
+.mar-top-2{margin-top:2em;}
+.mar-top-4{margin-top:4em;}
+.mar-top-5{margin-top:5em;}
+.mar-top-6{margin-top:6em;}
+
+/*margin-bottom*/
+.mar-bot-02{margin-bottom:.2em;}
+.mar-bot-04{margin-bottom:.4em;}
+.mar-bot-06{margin-bottom:.6em;}
+.mar-bot-08{margin-bottom:.8em;}
+.mar-bot-1{margin-bottom:1em;}
+.mar-bot-2{margin-bottom:2em;}
+
+.dis-none { display:none; }
+.over-hid { overflow:hidden; }
+
+
+
+body {
+    color:#c30f23;
+}
+
+
+.wall {
+    letter-spacing:1px;
+    width:100%; height:100vh; overflow:hidden;
+    position:relative;
+}
+
+.absolute-bg {
+    position:absolute; left:0; top:0;
+    z-index: -10;
+    width:100%; height:100vh;
+}
+.absolute-bg > img {
+    display:block; width:100%; height:100%;
+}
+
+
+
+/* 左侧边--弹幕开关按钮 */
+.side-left {
+    margin-top:4%;
+    position:absolute; left:2.2%;
+    font-size:32px;  width:45px;
+    overflow:hidden; text-align:center;
+}
+.side-left > .switch-btn {
+    width:100%; height:108px;
+    line-height:108px; cursor:pointer;
+}
+.switch-btn-default-bg {
+    background:url("../img/side-button-bg-md.png") no-repeat center;
+    color:#c30f23;
+    background-size:cover;
+}
+.switch-btn-bg-hover {
+    background:url("../img/sider-button-md-hover.png") no-repeat center;
+    color:#fff;
+    background-size:cover;
+}
+
+
+/* 右侧边-- */
+/* 右侧 */
+.side-right {
+    margin-top:18%;
+    position:absolute; right:2.3%;
+    font-size:32px;  width:45px;
+    overflow:hidden; text-align:center;
+}
+.side-right > a > p {
+    width:100%; height:108px;
+    padding-top:24px;
+    line-height:100%; cursor:pointer;
+    background-size:cover;
+}
+.side-right > a > p:nth-child(1) {
+    margin-top:30px;
+}
+
+
