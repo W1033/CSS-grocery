@@ -231,6 +231,18 @@
                 }
 
 
+                // 弹幕开关
+                eleConfMap.$switchBtn.click(function () {
+                    var zIndexNeg20 = "z-index:-20";
+                    var zIndex10 = "z-index:10";
+                    console.log(eleConfMap.brgContainer.style.zIndex);
+                    if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
+                        eleConfMap.brgContainer.setAttribute("style", zIndex10);
+                    } else {
+                       eleConfMap.brgContainer.setAttribute("style", zIndexNeg20);
+                    }
+                })
+
             })();
 
 
