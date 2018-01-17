@@ -95,15 +95,15 @@ var mainMap = {
                     var styles;
                     // 如果字体的长度大于12，就把左滚的速度增快
                     if ( brgFont.innerHTML.length <= 8 ){
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 14);
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 12);
                         aDiv[num].setAttribute("style", styles);
                     }
                     if ( brgFont.innerHTML.length > 8 && brgFont.innerHTML.length <= 12  ){
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 11);
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 10);
                         aDiv[num].setAttribute("style", styles);
                     }
                     if ( brgFont.innerHTML.length > 12 &&  brgFont.innerHTML.length <= 15 ) {
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 9);
+                        styles = mainMap.fnGenerateTransform(aDiv[num], 8);
                         aDiv[num].setAttribute("style", styles);
                     } else {
                         styles = mainMap.fnGenerateTransform(aDiv[num], 6);

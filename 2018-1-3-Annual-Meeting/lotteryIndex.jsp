@@ -36,9 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <style type="text/css">
         .wall { position: relative; }
-        .container {
-            margin-top:12%;
-        }
+        .container { margin-top:12%; }
         
 
         /* 左侧按钮 */
@@ -196,9 +194,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         };
 
-        
-        
-        
 
 
         window.onload = function(){
@@ -259,10 +254,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     barrage();
                 }, 10000);
 
+                // 弹幕开关
+                eleConfMap.$switchBtn.click(function () {
+                    if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
+                        eleConfMap.brgContainer.style.zIndex = "10";
+                    } else {
+                        eleConfMap.brgContainer.style.zIndex = "-20";
+                    }
+                })
             })();
 			
-
-
 
 
             var i = 0,
