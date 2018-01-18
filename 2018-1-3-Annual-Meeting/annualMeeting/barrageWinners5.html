@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>蒸蒸日上</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href=" static/css/bootstrap.css">
+    <link rel="stylesheet" href=" static/css/reset.css">
+    <link rel="stylesheet" href=" static/css/global.css">
+    <link rel="stylesheet" type="text/css" href=" static/css/barrage.css">
+
+    <script type="text/javascript" src=" static/js/jquery.min.js"></script>
+    <script type="text/javascript" src=" static/js/scrollreveal/scrollreveal.min.js"></script>
+    <script type="text/javascript" src=" static/js/global-functions-new.js"></script>
+    <script type="text/javascript" src=" static/js/barrage.js"></script>
+    
+    <script type="text/javascript">
+        // 加载scrollReveal
+        (function(){
+            window.sr = ScrollReveal();
+        }());
+    </script>
+
+    <style type="text/css">
+        .wall { position: relative; }
+
+        h1.title {
+            text-align:center; font-size:108px;
+            margin-top:10%;
+            letter-spacing:13px;
+        }
+
+        /* 中间 */
+        .row { margin-top:4em; }
+
+        .create-ele-wall {
+            min-height:10em;
+        }
+        h2 { font-size:54px; }
+        h3 { font-size:46px; }
+        h4 { font-size:34px; }
+        p.head-portrait {
+            width:12em; height:12em;
+            margin:1em auto;
+            overflow:hidden;
+            border:3px solid #c30f23;
+            border-radius:50%;
+        }
+        p.head-portrait > img {
+		    height: 100%;
+		    width:100%;
+        }
+
+
+        /* 左侧 */
+        .side-left, .switch-btn {
+            margin-top:28%;
+        }
+        .side-left > .num-btn {
+            margin-top:20px;
+            width:100%; height:72px;
+            line-height:350%;
+            font-size:24px; cursor:pointer;
+            text-align:center;
+        }
+        .num-btn-default-bg {
+            color: #c30f23;
+            background: url("static/img/side-button-bg-sm.png") no-repeat center;
+        }
+        .num-btn-bg-hover {
+            color:#fff;
+            background:url("static/img/side-button-bg-sm-hover.png") no-repeat center;
+        }
+        .flourishing{font-size:64px;text-align:left;width:730px;margin: 0 auto;}
+
+        /* 右侧css --> global.css */
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wall">
+
+        <!--绝对定位背景大图-->
+        <div class="absolute-bg">
+            <img src="static/img/bg.png" alt="">
+        </div>
+		<!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕 -->
+		<div class="barrage-container">
+			<!-- first line -- 第1行 -->
+			<div class="line1-wall every-line-wall"></div>
+			<!-- second line -- 第2行 -->
+			<div class="line2-wall every-line-wall"></div>
+			<!-- third line -- 第3行 -->
+			<div class="line3-wall every-line-wall"></div>
+			<!-- fourth line -- 第4行 -->
+			<div class="line4-wall every-line-wall"></div>
+		</div>
+        <!--左侧竖排按钮-->
+        <div class="side-left">
+            <p class="switch-btn switch-btn-default-bg">关</p>
+            <p class="num-btn num-btn-default-bg" onclick="clickBarrageCount()">数</p>
+        </div>
+
+        <!--右侧竖排按钮-->
+        <div class="side-right">
+        <a href=" static/annualMeeting/barrageIndex.htm">
+            <p class="md-same-btn back-btn switch-btn-default-bg">返回</p>
+        </a>
+        <a href=" static/annualMeeting/lotteryIndex.htm">
+            <p class="md-same-btn back-home-btn switch-btn-default-bg">主页</p>
+        </a>
+    </div>
+
+        <h1 class="title">蒸蒸日上</h1>
+        <div class="flourishing" style="padding-top:50px">
+            <p class="mar-top-08 leaveWordOne dis-none">第一个留言是你吗？</p>
+            <p class="mar-top-08 leaveWordTwo dis-none">还是第2017个呢？</p>
+            <p class="mar-top-08 leaveWordThree dis-none">还是...下一个第2018呢？</p>
+        </div>
+        <div  class="container flourishing1" style="display:none;">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 text-center create-ele-wall one">
+                    <h2>NO.1</h2>
+                    <p class="head-portrait">
+                        <img src="../image/annualMeeting/user-head/li-kui.jpg">
+                    </p>
+                    <h3 class="mar-bot-06"></h3>
+                    <h2 class="mar-bot-02">0.88元</h2>
+                    <h4>这就是猴急的后果</h4>
+                </div>
+                <div class="col-lg-4 col-md-4 text-center create-ele-wall two">
+                    <h2>NO.2017</h2>
+                    <p class="head-portrait">
+                        <img src="../image/annualMeeting/user-head/chai-jin.jpg">
+                    </p>
+                    <h3 class="mar-bot-06"></h3>
+                    <h2 class="mar-bot-02">168.88元</h2>
+                    <h4>再慢一点 大奖就是你的</h4>
+                </div>
+                <div class="col-lg-4 col-md-4 text-center create-ele-wall three">
+                    <h2>NO.2018</h2>
+                    <p class="head-portrait">
+                        <img src="../image/annualMeeting/user-head/lu-jun-yi.jpg">
+                    </p>
+                    <h3 class="mar-bot-06"></h3>
+                    <h2 class="mar-bot-02">201.8元</h2>
+                    <h4>你已透支今年的人品</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+		setTimeout("$('.leaveWordOne').show(1000);", 1000);
+	    setTimeout("$('.leaveWordOne').hide(200);$('.leaveWordTwo').show(1000);", 2500);
+	  	setTimeout("$('.leaveWordOne').hide();$('.leaveWordTwo').hide(200);$('.leaveWordThree').show(1000)", 4000);
+
+        setTimeout("$('.flourishing').hide();$('.flourishing1').show();flourishing1();", 6000) 
+
+        // 元素配置表: 缓存静态html元素
+        var eleConfMap = {
+			// 弹幕
+			brgContainer:       getClassName("barrage-container")[0],
+			line1Wall:          getClassName("line1-wall")[0],
+			line2Wall:          getClassName("line2-wall")[0],
+			line3Wall:          getClassName("line3-wall")[0],
+			line4Wall:          getClassName("line4-wall")[0],
+            // h1
+            title:              getClassName("title")[0],
+
+            // 左侧边2个按钮
+            $switchBtn:         $(".switch-btn"),
+            $numBtn:            $(".num-btn"),
+            $mdSameBtn:         $(".md-same-btn"),
+
+            $leaveWordOne:      $(".leaveWordOne")[0],
+            $leaveWordTwo:      $(".leaveWordTwo")[0],
+            $leaveWordThree:    $(".leaveWordThree")[0],
+
+            // 中间
+            $createEleWall:     $(".create-ele-wall")
+        };
+
+		// ajax 配置图
+		var ajaxMap = {
+		
+			// 按固定间隔时间读取数据
+			ajaxGetJson: function () {
+				var getJson = null;
+				$.ajax({
+					url:'<%=request.getContextPath()%>/annualMeeting/showBarrage.htm',
+					type:'post',
+					async : false, // false/true 同步/异步
+					error:function(){ },
+					success:function(data){
+						if (typeof data === "string") {
+							data = JSON.parse(data);
+						}
+						getJson = data;
+						// console.log(getJson);
+					}
+				});
+				return getJson;
+			}
+		};
+        window.onload = function(){
+			// 弹幕
+			(function () {
+			
+				function barrage () {
+					var json = ajaxMap.ajaxGetJson();
+					var i = 0,
+						len = json.length;
+					console.log(len);
+					var fragment;
+					if (len > 0) {
+			
+						// 创建弹幕 div
+						for (; i < len; i++) {
+							if (i % 4 === 1) {
+								// 创建元素
+								fragment  = mainMap.fnCreateEle(i, json[i]);
+								eleConfMap.line1Wall.appendChild(fragment);
+							}
+							if (i % 4 === 2) {
+								// 创建元素
+								fragment  = mainMap.fnCreateEle(i, json[i]);
+								eleConfMap.line2Wall.appendChild(fragment);
+							}
+							if (i % 4 === 3) {
+								// 创建元素
+								fragment  = mainMap.fnCreateEle(i, json[i]);
+								eleConfMap.line3Wall.appendChild(fragment);
+							}
+							if (i % 4 === 0) {
+								// 创建元素
+								fragment  = mainMap.fnCreateEle(i, json[i]);
+								eleConfMap.line4Wall.appendChild(fragment);
+							}
+						}
+			
+						// 滚动弹幕: 第一行:
+						var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
+						mainMap.fnScroll(600, aLin1DIV);
+						// 滚动弹幕: 第二行
+						var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
+						mainMap.fnScroll(400, aLin2DIV);
+						// 滚动弹幕: 第三行
+						var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
+						mainMap.fnScroll(500, aLin3DIV);
+						// 滚动弹幕: 第四行
+						var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
+						mainMap.fnScroll(200, aLin4DIV);
+					}
+				}
+				barrage();
+			
+				setInterval(function(){
+					barrage();
+				}, 10000);
+				
+				 // 弹幕开关
+				eleConfMap.$switchBtn.click(function () {
+					if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
+						eleConfMap.brgContainer.style.zIndex = "10";
+					} else {
+						eleConfMap.brgContainer.style.zIndex = "-20";
+					}
+				})
+			
+			})();
+            // 左侧弹幕开关按钮click效果
+            (function () {
+                eleConfMap.$switchBtn.click(function () {
+                    if($(this).hasClass("switch-btn-default-bg")){
+                        $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
+                        $(this).html("开");
+                    } else {
+                        $(this).removeClass("switch-btn-bg-hover").addClass("switch-btn-default-bg");
+                        $(this).html("关");
+                    }
+                });
+
+                // 左侧 数字按钮
+                eleConfMap.$numBtn.hover(function () {
+                    if($(this).hasClass("num-btn-default-bg")){
+                        $(this).removeClass("num-btn-default-bg").addClass("num-btn-bg-hover");
+                    } else {
+                        $(this).removeClass("num-btn-bg-hover").addClass("num-btn-default-bg");
+                    }
+                });
+            })();
+
+
+            // 右侧 - md-same-btn
+            (function () {
+                eleConfMap.$mdSameBtn.each(function () {
+                    $(this).hover(function () {
+                        if($(this).hasClass("switch-btn-default-bg")){
+                            $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
+                        } else {
+                            $(this).removeClass("switch-btn-bg-hover").addClass("switch-btn-default-bg");
+                        }
+                    })
+                });
+            })();
+
+
+            // 中部 - js
+            (function () {
+
+                // scroll-reveal  滚动显示效果
+                sr.reveal(eleConfMap.title, {
+                    origin:     "top",
+                    distance:   "100px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      0,
+                    easing:     "linear",
+                    reset:      true,
+                    mobile:     true,
+                    duration:   800
+                });
+
+            /*   sr.reveal($(".leaveWordOne"),{
+                    origin:     "bottom",
+                    distance:   "100px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      0,
+                    easing:     "linear",
+                    reset:      true,
+                    mobile:     true,
+                    duration:   1000
+                });
+                sr.reveal($(".leaveWordTwo"),{
+                    origin:     "bottom",
+                    distance:   "100px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      0,
+                    easing:     "linear",
+                    reset:      true,
+                    mobile:     true,
+                    duration:   1200
+                });
+                sr.reveal($(".leaveWordThree"),{
+                    origin:     "bottom",
+                    distance:   "100px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      0,
+                    easing:     "linear",
+                    reset:      true,
+                    mobile:     true,
+                    duration:   1500
+                }); 
+ */
+
+            })();
+            
+            
+            //获取中奖名单
+            var barrageWinList7 = ${barrageWinList7};
+            for(var i = 0; i<barrageWinList7.length; i++){
+      			var barrageId = barrageWinList7[i].id;
+      			var name  = barrageWinList7[i].realName; //姓名
+            	var money = barrageWinList7[i].winningAmount; //金额
+            	var imgUrl = barrageWinList7[i].userProfile; //头像路径
+              	if (barrageId == 1) {
+              		$(".one").find("h3").html(name);
+              		//$(".one").find("h2").eq(1).html(money + "元");
+              		if (imgUrl != null && imgUrl.trim() != '' && imgUrl != undefined) {
+              			$(".one").find("img").attr("src", imgUrl);
+              		} else {
+              			$(".one").find("img").attr("src", "../image/annualMeeting/default-avatar.png");
+              		}
+              	} else if (barrageId == 2017) {
+              		$(".two").find("h3").html(name);
+              		//$(".two").find("h2").eq(1).html(money + "元");
+              		if (imgUrl != null && imgUrl.trim() != '' && imgUrl != undefined) {
+              			$(".two").find("img").attr("src", imgUrl);
+              		} else {
+              			$(".two").find("img").attr("src", "../image/annualMeeting/default-avatar.png");
+              		}
+              	} else if (barrageId == 2018) {
+              		$(".three").find("h3").html(name);
+              		//$(".three").find("h2").eq(1).html(money + "元");
+              		if (imgUrl != '' && imgUrl != undefined) {
+              			$(".three").find("img").attr("src", imgUrl);
+              		} else {
+              			$(".three").find("img").attr("src", "../image/annualMeeting/default-avatar.png");
+              		}
+              	}
+            }
+            
+
+        }
+        function flourishing1(){
+            var i = 0,
+                len =eleConfMap.$createEleWall.length;
+            for (; i < len; i++) {
+                sr.reveal(eleConfMap.$createEleWall[i], {
+                    origin:     "bottom",
+                    distance:   "80px",
+                    opacity:    0,
+                    scale:      1,
+                    delay:      400 * (i+1),
+                    easing:     "ease",
+                    reset:      true,
+                    mobile:     true,
+                    duration:   800
+                });
+            }
+        }
+        
+        //点击留言总数
+        function clickBarrageCount() {
+        	location.href = ' static/annualMeeting/curtainCall.htm?type=2';
+        }
+    </script>
+</body>
+</html>

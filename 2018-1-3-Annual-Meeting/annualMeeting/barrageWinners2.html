@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>吉庆有余</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/reset.css">
+    <link rel="stylesheet" href="static/css/global.css">
+    <link rel="stylesheet" type="text/css" href="static/css/barrage.css">
+
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/scrollreveal/scrollreveal.min.js"></script>
+    <script type="text/javascript" src="static/js/global-functions-new.js"></script>
+    <script type="text/javascript" src="static/js/barrage.js"></script>
+    
+    <script type="text/javascript">
+        // 加载scrollReveal
+        (function () {
+            window.sr = ScrollReveal();
+        }());
+    </script>
+
+    <style type="text/css">
+        .wall { position: relative; }
+
+        h1.title {
+            text-align: center;
+            font-size: 80px;
+            margin-top: 10%;
+            letter-spacing: 13px;
+        }
+        .container { width: 78%; }
+        .row { margin-top: 1.2em; }
+        h5 { font-size: 24px; }
+
+        p.head-portrait {
+            width: 85px;
+            height: 85px;
+            margin: 1em auto;
+            overflow: hidden;
+            border: 3px solid #c30f23;
+            border-radius: 50%;
+        }
+
+        p.head-portrait > img {
+            width:100%; height:100%;
+        }
+
+        /* 左侧 */
+        .side-left, .switch-btn { margin-top: 28%; }
+
+        .side-left > .num-btn {
+            margin-top: 20px;
+            width: 100%;
+            height: 72px;
+            line-height: 350%;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .num-btn-default-bg {
+            color: #c30f23;
+            background: url("static/img/side-button-bg-sm.png") no-repeat center;
+        }
+
+        .num-btn-bg-hover {
+            color: #fff;
+            background: url("static/img/side-button-bg-sm-hover.png") no-repeat center;
+        }
+
+        /* 右侧css --> global.css */
+        p.group-btn {
+            background:url("static/img/button-bg-sm.png") no-repeat center center;
+            width:280px;height:82px;
+            background-size:cover;
+            line-height:82px;
+            text-align:center;
+            color:#fff;
+            font-size:38px;
+            cursor:pointer;
+            margin:.2em auto 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<div class="wall">
+
+    <!--绝对定位背景大图-->
+    <div class="absolute-bg">
+        <img src="static/img/bg.png" alt="">
+    </div>
+	
+	<!-- 弹幕 barrage /'bærɑːʒ/ n.弹幕 -->
+	<div class="barrage-container">
+		<!-- first line -- 第1行 -->
+		<div class="line1-wall every-line-wall"></div>
+		<!-- second line -- 第2行 -->
+		<div class="line2-wall every-line-wall"></div>
+		<!-- third line -- 第3行 -->
+		<div class="line3-wall every-line-wall"></div>
+		<!-- fourth line -- 第4行 -->
+		<div class="line4-wall every-line-wall"></div>
+	</div>
+    <!--左侧竖排按钮-->
+    <div class="side-left">
+        <p class="switch-btn switch-btn-default-bg">关</p>
+    </div>
+
+    <!--右侧竖排按钮-->
+    <div class="side-right">
+        <a href="<%=path%>/annualMeeting/barrageIndex.htm">
+            <p class="md-same-btn back-btn switch-btn-default-bg">返回</p>
+        </a>
+        <a href="<%=path%>/annualMeeting/lotteryIndex.htm">
+            <p class="md-same-btn back-home-btn switch-btn-default-bg">主页</p>
+        </a>
+    </div>
+
+    <h1 class="title">吉庆有余 18.88元</h1>
+    <div class="container">
+        <div class="row create-ele-wall"></div>
+
+        <div class="row">
+            <p class="group-btn">下一组</p>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // 元素配置表: 缓存静态html元素
+    var eleConfMap = {
+		// 弹幕
+		brgContainer:       getClassName("barrage-container")[0],
+		line1Wall:          getClassName("line1-wall")[0],
+		line2Wall:          getClassName("line2-wall")[0],
+		line3Wall:          getClassName("line3-wall")[0],
+		line4Wall:          getClassName("line4-wall")[0],
+	    // container-fluid
+        createEleWall:  getClassName("create-ele-wall")[0],
+
+        // h1
+        title:          getClassName("title")[0],
+
+        // 左侧边2个按钮
+        $switchBtn:     $(".switch-btn"),
+        $numBtn:        $(".num-btn"),
+        $mdSameBtn:     $(".md-same-btn"),
+
+        // 中间
+        $createEleWall: $(".create-ele-wall"),
+        $groupBtn:      $(".group-btn")
+    };
+
+    // 模拟数据
+    /* var users = [
+        {name: "鲁智深", avatar: "lu-zhi-shen"},
+        {name: "吴用", avatar: "wu-yong"},
+        {name: "柴进", avatar: "chai-jin"},
+        {name: "朱仝", avatar: "zhu-tong"},
+        {name: "秦明", avatar: "qin-ming"},
+        {name: "林冲", avatar: "lin-chong"},
+        {name: "花荣", avatar: "hua-rong"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "公孙胜", avatar: "gong-sun-sheng"},
+        {name: "秦明", avatar: "qin-ming"},
+        {name: "林冲", avatar: "lin-chong"},
+
+        {name: "朱仝", avatar: "zhu-tong"},
+        {name: "秦明", avatar: "qin-ming"},
+        {name: "林冲", avatar: "lin-chong"},
+        {name: "花荣", avatar: "hua-rong"},
+        {name: "鲁智深", avatar: "lu-zhi-shen"},
+        {name: "吴用", avatar: "wu-yong"},
+        {name: "柴进", avatar: "chai-jin"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "公孙胜", avatar: "gong-sun-sheng"},
+        {name: "鲁智深", avatar: "lu-zhi-shen"},
+        {name: "吴用", avatar: "wu-yong"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+
+
+
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "公孙胜", avatar: "gong-sun-sheng"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "吴用", avatar: "wu-yong"},
+        {name: "柴进", avatar: "chai-jin"},
+        {name: "朱仝", avatar: "zhu-tong"},
+        {name: "秦明", avatar: "qin-ming"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "XXX", avatar: "default-avatar"},
+
+
+
+        {name: "公孙胜", avatar: "gong-sun-sheng"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "鲁智深", avatar: "lu-zhi-shen"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "柴进", avatar: "chai-jin"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "秦明", avatar: "qin-ming"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+
+
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "关胜", avatar: "guan-sheng"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "吴用", avatar: "wu-yong"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "朱仝", avatar: "zhu-tong"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "呼延灼", avatar: "hu-yan-zhuo"},
+        {name: "XXX", avatar: "default-avatar"},
+        {name: "关胜", avatar: "guan-sheng"},
+    ]; */
+	// ajax 配置图
+	var ajaxMap = {
+	
+		// 按固定间隔时间读取数据
+		ajaxGetJson: function () {
+			var getJson = null;
+			$.ajax({
+				url:'<%=request.getContextPath()%>/annualMeeting/showBarrage.htm',
+				type:'post',
+				async : false, // false/true 同步/异步
+				error:function(){ },
+				success:function(data){
+					if (typeof data === "string") {
+						data = JSON.parse(data);
+					}
+					getJson = data;
+					// console.log(getJson);
+				}
+			});
+			return getJson;
+		}
+	};
+
+    window.onload = function () {
+		var users = ${barrageWinList1};
+		
+		// 弹幕
+		(function () {
+		
+			function barrage () {
+				var json = ajaxMap.ajaxGetJson();
+				var i = 0,
+					len = json.length;
+				console.log(len);
+				var fragment;
+				if (len > 0) {
+		
+					// 创建弹幕 div
+					for (; i < len; i++) {
+						if (i % 4 === 1) {
+							// 创建元素
+							fragment  = mainMap.fnCreateEle(i, json[i]);
+							eleConfMap.line1Wall.appendChild(fragment);
+						}
+						if (i % 4 === 2) {
+							// 创建元素
+							fragment  = mainMap.fnCreateEle(i, json[i]);
+							eleConfMap.line2Wall.appendChild(fragment);
+						}
+						if (i % 4 === 3) {
+							// 创建元素
+							fragment  = mainMap.fnCreateEle(i, json[i]);
+							eleConfMap.line3Wall.appendChild(fragment);
+						}
+						if (i % 4 === 0) {
+							// 创建元素
+							fragment  = mainMap.fnCreateEle(i, json[i]);
+							eleConfMap.line4Wall.appendChild(fragment);
+						}
+					}
+		
+					// 滚动弹幕: 第一行:
+					var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
+					mainMap.fnScroll(600, aLin1DIV);
+					// 滚动弹幕: 第二行
+					var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
+					mainMap.fnScroll(400, aLin2DIV);
+					// 滚动弹幕: 第三行
+					var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
+					mainMap.fnScroll(500, aLin3DIV);
+					// 滚动弹幕: 第四行
+					var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
+					mainMap.fnScroll(200, aLin4DIV);
+				}
+			}
+			barrage();
+		
+			setInterval(function(){
+				barrage();
+			}, 10000);
+			
+			 // 弹幕开关
+			eleConfMap.$switchBtn.click(function () {
+				if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
+					eleConfMap.brgContainer.style.zIndex = "10";
+				} else {
+					eleConfMap.brgContainer.style.zIndex = "-20";
+				}
+			})
+		
+		})();
+
+        // 左侧弹幕开关按钮click效果
+        (function () {
+            eleConfMap.$switchBtn.click(function () {
+                if ($(this).hasClass("switch-btn-default-bg")) {
+                    $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
+                    $(this).html("开");
+                } else {
+                    $(this).removeClass("switch-btn-bg-hover").addClass("switch-btn-default-bg");
+                    $(this).html("关");
+                }
+            });
+
+            // 左侧 数字按钮
+            eleConfMap.$numBtn.hover(function () {
+                if ($(this).hasClass("num-btn-default-bg")) {
+                    $(this).removeClass("num-btn-default-bg").addClass("num-btn-bg-hover");
+                } else {
+                    $(this).removeClass("num-btn-bg-hover").addClass("num-btn-default-bg");
+                }
+            });
+        })();
+
+
+        // 右侧 - md-same-btn
+        (function () {
+            eleConfMap.$mdSameBtn.each(function () {
+                $(this).hover(function () {
+                    if ($(this).hasClass("switch-btn-default-bg")) {
+                        $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
+                    } else {
+                        $(this).removeClass("switch-btn-bg-hover").addClass("switch-btn-default-bg");
+                    }
+                })
+            });
+        })();
+
+
+        // 中部 - js
+        (function () {
+
+            // 动态创建div
+            function fnCreateElement() {
+                var i = 0,
+                    len = users.length;
+                var fragment = document.createDocumentFragment();
+                for (; i < len; i++) {
+                    var createDiv, createP, createImg, createName;
+
+                    if ( i < 36) {
+                        createDiv = document.createElement("div");
+                        createDiv.className = "col-lg-1 text-center create-ele-div mar-bot-1";
+                        createP = document.createElement("p");
+                        createP.className = "head-portrait";
+                        createImg = document.createElement("img");
+                        var userProfile = users[i].userProfile;
+                        if (userProfile == undefined || userProfile == null || userProfile.trim() == "") {
+                        	//显示默认头像
+                        	createImg.setAttribute("src", "../image/annualMeeting/default-avatar.png");
+                        } else {
+                        	createImg.setAttribute("src", users[i].userProfile);
+                        }
+                        createP.appendChild(createImg);
+                        createName = document.createElement("h5");
+                        createName.textContent = users[i].realName;
+                        createDiv.appendChild(createP);
+                        createDiv.appendChild(createName);
+                        fragment.appendChild(createDiv);
+                    } else {
+                        createDiv = document.createElement("div");
+                        createDiv.className = "col-lg-1 hidden-lg text-center create-ele-div mar-bot-1";
+                        createP = document.createElement("p");
+                        createP.className = "head-portrait";
+                        createImg = document.createElement("img");
+                        var userProfile = users[i].userProfile;
+                        if (userProfile == undefined || userProfile == null || userProfile.trim() == "") {
+                        	//显示默认头像
+                        	createImg.setAttribute("src", "../image/annualMeeting/default-avatar.png");
+                        } else {
+                        	createImg.setAttribute("src", users[i].userProfile);
+                        }
+                        createP.appendChild(createImg);
+                        createName = document.createElement("h5");
+                        createName.textContent = users[i].realName;
+                        createDiv.appendChild(createP);
+                        createDiv.appendChild(createName);
+                        fragment.appendChild(createDiv);
+                    }
+                }
+                return fragment;
+            }
+
+            eleConfMap.createEleWall.appendChild(fnCreateElement());
+
+            var createEleDiv = getClassName("create-ele-div");
+            if (createEleDiv.length > 0) {
+                reveal(createEleDiv);
+            }
+
+
+            // 标题-scrollReveal
+            sr.reveal(eleConfMap.title, {
+                origin: "top",
+                distance: "100px",
+                opacity: 0,
+                scale: 1,
+                delay: 0,
+                easing: "linear",
+                reset: false,
+                mobile: true,
+                duration: 800
+            });
+
+            // scroll-reveal  滚动显示效果
+            function reveal(createEleDiv) {
+                var i = 0,
+                    len = createEleDiv.length;
+                for (; i < len; i++) {
+                    if(hasClass("hidden-lg", createEleDiv[i]) === false){
+                        sr.reveal(createEleDiv[i], {
+                            origin: "bottom",
+                            distance: "80px",
+                            opacity: 0,
+                            scale: 1,
+                            delay: 100 * (i + 1),
+                            easing: "ease",
+                            reset: true,
+                            mobile: true,
+                            duration: 600
+                        });
+                    }
+                }
+            }
+
+            eleConfMap.$groupBtn.click(function () {
+                var createEleDiv = $(".create-ele-div");
+                var i = 0,
+                    len = createEleDiv.length;
+                for (; i < len; i++) {
+                    if(hasClass("hidden-lg", createEleDiv[i])){
+                        removeClass("hidden-lg", createEleDiv[i]);
+                        sr.reveal(createEleDiv[i], {
+                            origin: "bottom",
+                            distance: "80px",
+                            delay:  200,
+                            easing: "ease",
+                            reset: true,
+                            mobile: true,
+                            duration: 1000
+                        });
+                    } else {
+                        addClass("hidden-lg", createEleDiv[i]);
+                    }
+                }
+
+                var html = $(this).html();
+				if (html == "下一组") {
+					html = "上一组";
+				} else {
+					html = "下一组";
+				}
+                $(this).html(html);
+            })
+        })();
+        
+    }
+
+</script>
+</body>
+</html>
