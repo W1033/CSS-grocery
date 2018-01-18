@@ -45,7 +45,7 @@
             cursor:pointer;
         }
         .history-default-bg {
-            background:url("static/img/side-button-bg-lg.png") no-repeat center;
+            background:url("static/img/side-button-bg-lg1.png") no-repeat center;
             color:#c30f23;
         }
         .history-bg-hover {
@@ -195,90 +195,85 @@
             // 弹幕
             (function () {
 
-                // 弹幕
-                (function () {
+                // dataLength 记录数据总长度
+                var dataLength = null;
 
-                    // dataLength 记录数据总长度
-                    var dataLength = null;
+                function barrage() {
+                    var json = ajaxMap.ajaxGetJson();
+                    var i = 0,
+                        len = json.length;
+                    dataLength = len;
+                    console.log(dataLength);
+                    var fragment;
+                    if (len > 0) {
 
-                    function barrage() {
-                        var json = ajaxMap.ajaxGetJson();
-                        var i = 0,
-                            len = json.length;
-                        dataLength = len;
-                        console.log(dataLength);
-                        var fragment;
-                        if (len > 0) {
-
-                            // 创建弹幕 div
-                            for (; i < len; i++) {
-                                if (i % 4 === 1) {
-                                    // 创建元素
-                                    fragment = mainMap.fnCreateEle(i, json[i]);
-                                    eleConfMap.line1Wall.appendChild(fragment);
-                                }
-                                if (i % 4 === 2) {
-                                    // 创建元素
-                                    fragment = mainMap.fnCreateEle(i, json[i]);
-                                    eleConfMap.line2Wall.appendChild(fragment);
-                                }
-                                if (i % 4 === 3) {
-                                    // 创建元素
-                                    fragment = mainMap.fnCreateEle(i, json[i]);
-                                    eleConfMap.line3Wall.appendChild(fragment);
-                                }
-                                if (i % 4 === 0) {
-                                    // 创建元素
-                                    fragment = mainMap.fnCreateEle(i, json[i]);
-                                    eleConfMap.line4Wall.appendChild(fragment);
-                                }
+                        // 创建弹幕 div
+                        for (; i < len; i++) {
+                            if (i % 4 === 1) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(i, json[i]);
+                                eleConfMap.line1Wall.appendChild(fragment);
                             }
-
-
-
-                            // 滚动弹幕: 第一行:
-                            var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
-                            mainMap.fnScroll(600, aLin1DIV);
-                            // 滚动弹幕: 第二行
-                            var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
-                            mainMap.fnScroll(400, aLin2DIV);
-                            // 滚动弹幕: 第三行
-                            var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
-                            mainMap.fnScroll(500, aLin3DIV);
-                            // 滚动弹幕: 第四行
-                            var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
-                            mainMap.fnScroll(200, aLin4DIV);
-
-                            // 创建完之后清除当前 json 数据
-                            json = null;
+                            if (i % 4 === 2) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(i, json[i]);
+                                eleConfMap.line2Wall.appendChild(fragment);
+                            }
+                            if (i % 4 === 3) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(i, json[i]);
+                                eleConfMap.line3Wall.appendChild(fragment);
+                            }
+                            if (i % 4 === 0) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(i, json[i]);
+                                eleConfMap.line4Wall.appendChild(fragment);
+                            }
                         }
-                    }
 
-                    // 如果当前 dataLength 等于0，就立马开始
-                    if (dataLength === null) {
+
+
+                        // 滚动弹幕: 第一行:
+                        var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
+                        mainMap.fnScroll(600, aLin1DIV);
+                        // 滚动弹幕: 第二行
+                        var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
+                        mainMap.fnScroll(400, aLin2DIV);
+                        // 滚动弹幕: 第三行
+                        var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
+                        mainMap.fnScroll(500, aLin3DIV);
+                        // 滚动弹幕: 第四行
+                        var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
+                        mainMap.fnScroll(200, aLin4DIV);
+
+                        // 创建完之后清除当前 json 数据
+                        json = null;
+                    }
+                }
+
+                // 如果当前 dataLength 等于0，就立马开始
+                if (dataLength === null) {
+                    barrage();
+                    connection(dataLength);
+                }
+
+                function connection(dataLenth){
+
+                    // 如果 dataLength 不等于0， 就根据长度: item*6*1000
+                    setInterval(function () {
                         barrage();
-                        connection(dataLength);
+                    }, (dataLength + 1) * 6 * 1000);
+                }
+
+
+                // 弹幕开关
+                eleConfMap.$switchBtn.click(function () {
+                    if (hasClass("dis-none", eleConfMap.brgContainer)) {
+                        removeClass("dis-none", eleConfMap.brgContainer);
+                    } else {
+                        addClass("dis-none", eleConfMap.brgContainer);
                     }
-
-                    function connection(dataLenth){
-
-                        // 如果 dataLength 不等于0， 就根据长度: item*6*1000
-                        setInterval(function () {
-                            barrage();
-                        }, (dataLength + 1) * 6 * 1000);
-                    }
-
-
-                    // 弹幕开关
-                    eleConfMap.$switchBtn.click(function () {
-                        if (hasClass("dis-none", eleConfMap.brgContainer)) {
-                            removeClass("dis-none", eleConfMap.brgContainer);
-                        } else {
-                            addClass("dis-none", eleConfMap.brgContainer);
-                        }
-                    })
-
-                })();
+                })
 
             })();
 
