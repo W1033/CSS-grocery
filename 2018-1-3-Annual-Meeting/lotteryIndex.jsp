@@ -36,7 +36,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <style type="text/css">
         .wall { position: relative; }
-        .container { margin-top:12%; }
+        .container {
+            margin-top:15%;
+        }
         
 
         /* 左侧按钮 */
@@ -72,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             background:url("<%=path%>/image/annualMeeting/button-bg-lg-hover.png") no-repeat center;
         }
         .row {
-            margin-bottom:8em;
+            margin-bottom:5em;
         }
 
     </style>
@@ -113,38 +115,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="container">
         	<div class="row">
                 <p class="col-lg-6 col-md-6">
+                    <a href="setWinNumber.htm?prize=5">
+                        <span class="awards-btn img-default-bg">美容券</span>
+                    </a>
+                </p>
+                <p class="col-lg-6 col-md-6">
                     <a href="setWinNumber.htm?prize=4">
                         <span class="awards-btn img-default-bg">四等奖</span>
                     </a>
                 </p>
+            </div>
+            <div class="row">
                 <p class="col-lg-6 col-md-6">
                     <a href="setWinNumber.htm?prize=3">
                         <span class="awards-btn img-default-bg">三等奖</span>
                     </a>
                 </p>
-            </div>
-            <div class="row">
                 <p class="col-lg-6 col-md-6">
                     <a href="setWinNumber.htm?prize=2">
                         <span class="awards-btn img-default-bg">二等奖</span>
                     </a>
                 </p>
+            </div>
+            <div class="row">
                 <p class="col-lg-6 col-md-6">
                     <a href="setWinNumber.htm?prize=1">
                         <span class="awards-btn img-default-bg">一等奖</span>
                     </a>
                 </p>
-            </div>
-            <div class="row">
                 <p class="col-lg-6 col-md-6">
                     <a href="setWinNumber.htm?prize=8">
                         <span class="awards-btn img-default-bg">特等奖</span>
                     </a>
                 </p>
-                <p class="col-lg-6 col-md-6">
-                    <a href="barrageIndex.htm">
-                        <span class="awards-btn img-default-bg">留言幸运奖</span>
-                    </a>
+            </div>
+              <div class="row">
+                <p class="col-lg-12 col-md-12">
+                	<span class="awards-btn img-default-bg"><a href="barrageIndex.htm" style="color:#fff;">留言幸运奖 </a></span>
                 </p>
             </div>
         </div>
@@ -195,65 +202,120 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         };
 
 
-
         window.onload = function(){
-
 
 			// 弹幕
             (function () {
 
-                function barrage () {
-                    var json = ajaxMap.ajaxGetJson();
-                    var i = 0,
-                        len = json.length;
-                    console.log(len);
-                    var fragment;
-                    if (len > 0) {
+             	// dataLength 记录数据总长度 
+               var dataLength = null; 
+               var num = 0; 
+               function barrage() { 
+                   var json = ajaxMap.ajaxGetJson(); 
+                   var i = 0, 
+                       len = json.length; 
+                   dataLength = len;
 
-                        // 创建弹幕 div
-                        for (; i < len; i++) {
-                            if (i % 4 === 1) {
-                                // 创建元素
-                                fragment  = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line1Wall.appendChild(fragment);
-                            }
-                            if (i % 4 === 2) {
-                                // 创建元素
-                                fragment  = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line2Wall.appendChild(fragment);
-                            }
-                            if (i % 4 === 3) {
-                                // 创建元素
-                                fragment  = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line3Wall.appendChild(fragment);
-                            }
-                            if (i % 4 === 0) {
-                                // 创建元素
-                                fragment  = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line4Wall.appendChild(fragment);
-                            }
-                        }
+                   // 输出数据的长度 
+                   console.log("输出数据的长度 " + dataLength);
+                    
+                   // num +1 
+                   console.log("统计读取Ajax次数 " + num++); 
+                    
+                   var fragment; 
+                   if (len > 0) { 
 
-                        // 滚动弹幕: 第一行:
-                        var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
-                        mainMap.fnScroll(600, aLin1DIV);
-                        // 滚动弹幕: 第二行
-                        var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
-                        mainMap.fnScroll(400, aLin2DIV);
-                        // 滚动弹幕: 第三行
-                        var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
-                        mainMap.fnScroll(500, aLin3DIV);
-                        // 滚动弹幕: 第四行
-                        var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
-                        mainMap.fnScroll(200, aLin4DIV);
-                    }
+                       // 创建弹幕 div 
+                       for (; i < len; i++) { 
+                           if (i % 4 === 1) { 
+                               // 创建元素 
+                               fragment = mainMap.fnCreateEle(i, json[i]); 
+                               eleConfMap.line1Wall.appendChild(fragment); 
+                           } 
+                           if (i % 4 === 2) { 
+                               // 创建元素 
+                               fragment = mainMap.fnCreateEle(i, json[i]); 
+                               eleConfMap.line2Wall.appendChild(fragment); 
+                           } 
+                           if (i % 4 === 3) { 
+                               // 创建元素 
+                               fragment = mainMap.fnCreateEle(i, json[i]); 
+                               eleConfMap.line3Wall.appendChild(fragment); 
+                           } 
+                           if (i % 4 === 0) { 
+                               // 创建元素 
+                               fragment = mainMap.fnCreateEle(i, json[i]); 
+                               eleConfMap.line4Wall.appendChild(fragment); 
+                           } 
+                       } 
+
+                        
+                       // 滚动弹幕: 第一行: 
+                       var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall); 
+                       mainMap.fnScroll(600, aLin1DIV); 
+                       // 滚动弹幕: 第二行 
+                       var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall); 
+                       mainMap.fnScroll(400, aLin2DIV); 
+                       // 滚动弹幕: 第三行 
+                       var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall); 
+                       mainMap.fnScroll(500, aLin3DIV); 
+                       // 滚动弹幕: 第四行 
+                       var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall); 
+                       mainMap.fnScroll(200, aLin4DIV); 
+
+                       // 创建完之后清除当前 json 数据 
+                       json = null; 
+                   }
+
+                    connection(dataLength);
                 }
-                barrage();
 
-                setInterval(function(){
-                    barrage();
-                }, 10000);
+               // 如果当前 dataLength 等于0，就立马开始 
+               if (dataLength === null) { 
+                   barrage();
+               } 
 
+               function connection(dataLength){
+                    dataLength = dataLength || 0;
+                    if (dataLength === 0) {
+                        equalZero();
+                    }
+
+                    if (dataLength > 0 && dataLength < 50) {
+                        less50(dataLength)
+                    }
+
+                   if (dataLength >= 50 && dataLength <= 100) {
+                       less100(dataLength);
+                   }
+               }
+
+                var num1 = 0;
+                var num2 = 0;
+                var num3 = 0;
+                function equalZero () {
+                    setTimeout(function () {
+                        console.log("equalZero num1 " + num1++);
+                        barrage();
+                    }, 6000);
+                }
+
+                function less50 (dataLength) {
+                    setTimeout(function () {
+                        console.log("largeZero num2 " + num2++);
+                        barrage();
+                    }, dataLength * 5 * 100);
+                }
+
+                function less100 (dataLength) {
+                    setTimeout(function () {
+                        console.log("largeZero num3 " + num3++);
+                        barrage();
+                    }, dataLength * 3 * 100);
+                }
+
+
+                
                 // 弹幕开关
                 eleConfMap.$switchBtn.click(function () {
                     if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
@@ -262,8 +324,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         eleConfMap.brgContainer.style.zIndex = "-20";
                     }
                 })
+
             })();
 			
+
+
 
 
             var i = 0,

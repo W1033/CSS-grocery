@@ -197,13 +197,19 @@
 
                 // dataLength 记录数据总长度
                 var dataLength = null;
-
+                var num = 0;
                 function barrage() {
                     var json = ajaxMap.ajaxGetJson();
                     var i = 0,
                         len = json.length;
                     dataLength = len;
+
+                    // 输出数据的长度
                     console.log(dataLength);
+
+                    // num +1
+                    console.log("统计读取Ajax次数 " + num++);
+
                     var fragment;
                     if (len > 0) {
 
@@ -232,7 +238,6 @@
                         }
 
 
-
                         // 滚动弹幕: 第一行:
                         var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
                         mainMap.fnScroll(600, aLin1DIV);
@@ -257,12 +262,29 @@
                     connection(dataLength);
                 }
 
-                function connection(dataLenth){
+                function connection(dataLength){
+                    var interId = null,
+                        num1 = 0,
+                        num2 = 0,
+                        interId2 = null;
+                    if (dataLength === 0) {
+                        clearInterval(interId2);
+                        interId = setInterval(function () {
+                            console.log("num1 " + num1++);
+                            barrage();
+                        }, 6000);
+                        return null;
+                    }
+                    if (dataLength > 0) {
+                        // 如果 dataLength 不等于0， 就根据长度: (item +10)*6*100
+                        clearInterval(interId);
+                        interId2 = setInterval(function () {
+                            console.log("num1 " + num2++);
+                            barrage();
+                        }, (dataLength + 1) * 6 * 1000);
+                        return null;
+                    }
 
-                    // 如果 dataLength 不等于0， 就根据长度: item*6*1000
-                    setInterval(function () {
-                        barrage();
-                    }, (dataLength + 1) * 6 * 1000);
                 }
 
 
