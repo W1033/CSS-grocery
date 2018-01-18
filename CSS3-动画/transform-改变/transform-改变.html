@@ -32,8 +32,25 @@
             transform: scale(0.8);
         }
 
-        #box-4{
-            transform: translate(120px, 0);
+
+        #box-4 {
+            position: absolute;
+            margin-left:1600px;
+        }
+
+        /*#box-4:hover{
+            !*
+                这种形式和下面的 translate(-600px, 0); 是相同的
+                transform: translateX(-600px);
+                transform: translateY(0);
+            *!
+            !*transform: translate(-600px, 0);*!
+            transform: translateX(-1600px);
+            transition: transform 3s ease ;
+        }*/
+        .box-4 {
+            transform: translateX(-1600px);
+            transition: transform 3s ease ;
         }
 
     </style>
@@ -72,8 +89,13 @@
          * transform: translate(120px,0);
          *
          *
-         * */
+         **/
 
+        var box4 = document.getElementById("box-4");
+
+        box4.addEventListener("click", function () {
+            this.className = "box-4"
+        }, false);
 
     </script>
 
