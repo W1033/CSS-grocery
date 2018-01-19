@@ -1,29 +1,14 @@
 /** Created  2018/1/11.*/
 
-function Barrage () {
-    // 支持实例化无 new 关键字
-    if (typeof this === "undefined" || Object.getPrototypeOf(this) !== Barrage.prototype) {
-        return new Barrage();
-    }
-
-    // 保存对实例的引用
-    var brg;
-    brg = this;
-
-    brg.sequence = {};      // 当前序列
-    brg.uid = 0;            // this.uid
-
-    return brg;
-}
-
 
 var mainMap = {
 
     // 创建弹幕元素
-    fnCreateEle:            function  (num, curJson) {
+    fnCreateEle:            function  (ajaxNum,num, curJson) {
         var fragment = document.createDocumentFragment();
         var brgDiv = document.createElement("div");
         brgDiv.className = "barrage-div";
+        brgDiv.setAttribute("data-ajax-num", ajaxNum);
         brgDiv.style.marginLeft = (window.innerWidth + 780) + "px";
         // brgDiv.style.visibility = "hidden";
 
@@ -53,10 +38,13 @@ var mainMap = {
         fragment.appendChild(brgDiv);
 
         if (parseInt(brgJson[num].memberId, 10) === 1) {
-            brgDiv.style.backgroundColor = "rgba(216, 188, 125, .9)";
+            // brgDiv.style.backgroundColor = "rgb(223, 206, 2)";
+            brgDiv.style.opacity = "0.92";
+            brgDiv.style.background= "linear-gradient(to bottom, #f5f424, #f0831f)";
             brgDiv.style.zIndex = "20";
             hatSpan.style.display = "block";
-            brgFont.style.color = "#414141";
+            brgFont.style.color = "#101010";
+            brgFont.style.fontWeight = "bold";
         }
         return fragment;
     },
@@ -67,53 +55,65 @@ var mainMap = {
         // 取得当前 elem 上的所有 style 样式
         elems.init  = elem.getAttribute("style");
 
+        var getTransition = getCss("transition",elem);
+        // console.log(getTransition);
+
         var maxWidth = String(getStyle(elem, "max-width"));
         var totalWidth = Number(window.innerWidth) +  Number(maxWidth.substring(0, maxWidth.length-2));
-        elems.target = elems.init +
-            " transform: translateX(-" + totalWidth + "px); " +
-            "translate: transform " + milSeconds + "s linear;";
-        // console.log(elems.target);
 
-
-        return  elems.init + " transform: translateX(-" + totalWidth + "px); " +
-            "; transition: " +
-            "transform " + milSeconds + "s linear;";
+        var text = "all 0s ease 0s";
+        // 确定有没有添加 transition 如果已添加不允许重复添加
+        if (getTransition === text || getTransition === "") {
+             return  elems.init + " transform: translateX(-" + totalWidth + "px)" +
+             "; transition: " +
+             "transform " + milSeconds + "s linear;";
+        } else {
+            return elems.init;
+        }
     },
 
     // 向左滚动
     fnScroll:               function (time, aDiv) {
         var i = 0,
             len = aDiv.length;
+        // console.log(len);
         for (; i < len; i++) {
             aDiv[i] = function (num) {
                 setTimeout(function () {
-                    mainMap.fnGenerateTransform(aDiv[num]);
-
                     var brgFont = aDiv[num].getElementsByClassName("barrage-font")[0];
-                    // console.log(brgFont.innerHTML.length);
+                    var fontLength = brgFont.innerHTML.length;
 
                     var styles;
-                    // 如果字体的长度大于12，就把左滚的速度增快
-                    if ( brgFont.innerHTML.length <= 8 ){
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 12);
+                    // 根据返回的字符长度，确定滚动速度
+                    if ( fontLength <= 8 ){
+                        styles= mainMap.fnGenerateTransform(aDiv[num], 16);
                         aDiv[num].setAttribute("style", styles);
                     }
-                    if ( brgFont.innerHTML.length > 8 && brgFont.innerHTML.length <= 12  ){
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 10);
+                    if ( fontLength > 8 && fontLength <= 12  ){
+                        styles= mainMap.fnGenerateTransform(aDiv[num], 14);
                         aDiv[num].setAttribute("style", styles);
                     }
-                    if ( brgFont.innerHTML.length > 12 &&  brgFont.innerHTML.length <= 15 ) {
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 8);
+                    if ( fontLength > 12 &&  fontLength <= 15 ) {
+                        styles= mainMap.fnGenerateTransform(aDiv[num], 12);
                         aDiv[num].setAttribute("style", styles);
                     } else {
-                        styles = mainMap.fnGenerateTransform(aDiv[num], 6);
+                        styles= mainMap.fnGenerateTransform(aDiv[num], 10);
                         aDiv[num].setAttribute("style", styles);
                     }
 
                 }, time + i*1600 );
             }(i)
         }
-    }
+    },
+
+    // 每行达到1000条时执行一次清楚,清楚定时为5min[300000ms]之后
+   /* fnClear:                function (container, line1, line2, line3, line4) {
+        var brgDiv = getClassName("barrage-div", container);
+        if (brgDiv.length > 100 && brgDiv.length < 200) {
+            console.log("brgDiv.length" + brgDiv.length);
+
+        }
+    }*/
 
 };
 

@@ -93,8 +93,17 @@
 
         var box4 = document.getElementById("box-4");
 
+
+        console.log(getComputedStyle(box4, false)["margin-right"]);
         box4.addEventListener("click", function () {
-            this.className = "box-4"
+            this.className = "box-4";
+            var self = this;
+            console.log(this.className);
+            console.log(this.offsetWidth);
+            setTimeout(function () {
+                console.log(getComputedStyle(self, false)["margin-left"]);
+                console.log(getComputedStyle(self, false)["margin-right"]);
+            }, 2000);
         }, false);
 
     </script>

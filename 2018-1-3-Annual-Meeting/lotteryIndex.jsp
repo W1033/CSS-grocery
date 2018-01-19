@@ -202,80 +202,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         };
 
 
-        window.onload = function(){
+        window.onload = function () {
 
-			// 弹幕
+            // 弹幕
             (function () {
 
-             	// dataLength 记录数据总长度 
-               var dataLength = null; 
-               var num = 0; 
-               function barrage() { 
-                   var json = ajaxMap.ajaxGetJson(); 
-                   var i = 0, 
-                       len = json.length; 
-                   dataLength = len;
+                // dataLength 记录数据总长度
+                var dataLength = null;
+                var num = 0;
 
-                   // 输出数据的长度 
-                   console.log("输出数据的长度 " + dataLength);
-                    
-                   // num +1 
-                   console.log("统计读取Ajax次数 " + num++); 
-                    
-                   var fragment; 
-                   if (len > 0) { 
+                // 如果当前 dataLength 等于0，就立马开始
+                if (dataLength === null) {
+                    barrage();
+                }
 
-                       // 创建弹幕 div 
-                       for (; i < len; i++) { 
-                           if (i % 4 === 1) { 
-                               // 创建元素 
-                               fragment = mainMap.fnCreateEle(i, json[i]); 
-                               eleConfMap.line1Wall.appendChild(fragment); 
-                           } 
-                           if (i % 4 === 2) { 
-                               // 创建元素 
-                               fragment = mainMap.fnCreateEle(i, json[i]); 
-                               eleConfMap.line2Wall.appendChild(fragment); 
-                           } 
-                           if (i % 4 === 3) { 
-                               // 创建元素 
-                               fragment = mainMap.fnCreateEle(i, json[i]); 
-                               eleConfMap.line3Wall.appendChild(fragment); 
-                           } 
-                           if (i % 4 === 0) { 
-                               // 创建元素 
-                               fragment = mainMap.fnCreateEle(i, json[i]); 
-                               eleConfMap.line4Wall.appendChild(fragment); 
-                           } 
-                       } 
+                // 弹幕主函数: 1.创建弹幕。 2.滚动
+                function barrage() {
+                    var json = ajaxMap.ajaxGetJson();
+                    var i = 0,
+                        len = json.length;
+                    dataLength = len;
 
-                        
-                       // 滚动弹幕: 第一行: 
-                       var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall); 
-                       mainMap.fnScroll(600, aLin1DIV); 
-                       // 滚动弹幕: 第二行 
-                       var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall); 
-                       mainMap.fnScroll(400, aLin2DIV); 
-                       // 滚动弹幕: 第三行 
-                       var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall); 
-                       mainMap.fnScroll(500, aLin3DIV); 
-                       // 滚动弹幕: 第四行 
-                       var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall); 
-                       mainMap.fnScroll(200, aLin4DIV); 
+                    // 输出数据的长度
+                    console.log("输出数据的长度 " + dataLength);
 
-                       // 创建完之后清除当前 json 数据 
-                       json = null; 
-                   }
+                    // num +1
+                    console.log("Ajax调用次数 " + num++);
+
+                    var fragment;
+                    if (len > 0) {
+
+                        var numPlus = num++;
+
+                        // 创建弹幕 div
+                        for (; i < len; i++) {
+                            if (i % 4 === 1) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(numPlus, i, json[i]);
+                                eleConfMap.line1Wall.appendChild(fragment);
+                            }
+                            if (i % 4 === 2) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(numPlus, i, json[i]);
+                                eleConfMap.line2Wall.appendChild(fragment);
+                            }
+                            if (i % 4 === 3) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(numPlus, i, json[i]);
+                                eleConfMap.line3Wall.appendChild(fragment);
+                            }
+                            if (i % 4 === 0) {
+                                // 创建元素
+                                fragment = mainMap.fnCreateEle(numPlus, i, json[i]);
+                                eleConfMap.line4Wall.appendChild(fragment);
+                            }
+                        }
+                    }
+
+                    // 滚动弹幕: 第一行:
+                    var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
+                    mainMap.fnScroll(600, aLin1DIV);
+                    // 滚动弹幕: 第二行
+                    var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
+                    mainMap.fnScroll(400, aLin2DIV);
+                    // 滚动弹幕: 第三行
+                    var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
+                    mainMap.fnScroll(500, aLin3DIV);
+                    // 滚动弹幕: 第四行
+                    var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
+                    mainMap.fnScroll(200, aLin4DIV);
+
+                    // 创建完之后清除当前 json 数据
+                    json = null;
 
                     connection(dataLength);
                 }
 
-               // 如果当前 dataLength 等于0，就立马开始 
-               if (dataLength === null) { 
-                   barrage();
-               } 
-
-               function connection(dataLength){
+                // connection 连接 barrage 主函数和ajax返回条数确定不同调用时间的连接函数
+                function connection(dataLength) {
                     dataLength = dataLength || 0;
                     if (dataLength === 0) {
                         equalZero();
@@ -285,29 +289,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         less50(dataLength)
                     }
 
-                   if (dataLength >= 50 && dataLength <= 100) {
-                       less100(dataLength);
-                   }
-               }
+                    if (dataLength >= 50 && dataLength <= 100) {
+                        less100(dataLength);
+                    }
+                }
+
 
                 var num1 = 0;
                 var num2 = 0;
                 var num3 = 0;
-                function equalZero () {
+
+                function equalZero() {
                     setTimeout(function () {
                         console.log("equalZero num1 " + num1++);
                         barrage();
                     }, 6000);
                 }
 
-                function less50 (dataLength) {
+                function less50(dataLength) {
                     setTimeout(function () {
                         console.log("largeZero num2 " + num2++);
                         barrage();
                     }, dataLength * 5 * 100);
                 }
 
-                function less100 (dataLength) {
+                function less100(dataLength) {
                     setTimeout(function () {
                         console.log("largeZero num3 " + num3++);
                         barrage();
@@ -315,10 +321,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
 
 
-                
                 // 弹幕开关
                 eleConfMap.$switchBtn.click(function () {
-                    if ( Number(eleConfMap.brgContainer.style.zIndex) === -20) {
+                    if (Number(eleConfMap.brgContainer.style.zIndex) === -20) {
                         eleConfMap.brgContainer.style.zIndex = "10";
                     } else {
                         eleConfMap.brgContainer.style.zIndex = "-20";
@@ -326,66 +331,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 })
 
             })();
-			
 
 
 
 
             var i = 0,
-                len =eleConfMap.$awardsBtn.length;
+                len = eleConfMap.$awardsBtn.length;
             for (; i < len; i++) {
-                if(i < 2){
+                if (i < 2) {
                     sr.reveal(eleConfMap.$awardsBtn[i], {
-                        origin:     "bottom",
-                        distance:   "80px",
-                        opacity:    0,
-                        scale:      1,
-                        delay:      200,
-                        easing:     "ease",
-                        reset:      false,
-                        mobile:     true,
-                        duration:   600
+                        origin: "bottom",
+                        distance: "80px",
+                        opacity: 0,
+                        scale: 1,
+                        delay: 200,
+                        easing: "ease",
+                        reset: false,
+                        mobile: true,
+                        duration: 600
                     });
-                } else if(i<4) {
+                } else if (i < 4) {
                     sr.reveal(eleConfMap.$awardsBtn[i], {
-                        origin:     "bottom",
-                        distance:   "80px",
-                        opacity:    0,
-                        scale:      1,
-                        delay:      600,
-                        easing:     "ease",
-                        reset:      false,
-                        mobile:     true,
-                        duration:   600
+                        origin: "bottom",
+                        distance: "80px",
+                        opacity: 0,
+                        scale: 1,
+                        delay: 600,
+                        easing: "ease",
+                        reset: false,
+                        mobile: true,
+                        duration: 600
                     });
                 } else {
                     sr.reveal(eleConfMap.$awardsBtn[i], {
-                        origin:     "bottom",
-                        distance:   "80px",
-                        opacity:    0,
-                        scale:      1,
-                        delay:      800,
-                        easing:     "ease",
-                        reset:      false,
-                        mobile:     true,
-                        duration:   600
+                        origin: "bottom",
+                        distance: "80px",
+                        opacity: 0,
+                        scale: 1,
+                        delay: 800,
+                        easing: "ease",
+                        reset: false,
+                        mobile: true,
+                        duration: 600
                     });
                 }
             }
 
             // 左侧"历史记录"
             eleConfMap.$historyRecord.click(function () {
-                if($(this).hasClass("history-default-bg")){
+                if ($(this).hasClass("history-default-bg")) {
                     $(this).removeClass("history-default-bg").addClass("history-bg-hover");
                 } else {
                     $(this).removeClass("history-bg-hover").addClass("history-default-bg");
                 }
             });
 
-
             // 左侧弹幕开关按钮hover效果
             eleConfMap.$switchBtn.click(function () {
-                if($(this).hasClass("switch-btn-default-bg")){
+                if ($(this).hasClass("switch-btn-default-bg")) {
                     $(this).removeClass("switch-btn-default-bg").addClass("switch-btn-bg-hover");
                     $(this).html("开");
                 } else {
@@ -395,15 +398,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
 
             // 4个奖项按钮hover效果
-            eleConfMap.$awardsBtn.each(function(){
+            eleConfMap.$awardsBtn.each(function () {
                 $(this).hover(
-                   function () {
-                       if($(this).hasClass("img-default-bg")){
-                           $(this).removeClass("img-default-bg").addClass("img-hover-bg");
-                       } else {
-                           $(this).removeClass("img-hover-bg").addClass("img-default-bg");
-                       }
-                   }
+                    function () {
+                        if ($(this).hasClass("img-default-bg")) {
+                            $(this).removeClass("img-default-bg").addClass("img-hover-bg");
+                        } else {
+                            $(this).removeClass("img-hover-bg").addClass("img-default-bg");
+                        }
+                    }
                 )
             })
         }
