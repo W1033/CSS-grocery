@@ -10,6 +10,10 @@ var mainMap = {
         brgDiv.className = "barrage-div";
         brgDiv.setAttribute("data-ajax-num", ajaxNum);
         brgDiv.style.marginLeft = (window.innerWidth + 780) + "px";
+        // 创建元素后就添加 transitionend 事件，在 transition 执行完毕之后会生成 data-over-flag = 1;
+        brgDiv.addEventListener("transitionend", function () {
+            this.setAttribute("data-over-flag", 1);
+        }, false);
         // brgDiv.style.visibility = "hidden";
 
         var firstP = document.createElement("p");
@@ -106,14 +110,30 @@ var mainMap = {
         }
     },
 
-    // 每行达到1000条时执行一次清楚,清楚定时为5min[300000ms]之后
-   /* fnClear:                function (container, line1, line2, line3, line4) {
+    // 清楚执行完毕的弹幕
+    fnClear:                function (container) {
         var brgDiv = getClassName("barrage-div", container);
-        if (brgDiv.length > 100 && brgDiv.length < 200) {
-            console.log("brgDiv.length" + brgDiv.length);
+        var i = 0,
+            len = brgDiv.length;
+        for (; i < len; i++) {
+            if (brgDiv[i].getAttribute("data-over-flag") == 1) {
 
+                if (brgDiv[i].parentNode.className = "line1-wall") {
+                    brgDiv[i].parentNode.removeChild(brgDiv[i])
+                }
+                if (brgDiv[i].parentNode.className = "line2-wall") {
+                    brgDiv[i].parentNode.removeChild(brgDiv[i])
+                }
+                if (brgDiv[i].parentNode.className = "line3-wall") {
+                    brgDiv[i].parentNode.removeChild(brgDiv[i])
+                }
+                if (brgDiv[i].parentNode.className = "line3-wall") {
+                    brgDiv[i].parentNode.removeChild(brgDiv[i])
+                }
+            }
         }
-    }*/
+
+    }
 
 };
 

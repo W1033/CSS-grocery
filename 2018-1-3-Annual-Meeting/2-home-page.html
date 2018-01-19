@@ -214,7 +214,7 @@
 
 
                     var numPlus = num++;
-
+                    var arr = [];
                     var fragment;
                     if (len > 0) {
 
@@ -231,7 +231,7 @@
 
                                 var c = 0,
                                     aLin1Len = aLin1DIV.length;
-                                var arr = [];
+
                                 for (; c < aLin1Len; c++) {
 
                                     var ajaxNum = aLin1DIV[c].getAttribute("data-ajax-num");
@@ -240,13 +240,9 @@
                                         var text = "all 0s ease 0s";
                                         var transition = getCss("transition", aLin1DIV[c]);
                                         if (transition !== text ||  transition !== "") {
-
-                                           /* aLin1DIV[c].addEventListener("transitionend", function () {
-
-                                            }, false);*/
-
-                                            // arr.push(aLin1DIV[index]);
-
+                                            if (aLin1DIV[index].getAttribute("data-over-flag") == 1) {
+                                                arr.push(aLin1DIV[index]);
+                                            }
                                         }
                                     }
                                 }
