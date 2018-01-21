@@ -4,11 +4,12 @@
 var mainMap = {
 
     // 创建弹幕元素
-    fnCreateEle:            function  (ajaxNum, top, curJson) {
+    fnCreateEle:            function  (ajaxNum, index, top, curJson) {
         var fragment = document.createDocumentFragment();
         var brgDiv = document.createElement("div");
         brgDiv.className = "barrage-div";
-        brgDiv.setAttribute("data-ajax-num", ajaxNum);
+        brgDiv.setAttribute("data-index", index);
+        brgDiv.setAttribute("data-ajaxNum", ajaxNum);
         brgDiv.style.marginLeft = (window.innerWidth + 780) + "px";
         // brgDiv.style.marginLeft = 1000 + "px";
         brgDiv.style.marginTop = top;
@@ -17,11 +18,13 @@ var mainMap = {
         brgDiv.addEventListener("transitionend", function () {
             this.setAttribute("data-over-flag", 1);
             var self = this;
-            if (self.getAttribute("data-over-flag") === "1") {
-                if (self.parentNode) {
-                    self.parentNode.removeChild(self);
+            setTimeout(function () {
+                if (self.getAttribute("data-over-flag") === "1") {
+                    if (self.parentNode) {
+                        self.parentNode.removeChild(self);
+                    }
                 }
-            }
+            }, 2000);
         }, false);
 
 
@@ -62,7 +65,7 @@ var mainMap = {
     },
 
     // 生成 transform
-    fnGenerateTransform:    function (elem, milSeconds) {
+    fnGenerateTransform:    function (elem, milSeconds, delay) {
         var elems = {};
         // 取得当前 elem 上的所有 style 样式
         elems.init  = elem.getAttribute("style");
@@ -78,19 +81,41 @@ var mainMap = {
         if (getTransition === text || getTransition === "") {
              return  elems.init + " transform: translateX(-" + totalWidth + "px)" +
              "; transition: " +
-             "transform " + milSeconds + "s linear;";
+             "transform " + milSeconds + "s linear " +  delay + "s;";
         } else {
             return elems.init;
         }
     },
 
     // 向左滚动
-    fnScroll:               function (time, aDiv) {
+    fnScroll:               function (aDiv) {
         var i = 0,
             len = aDiv.length;
-        // console.log(len);
+        var delay = 0;
         for (; i < len; i++) {
-            aDiv[i] = function (num) {
+            var brgFont = aDiv[i].getElementsByClassName("barrage-font")[0];
+            var fontLength = brgFont.innerHTML.length;
+
+            var styles;
+            delay = i/2 ;
+            // 根据返回的字符长度，确定滚动速度
+            if ( fontLength <= 8 ){
+                styles= mainMap.fnGenerateTransform(aDiv[i], 14, delay);
+                aDiv[i].setAttribute("style", styles);
+            }
+            if ( fontLength > 8 && fontLength <= 12  ){
+                styles= mainMap.fnGenerateTransform(aDiv[i], 12, delay);
+                aDiv[i].setAttribute("style", styles);
+            }
+            if ( fontLength > 12 &&  fontLength <= 15 ) {
+                styles= mainMap.fnGenerateTransform(aDiv[i], 10, delay);
+                aDiv[i].setAttribute("style", styles);
+            } else {
+                styles= mainMap.fnGenerateTransform(aDiv[i], 8, delay);
+                aDiv[i].setAttribute("style", styles);
+            }
+
+            /*aDiv[i] = function (num) {
                 setTimeout(function () {
                     var brgFont = aDiv[num].getElementsByClassName("barrage-font")[0];
                     var fontLength = brgFont.innerHTML.length;
@@ -113,8 +138,8 @@ var mainMap = {
                         aDiv[num].setAttribute("style", styles);
                     }
 
-                }, time + i*800 );
-            }(i)
+                }, time + num*200 );
+            }(i)*/
         }
     },
 

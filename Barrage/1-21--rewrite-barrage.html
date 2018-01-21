@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <link rel="stylesheet" href="static/css/reset.css">
     <link rel="stylesheet" href="static/css/global.css">
-    <link rel="stylesheet" href="static/css/barrage.css">
+    <link rel="stylesheet" href="static/css/barrage-2.css">
 
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/scrollreveal/scrollreveal.min.js"></script>
     <script type="text/javascript" src="static/js/global-functions-new.js"></script>
-    <script type="text/javascript" src="static/js/barrage.js"></script>
+    <script type="text/javascript" src="static/js/barrage-2.js"></script>
     <script type="text/javascript" src="static/js/barrage-json.js"></script>
     <script type="text/javascript">
         // 加载scrollReveal
@@ -44,10 +44,10 @@
             margin-bottom:1em;
             cursor:pointer;
         }
-        .history-default-bg {
+       /* .history-default-bg {
             background:url("static/img/side-button-bg-lg1.png") no-repeat center;
             color:#c30f23;
-        }
+        }*/
         .history-bg-hover {
             background:url("static/img/side-button-bg-lg-hover.png") no-repeat center;
             color:#fff;
@@ -78,30 +78,19 @@
     <!-- 弹幕 barrage -->
     <div class="barrage-container">
 
-        <!-- first line -- 第1行 -->
-        <div class="line1-wall every-line-wall">
-            <!-- first line -- 第1行 -->
-            <!--<div class="line1-wall every-line-wall">
-                <div class="barrage-div" style="background: rgba(216, 188, 125, .9)">
-                    <p>
-                    <span class="hat" style="display:block;">
-                        <img src="static/img/user-head/hat.png" alt="">
+        <!-- 创建弹幕元素 -->
+        <div class="line-wall">
+            <!--<div class="barrage-div" data-ajax-num="1"
+                 style="margin-left: 1306px; margin-top: 10px; opacity: 0.92; z-index: 20; background:linear-gradient(to bottom, #f5f424, #f0831f);">
+                <p>
+                    <span class="hat" style="display: block;">
+                        <img src="static/img/user-head/hat.png">
                     </span>
-                        <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="0">
-                    </p>
-                    <p class="barrage-font" style="color:#414141">XXX：祝大家2018年事事如意，财源滚滚。</p>
-                </div>
+                    <img class="portrait" src="static/img/user-head/default-avatar.png" data-id="1">
+                </p>
+                <p class="barrage-font" style="color: rgb(16, 16, 16); font-weight: bold; ">YYY：学着主宰自己的生活</p>
             </div>-->
         </div>
-
-        <!-- second line -- 第2行 -->
-        <div class="line2-wall every-line-wall"></div>
-
-        <!-- third line -- 第3行 -->
-        <div class="line3-wall every-line-wall"></div>
-
-        <!-- fourth line -- 第4行 -->
-        <div class="line4-wall every-line-wall"></div>
     </div>
 
     <!--绝对定位背景大图-->
@@ -155,38 +144,15 @@
         var eleConfMap = {
 
             // 弹幕
-            brgContainer: getClassName("barrage-container")[0],
-            line1Wall: getClassName("line1-wall")[0],
-            line2Wall: getClassName("line2-wall")[0],
-            line3Wall: getClassName("line3-wall")[0],
-            line4Wall: getClassName("line4-wall")[0],
+            brgContainer:   getClassName("barrage-container")[0],
+            lineWall:       getClassName("line-wall")[0],
 
             // 左侧边2个按钮
             $historyRecord: $(".history-record"),
-            $switchBtn: $(".switch-btn"),
+            $switchBtn:     $(".switch-btn"),
 
             // 中间奖项按钮
-            $awardsBtn: $(".awards-btn")
-        };
-
-
-        // ajax 配置图
-        var ajaxMap = {
-            // 按固定间隔时间读取数据
-            ajaxGetJson: function () {
-                $.ajax({
-                    url: 'https://m.dinpay.com:8443/annualMeeting/showBarrage.htm',
-                    type: 'get',
-                    data: null,
-                    async: false, //默认为true 异步
-                    error: function () {
-                    },
-                    success: function (data) {
-                        debugger;
-                    }
-                })
-
-            }
+            $awardsBtn:     $(".awards-btn")
         };
 
 
@@ -195,97 +161,63 @@
             // 弹幕
             (function () {
 
-                // dataLength 记录数据总长度
                 var dataLength = null;
+
+                var n = 0;
                 var num = 0;
+                function twenty () {
+                    if ( n < 10) {
+                        n++;
+                        barrage();
+                        setTimeout(twenty, 60000);
+                    }
+                }
+                twenty();
+
+
                 function barrage() {
-                    var json = ajaxMap.ajaxGetJson();
+
+
+                    var json = brgJson;
                     var i = 0,
                         len = json.length;
-                    dataLength = len;
 
-                    // 输出数据的长度
-                    console.log(dataLength);
-
-                    // num +1
-                    console.log("统计读取Ajax次数 " + num++);
-
+                    var ajaxNum = num++;
                     var fragment;
+                    var top;
                     if (len > 0) {
 
                         // 创建弹幕 div
                         for (; i < len; i++) {
+                            if (i % 4 === 0) {
+                                top = "10px";
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
+                            }
                             if (i % 4 === 1) {
-                                // 创建元素
-                                fragment = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line1Wall.appendChild(fragment);
+                                top = "72px";
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                             if (i % 4 === 2) {
-                                // 创建元素
-                                fragment = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line2Wall.appendChild(fragment);
+                                top = "132px";
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                             if (i % 4 === 3) {
-                                // 创建元素
-                                fragment = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line3Wall.appendChild(fragment);
+                                top = "192px";
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
-                            if (i % 4 === 0) {
-                                // 创建元素
-                                fragment = mainMap.fnCreateEle(i, json[i]);
-                                eleConfMap.line4Wall.appendChild(fragment);
-                            }
+                            eleConfMap.lineWall.appendChild(fragment);
                         }
 
-
-                        // 滚动弹幕: 第一行:
-                        var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
-                        mainMap.fnScroll(600, aLin1DIV);
-                        // 滚动弹幕: 第二行
-                        var aLin2DIV = getClassName("barrage-div", eleConfMap.line2Wall);
-                        mainMap.fnScroll(400, aLin2DIV);
-                        // 滚动弹幕: 第三行
-                        var aLin3DIV = getClassName("barrage-div", eleConfMap.line3Wall);
-                        mainMap.fnScroll(500, aLin3DIV);
-                        // 滚动弹幕: 第四行
-                        var aLin4DIV = getClassName("barrage-div", eleConfMap.line4Wall);
-                        mainMap.fnScroll(200, aLin4DIV);
+                        // 滚动弹幕:
+                        var aLin1DIV = getClassName("barrage-div", eleConfMap.lineWall);
+                        mainMap.fnScroll(aLin1DIV);
 
                         // 创建完之后清除当前 json 数据
                         json = null;
                     }
                 }
+                barrage();
 
-                // 如果当前 dataLength 等于0，就立马开始
-                if (dataLength === null) {
-                    barrage();
-                    connection(dataLength);
-                }
-
-                function connection(dataLength){
-                    var interId = null,
-                        num1 = 0,
-                        num2 = 0,
-                        interId2 = null;
-                    if (dataLength === 0) {
-                        clearInterval(interId2);
-                        interId = setInterval(function () {
-                            console.log("num1 " + num1++);
-                            barrage();
-                        }, 6000);
-                        return null;
-                    }
-                    if (dataLength > 0) {
-                        // 如果 dataLength 不等于0， 就根据长度: (item +10)*6*100
-                        clearInterval(interId);
-                        interId2 = setInterval(function () {
-                            console.log("num1 " + num2++);
-                            barrage();
-                        }, (dataLength + 1) * 6 * 1000);
-                        return null;
-                    }
-
-                }
 
 
                 // 弹幕开关
