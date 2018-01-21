@@ -229,32 +229,6 @@
                                 var aLin1DIV = getClassName("barrage-div", eleConfMap.line1Wall);
                                 mainMap.fnScroll(600, aLin1DIV);
 
-                                var c = 0,
-                                    aLin1Len = aLin1DIV.length;
-
-                                for (; c < aLin1Len; c++) {
-
-                                    var ajaxNum = aLin1DIV[c].getAttribute("data-ajax-num");
-                                    var index = parseInt(ajaxNum, 10) - 3;
-                                    if (index >= 0) {
-                                        var text = "all 0s ease 0s";
-                                        var transition = getCss("transition", aLin1DIV[c]);
-                                        if (transition !== text ||  transition !== "") {
-                                            if (aLin1DIV[index].getAttribute("data-over-flag") == 1) {
-                                                arr.push(aLin1DIV[index]);
-                                            }
-                                        }
-                                    }
-                                }
-
-                                console.log(arr);
-                                // 删除执行完的弹幕
-                                /*var e = 0,
-                                    arrLength = arr.length;
-                                for (; e < arrLength; e++) {
-                                    eleConfMap.line1Wall.removeChild(arr[e]);
-                                }*/
-
                             }
                             if (i % 4 === 2) {
                                 // 创建元素
@@ -287,58 +261,13 @@
                         }
 
 
-
                         // 创建完之后清除当前 json 数据
                         json = null;
 
-                        // 每1000条清楚一次
-                        // mainMap.fnClear(eleConfMap.line1Wall, eleConfMap.line2Wall, eleConfMap.line3Wall, eleConfMap.line4Wall);
                     }
 
                     // connection(dataLength);
 
-                }
-
-                // connection 连接 barrage 主函数和ajax返回条数确定不同调用时间的连接函数
-                function connection(dataLength) {
-                    dataLength = dataLength || 0;
-                    if (dataLength === 0) {
-                        equalZero();
-                    }
-
-                    if (dataLength > 0 && dataLength < 50) {
-                        less50(dataLength)
-                    }
-
-                    if (dataLength >= 50 && dataLength <= 100) {
-                        less100(dataLength);
-                    }
-                }
-
-
-                var num1 = 0;
-                var num2 = 0;
-                var num3 = 0;
-
-                function equalZero() {
-                    setTimeout(function () {
-                        console.log("equalZero num1 " + num1++);
-                        barrage();
-                    }, 6000);
-                }
-
-                function less50(dataLength) {
-                    setTimeout(function () {
-                        console.log("largeZero num2 " + num2++);
-                        barrage();
-                    }, dataLength * 5 * 100);
-                }
-
-                function less100(dataLength) {
-                    setTimeout(function () {
-                        console.log("largeZero num3 " + num3++);
-                        barrage();
-                    }, dataLength * 3 * 100);
                 }
 
 

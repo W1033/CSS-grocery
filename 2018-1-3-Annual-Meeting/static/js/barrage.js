@@ -92,17 +92,50 @@ var mainMap = {
                     if ( fontLength <= 8 ){
                         styles= mainMap.fnGenerateTransform(aDiv[num], 16);
                         aDiv[num].setAttribute("style", styles);
+                        setTimeout(function () {
+
+                            if (parseInt(aDiv[num].getAttribute("data-over-flag"), 10) === 1) {
+                                //console.log(aDiv[num].innerHTML);
+                                if (aDiv[num].parentNode) {
+                                    aDiv[num].parentNode.removeChild(aDiv[num])
+                                }
+                            }
+                        }, 18);
                     }
                     if ( fontLength > 8 && fontLength <= 12  ){
                         styles= mainMap.fnGenerateTransform(aDiv[num], 14);
                         aDiv[num].setAttribute("style", styles);
+                        setTimeout(function () {
+                            if (parseInt(aDiv[num].getAttribute("data-over-flag"), 10) === 1) {
+                                // console.log(aDiv[num].innerHTML);
+                                if (aDiv[num].parentNode) {
+                                    aDiv[num].parentNode.removeChild(aDiv[num])
+                                }
+                            }
+                        }, 16);
                     }
                     if ( fontLength > 12 &&  fontLength <= 15 ) {
                         styles= mainMap.fnGenerateTransform(aDiv[num], 12);
                         aDiv[num].setAttribute("style", styles);
+                        setTimeout(function () {
+                            if (parseInt(aDiv[num].getAttribute("data-over-flag"), 10) === 1) {
+                                // console.log(aDiv[num].innerHTML);
+                                if (aDiv[num].parentNode) {
+                                    aDiv[num].parentNode.removeChild(aDiv[num])
+                                }
+                            }
+                        }, 14);
                     } else {
                         styles= mainMap.fnGenerateTransform(aDiv[num], 10);
                         aDiv[num].setAttribute("style", styles);
+                        setTimeout(function () {
+                            if (parseInt(aDiv[num].getAttribute("data-over-flag"), 10) === 1) {
+                                // console.log(aDiv[num].innerHTML);
+                                if (aDiv[num].parentNode) {
+                                    aDiv[num].parentNode.removeChild(aDiv[num])
+                                }
+                            }
+                        }, 12);
                     }
 
                 }, time + i*1600 );
