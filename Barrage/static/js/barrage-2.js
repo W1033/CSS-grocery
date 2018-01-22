@@ -51,6 +51,9 @@ var mainMap = {
 
         var brgFont = document.createElement("p");
         brgFont.className = "barrage-font";
+        if (curJson.sendMsg.length > 25) {
+             curJson.sendMsg =  curJson.sendMsg.substring(0, 25) + "... ";
+        }
         brgFont.innerHTML = curJson.realName + "：" +  curJson.sendMsg;
 
         brgDiv.appendChild(firstP);

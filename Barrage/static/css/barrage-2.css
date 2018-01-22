@@ -13,9 +13,8 @@
 
 .barrage-container > .line-wall {
     position: relative;
-    margin-left: -780px;
+    margin-left: -800px;
     height: 100%;
-
     width: 1000%;
     overflow: hidden;
 }

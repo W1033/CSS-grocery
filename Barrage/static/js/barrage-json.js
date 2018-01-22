@@ -10,7 +10,7 @@ var brgJson = [
     },
     {
         "realName": "YYY",
-        "sendMsg": "学着主宰自己的生活 学着主宰自己的生活 学着主宰自己的",
+        "sendMsg": "学着主宰自己的生活 学着主宰自己的生活 学着主宰自己的 学着主宰自己的",
         "memberId": "1",
         "userProfile": "static/img/user-head/default-avatar.png"
     },
