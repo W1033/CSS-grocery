@@ -23,7 +23,7 @@
 
 .barrage-div {
     position: absolute;
-    max-width: 760px;
+    max-width: 800px;
    /* margin-left: 2680px;*/
     max-height:52px;
     overflow: hidden;

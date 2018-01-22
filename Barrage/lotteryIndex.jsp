@@ -220,19 +220,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             if (i % 4 === 0) {
                                 // 创建元素
                                 top = "10px";
-                                fragment = mainMap.fnCreateEle(ajaxNum, i, json[i]);
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                             if (i % 4 === 1) {
                                 top = "72px";
-                                fragment = mainMap.fnCreateEle(ajaxNum, i, json[i]);
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                             if (i % 4 === 2) {
                                 top = "132px";
-                                fragment = mainMap.fnCreateEle(ajaxNum, i, json[i]);
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                             if (i % 4 === 3) {
                                 top = "192px";
-                                fragment = mainMap.fnCreateEle(ajaxNum, i, json[i]);
+                                fragment = mainMap.fnCreateEle(ajaxNum, i, top, json[i]);
                             }
                         }
                     }
@@ -240,9 +240,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     // 滚动弹幕:
                     var aLin1DIV = getClassName("barrage-div", eleConfMap.lineWall);
                     mainMap.fnScroll(aLin1DIV);
-
-                    // 创建完之后清除当前 json 数据
-                    json = null;
 
                     connection(dataLength);
                 }
