@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation-infinite</title>
+    <style type="text/css">
+
+        * {
+            list-style:none;
+            margin:0; padding:0;
+        }
+        @keyframes infinity_spinner_large {
+            from {
+                background-position: center 0
+            }
+            to {
+                background-position: center -960px
+            }
+        }
+
+        .infinite_scroll_loader {
+            display: block;
+            clear: both;
+            height: 40px;
+            margin: 10px;
+            background-color: #eeeff2;
+            border-radius: 3px;
+            color: #71767a;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 38px
+        }
+
+        .loading {
+            display: inline-block;
+            margin: 12px 0;
+            width: 32px;
+            height: 16px;
+            background: transparent url("index.png") center top no-repeat;
+            animation: infinity_spinner_large 2s steps(60) infinite
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="infinite_scroll_loader">
+        <div class="loading"></div>
+    </div>
+</body>
+</html>
