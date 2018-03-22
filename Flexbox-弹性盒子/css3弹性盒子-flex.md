@@ -12,22 +12,28 @@
 
  + (2-2.) 弹性项目(Flex item):弹性容器的每个子元素都称为弹性项目。弹性容器直接包含的文本将被包覆成匿名弹性单元。
 
- + (2-3.) 轴(Axis):        每个弹性框布局包含两个轴。弹性项目沿其依次排列的那根轴称为主轴(main axis)。垂直于主轴的轴为侧轴(cross axis).<br>
-        1. flex-direction 【伸缩方向】 确立主轴。: flex-direction允许你更改伸缩容器的主轴方向，默认是row。 <br> 
-                    - row/column/row-reverse/column-reverse; <br>
-        2. justify-content【主轴对齐】 定义了在当前行上，弹性项目沿主轴如何排布。 [详细教程](http://www.w3cplus.com/blog/666.html) <br> 
-                    - flex-start(默认)/flex-end/center/space-between/space-around/ : space-between 和 space-around 是分配伸缩项目之间空白空间的不同方法。<br> 
-        3. align-items    【侧轴对齐】 定义了在当前行上，弹性项目沿侧轴默认如何排布(调整伸缩项目在侧轴上的定位方式)。 <br>
-                    - flex-start(默认)/flex-end/center/baseline/stretch   <br>
-        4. align-self     【自我对齐】 定义了单个弹性项目在侧轴上应当如何对齐，这个定义会覆盖由 align-items所确立的默认值。<br>
-        5. flex-wrap      【换行】使用flex-wrap你可以为伸缩容器创建多个伸缩行。这个属性接受一下值:  wrap /ræp/ vt 包，隐藏 <br>
-                    - nowrap(默认)/wrap/wrap-reverse/,设置为wrap,在一个伸缩行容不下所有伸缩项目时，伸缩项目会换行到一条新增的伸缩行上。新增的伸缩行根据侧轴的方向添加。 <br>
-        6. align-content  【堆栈伸缩行】align-content会更改flex-wrap的行为。它和align-items相似，但是不是对齐伸缩项目，对齐的是伸缩行。<br>
-                    - stretch(默认)/flex-start/flex-end/center/space-between/space-around 这些值与 justify-content 和 align-items中的值一样。具体效果见css3-flex弹性盒子.html  <br>
+ + (2-3.) 轴(Axis):        每个弹性框布局包含两个轴。弹性项目沿其依次排列的那根轴称为主轴(main axis)。垂直于主轴的轴为侧轴(cross axis).
+ 
+    - 1. flex-direction 【伸缩方向】 确立主轴。: flex-direction允许你更改伸缩容器的主轴方向，默认是row。 
+        + row/column/row-reverse/column-reverse; <br>
+ 
+    - 2. justify-content【主轴对齐】 定义了在当前行上，弹性项目沿主轴如何排布。 [详细教程](http://www.w3cplus.com/blog/666.html) <br> 
+        + flex-start(默认)/flex-end/center/space-between/space-around/ : space-between 和 space-around 是分配伸缩项目之间空白空间的不同方法。<br> 
+                    
+    - 3. align-items    【侧轴对齐】 定义了在当前行上，弹性项目沿侧轴默认如何排布(调整伸缩项目在侧轴上的定位方式)。 <br>
+        + flex-start(默认)/flex-end/center/baseline/stretch   <br>
+                    
+    - 4. align-self     【自我对齐】 定义了单个弹性项目在侧轴上应当如何对齐，这个定义会覆盖由 align-items所确立的默认值。<br>
+        
+    - 5. flex-wrap      【换行】使用flex-wrap你可以为伸缩容器创建多个伸缩行。这个属性接受一下值:  wrap /ræp/ vt 包，隐藏 <br>
+        + nowrap(默认)/wrap/wrap-reverse/,设置为wrap,在一个伸缩行容不下所有伸缩项目时，伸缩项目会换行到一条新增的伸缩行上。新增的伸缩行根据侧轴的方向添加。 <br>
+                    
+    - 6. align-content  【堆栈伸缩行】align-content会更改flex-wrap的行为。它和align-items相似，但是不是对齐伸缩项目，对齐的是伸缩行。<br>
+        + stretch(默认)/flex-start/flex-end/center/space-between/space-around 这些值与 justify-content 和 align-items中的值一样。具体效果见css3-flex弹性盒子.html  <br>
 
  + (2-4.) 方向(Direction):  弹性容器的主轴起点(main start)/主轴终点(main end) 和 侧轴起点(cross start)/侧轴终点(cross end)描述了弹性项目排布的起点和终点。他们具体取决于弹性容器的主轴和侧轴中，由writing-mode确立的方向(从左到右，从右到左，等等)。
-        1. order 属性将元素与序号关联起来，依次决定哪些元素先出现。<br>
-        2. flex-flow 属性是 flex-direction 和 flex-wrap 属性的简写，决定弹性项目如何排布。<br>
+    - 1. order 属性将元素与序号关联起来，依次决定哪些元素先出现。
+    - 2. flex-flow 属性是 flex-direction 和 flex-wrap 属性的简写，决定弹性项目如何排布。
 
  + (2-5.) 行(Line):         根据flex-wrap属性，弹性项目可以排布在单个行或者多个行中。此属性控制侧轴的方向和新行排列的方向。
  + (2-6.) 尺寸(Dimension):  根据弹性容器的主轴和侧轴，弹性项目的宽和高中，对应主轴的称为"主轴尺寸(main size)"
