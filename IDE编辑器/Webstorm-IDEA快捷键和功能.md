@@ -6,7 +6,7 @@ Phpstorm快捷键操作:
    2-1.其他编辑器的配置: file --> setting --> keymap(快捷键映射) 可以快速更换其他编辑器的快捷键映射，比如Eclipse的快捷键
 
   #### 3. 自己配色字体提示颜色 file --> settings --> Editors --> colors&fonts --> HTML--> 在下面黑框里点击你想设置的代码然后看到上面对应的部分(foreground)就可以设置了，如果不能设置上面的foreground,记得把下面的usw inherited attributed前面的对号取消就可以了。
-  
+       3-1. Webstrom 中更改文档的默认字体，在 Settings -> Editor -> Color Scheme -> General 中。 
   #### 4.更改字符编码: file --> settings --> Editor --> File Encodings 就可以更改字符编码了
 
   #### 5. 安装组件
@@ -40,7 +40,7 @@ Phpstorm快捷键操作:
     (10) Ctrl + R : 调出替换 <br/>
     (11) Ctrl + shift + "+/-" : 全部"展开/折叠"代码
     (12) Ctrl+"+/-": 当前方法展开、折叠
-    (13)
+    (13) 按2次 shift 键: 呼出全局搜索
     (14)
     
   #### 12 设置快捷键：File -> Settings -> IDE Settings -> Keymap -> 选择“选择” -> 然后“Copy”一份 -> 再个性化设置（自己习惯的）快捷键
