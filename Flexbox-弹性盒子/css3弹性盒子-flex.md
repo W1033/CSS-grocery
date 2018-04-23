@@ -1,3 +1,24 @@
+## 20180423 - 综合总结
+  flex 布局发生在父容器和子容器之间。 父容器需要有 flex 的环境(display:flex)，子容器才能根据自身的属性来布局，简单来说，就是
+  瓜分父容器的空间。 
+  flex: flex-grow flex-shrink flex-basis; 不同比例 (详细讲解: http://zhoon.github.io/css3/2014/08/23/flex.html)
+ - flex-grow: (default:0) 索取父容器的剩余空间，默认值是0,。
+ - flex-shrink: 定义子一个子容器的压缩比例。
+ - flex-basis: width 的替代品，权限高于 width。
+
+
+
+
+
+####
+####
+####
+####
+####
+####
+
+
+
 ## 使用 CSS 弹性盒子
 
     flexible /'fleksɪb(ə)l/ adj.柔软的，灵活的
