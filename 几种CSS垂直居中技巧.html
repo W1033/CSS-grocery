@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>几种CSS垂直居中技巧</title>
+    <style type="text/css">
+        h2 {
+            line-height: 30px;
+            text-align: center;
+        }
+        .first-box {
+            width: 500px;
+            border: 1px solid lightcoral;
+            border-radius: 4px;
+            margin: auto;
+            line-height: 200px;
+            text-align: center;
+        }
+        .box2 .content {
+            display: inline-block;
+            line-height: 1;
+            width: 400px;
+            background: #0ba495;
+        }
+
+        /* 3: :before + inline-block */
+        .second-box {
+            width: 500px;
+            height: 250px;
+            border: 1px solid lightblue;
+            margin: auto;
+            text-align: center;
+        }
+        .box3::before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
+        .box3 .content {
+            width: 200px;
+            background: #ccc;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: -3px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. line-height 示例略 -->
+
+    <!-- 2. line-height + inline-block: (注: 这并不是一个好用的模式，在 content 的样式中，
+        line = 1; 应该是根据父级来定义的，但是这个意思并不明显，而且设置为2后，就已经不能垂直居中了。)-->
+    <h2>2. line-height + inline-block </h2>
+    <div class="first-box box2">
+        <div class="content">
+            立马来看 Amos 实际完成的
+            <a href="http://csscoke.com/2015/07/31/nth-child_rwd_album/"> CSS3 精美相册效果</a>
+            效果吧！別忘了拖拉一下窗口看看 RWD 效果喔！
+        </div>
+    </div>
+
+    <!-- 前提提示: 在给元素设置 inline-block 样式时，元素与元素之间会有 4-5px 的空隙，解决方法是:
+           答: -->
+    <!-- 3. :before + inline-block 适用情境: 多物件的 CSS 垂直居中技巧 -->
+    <h2>3. :before + inline-block </h2>
+    <div class="second-box box3">
+        <div class="content">
+            立马来看 Amos 实际完成的
+            <a href="http://csscoke.com/2015/07/31/nth-child_rwd_album/"> CSS3 精美相册效果</a>
+            效果吧！別忘了拖拉一下窗口看看 RWD 效果喔！
+        </div>
+        <div class="content">
+            立马来看 Amos 实际完成的
+            <a href="http://csscoke.com/2015/07/31/nth-child_rwd_album/"> CSS3 精美相册效果</a>
+            效果吧！別忘了拖拉一下窗口看看 RWD 效果喔！
+        </div>
+    </div>
+
+</body>
+</html>
