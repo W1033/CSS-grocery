@@ -1,0 +1,17 @@
+一.弹性盒模型介绍 —— 属性分类
+    ------------------------------------------------
+    1.弹性容器属性(flex-container):
+        flex-direction :   设置主轴方向，确定弹性子元素排列方式
+        flex-wrap      :   当弹性子元素超出弹性容器范围时是否换行
+        flex-flow      :   flex-direction和flex-wrap属性的快捷方式，复合属性
+        justify-content:   主轴上的对齐方式
+        align-items    :   侧轴上的对齐方式
+        align-content  :   侧轴上有空白时，侧轴的对齐方式
+    -------------------------------------------------
+    2.弹性子元素属性：
+        order          :   控制弹性容器里子元素的顺序
+        flex-grow      :   设置弹性子元素的扩展比率
+        flex-shrink    :   设置弹性子元素的收缩比率
+        flex-basis     :   指定弹性子元素伸缩前的默认大小值，相当于width和height属性
+        flex           :   flex-grow, flex-shrink和flex-basis属性的复合属性
+        align-self     :   允许独立的弹性子元素覆盖弹性容器的默认对齐设置(align-items)

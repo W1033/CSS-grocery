@@ -1,0 +1,286 @@
+// 好的代码习惯应该是注释占整个篇幅的三分之二。
+// 双斜杠的//的注释不会生成在.css文件中，但是/**/这种注释就会在解析后的css中生成注释
+
+/**
+  * CONTENTS
+  *
+  * SETTINGS
+  *   variables ..............变量集中存储文件
+  *   mixin ..................mixin集中存储文件
+  *
+  * TOOLS
+  *
+  * COMPONENTS
+  *   reset....................Compass内置浏览器重置样式文件
+  *
+  * BUSINESS
+  *
+  * BASE
+  *   screen.scss...............针对当前站点主页的样式修饰
+**/
+
+
+@import "variables","mixin","compass/reset";
+
+/*@import "normalize";*/
+//normalize是一个可以替换上面@import引入的"compass/reset"这个默认的reset文件，normalize改良了compass/reset统一了跨浏览器差异，而不是都清0。
+//normalize:是一个需要在ruby里通过 gem install compass-normalize安装的一个compass库，还有一个配置的地方是需要在config.rb里面引入，引入的代码是：require 'compass-normalize'。
+
+/* normalize的各个模块也可以单独引入，但是在引入之前需要引入@import "normalize_version"，后面跟需要的normalize模块就可以了：
+    @import "normalize-version";
+        //分割线1
+        @import "normalize/base";
+            //这些分割线1,2,3,4,5是引入normalize的子模块，normalize有8个子模块
+        //分割线2
+        @import "normalize/html5";
+        //分割线3
+        @import "normalize/links";
+*/
+
+
+/* ###################################
+Compass分为6大模块：
+    (1)Reset模块: reset模块和下面的layout模块是需要用单独的@import导入的模块，然后在需要的class和id中用@include method(参数)。
+    (2)Layout模块: 页面布局
+    (3)Css3模块： 注释:css3模块,helpers模块，typography模块和utilities模块这几个模块在 @import "compass" 导入compass之后不需要单独引入了，当然如果不直接引入compass单独引入每个子模块也是可以的。 css3模块主要提供css3的跨浏览器能力
+    (4)Helpers模块
+    (5)Typography模块: /ta?'p?gr?f?/  字体，排版，印刷
+    (6)Utilities模块: /ju?'t?l?t?/ 实用
+    1. Reset模块 :
+          Reset的核心Mixin： //mixin是sass中混合宏的概念详细见"Sass语法讲解和示例"这个文件
+              global-reset          全局重置
+              nested-reset          嵌套重置
+              reset-box-model       重置盒模型
+              reset-font            重置字体
+              reset-body            重置body主题
+              reset-html5           重置html5的部分
+              reset-list-style      重置list-style样式
+              reset-table           重置table
+              reset-table-cell      重置表格单元格
+              reset-quotation       重置索引
+              reset-image-anchor-border 重置图像锚点边框
+              reset-display($selector, $important) 重置display
+              reset-focus           重置focus焦点
+
+    2. Layout模块: layout是用来提供页面布局的控制能力，比如说将一个容器内的子元素横向拉伸纵向拉伸占满。
+      layout模块又提供了三个功能模块 :
+        1.Grid Backgrounds 模块
+        2.Sticky footer 模块
+        3.Stretching 模块
+
+
+    3. Css3模块 :  在需要的class和id中用@include method(参数) [如果没有参数直接写方法名也是可以的比如 @include rest-box-model] 就可以了。
+
+    4. Helpers模块: 同3。
+          :helpers函数模块，包括引入图片模块，
+
+    5. Typography模块: 主要用来修饰文本样式和垂直韵律等，此模块又包含四个功能模块分别是 :
+      (1).Links 模块主要用来修饰超链接样式。
+      (2).Lists 模块主要用来修饰列表的样式 。
+      (3).Text 模块主要是用来修饰文本的样式。
+      (4).Vertical Rhythm 模块主要是用来 垂直韵律(字体大小行高等)
+
+    6. Utilities模块: 同3。 utility /ju?'t?l?t?/实用
+
+################################### */
+
+
+
+//..................................
+@import "compass/css3";
+
+.container{
+  width:300px;
+  height:300px;
+  border:1px solid red;
+  line-height:45px;
+  text-indent:1em;
+  margin:10px;
+  @include box-shadow(1px 1px 3px 2px #cfcecf); //横向阴影1px, 纵向阴影1px, 模糊半径，阴影展开半径，颜色
+}
+//...................................
+
+//**********************************
+@import "compass/typography";
+
+a{
+  //@include hover-link(); 1.默认的样式
+
+  //2.修改不同状态下超链接的颜色通过link-colors()实现,这个mixin支持五个参数: (1)normal状态下的颜色值(2)hover状态下的颜色值(3)active状态下的颜色值(4)visited状态下的颜色值(5)focus状态下的颜色值
+  @include link-colors(#00c, #0cc, #c0c, #ccc, #cc0);
+}
+
+.test_horizontal{
+  @include horizontal-list(0);
+  //horizontal-list($padding, $direction)
+  text-align:center;
+  margin-left:20px;
+  line-height:40px;
+
+  li{
+    width:200px;
+    height:40px;
+    overflow:hidden;
+    margin-right:5px;
+    border:1px solid #cc00cc;
+
+  }
+}
+
+//**********************************
+
+//**********************************
+//layout模块
+@import "compass/layout";
+@include sticky-footer(30px); //这个sticky-footer并不是在样式内调用的，而是直接调用的，切记。
+
+$font: 14px;
+$fonFam: "Microsoft Yahei";
+#root{
+  font-size:$font;
+  font-family: $fonFam;
+}
+#footer{
+  width:800px;
+  border:1px solid red;
+  font-size: $font;
+  font-family:$fonFam;
+}
+
+// layout/grid-background
+body{
+  //@include grid-background(); //这个是layout模块的方格背景
+  //@include debug-vertical-alignment(); //网格线背景，做调试
+
+}
+
+//$base-font-size:16px;
+//$base-line-height:24px;
+//@include establish-baseline(); //初始化html标签的字体和行高
+//
+//h1{font-size:3em; line-height:1.5em;}
+//h2{font-size:2.25em;line-height:1.3333em;}
+//h3{font-size:1.5em; line-height:2em;}
+//h4{font-size:1.3125em; line-height:2.28571em;}
+//h5{font-size:1.125em;}
+//h6{font-size:1em;}
+//p{font-size:1em; margin:1em 0;}
+
+//**********************************
+
+
+//**********************************
+//helpers函数模块
+@import "compass";
+.analyzer-logo{
+  //用helpers函数模块的image-url就很好的解决了用更新图片缓存无法更新的问题
+  //background-images: image-url('analyzer.png');
+}
+
+//config.rb中的relative_assets = true 控制使用绝对路径还是相对路径
+
+//**********************************
+
+
+//**********************************
+@import "compass/utilities"; //有时候引入模块在.css文件里报错是因为需要在ruby里面从新用compass compile编译一下
+//Utilities模块 table示例的样式
+.goods-price{
+  margin: 20px;
+  $table-color: #ccc;
+
+  //compass给表格增加外边框
+  @include outer-table-borders(1px);
+  //compass给表格添加内部边框
+  @include inner-table-borders(1px, darken($table-color, 40%));
+  @include table-scaffolding;
+}
+
+//utilities模块的general子模块
+
+
+
+// compass/utilities/sprites模块
+@import "icons";
+
+
+
+//**********************************
+
+/*
+    使用css原声 @import 的既定规则：
+    1.当@import后面跟的文件名是以.css结尾的时候.
+    2.当@import后面跟的是 http:// 开头的字符串的时候。
+    3.当@import后面跟的是一个 url() 函数的时候。
+    4.当@import后面带有 media queries 的时候。
+*/
+
+
+//主标题样式
+.headline{
+  font-family:$headline-ff;
+}
+
+/* 页面主题内容样式 */
+
+//.main-sec{
+//  font-family:$main-sec-ff;
+//
+//  .headline{
+//    font:{ //font后面的:冒号不要漏掉
+//      family:$main-sec-ff;
+//      size:16px;
+//    }
+//  }
+//
+//  .detail{
+//    font-size:12px;
+//  }
+//}
+//
+//a{
+//  &:hover{  //&标签是父标签选择器
+//    color:blue;
+//  }
+//}
+//
+//p{
+//  color:hsl(270, 100%, 50%);
+//}
+//
+//.webdemo-sec{
+//  @include col-6;
+//
+//  &:hover{
+//    background-color:#f5f5f5;
+//  }
+//}
+
+.error{
+  color:#f00;
+}
+
+.serious-error{
+  @extend .error;    //明确指定一个选择器去继承另一个选择器的样式
+  height:30px;
+  border:1px solid #f00;
+}
+
+
+//.main-sec{
+//  font-family:$main-sec-ff;
+//
+//  @at-root{
+//    .main-sec-headline{
+//      font:{
+//        family:$main-sec-ff;
+//        size:16px;
+//      }
+//    }
+//
+//    .main-sec-detail{
+//      font-size:12px;
+//    }
+//  }
+//}
+
