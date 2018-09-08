@@ -1,0 +1,31 @@
+@mixin col-6{
+  width:50%;
+  float:left;
+}
+
+/*
+@mixin col($width){
+  width:$width;
+  float:left;
+}*/
+
+//sass中的media query可以内嵌在css规则中，在生成css的时候media query 才会被提到样式的最高级
+
+@mixin col-sm($width: 50%){
+  @if type-of($width) != number{
+    @error "$width 必须是一个数值类型，你输入的width是:#{$width}.";
+  }
+
+  @if not unitless($width){
+    @if unit($width) != "%" {
+      @error "$width应该是一个百分值，你输入的width是: #{$width}.";
+    }
+  } @else{
+    @warn "$width应该是一个百分值，你输入的width是: #{$width}.";
+    $width: (percentage($width)/100);
+  }
+/*  @media(min-width: 768px){
+    width:$width;
+    float:left;
+  }*/
+}

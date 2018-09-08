@@ -1,0 +1,9 @@
+@import "compass/utilities/sprites";
+
+@import "logo/*.png";
+
+@include all-logo-sprites();
+
+.main-logo{
+  @include logo-sprite("analyzer");
+}

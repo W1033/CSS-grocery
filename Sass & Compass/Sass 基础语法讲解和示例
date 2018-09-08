@@ -1,0 +1,306 @@
+$color:red;
+.test{
+  color:$color;
+}
+
+
+$width: 200px;
+$height: 300px;
+$bgRed: red;
+
+body{
+  width: $width;
+  height: $height;
+  background-color: $bgRed;
+}
+
+//scss中的混合宏志使用
+@mixin mt($var){
+  margin-top:$var;
+}
+.block{
+  @include mt(5px);
+    span{
+      display:block;
+      @include mt(5px);
+    }
+}
+.header{
+  color:orange;
+  @include mt(5px);
+  span{
+    display:block;
+    @include mt(5px);
+  }
+}
+
+//scss继承的使用: 集成.mt这样的代码是提前就会解析成css的
+.mt{
+  margin-top:5px;
+}
+.block{
+  @extend .mt;
+  span{
+    display:block;
+    @extend .mt;
+  }
+}
+
+
+//scss占位符的使用: css占位符%mt就是代码在调用的时候才会生成css，不调用时不会生成代码的。
+//定义一个占位符
+%mt{
+  margin-top:5px;
+}
+.block{
+  @extend %mt; //调用一个占位符
+  span{
+    display:block;
+    @extend %mt;
+  }
+}
+
+
+
+//插值#{} :sass中的插值(interpolation)是重要的一部分。
+$properties:(margin,padding);
+@mixin set-value($side, $value){
+  @each $prop in $properties{
+    #{$prop}-#{$side}: $value;
+  }
+}
+.login-box{
+  @include set-value(top, 14px);
+}
+
+      //混合宏就是@mixin能使用插入值，但在调入步骤就是@include调用中不能使用插入值效果见下面这两个示例(2):
+      //(1)
+      @mixin font-Sizes($class, $small, $medium, $big){
+          .#{$class}- small{font-size: $small;}
+          .#{$class}- medium{font-size: $medium;}
+          .#{$class}- big{font-size: $big;}
+      }
+      @include font-Sizes("header-text", 12px, 20px, 40px);
+      //因为@include里面并没有调用@mixin的定义，所以这样是可以的，只是在混合宏的定义是用到，所以不会报错
+
+      //(2)
+      $margin-40px: 40px;
+      $margin-20px:20px;
+      $margin-12px: 12px;
+      @mixin set-value($size){
+        margin-top: $margin-#{$size};
+      }
+      .loginBox{
+        @include set-value(40px);
+      }
+      //编译之后会得出下面的信息: error xx.scss(line90: Undefined variable:"$margin-".),所以#{}语法并在最基础的$名称这样的基本写法中不可用
+
+      //(3)
+      @mixin updated-status{
+        margin-top:20px;
+        background:#F00;
+      }
+      $flag: "status";
+      .navigation{
+        @include updated-#{$flag};
+      }
+      //上面的代码编译成css同样也会报错：error xx.scss(line104: Invalid CSS after "...nclude updated-":expected"}", was "#{$falg};")
+
+  //不过幸运的是可以在@extend中使用插值。@extend是在css继承和css占位符中用用到的。
+  //示例(1)
+  %updated-status{ //%updated-status 是一个占位符
+    margin-top:20px;
+    background:#F00;
+  }
+  .selected-status{
+    font-weight:bold;
+  }
+  $flag:"status";
+  .navigation{
+    @extend %updated-#{$flag};
+    @extend .selected-#{$flag};
+  }
+  //解析后的CSS
+  .navigation{
+    margin-top:20px;
+    background:#F00;
+  }
+  .selected-status, .navigation{
+    font-weight:bold;
+  }
+
+
+//Sass进阶篇
+
+//@if 指令是一个 SassScript，它可以根据条件来处理样式块，如果条件为 true 返回一个样式块，反之 false 返回另一个样式块。在 Sass 中除了@if还可以配合@else if和@else一起使用。假设要控制一个元素隐藏或显示，我们就可以定义一个混合宏，通过 @if...@else... 来判断传进参数的值来控制 display 的值。如下所示：
+@mixin blockOrHidden($boolean:true){
+  @if $boolean{
+    @debug "$boolean is #{$boolean}";
+    display:block;
+  }
+  @else{
+    @debug "$boolean is #{$boolean}";
+    display:none;
+  }
+}
+.block{
+  @include blockOrHidden;
+}
+.hidden{
+  @include blockOrHidden(false);
+}
+
+//在Sass中@for循环有两种方式:
+//@for $i from <start> through <end> //through表示包含end这个数，但是下面题不包含end这个数
+//@for $i from <start> to <end>   //$i:表示变量 start表示起始值 end表示结束值
+
+@for $i from 1 through 3{
+  .item - #{$i}{width: 2em * $i;}
+}
+//编译出的css:
+.item-1{
+  width:2em;
+}
+.item-2{
+  width:4em;
+}
+.item-3{
+  width:6em;
+}
+
+//@for应用在网格系统生成各个格子class的代码:
+$grid-prefix: span !default;
+$grid-width: 60px !default;
+$grid-gutter: 20px !default;
+%grid{
+  float:left;
+  margin-left: $grid-gutter/2;
+  margin-right: $grid-gutter/2;
+}
+$for $i from 1 through 12{
+  #{$grid-prefix}#{$i}{
+    width: $grid-width * $i + $grid - gutter*($i-1);
+    @extend %grid;
+  }
+}
+//编译出来的CSS:
+.span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12{
+  float:left;
+  margin-left:10px;
+  margin-right:10px;
+}
+.span1{
+  width:60px;
+}
+.span2 {
+  width: 140px;
+}
+.span3 {
+  width: 220px;
+}
+.span4 {
+  width: 300px;
+}
+.span5 {
+  width: 380px;
+}
+.span6 {
+  width: 460px;
+}
+.span7 {
+  width: 540px;
+}
+.span8 {
+  width: 620px;
+}
+.span9 {
+  width: 700px;
+}
+.span10 {
+  width: 780px;
+}
+.span11 {
+  width: 860px;
+}
+.span12 {
+  width: 940px;
+}
+
+//@while循环：@while指令也需要SassScript表达式(像其他指令一样)，并且会生成不同的样式快，知道表达式值为false时停止循环。这个和@for指令相似，只要@while后面的条件为true就会执行。
+//@while指令的简单用例：
+$types:4;
+$type-width:20px;
+@while $types > 0{
+  .while-#{$types}{
+    width:$type-width + $types;
+  }
+  $types: $types -1;
+}
+//编译出来的CSS
+/*.while-4{
+  width:24px;
+}
+.while-3{
+  width:23px;
+}
+.while-2{
+  width:22px;
+}
+.while-1{
+  width:21px;
+}*/
+
+//@each循环：@each循环就是遍历一个列表，然后从列表中取出来对应的值。
+//@each循环指令的形式：@each $var in <list>
+//@each指令的简单示例:
+$list: adam john wynn mason kuroir; //$list就是一个列表
+@mixin author-images{
+  @each $author in $list{
+    .photo-#{$author}{
+      background:url("/images/avatars/#{$author}.png") no-repeat;
+    }
+  }
+}
+.author-bio{
+  @include author-images;
+}
+//编译出CSS:
+/*
+.author-bio .photo-adam{
+  background:url("/images/avatars/adam.png") no-repeat; }
+.author-bio .photo-john {
+  background: url("/images/avatars/john.png") no-repeat; }
+.author-bio .photo-wynn {
+  background: url("/images/avatars/wynn.png") no-repeat; }
+.author-bio .photo-mason {
+  background: url("/images/avatars/mason.png") no-repeat; }
+.author-bio .photo-kuroir {
+  background: url("/images/avatars/kuroir.png") no-repeat; }
+*/
+
+
+//Sass的函数简介：(1)字符串函数 (2)数字函数 (3)列表函数 (4)颜色函数 (5)introspection函数 (6)三元函数等
+
+//字符串函数：unquote($string):删除字符串中的引号。 quote($string)：给字符串添加引号。
+.test1{content: unquote("Hello Sass!")};
+.test2{content:unquote("Hello Sass!")};
+.test3 {content: unquote("I'm Web Designer");}
+.test4 {content: unquote("'Hello Sass!'");}
+.test5 {content: unquote('"Hello Sass!"');}
+.test6 {content: unquote(Hello Sass);}
+//CSS
+/*
+.test1 {content: Hello Sass!; }
+.test2 {content: 'Hello Sass!'; }
+.test3 {content: I'm Web Designer; }
+.test4 {content: 'Hello Sass!'; }
+.test5 {content: "Hello Sass!"; }
+.test6 { content: Hello Sass; }  */
+//注意：从测试的效果中可以看出，unquote( ) 函数只能删除字符串最前和最后的引号（双引号或单引号），而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身。
+
+//字符串函数:to-upper-case()、to-lower-case()
+
+//数字函数简介: percentage($value):将一个不带单位的数转换成百分比值。round($value):将数值四舍五入，转换成一个最接近的整数。ceil($value):将大于自己的小数转换成下一位整数。floor($value):将一个数去除小数部分，就是向下取整。abs($value)：返回一个数的绝对值。min($numbers…)：找出几个数值之间的最小值。 max($numbers…)：找出几个数值之间的最大值。 random(): 获取随机数
+
+//Sass的函数功能-列表函数:
+  //length() 函数主要用来返回一个列表中有几个值，简单点说就是返回列表清单中有多少个值：  >> length(10px)   >>length(10px 20px (border 1px solid) 2em)   >>length(border 1px solid)

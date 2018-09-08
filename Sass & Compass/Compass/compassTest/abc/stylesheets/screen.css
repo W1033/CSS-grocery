@@ -1,0 +1,389 @@
+@charset "UTF-8";
+/**
+  * CONTENTS
+  *
+  * SETTINGS
+  *   variables ..............变量集中存储文件
+  *   mixin ..................mixin集中存储文件
+  *
+  * TOOLS
+  *
+  * COMPONENTS
+  *   reset....................Compass内置浏览器重置样式文件
+  *
+  * BUSINESS
+  *
+  * BASE
+  *   screen.scss...............针对当前站点主页的样式修饰
+**/
+/*
+@mixin col($width){
+  width:$width;
+  float:left;
+}*/
+/* line 5, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/*@import "normalize";*/
+/* normalize的各个模块也可以单独引入，但是在引入之前需要引入@import "normalize_version"，后面跟需要的normalize模块就可以了：
+    @import "normalize-version";
+        //分割线1
+        @import "normalize/base";
+            //这些分割线1,2,3,4,5是引入normalize的子模块，normalize有8个子模块
+        //分割线2
+        @import "normalize/html5";
+        //分割线3
+        @import "normalize/links";
+*/
+/* ###################################
+Compass分为6大模块：
+    (1)Reset模块: reset模块和下面的layout模块是需要用单独的@import导入的模块，然后在需要的class和id中用@include method(参数)。
+    (2)Layout模块: 页面布局
+    (3)Css3模块： 注释:css3模块,helpers模块，typography模块和utilities模块这几个模块在 @import "compass" 导入compass之后不需要单独引入了，当然如果不直接引入compass单独引入每个子模块也是可以的。 css3模块主要提供css3的跨浏览器能力
+    (4)Helpers模块
+    (5)Typography模块: /ta?'p?gr?f?/  字体，排版，印刷
+    (6)Utilities模块: /ju?'t?l?t?/ 实用
+    1. Reset模块 :
+          Reset的核心Mixin： //mixin是sass中混合宏的概念详细见"Sass语法讲解和示例"这个文件
+              global-reset          全局重置
+              nested-reset          嵌套重置
+              reset-box-model       重置盒模型
+              reset-font            重置字体
+              reset-body            重置body主题
+              reset-html5           重置html5的部分
+              reset-list-style      重置list-style样式
+              reset-table           重置table
+              reset-table-cell      重置表格单元格
+              reset-quotation       重置索引
+              reset-image-anchor-border 重置图像锚点边框
+              reset-display($selector, $important) 重置display
+              reset-focus           重置focus焦点
+
+    2. Layout模块: layout是用来提供页面布局的控制能力，比如说将一个容器内的子元素横向拉伸纵向拉伸占满。
+      layout模块又提供了三个功能模块 :
+        1.Grid Backgrounds 模块
+        2.Sticky footer 模块
+        3.Stretching 模块
+
+
+    3. Css3模块 :  在需要的class和id中用@include method(参数) [如果没有参数直接写方法名也是可以的比如 @include rest-box-model] 就可以了。
+
+    4. Helpers模块: 同3。
+          :helpers函数模块，包括引入图片模块，
+
+    5. Typography模块: 主要用来修饰文本样式和垂直韵律等，此模块又包含四个功能模块分别是 :
+      (1).Links 模块主要用来修饰超链接样式。
+      (2).Lists 模块主要用来修饰列表的样式 。
+      (3).Text 模块主要是用来修饰文本的样式。
+      (4).Vertical Rhythm 模块主要是用来 垂直韵律(字体大小行高等)
+
+    6. Utilities模块: 同3。 utility /ju?'t?l?t?/实用
+
+################################### */
+/* line 92, ../sass/screen.scss */
+.container {
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+  line-height: 45px;
+  text-indent: 1em;
+  margin: 10px;
+  -moz-box-shadow: 1px 1px 3px 2px #cfcecf;
+  -webkit-box-shadow: 1px 1px 3px 2px #cfcecf;
+  box-shadow: 1px 1px 3px 2px #cfcecf;
+}
+
+/* line 106, ../sass/screen.scss */
+a {
+  color: #00c;
+}
+/* line 18, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:visited {
+  color: #ccc;
+}
+/* line 21, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:focus {
+  color: #cc0;
+}
+/* line 24, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:hover {
+  color: #0cc;
+}
+/* line 27, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/links/_link-colors.scss */
+a:active {
+  color: #c0c;
+}
+
+/* line 113, ../sass/screen.scss */
+.test_horizontal {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+  text-align: center;
+  margin-left: 20px;
+  line-height: 40px;
+}
+/* line 62, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/lists/_horizontal-list.scss */
+.test_horizontal li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  white-space: nowrap;
+  float: left;
+  padding-left: 0;
+  padding-right: 0;
+}
+/* line 49, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/lists/_horizontal-list.scss */
+.test_horizontal li:first-child {
+  padding-left: 0;
+}
+/* line 50, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/lists/_horizontal-list.scss */
+.test_horizontal li:last-child {
+  padding-right: 0;
+}
+/* line 52, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/typography/lists/_horizontal-list.scss */
+.test_horizontal li.last {
+  padding-right: 0;
+}
+/* line 120, ../sass/screen.scss */
+.test_horizontal li {
+  width: 200px;
+  height: 40px;
+  overflow: hidden;
+  margin-right: 5px;
+  border: 1px solid #cc00cc;
+}
+
+/* line 10, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 12, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#root {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -30px;
+}
+/* line 18, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#root #root_footer {
+  height: 30px;
+}
+
+/* line 20, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/layout/_sticky-footer.scss */
+#footer {
+  clear: both;
+  position: relative;
+  height: 30px;
+}
+
+/* line 139, ../sass/screen.scss */
+#root {
+  font-size: 14px;
+  font-family: "Microsoft Yahei";
+}
+
+/* line 143, ../sass/screen.scss */
+#footer {
+  width: 800px;
+  border: 1px solid red;
+  font-size: 14px;
+  font-family: "Microsoft Yahei";
+}
+
+/* line 188, ../sass/screen.scss */
+.goods-price {
+  margin: 20px;
+  border: 1px solid black;
+}
+/* line 6, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price thead th {
+  border-bottom: 1px solid black;
+}
+/* line 9, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price tfoot th, .goods-price tfoot td {
+  border-top: 1px solid black;
+}
+/* line 12, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price th:first-child {
+  border-right: 1px solid black;
+}
+/* line 16, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price th, .goods-price td {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666;
+  border-left-width: 0;
+  border-top-width: 0;
+}
+/* line 22, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price th:last-child, .goods-price td:last-child {
+  border-right-width: 0;
+}
+/* line 28, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price th.last, .goods-price td.last {
+  border-right-width: 0;
+}
+/* line 33, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price tbody tr:last-child th, .goods-price tbody tr:last-child td, .goods-price tfoot tr:last-child th, .goods-price tfoot tr:last-child td {
+  border-bottom-width: 0;
+}
+/* line 37, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_borders.scss */
+.goods-price tbody tr.last th, .goods-price tbody tr.last td, .goods-price tfoot tr.last th, .goods-price tfoot tr.last td {
+  border-bottom-width: 0;
+}
+/* line 2, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_scaffolding.scss */
+.goods-price th {
+  text-align: center;
+  font-weight: bold;
+}
+/* line 5, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_scaffolding.scss */
+.goods-price td,
+.goods-price th {
+  padding: 2px;
+}
+/* line 8, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/tables/_scaffolding.scss */
+.goods-price td.numeric,
+.goods-price th.numeric {
+  text-align: right;
+}
+
+/* line 104, logo/*.png */
+.logo-sprite, .logo-analyzer, .logo-equation, .logo-music, .logo-search, .logo-shape, .logo-superimposed, .logo-translate, .logo-write, .main-logo {
+  background-image: url('/images/logo-s1ecd90d7e9.png');
+  background-repeat: no-repeat;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-analyzer {
+  background-position: 0 0;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-equation {
+  background-position: 0 -113px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-music {
+  background-position: 0 -226px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-search {
+  background-position: 0 -339px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-shape {
+  background-position: 0 -452px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-superimposed {
+  background-position: 0 -565px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-translate {
+  background-position: 0 -678px;
+}
+
+/* line 84, C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+.logo-write {
+  background-position: 0 -791px;
+}
+
+/* line 7, ../sass/_icons.scss */
+.main-logo {
+  background-position: 0 0;
+}
+
+/*
+    使用css原声 @import 的既定规则：
+    1.当@import后面跟的文件名是以.css结尾的时候.
+    2.当@import后面跟的是 http:// 开头的字符串的时候。
+    3.当@import后面跟的是一个 url() 函数的时候。
+    4.当@import后面带有 media queries 的时候。
+*/
+/* line 220, ../sass/screen.scss */
+.headline {
+  font-family: Braggadocio, Arial, Verdana, Helvetical, Sans-serif;
+}
+
+/* 页面主题内容样式 */
+/* line 259, ../sass/screen.scss */
+.error, .serious-error {
+  color: #f00;
+}
+
+/* line 263, ../sass/screen.scss */
+.serious-error {
+  height: 30px;
+  border: 1px solid #f00;
+}

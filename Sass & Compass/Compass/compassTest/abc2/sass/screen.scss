@@ -1,0 +1,22 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+$color:#ee8117;
+$size:6em;
+.container{
+  .son{
+    width:$size;
+    height:$size;
+    margin:10px 2px;
+    display:inline-block;
+
+    @for $i from 1 through 8{
+      &:nth-child(#{$i}){
+        background:shade($color, 5*$i);
+      }
+    }
+  }
+}
