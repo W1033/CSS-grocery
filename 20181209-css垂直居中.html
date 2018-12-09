@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>几种方式实现已知或位置宽度的垂直水平居中</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0; list-style: none; font-size: 12px; }
+        .wrapper {
+            float: left;
+            margin: 20px;
+            width: 240px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .wrapper > div {
+            border-radius: 4px;
+        }
+
+        .wrapper1 {
+            position: relative;
+        }
+        .wrapper1 > div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: #0ba495;
+            margin: -50px 0 0 -50px;
+        }
+
+
+        .wrapper2 {
+            position: relative;
+        }
+        .wrapper2 > div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .wrapper3 {
+            display: flex;
+            /*主轴对齐*/
+            justify-content: center;
+            /*侧轴对其*/
+            align-items: center;
+            flex: 1 1 0;
+        }
+        .wrapper3 > div {
+            height: 100px;
+            width: 100px;
+            background: yellowgreen;
+        }
+
+
+        .wrapper4 {
+            display: table;
+        }
+        .wrapper4 > div {
+            display: table-cell;
+            vertical-align: middle;
+            width: 100px;
+            height: 100px;
+            background: #7A7A43;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper wrapper1">
+        <div></div>
+    </div>
+    <div class="wrapper wrapper2">
+        <div></div>
+    </div>
+    <div class="wrapper wrapper3">
+        <div></div>
+    </div>
+    <div class="wrapper wrapper4">
+        <div></div>
+    </div>
+</body>
+</html>
