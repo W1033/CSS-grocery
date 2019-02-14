@@ -8,7 +8,7 @@
         .wrapper {
             float: left;
             margin: 20px;
-            width: 240px;
+            width: 220px;
             height: 200px;
             border: 1px solid #ccc;
             border-radius: 2px;
@@ -28,6 +28,7 @@
             width: 100px;
             height: 100px;
             background: #0ba495;
+            /* 自身宽度的一半 + 负号 */
             margin: -50px 0 0 -50px;
         }
 
@@ -63,13 +64,26 @@
 
         .wrapper4 {
             display: table;
+            width: 340px;
+            height: 300px;
         }
         .wrapper4 > div {
             display: table-cell;
             vertical-align: middle;
-            width: 100px;
-            height: 100px;
+            text-align: center;
+        }
+        .wrapper > div > p {
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            height: 150px;
+            border-radius: 4px;
             background: #7A7A43;
+            overflow: hidden;
+        }
+        .wrapper > div > p > span {
+            display: block;
+            margin-top: 10px;
         }
 
     </style>
@@ -85,7 +99,15 @@
         <div></div>
     </div>
     <div class="wrapper wrapper4">
-        <div></div>
+        <div>
+            <p>
+                <span>div: {display: table}</span>
+                <span>--></span>
+                <span>div: {display: table-cell}</span>
+                <span>--></span>
+                <span>p: {display: inline-block}</span>
+            </p>
+        </div>
     </div>
 </body>
 </html>

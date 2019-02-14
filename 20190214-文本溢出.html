@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本溢出</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0;
+            list-style: none;
+            font: 14px "Microsoft YaHei"}
+        .wrapper{
+            margin: 20px;
+            padding: 20px;
+        }
+
+        /*
+            - text-overflow: 属性规定当文本溢出包含元素时发生的事情. 所有主流浏览器都支持
+                + test-overflow: clip | ellipsis | string
+                    - clip: 修剪文本 (默认值)
+                    - ellipsis: 显示省略符号来代表被修剪的文本
+                    - string: 使用给定的字符串来代表被修剪的文本
+         */
+        .singleLineEllipsis {
+            width: 100px; line-height: 30px;
+            background: lightblue;
+            border-radius: 4px; margin-bottom: 20px;
+
+            /* 这三个必须配合使用 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /*
+                - white-space: 这个属性声明建立布局过程中设置如何处理元素内的空白符。
+                    + white-space: normal | pre | nowrap | pre-wrap | pre-line |inherit
+                        - normal: 默认。空白会被浏览器忽略
+                        - pre: 空白会被浏览器保留。 其行为方式类似 HTML 中的 <pre> 标签。
+                        - nowrap: 文本不会换行，文本会在同一行上继续，直到遇到 <br> 标签为止。
+                        - pre-wrap: 保留空白符序列，但是正常地进行换行。
+                        - pre-line: 合并空白符序列，但是保留换行符。
+                        - inherit: 规定应该从父元素继承 white-space 属性的值。
+            */
+            white-space: nowrap;
+        }
+
+
+        p.multipleLineEllipsis {
+            width:130px;
+            border-radius: 4px;
+            background: lightcoral;
+
+            /* 下面这个设置只在 webkit 浏览器中起作用 */
+            display: -webkit-box;
+            /* 这个是设置显示几行的
+                clamp /klæmp/** vt.夹紧，固定住  n.夹钳(qian)，螺丝钳 */
+            -webkit-line-clamp: 3;
+            text-overflow:ellipsis;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p class="singleLineEllipsis" title="单行文本溢出，单行文本溢出">单行文本溢出，单行文本溢出</p>
+        <p class="multipleLineEllipsis">多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出</p>
+    </div>
+</body>
+</html>
