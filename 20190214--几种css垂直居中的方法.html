@@ -86,6 +86,24 @@
             margin-top: 10px;
         }
 
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        .test {
+            float: left;
+            margin: 20px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        #content {
+            width: 160px;
+            height: 0;
+            padding-top: 70%;
+            margin: 0 auto;
+            background: lightsteelblue;
+        }
+
     </style>
 </head>
 <body>
@@ -109,5 +127,20 @@
             </p>
         </div>
     </div>
+
+    <div class="test">
+        <p id="content"></p>
+    </div>
+
+    <script type="text/javascript">
+        function getId(id) {
+            console.log();
+            return typeof id === "string" ? document.getElementById(id) : id;
+        }
+
+        const content = getId("content");
+        let contentClientHeight = content.clientHeight;
+        console.log("contentClientHeight: ", contentClientHeight);  //
+    </script>
 </body>
 </html>

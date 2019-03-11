@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 之等比例缩放的盒子</title>
+    <style type="text/css">
+        * {margin: 0; padding: 0; font-size: 14px;}
+        .wrapper {
+            width: 80%;
+            margin: 20px auto;
+            min-height: 800px;
+            border-radius: 10px;
+            background: lightsteelblue;
+            overflow: hidden;
+            padding-top: 1.6%;
+        }
+        /* 要实现的效果: 实现当窗口宽度缩放时，使得元素宽度自适应的同时，保证每个元素的宽高比例不变。
+           实现方法: 1. 将元素的 height 设成 0, 使得元素的高度等于 padding-bottom;
+           2. 合理设置 padding-bottom (设置 padding-top 也是一样的) 的值。比如每个元素的 width
+           时 25%，现在想让元素的高度始终保持为宽度的 2倍，则 padding-bottom 的值应该设置为 50%。*/
+        .item {
+            float: left;
+            width: 23%;
+            margin-bottom: 1.6%;
+            margin-left: 1.6%;
+            height: 0;
+            padding-top: 36%;
+            border-radius: 4px;
+
+            /* 详细文档: https://zhuanlan.zhihu.com/p/31933324
+             * img 在元素分类中属于 replaced （被替换的）元素。replaced 元素表示这个元素内容的显示不是由 CSS 控制的。
+             * 换句话说，对于 img 元素而言，图片的内容并不是由 CSS 定义的，而是通过其 src 属性指向的资源决定的。
+             * 很多 replaced 元素来都会有自己的固有尺寸（Intrinsic dimension），img 也不例外1。当 img 的高度改变后，
+             * 浏览器会计算出其缩放比例，而当元素的宽度是 auto（即默认值）时，浏览器则以原始宽度 * 缩放比例来作为元素的
+             * 新宽度。从而使得 img 元素的比例始终保持一致。
+             */
+            background:#dbe0e4 url("image/2275795524.jpg");
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+        <p class="item"></p>
+    </div>
+</body>
+</html>
