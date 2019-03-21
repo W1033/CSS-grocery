@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@keyframes</title>
+    <style type="text/css">
+        * {margin: 0; padding: 0; font-size: 14px;}
+        .wrapper {
+            width: 650px;
+            height: 650px;
+            margin: 20px auto;
+            padding: 10px;
+            background: lightblue;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+            border-radius: 5px;
+            position: relative;
+            animation: move 5s infinite;
+        }
+
+        /* @keyframes 关键帧控制 */
+        @keyframes move {
+            from {top: 0;}
+            to {top: 400px;}
+        }
+    </style>
+</head>
+<body>
+   <div class="wrapper">
+       <div class="box">
+
+       </div>
+   </div>
+</body>
+</html>

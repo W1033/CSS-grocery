@@ -10,46 +10,32 @@
             border-radius:4px;
             box-sizing: border-box;  outline: none;
         }
-
         div{
             width:280px;  height:80px;
             border-radius:4px;
-            margin:100px auto;
+            margin:40px auto;
             background:#DEE4EE;
             cursor:pointer;
         }
-
-        #box-1{
+        #box-1:hover{
             transform: rotate(25deg);
+            transition: transform .4s linear;
         }
-
-        #box-2{
+        #box-2:hover{
             transform: skew(20deg);
+            transition: transform .4s linear;
         }
-
-        #box-3{
+        #box-3:hover{
             /*transform: scale(1.5);*/
             transform: scale(0.8);
+            transition: transform .4s linear;
         }
-
-
         #box-4 {
             position: absolute;
-            margin-left:1600px;
+            margin-left:200px;
         }
-
-        /*#box-4:hover{
-            !*
-                这种形式和下面的 translate(-600px, 0); 是相同的
-                transform: translateX(-600px);
-                transform: translateY(0);
-            *!
-            !*transform: translate(-600px, 0);*!
-            transform: translateX(-1600px);
-            transition: transform 3s ease ;
-        }*/
-        .box-4 {
-            transform: translateX(-1600px);
+        #box-4:hover {
+            transform: translateX(-200px);
             transition: transform 3s ease ;
         }
 
@@ -57,13 +43,22 @@
 
     <script type="text/javascript">
         /**
-         * transform -- 改变 :
-         *  transform的属性包括: rotate() / skew() / scale() /  translate()
-         *
          *  rotate      /rə(ʊ)'teɪt/     vi.旋转，转换
          *  skew        /skjuː/          vt.歪斜，斜切   n.歪斜
          *  scale       /skeɪl/          n.刻度，比例
          *  translate   /træns'leɪt/     vt & vi. 转化， 翻译
+         *
+         * - transform -- 改变 :
+         *     + transform的属性包括: rotate() / skew() / scale() /  translate()
+         *
+         * - 两篇不错的文章:
+         *     + http://acgtofe.com/posts/2015/12/xyz-3d-in-css
+         *     + https://cloud.tencent.com/developer/article/1343949
+         *
+         * - transform:translate()：变动，位移；
+         *     + translate(x, y):
+         *         - 相对与当前位置向水平(x) / 垂直(y) 方向移动，正值向"右下"，负值向"左上"。
+         *         - 默认中心点就是盒模型的中心点。 (网页中的 DOM 元素，初始坐标系在当前屏幕的左上角)
          *
          */
     </script>
@@ -71,42 +66,10 @@
 
 </head>
 <body>
-
     <!-- transform 旋转--缩放--移动--倾斜  -->
     <div id="box-1"> transform--rotate()--旋转 </div>
-
     <div id="box-2"> transform--skew()--倾斜 </div>
     <div id="box-3"> transform--scale()--比例 </div>
     <div id="box-4" > transform--translate()--变动、位移 </div>
-
-
-    <script type="text/javascript">
-
-        /**
-         *
-         * transform:translate()：变动，位移；
-         *      如下表示向右位移120像素，如果向上位移，把后面的“0”改个值就行，向左向下位移则为负“-”。
-         * transform: translate(120px,0);
-         *
-         *
-         **/
-
-        var box4 = document.getElementById("box-4");
-
-
-        console.log(getComputedStyle(box4, false)["margin-right"]);
-        box4.addEventListener("click", function () {
-            this.className = "box-4";
-            var self = this;
-            console.log(this.className);
-            console.log(this.offsetWidth);
-            setTimeout(function () {
-                console.log(getComputedStyle(self, false)["margin-left"]);
-                console.log(getComputedStyle(self, false)["margin-right"]);
-            }, 2000);
-        }, false);
-
-    </script>
-
 </body>
 </html>
