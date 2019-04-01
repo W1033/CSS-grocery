@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>box-sizing: border-box</title>
+    <style type="text/css">
+        * {
+            margin: 0; padding: 0;
+            border: 0; list-style: none;
+        }
+        .wrapper {
+            width: 80%;
+            height: 660px;
+            border-radius: 4px;
+            background: lightblue;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .wrapper > div {
+            margin: 20px;
+        }
+        #content-box {
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            border: 2px solid lightcoral;
+
+            /*
+                - 关键属性设置:
+                    + content-box 是默认值。如果元素为 100px ，那么这个元素的内容就会有 100px,
+                       任何 border 和 padding 都会增加到元素宽度的外围。
+                    + border-box : 告诉浏览器去理解你设置的 border 和 padding 的值是包含在width内的。
+                box-sizing: content-box / border-bx
+            */
+            box-sizing: content-box;
+        }
+        #border-box {
+            /* 在 Chrome 控制台的 Computed 种查看 :
+                width: = (2px border) * 2  + (10px padding) * 2 + 176px content
+             */
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            border: 2px solid #cccc00;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="content-box">
+            box-sizing: content-box 属性
+        </div>
+
+        <div id="border-box">
+            box-sizing 属性应用
+        </div>
+    </div>
+</body>
+</html>
