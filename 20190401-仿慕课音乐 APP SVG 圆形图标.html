@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20190401-仿慕课音乐 APP SVG 圆形图标</title>
+    <style type="text/css">
+        * {
+            margin: 0; padding: 0; border:0;
+            font: 14px/1.5 "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif;
+            outline: none;
+        }
+        .wrapper {
+            width: 80%;
+            height: 660px;
+            border-radius: 4px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #eef8ff;
+            background-size: cover;
+        }
+        .progress-circle {
+            margin: 20px;
+            position: relative;
+            width: 67px;
+            height: 67px;
+            line-height: 67px;
+            background: lightsteelblue;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        circle {
+            stroke-width: 8px;
+            transform-origin: center;
+        }
+        .progress-background {
+             transform: scale(0.9);
+             stroke: rgba(255, 205, 49, .6);
+         }
+        .progress-bar {
+             transform: scale(0.9) rotate(-90deg);
+             stroke: #ff7069;
+         }
+        .number {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            text-align: center;
+            line-height: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="progress-circle">
+            <svg width="66" height="66" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <circle class="progress-background" r="50" cx="50" cy="50" fill="transparent"></circle>
+                <!-- stroke-dasharray 表示描边, 圆环的进度使用的是 stroke-dashoffset 属性 -->
+                <circle class="progress-bar" r="50" cx="50" cy="50"
+                        fill="transparent"
+                        stroke-dasharray="314"
+                        stroke-dashoffset="314"
+                ></circle>
+            </svg>
+            <span class="number">1</span>
+        </div>
+
+
+        <div class="progress-circle">
+            <svg width="66" height="66" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <circle class="progress-background" r="50" cx="50" cy="50" fill="transparent"></circle>
+                <!-- stroke-dasharray 表示描边, 圆环的进度使用的是 stroke-dashoffset 属性 -->
+                <circle class="progress-bar" r="50" cx="50" cy="50"
+                        fill="transparent"
+                        stroke-dasharray="314"
+                        stroke-dashoffset="250"
+                ></circle>
+            </svg>
+            <span class="number">2</span>
+        </div>
+
+
+        <div class="progress-circle">
+            <svg width="66" height="66" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <circle class="progress-background" r="50" cx="50" cy="50" fill="transparent"></circle>
+                <!-- stroke-dasharray 表示描边, 圆环的进度使用的是 stroke-dashoffset 属性 -->
+                <circle class="progress-bar" r="50" cx="50" cy="50"
+                        fill="transparent"
+                        stroke-dasharray="314"
+                        stroke-dashoffset="100"
+                ></circle>
+            </svg>
+            <span class="number">3</span>
+        </div>
+    </div>
+</body>
+</html>
