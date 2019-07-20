@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .container {
             margin-top:15%;
         }
-        
+
 
         /* 左侧按钮 */
         .side-left > .history-record {
@@ -152,20 +152,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         // 元素配置表: 缓存静态html元素
         var eleConfMap = {
-        
+
         	// 弹幕
             brgContainer:       getClassName("barrage-container")[0],
             lineWall:       getClassName("line-wall")[0],
 
             // 左侧边2个按钮
             $historyRecord:     $(".history-record"),
-            $switchBtn:         $(".switch-btn"),
+            $switchBtn:         $(".switches-btn"),
 
             // 中间奖项按钮
             $awardsBtn:         $(".awards-btn")
         };
-        
-        
+
+
         // ajax 配置图
         var ajaxMap = {
 
