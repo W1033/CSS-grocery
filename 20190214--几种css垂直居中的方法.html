@@ -18,6 +18,7 @@
             border-radius: 4px;
         }
 
+        /* - 1、绝对定位 + margin-top/margin-left 设为自身宽度的一半加负号 */
         .wrapper1 {
             position: relative;
         }
@@ -32,7 +33,7 @@
             margin: -50px 0 0 -50px;
         }
 
-
+        /* - 2、绝对定位 + left/top 为自身宽度的一半 + 百分号(%)*/
         .wrapper2 {
             position: relative;
         }
@@ -46,7 +47,7 @@
             transform: translate(-50%, -50%);
         }
 
-
+        /* - 3、flex 布局 */
         .wrapper3 {
             display: flex;
             /*主轴对齐*/
@@ -61,7 +62,7 @@
             background: yellowgreen;
         }
 
-
+        /* - 4、table/table-cell 布局 */
         .wrapper4 {
             display: table;
             width: 340px;
