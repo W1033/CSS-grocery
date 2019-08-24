@@ -6,7 +6,11 @@
     <style type="text/css">
         *{  margin:0; padding:0; list-style:None;
             font: 14px normal  Arial, Microsoft YaHei;}
-        #container{margin:48px auto; width:60%;  background:lightcoral; padding:10px;}
+        #container{
+            margin:48px auto; 
+            width:60%;  
+            background:lightcoral; 
+            padding:10px;}
         .flex {
             /* 基本样式 */
             width:100%;
@@ -28,9 +32,11 @@
 
         .flex > div {
             -webkit-flex: 1 1 auto;
-            /*flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，描述弹性项目整体的伸缩性。*/
+            /*flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，描述
+              弹性项目整体的伸缩性。*/
             flex: 1 1 auto;
-
+            
+            /* 有 bug 用鼠标在项目下部份滑动就看到了 */
             width: 30px; /* 让过渡表现良好。（从/到"width:auto"的过渡
                       至少在 Gecko 和 Webkit 上是有 bug 的。
                       更多信息参见 http://bugzil.la/731886 ） */
