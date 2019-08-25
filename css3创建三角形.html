@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style type="text/css">
+    <style type="text/css"> 
+        * {margin: 0px; padding: 0; list-style: none;}
+
         .myBox{
             width:0; height:0;
             border-style:solid;
@@ -17,22 +19,27 @@
             border-color: transparent transparent transparent red;
         }
 
-      /*  !*添加三角形伪类: 大三角*!
-        .batchImpFileBox:before{
+       /*添加三角形伪类: 大三角*/
+        .box:before{
             border:dashed; border-width:13px;
-            border-color: transparent transparent #d2d2d2 transparent;
+            border-color: transparent transparent lightcoral transparent;
             content:" ";  position:absolute;
-            left:43.5%;  top:-25px;
+            left:43.5%;  top:-26px;
         }
-        !*添加三角形伪类: 小三角*!
-        .batchImpFileBox:after{
+        /*添加三角形伪类: 小三角*/
+        .box:after{
             border:dashed;  border-width:13px;
-            border-color: transparent transparent #fff transparent;
+            border-color: transparent transparent lightgoldenrodyellow transparent;
             content:" ";  position:absolute;
-            left:43.5%;  top:-23.7px;
-        }*/
+            left:43.5%;  top:-23px;
+        }
+        .box {
+            height: 100px; width: 198px;
+            border-radius: 4px;
+            position: relative; 
+            background: lightseagreen
+        }
     </style>
-    <link rel="stylesheet" href="publicScript%20&&%20publicCss/publicStyle.css">
 </head>
 <body>
     <div class="">
@@ -41,7 +48,7 @@
     </div>
 
     <!--第二种方式: 利用 :before和:after伪类来画三角形，但是这个伪类画的三角形默认就是显示的-->
-    <div class="height100 width198 lightGreyBor3 borRadius4 marLeft130 whiteBg posRelative batchImpFileBox"></div>
+    <div class='box'></div>
 
 </body>
 </html>
