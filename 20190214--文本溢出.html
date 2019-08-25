@@ -19,7 +19,7 @@
                     - ellipsis: 显示省略符号来代表被修剪的文本
                     - string: 使用给定的字符串来代表被修剪的文本
          */
-        .singleLineEllipsis {
+        .single-line-ellipsis {
             width: 100px; line-height: 30px;
             background: lightblue;
             border-radius: 4px; margin-bottom: 20px;
@@ -41,7 +41,7 @@
         }
 
 
-        p.multipleLineEllipsis {
+        p.multiple-line-ellipsis {
             width:130px;
             border-radius: 4px;
             background: lightcoral;
@@ -59,8 +59,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <p class="singleLineEllipsis" title="单行文本溢出，单行文本溢出">单行文本溢出，单行文本溢出</p>
-        <p class="multipleLineEllipsis">多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出</p>
+        <p class="single-line-ellipsis">
+            单行文本溢出，单行文本溢出
+        </p>
+        <p class="multiple-line-ellipsis">
+            多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出，多行文本溢出
+        </p>
     </div>
 </body>
 </html>
