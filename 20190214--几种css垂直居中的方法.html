@@ -18,22 +18,26 @@
             border-radius: 4px;
         }
 
-        /* - 1、绝对定位 + margin-top/margin-left 设为自身宽度的一半加负号 */
+        /* - 1st method */
         .wrapper1 {
             position: relative;
         }
         .wrapper1 > div {
+            background: #0ba495;
+
+            /* + (1) 将子元素绝对定位, 距上方和左方各 50% */
             position: absolute;
             top: 50%;
             left: 50%;
+            /* + (2) 必须为子元素设置一个尺寸, 下面的 margin 设置需要 */
             width: 100px;
             height: 100px;
-            background: #0ba495;
-            /* 自身宽度的一半 + 负号 */
+            /* + (3) 通过将上方和左侧的外边距设置为负值, 将容器往左上方推动, 
+             *   调整的值为子元素高和宽的一半. */
             margin: -50px 0 0 -50px;
         }
 
-        /* - 2、绝对定位 + left/top 为自身宽度的一半 + 百分号(%)*/
+        /* - 2nd method */
         .wrapper2 {
             position: relative;
         }
@@ -44,6 +48,13 @@
             width: 100px;
             height: 100px;
             background: #ccc;
+            /* + 上面 1st method 中的 margin 设置可以替换为 transform */
+            /* + <响应式web开发实战> P77 -- CSS3 中加入了 transform 属性来允许用户
+             *   对元素进行一些形变操作, 如 扭曲(skew), 翻转(rotate), 缩放(scale)等
+             *   . 而 translate 就是其中的一种方式 -- 位移. 它能够让元素基于形变原点
+             *   (transform-origin, 通常是在元素的中心位置, 让然原点也可以修改), 
+             *   进行横向或纵向的位移, 位移方向以右下方为正向. translate(-50%, -50%)
+             *   意味着元素将向左上方横向和纵向各自移动自己尺寸的 50%. */
             transform: translate(-50%, -50%);
         }
 
@@ -66,7 +77,7 @@
         .wrapper4 {
             display: table;
             width: 340px;
-            height: 300px;
+            height: 340px;
         }
         .wrapper4 > div {
             display: table-cell;

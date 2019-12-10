@@ -40,36 +40,27 @@
         }
 
     </style>
-
-    <script type="text/javascript">
-        /**
-         *  rotate      /rə(ʊ)'teɪt/     vi.旋转，转换
-         *  skew        /skjuː/          vt.歪斜，斜切   n.歪斜
-         *  scale       /skeɪl/          n.刻度，比例
-         *  translate   /træns'leɪt/     vt & vi. 转化， 翻译
-         *
-         * - transform -- 改变 :
-         *     + transform的属性包括: rotate() / skew() / scale() /  translate()
-         *
-         * - 两篇不错的文章:
-         *     + http://acgtofe.com/posts/2015/12/xyz-3d-in-css
-         *     + https://cloud.tencent.com/developer/article/1343949
-         *
-         * - transform:translate()：变动，位移；
-         *     + translate(x, y):
-         *         - 相对与当前位置向水平(x) / 垂直(y) 方向移动，正值向"右下"，负值向"左上"。
-         *         - 默认中心点就是盒模型的中心点。 (网页中的 DOM 元素，初始坐标系在当前屏幕的左上角)
-         *
-         */
-    </script>
-
-
 </head>
 <body>
-    <!-- transform 旋转--缩放--移动--倾斜  -->
-    <div id="box-1"> transform--rotate()--旋转 </div>
-    <div id="box-2"> transform--skew()--倾斜 </div>
-    <div id="box-3"> transform--scale()--比例 </div>
-    <div id="box-4" > transform--translate()--变动、位移 </div>
+    <!--
+        - rotate      /rə(ʊ)'teɪt/     vi.旋转，转换
+        - skew        /skjuː/          vt.歪斜，斜切   n.歪斜
+        - scale       /skeɪl/          n.刻度，比例
+        - translate   /træns'leɪt/     vt & vi. 转化， 翻译
+
+        - transform -- 改变 :
+           + transform的属性包括: rotate() / skew() / scale() /  translate()
+        - 两篇不错的文章:
+           + http://acgtofe.com/posts/2015/12/xyz-3d-in-css
+           + https://cloud.tencent.com/developer/article/1343949
+
+        - translate(x, y):
+           + 相对与当前位置向水平(x) / 垂直(y) 方向移动，正值向"右下"，负值向"左上"。
+           + 默认中心点就是盒模型的中心点。 (网页中的 DOM 元素，初始坐标系在当前屏幕的左上角)
+    -->
+    <div id="box-1"> transform--rotate()--翻转 </div>
+    <div id="box-2"> transform--skew()--扭曲 </div>
+    <div id="box-3"> transform--scale()--缩放 </div>
+    <div id="box-4" > transform--translate()--位移 </div>
 </body>
 </html>

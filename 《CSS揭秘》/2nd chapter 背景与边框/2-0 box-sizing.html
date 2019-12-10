@@ -26,12 +26,12 @@
             border: 2px solid lightcoral;
 
             /*
-                - 关键属性设置:
-                    + content-box 是默认值。如果元素为 100px ，那么这个元素的内容就会有 100px,
-                       任何 border 和 padding 都会增加到元素宽度的外围。
-                    + border-box : 告诉浏览器去理解你设置的 border 和 padding 的值是包含在width内的。
-                box-sizing: content-box / border-bx
-            */
+             * - box-sizing: content-box / border-box
+             *    + content-box 是默认值。如果元素为 100px ，那么这个元素的内容就会有
+             *        100px, 任何 border 和 padding 都会增加到元素宽度的外围。
+             *    + border-box : 告诉浏览器去理解你设置的 border 和 padding 的值
+             *      是包含在 width 内的。
+             */
             box-sizing: content-box;
         }
         #border-box {
