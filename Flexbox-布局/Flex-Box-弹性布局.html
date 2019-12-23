@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用CSS弹性盒子</title>
+    <style type="text/css">
+        *{  margin:0; padding:0; list-style:None;
+            font: 14px normal  Arial, Microsoft YaHei;}
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            
+            max-width: 76%;
+            background:lightgray;
+            margin: 20px auto;
+            height: 200px;
+        }
+        .container > p {
+            flex-basis: 20%;
+            height: 100%;
+        }
+        p.flex-left {
+            background:lightblue;
+            
+        }
+        p.flex-right {
+            background:lightgoldenrodyellow;
+        }
+
+
+
+        /* ------ */
+        .flex-cont {
+            width: 48%;
+            min-height: 14rem;
+            margin: 60px auto;
+            padding: 10px;
+            background: lightskyblue;
+            /*  建立弹性框 */
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items:stretch;
+            direction:ltr;
+            text-align:center;
+            display: flex;
+            flex-wrap: wrap;
+            /*align-content:stretch;*/
+        }
+        .flex-item {
+            /*  - flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，
+             *   描述弹性项目整体的伸缩性。*/
+            flex: 1 1 auto;
+
+            width: 30px;
+            transition: width 0.5s ease-out;
+        }
+        .flex-cont > div:nth-child(1){background:#c0a16b; }
+        .flex-cont > div:nth-child(2){background:lightcoral;}
+        .flex-cont > div:nth-child(3){background:lightseagreen;}
+        .flex-cont > div:nth-child(4){background:lightpink;}
+        .flex-cont > div:nth-child(5){background:lightslategray;}
+        .flex-cont > div:nth-child(6){background:lightyellow;}
+        .flex-cont > div:hover{ width:200px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="flex-left">左侧内容</p>
+        <p class="flex-right">右侧内容</p>
+    </div>
+
+
+    <div class="flex-cont">
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+        <div class="flex-item"></div>
+    </div>
+</body>
+</html>

@@ -14,10 +14,15 @@
             overflow: hidden;
             padding-top: 1.6%;
         }
-        /* 要实现的效果: 实现当窗口宽度缩放时，使得元素宽度自适应的同时，保证每个元素的宽高比例不变。
-           实现方法: 1. 将元素的 height 设成 0, 使得元素的高度等于 padding-bottom;
-           2. 合理设置 padding-bottom (设置 padding-top 也是一样的) 的值。比如每个元素的 width
-           时 25%，现在想让元素的高度始终保持为宽度的 2倍，则 padding-bottom 的值应该设置为 50%。*/
+        /* - Q: 要实现的效果 -- 实现当窗口宽度缩放时，使得元素宽度自适应的同时，保证
+         *    每个元素的宽高比例不变。
+         * - A: 实现方法: 
+         *      + (1) 将元素的 height 设成 0, 使得元素的高度等于 
+         *        padding-bottom / padding-top;
+         *      + (2) 合理设置 padding-bottom (或 padding-top) 的值。比如
+         *        每个元素的 width 是 25%，现在想让元素的高度始终保持为宽度的 2 倍,
+         *        则 padding-bottom/padding-top 的值应该设置为 50%。
+         */
         .item {
             float: left;
             width: 23%;
@@ -34,7 +39,7 @@
              * 浏览器会计算出其缩放比例，而当元素的宽度是 auto（即默认值）时，浏览器则以原始宽度 * 缩放比例来作为元素的
              * 新宽度。从而使得 img 元素的比例始终保持一致。
              */
-            background:#dbe0e4 url("image/2275795524.jpg");
+            background:lightyellow;
             background-size: cover;
         }
 
