@@ -79,8 +79,7 @@
 - 项目默认沿主轴排列. 单个项目占据的主轴空间叫做 main size, 占据的 侧轴/交叉轴 空间
   叫做 cross size.
 ### (3) 弹性容器(flex container) 的属性: 设置在弹性容器上的属性有 6 个.
-> [来源: 阮一峰的博客](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
-  <br/>
+> [来源: 阮一峰的博客](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)  
 > [看看有没有可添加的内容](https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb)  
 
 1. **`flex-direction [伸缩方向]`**: 
