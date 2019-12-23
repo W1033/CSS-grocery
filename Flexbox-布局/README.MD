@@ -81,7 +81,8 @@
 ### (3) 弹性容器(flex container) 的属性: 设置在弹性容器上的属性有 6 个.
 > [来源: 阮一峰的博客](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
   <br/>
-> [看看有没有可添加的内容](https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb)
+> [看看有没有可添加的内容](https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb)  
+
 1. **`flex-direction [伸缩方向]`**: 
     + 确立主轴: flex-direction 允许你更改伸缩容器的主轴方向，默认是row。它有 4 个值: 
       ```css
