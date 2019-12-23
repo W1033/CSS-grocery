@@ -20,7 +20,7 @@
             background: #eeeeee;
         }
         .flex {
-            min-height: 100px;
+            min-height: 120px;
             width: 420px;
             border-radius: 4px;
             margin: 5px auto;
@@ -30,14 +30,15 @@
         }
         .tip {
             display: flex;
-            text-align:center;
+            text-align: center;
             align-items: center;
             justify-content: center;
             line-height: 26px;
+            font-weight: bold;
         }
         .flex > p {
-            border-radius: 2px;
-            height: 34px;
+            border-radius: 4px;
+            min-height: 34px;
             flex-basis: 24%;
             display: flex;
             align-items: center;
@@ -62,23 +63,53 @@
 
         /* - 基线对齐 */
         .flex701 {align-content: baseline;}
-        .flex702 {align-content: first baseline;}
-        .flex703 {align-content: last baseline;}
+
+        .flex702 {
+            align-content: first baseline;
+        }
+
+        .flex703 {
+            align-content: last baseline;
+        }
 
         /* - 分布式对齐 */
-        .flex8 {align-content: space-between}
-        .flex9 {align-content: space-around}
-        .flex10 {align-content: space-evenly}
-        .flex11 {align-content: stretch}
+        .flex8 {
+            align-content: space-between
+        }
+
+        .flex9 {
+            align-content: space-around
+        }
+
+        .flex10 {
+            align-content: space-evenly
+        }
+
+        .flex11 {
+            align-content: stretch
+        }
 
         /* - 溢出对齐 -- 略 */
-        .flex1101 {align-content: safe center;}
-        .flex1201 {align-content: unsafe center;}
+        .flex1201 {
+            align-content: safe center;
+        }
+
+        .flex1202 {
+            align-content: unsafe center;
+        }
 
         /* - 全局属性 */
-        .flex001 {align-content: inherit;}
-        .flex002 {align-content: initial;}
-        .flex003 {align-content: unset;}
+        .flex1301 {
+            align-content: inherit;
+        }
+
+        .flex1302 {
+            align-content: initial;
+        }
+
+        .flex1303 {
+            align-content: unset;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +128,7 @@
         </div>
     </div>
 
+    <!-- 02 -->
     <div class="wrap">
         <p class="tip">
             align-content: center; <br> 基本位置对齐 -- 将项目放置在中点
@@ -110,7 +142,7 @@
             <p class="item6">6</p>
         </div>
     </div>
-
+    <!-- 03 -->
     <div class="wrap">
         <p class="tip">
             align-content: end; <br/> 基本位置对齐 -- 最后放置项目
@@ -124,7 +156,7 @@
             <p class="item6">6</p>
         </div>
     </div>
-
+    <!-- 04 -->
     <div class="wrap">
         <p class="tip">
             align-content: flex-start; <br> 基本位置对齐 -- 从起始点开始放置flex元素
@@ -138,12 +170,139 @@
             <p class="item6">6</p>
         </div>
     </div>
-
+    <!-- 05 -->
     <div class="wrap">
         <p class="tip">
             align-content: flex-end; <br> 基本位置对齐 -- 从终止点开始放置flex元素
         </p>
         <div class="flex flex5">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+    <!-- 06 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: normal; <br> 默认对齐
+        </p>
+        <div class="flex flex6">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: baseline; <br>
+            基线对齐 --
+        </p>
+        <div class="flex flex7">
+            <p class="item1">1 基线对齐 -- </p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: space-between; <br>
+            分布式对齐 -- 均匀分布项目, <br> 第一项与起始点齐平, 最后一项与终点齐平.
+        </p>
+        <div class="flex flex8">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: space-around; <br>
+            分布式对齐--均匀分布项目, 项目在两端有一半大小的空间.
+        </p>
+        <div class="flex flex9">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 010 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: space-evenly; <br>
+            分布式对齐 -- 均匀分布项目, 项目周围有相等的空间
+        </p>
+        <div class="flex flex10">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: stretch; <br>
+            分布式对齐 -- 均匀分布项目, <br> 拉伸 "自动" 大小的项目以填满容器
+        </p>
+        <div class="flex flex11">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+
+    <!-- 1201 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: safe center; <br>
+            溢出对齐
+            <br>
+            <br>
+        </p>
+        <div class="flex flex1201">
+            <p class="item1">1</p>
+            <p class="item2">2</p>
+            <p class="item3">3</p>
+            <p class="item4">4</p>
+            <p class="item5">5</p>
+            <p class="item6">6</p>
+        </div>
+    </div>
+    <!-- 1202 -->
+    <div class="wrap">
+        <p class="tip">
+            align-content: unsafe center; <br>
+            溢出对齐
+        </p>
+        <div class="flex flex1202">
             <p class="item1">1</p>
             <p class="item2">2</p>
             <p class="item3">3</p>
