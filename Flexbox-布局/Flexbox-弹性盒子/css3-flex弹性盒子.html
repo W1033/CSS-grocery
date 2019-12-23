@@ -15,13 +15,9 @@
             /* 基本样式 */
             width:100%;
             height: 12rem;
-           /* border: 1px solid #555;*/
             font: 14px Arial;
 
             /*  建立弹性框 */
-            display: -webkit-flex;
-            -webkit-flex-direction: row;
-
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -31,17 +27,16 @@
         }
 
         .flex > div {
-            -webkit-flex: 1 1 auto;
-            /*flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，描述
-              弹性项目整体的伸缩性。*/
+            /*
+             * - flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，
+             *   描述弹性项目整体的伸缩性。
+             */
             flex: 1 1 auto;
-            
-            /* 有 bug 用鼠标在项目下部份滑动就看到了 */
-            width: 30px; /* 让过渡表现良好。（从/到"width:auto"的过渡
-                      至少在 Gecko 和 Webkit 上是有 bug 的。
-                      更多信息参见 http://bugzil.la/731886 ） */
 
-            -webkit-transition: width 0.7s ease-out;
+            /* - 有 bug 用鼠标在项目下部份滑动就看到了 */
+            /* - 让过渡表现良好。（从/到 "width:auto" 的过渡至少在 Gecko 和 Webkit
+             *   上是有 bug 的。更多信息参见 http://bugzil.la/731886 ） */
+            width: 30px;
             transition: width 0.7s ease-out;
         }
         /* colors */
@@ -51,20 +46,22 @@
         .flex > div:nth-child(4){ background : lightblue; }
         .flex > div:nth-child(5){ background : lightsteelblue; }
         .flex > div:nth-child(6){ background : lightseagreen; }
-
         .flex > div:hover {  width: 200px;  }
 
 
-        .flex-cont{
-            width:48%; min-height:14rem; margin:60px auto; padding:10px;
-            display: -webkit-flex ; display:flex; background:lightskyblue;
-            flex-wrap:wrap;
+        .flex-cont {
+            width: 48%;
+            min-height: 14rem;
+            margin: 60px auto;
+            padding: 10px;
+            background: lightskyblue;
+            display: flex;
+            flex-wrap: wrap;
             /*align-content:stretch;*/
         }
-        .flex-item{
-            -webkit-flex: 1 1 auto;  flex: 1 1 auto;
-            width:30px;
-            -webkit-transition:width 0.5s ease-out;
+        .flex-item {
+            flex: 1 1 auto;
+            width: 30px;
             transition: width 0.5s ease-out;
         }
         .flex-cont > div:nth-child(1){background:#c0a16b; }
@@ -101,15 +98,5 @@
     </div>
     <!--自己练习示例-->
 
-    <!--自己练习示例-->
-    <div class="flex-cont">
-        <div class="flex-item"></div>
-        <div class="flex-item"></div>
-        <div class="flex-item"></div>
-        <div class="flex-item"></div>
-        <div class="flex-item"></div>
-        <div class="flex-item"></div>
-    </div>
-    <!--自己练习示例-->
 </body>
 </html>
