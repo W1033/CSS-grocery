@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+
+* {
+     margin: 0; padding:0; font-size: 14px;
+     font-family: "consolas", "微軟正黑體";
+}
+.wrap {
+    float: left; margin: 5px; padding: 5px;background: #eeeeee;
+}
+.flex {
+    min-height: 120px; width: 420px; border-radius: 4px;
+    margin: 5px auto; background-color: #0ba495;
+    display: flex;flex-wrap: wrap;
+}
+.tip {
+    display: flex; text-align: center; align-items: center;
+    justify-content: center; line-height: 22px;
+    font-weight: bold; min-height: 90px;
+}
+.flex > p {
+    border-radius: 50%; height: 34px;
+    display: flex; align-items: center;
+    justify-content: center; flex-basis: 10%;
+}
+
+.item1 {background-color: #8cffa0;}
+.item2 {background-color: #a0c8ff;}
+.item3 {background-color: #ffa08c;}
+.item4 {background-color: #ffff8c;}
+.item5 {background-color: #ff8cff;}
+.item6 {background-color: #8cffff;}
+
+
+
+/* - 基本布局 -- 单项目 */
+.flex0101 {}
+.flex0102 {}
+.flex0103 {}
+.flex0104 {}
+.flex0105 {}
+.flex0106 {}
+.flex0107 {}
+.flex0108 {}
+.flex0109 {}
+.flex01010 {}
+
+.item0101 {}
+.item0102 {}
+.item0103 {}
+.item0104 {}
+.item0105 {}
+.item0106 {}
+
+
+/* - 基本布局 -- 双项目 */
+.flex0201 {}
+.flex0202 {}
+.flex0203 {}
+.flex0204 {}
+.flex0205 {}
+.flex0206 {}
+.flex0207 {}
+.flex0208 {}
+.flex0209 {}
+.flex0210 {}
+

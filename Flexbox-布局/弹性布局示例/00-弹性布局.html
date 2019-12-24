@@ -10,7 +10,6 @@
         .container {
             display: flex;
             justify-content: space-between;
-            
             max-width: 76%;
             background:lightgray;
             margin: 20px auto;
@@ -43,8 +42,9 @@
             flex-wrap: wrap;
         }
         .flex-item {
-            /*  - flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，
+            /* - flex属性是:  flex: flex-grow flex-shrink flex-basis; 的简写，
              *   描述弹性项目整体的伸缩性。*/
+            /* - Tip: 当屏幕尺寸过小时, 鼠标移动到元素上, 等慢慢效果完成后, 有个bug. */
             flex: 1 1 auto;
             width: 30px;
             transition: width 0.5s ease-out;
