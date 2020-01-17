@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; Charset=utf-8">
+    <title>图片延时加载</title>
+    <style type="text/css">
+        *{margin:0; padding:0; list-style:none; font:normal 14px Arial;}
+        .head{
+            width:90%; height:220px;
+            margin:10px auto 200px; overflow:hidden;
+            background: lightcoral;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .head .headFont{
+            font:32px "Microsoft YaHei";
+            line-height:32px;
+            margin-top:85px;
+        }
+        .main{
+            width:90%;
+            margin:20px auto;
+            overflow:hidden;
+        }
+        .container {
+            width: 30%;
+            height: 400px;
+            margin-left: 1.5%;
+            margin-right: 1.5%;
+            margin-bottom:30px;
+            float: left;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #container span > img { width: auto; height: 100%; }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <p class="headFont">图片延时加载</p>
+    </div>
+
+    <div class="main">
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+        <span>
+            <img class="lazy-element" data-src="./images/img1.png">
+        </span>
+    </div>
+
+    <script>
+        // - 检查图片元素是否滚动进入浏览器的可视区域内.
+        // - 获取元素距离页面顶部的距离.(当浏览器不支持 getBoundingClientRect 方法时),
+        //   (非浏览器顶部, 非视口顶部)
+        // - JS高程上说 "元素的偏移量 (offset dimension)",
+        function getEleOffset(el) {
+            let top = el.offsetTop;
+            let left = el.offsetLeft;
+            let parent = el.offsetParent;
+            while (parent) {
+                top += parent.offsetTop || 0;
+                left += parent.offsetLeft || 0;
+                parent = parent.offsetParent;
+            }
+            return {let: left, top: top};
+        }
+
+
+        // - 获取当前页面可视窗口的高度和宽度:
+        //     + document.body.clientHeight
+        // - IE9+/FF/Chrome 确定浏览器窗口大小(可视窗口大小)有两个新属性:
+        //     + window.innerHeight / window.innerWidth
+        // - 获取文档的高度和宽度兼容IE8的写法是:
+        //     + Math.max(document.documentElement.clientHeight,
+        //              document.body.scrollHeight,
+        //              document.documentElement.scrollHeight);
+        // - 确定元素当前滚动的状态: scrollTop / scrollLeft
+
+
+        // - 取得当前可视窗口高度
+        let viewportHeight = window.innerHeight || document.body.clientHeight;
+
+        // - 检查元素是否在可视窗口中
+        function checkEleIsInViewport(el) {
+            if (el.getBoundingClientRect) {
+                let elPos = el.getBoundingClientRect();
+                return elPos.top && el.top > 0 && elPos.top <= viewportHeight; // {1}
+            }
+            // - 如果浏览器不支持 getBoundingClientRect() 方法
+            else {
+                // - 确定元素当前滚动的状态: scrollTop / scrollLeft
+                let scrollTop = document.documentElement.scrollTop
+                                    || document.body.scrollTop;
+                let offsetTop = getEleOffset(el).top;
+                return offsetTop > scrollTop && offsetTop < scrollTop + viewportHeight;
+            }
+        }
+        // - tip: 编辑器提示下面 3 行代码可以简化为上面的 行{1}
+        // if (elPos.top && el.top > 0 && elPos.top <= viewportHeight) {
+        //     return true;
+        // }
+        // return false;
+
+
+
+        // - 取得页面上所有懒加载元素并转化成数组
+        let lazyEleClass = 'lazy-element';
+        let elements = Array.prototype.slice.call(
+            document.getElementsByClassName(lazyEleClass)
+        );
+        // - 需要加载的图片地址 src 值存放在另一个 data-src 属性中
+        let srcAttr = 'data-src';
+        // - 加载图片
+        function loadImg(el) {
+            el.src = el.getAttribute(srcAttr);
+        }
+        // - 调度函数
+        function checkAvailable() {
+            for (let i = 0; i< elements.length; i++) {
+                const el = elements[i];
+                // - 一旦检测发现进入可视区域
+                if (checkEleIsInViewport(el)) {
+                    // - 则加载图片
+                    loadImg(el);
+                    // - 并将该元素移除队列
+                    elements.splice(i--, 1);
+                }
+            }
+        }
+        // - 绑定至滚动函数中
+        window.onscroll = function() {
+            checkAvailable();
+        }
+        
+    </script>
+</body>
+</html>
