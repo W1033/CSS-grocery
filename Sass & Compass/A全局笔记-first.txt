@@ -1,9 +1,0 @@
-1. Sass文件夹下面的"Sass语法讲解和示例"是讲解的一些基础的sass语法规则，比如混合宏，继承，占位符 等。
-
-2. Compass文件夹是在ruby里通过 mkdir Compass 创建的，
-然后出cd Compass进入到Compass，
-再 mkdir  compassTest创建compassTest 
-然后cd compassTest 进入到compassTest中，
-然后 compass create abc创建 一个文件夹为abc的sass项目。
-
-3. Compass 语法的讲解几乎都在abc文件夹中的子sass文件夹中的screen.scss文件中。

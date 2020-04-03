@@ -60,19 +60,19 @@
     + I could hardly translate(vt) my thoughts into words.
       我几乎不能把我的想法用言语表达出来.
     + Her novels translate(vi) well. 她的小说容易翻译.
-        
+      
 
 ## 内容(Content)
 ### 1. CSS3 transition (CSS3 过渡)
 ##### 1.1 css3 过渡介绍
-- CSS3 过渡是元素从一中样式逐渐改变为另一种的效果. 要实现这一点,
+- CSS3 过渡是元素从一种样式逐渐改变为另一种的效果. 要实现这一点,
     必须规定 2 项内容:
-    + (1) 规定你希望把效果添加到哪个 CSS 属性(e.g.
+    + (1) 你希望把效果添加到哪个 CSS 属性(e.g.
         `width`/`height`/`opacity`/...)上.
-    + (2) 规定效果的时长. (Notice: 如果市场未规定, 则不会有过渡效果, 默认值为 0.)
+    + (2) 效果的时长. (Notice: 如果时长未规定, 则不会有过渡效果, 默认值为 0.)
 
 ##### 1.2 过渡属性
-1. `transition`: 简写属性, 用于在一个属性中设置四个过渡属性. 
+1. `transition`: 下面 4 种属性的简写.
 2. `transition-property`(过渡属性): 应用过渡的 CSS 属性名
     (e.g. width/height/opacity/...).
 3. `transition-duration`(过渡持续时间): 过渡效果的持续时间. 默认为 0. 
