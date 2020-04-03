@@ -1,4 +1,5 @@
-## css渐变: 是在CSS3 Image Module中新增的<image>类型。[MDN链接](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Using_CSS_gradients)
+## css渐变: 是在CSS3 Image Module中新增的<image>类型。
+  [MDN链接](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Using_CSS_gradients)
 #### 浏览器支持2种类型的渐变:
 - (1.)线性渐变(linear [/'lɪnɪə/ 直线的]): 通过 linear-gradient (gradient /'greɪdɪənt/ 倾斜度，梯度)函数定义。
     + 1.线性渐变从中间(form up to down)开始 <br>
