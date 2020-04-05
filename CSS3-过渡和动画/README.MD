@@ -10,7 +10,8 @@
         - 1.3.2 使用示例
         - 1.3.3 几个常用的固定值对应的 `cubic-bezier` 值以及速度曲线
     + 1.4 基本示例
-2. 
+2. CSS3 animation
+3. CSS3 transform
 
 
 
@@ -63,15 +64,15 @@
       
 
 ## 内容(Content)
-### 1. CSS3 transition (CSS3 过渡)
-##### 1.1 css3 过渡介绍
+### ### 1. CSS3 transition (CSS3 过渡)
+#### 1.1 css3 过渡介绍
 - CSS3 过渡是元素从一种样式逐渐改变为另一种的效果. 要实现这一点,
     必须规定 2 项内容:
     + (1) 你希望把效果添加到哪个 CSS 属性(e.g.
         `width`/`height`/`opacity`/...)上.
     + (2) 效果的时长. (Notice: 如果时长未规定, 则不会有过渡效果, 默认值为 0.)
 
-##### 1.2 过渡属性
+#### 1.2 过渡属性
 1. `transition`: 下面 4 种属性的简写.
 2. `transition-property`(过渡属性): 应用过渡的 CSS 属性名
     (e.g. width/height/opacity/...).
@@ -86,7 +87,8 @@
 5. `transition-delay`(过渡延迟): 规定过渡效果何时开始(即:多长时间后执行过渡).
    默认是 0.
 
-##### 1.3 贝塞尔曲线
+#### 1.3 贝塞尔曲线
+- > [参考文章]()
 - 1.3.1 贝塞尔曲线简介
     + 在 `1.2 过渡属性` 的 `transition-timing-function(过渡时间函数)`
       属性中可以设置过渡效果的时间曲线, 这个 `cubic-bezier` 又称 **三次贝塞尔**,
@@ -95,35 +97,96 @@
       
       我们可以从下图中简要理解一下 `cubic-bezier`:
 
-      <img src="">
+      <img src="./images/axis.png"
+        style="margin-left: 0;">
+    
+      <img src="./images/bezier-percentage.jpg"
+        style="margin-left: 0;">
+      
+      (Tip: Input percentage(输入百分比);  Output percentage(输出百分比))
 
+      从上图我我们需要知道的是 `cubic-bezier` 的取值范围:
+        + (1) P0: 默认值(0, 0)
+        + (2) P1: 动态取值(x1, y1)
+        + (3) P3: 动态取值(x2, y2)
+        + (4) P4: 默认值(1, 1)
+
+      我们需要关注的是 P1 和 P2 两点的取值, 而其中 `X 轴` 的取值范围是 0 到 1,
+      当取值超出范围时 `cubic-bezier` 将失效; `Y 轴` 的取值没有规定,
+      当然也不要过大. (Added:《CSS揭秘》作者也写了的一个在线调试贝塞尔曲线的网站
+      : [cubic-bezier.com](cubic-bezier.com))
+
+      最直接的理解是, **将以一条直线放在范围只有 1 的坐标轴中, 并从中间拿出两个点来拉扯
+      (X 轴的取值区间是 [0, 1], Y 轴任意, 也可以为负), 最后形成的曲线就是动画的速度曲线.**
+
+      最后我们给出详细的描述图:
+      
+      <img src="./images/cubic-bezier.png" style="margin-left: 0;">
+    
 - 1.3.2 使用示例
+    + 测试示例:
+      ```html
+        <!DOCTYPE html>
+        <html lang="zh-cn">
+        <head>
+            <meta charset="UTF-8">
+            <title>Document</title>
+            <style>
+                .animation {
+                width: 50px;
+                height: 50px;
+                background-color: #ed3;
+                -webkit-transition:  all 2s;
+                        transition:  all 2s;
+                }
+                .animation:hover {
+                -webkit-transform:  translateX(100px);
+                        transform:  translateX(100px);
+                }
+            </style>
+        </head>
+        <body>
+            <div class="animation"></div>
+        </body>
+        </html>
+      ```
+      我们可以在浏览器中看到, 当鼠标移到元素上时, 元素开始向右移动, 开始比较慢, 
+      之后则比较快, 移开时按原曲线回到原点. 
+
+      你也可以更该贝塞尔曲线的值, 例如:
+      `transition:  all 2s cubic-bezier(.17, .86, .73, .14);`
+      自行在浏览器中查看运行效果.
+    
 - 1.3.3 几个常用的固定值对应的 `cubic-bezier` 值以及速度曲线
-##### 1.4 基本示例
-    + 示例 (1): 向宽度, 高度和转换(transform)添加过渡效果:
-      ```css
-        div {
-            transition: width 2s, height 2s, transform 2s;
-            /* 带有浏览器前缀的兼容写法省略 ... */
-        }
-      ```
-    + 示例 (2): 在一个示例中使用所有过渡属性:
-      ```css
-        div {
-            transition: width 1s linear 2s;
-            /* 简写属性等于下面的分开写法 */
-            /*
-            transition-property: width;
-            transition-duration: 1s;
-            transition-timing-function: linear;
-            transition-delay: 2s;
-             */
-        }
-      ```
+    + 略
+#### 1.4 基本示例
+- 示例 (1): 向宽度, 高度和转换(transform)添加过渡效果:
+  ```css
+    div {
+        transition: width 2s, height 2s, transform 2s;
+        /* 带有浏览器前缀的兼容写法省略 ... */
+    }
+  ```
+- 示例 (2): 在一个示例中使用所有过渡属性:
+  ```css
+    div {
+        transition: width 1s linear 2s;
+        /* 简写属性等于下面的分开写法 */
+        /*
+        transition-property: width;
+        transition-duration: 1s;
+        transition-timing-function: linear;
+        transition-delay: 2s;
+        */
+    }
+  ```
+
+
+### ### 2. CSS3 animation
+- > [文章来源]()
 
 
 
-
-### transform -- 改变 :
-transform的属性包括: rotate() / skew() / scale() /  translate()
-transform:translate()：变动，位移
+### ### 3. CSS3 transform
+- transform -- 改变 :
+    + transform的属性包括: `rotate()`/`skew()`/`scale()`/`translate()`
