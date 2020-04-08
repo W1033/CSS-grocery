@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style src="../../typo.css"></style>
+    <style type="text/css">
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #66cc99;
+            border-radius: 20px;
+            margin: 50px auto;
+            font-size: 32px;
+            text-align: center;
+            line-height:200px;
+            /* - transition(过渡) 效果要监控整个的动画的完成,
+             *   所以是添加在默认样式上的, 如果添加在 .box:hover 上,
+             *   你就会发现, 鼠标在元素上悬停时逆时针旋转效果是有的,
+             *   但你移开鼠标之后, 过渡效果便会立即消失, 因为 hover
+             *   伪类被移除,其内部的所有属性也被移除. 
+             */
+            transition: all 2s;
+
+            /* - 旋转时，以盒子底部的中心为坐标原点 */
+            transform-origin: center bottom;
+        }
+        .box:hover {
+            /* - 鼠标悬停时让元素逆时针旋转 405 deg */
+            transform: rotate(-405deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">box</div>
+</body>
+</html>

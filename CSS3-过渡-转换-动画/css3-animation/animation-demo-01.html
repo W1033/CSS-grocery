@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            text-align: center;
+            line-height: 100px;
+            background-color: #f54343;
+
+            /* 调用动画 */
+            /* animation: 动画名称 持续时间  执行次数  是否反向  运动曲线 延迟执行。infinite 表示无限次*/
+            /*animation: move 1s  alternate linear 3;*/
+            animation: move2 4s;
+        }
+
+        /* 方式一：定义一组动画*/
+        @keyframes move1 {
+            from {
+                transform: translateX(0px) rotate(0deg);
+            }
+            to {
+                transform: translateX(500px) rotate(555deg);
+            }
+        }
+
+        /* 方式二: 定义多组动画 */
+        @keyframes move2 {
+            0% {
+                transform: translateX(0px) translateY(0px);
+                background-color: #f54343;
+                border-radius: 0;
+            }
+
+            25% {
+                transform: translateX(500px) translateY(0px);
+
+            }
+
+            /*动画执行到 50% 的时候，背景色变成绿色，形状变成圆形*/
+            50% {
+                /* 虽然两个方向都有translate，但其实只是Y轴上移动了200px。
+                因为X轴的500px是相对最开始的原点来说的。可以理解成此时的 translateX 是保存了之前的位移 */
+                transform: translateX(500px) translateY(200px);
+                background-color: green;
+                border-radius: 50%;
+            }
+
+            75% {
+                transform: translateX(0px) translateY(200px);
+            }
+
+            /*动画执行到 100% 的时候，背景色还原为红色，形状还原为正方形*/
+            100% {
+                /*坐标归零，表示回到原点。*/
+                transform: translateX(0px) translateY(0px);
+                background-color: #f54343;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        box
+    </div>
+</body>
+</html>

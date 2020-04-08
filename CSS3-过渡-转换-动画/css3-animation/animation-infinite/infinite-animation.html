@@ -36,7 +36,9 @@
             width: 32px;
             height: 16px;
             background: transparent url("index.png") center top no-repeat;
-            /* steps(60)解说: 图片从 0 --> -960px 经过 60 步走完，所以这样 960/60 也就是每步走16px */
+            /* - steps(60) 解说: 图片在 Y 轴(纵轴) 从 0 ~ -960px 经过 60 步走完,
+                 960/60 也就是每步走 16px 
+            */
             animation: infinity_spinner_large 2s steps(60) infinite
         }
     </style>
