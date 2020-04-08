@@ -188,34 +188,32 @@
 
 #### 1.4 贝塞尔曲线讲解
 - 1.4.1 贝塞尔曲线简介
-  
     + 贝塞尔曲线于 1962 年, 由法国工程师`皮埃尔·贝济埃(Pierre Bézier)`所广泛发表,
       他运用贝塞尔曲线来为汽车的主体进行设计.
       
       贝塞尔曲线主要用于二维图形应用程序中的数学曲线, 曲线由起始点,
       终止点(也称锚点)和控制点组成, 通过调整控制点,
-  通过一定方式绘制的贝塞尔曲线形状会发生变化. 后面会具体介绍绘制的方法.
+      通过一定方式绘制的贝塞尔曲线形状会发生变化. 后面会具体介绍绘制的方法.
     
       在计算机图形学中贝赛尔曲线的运用很广泛, 例如 Photoshop 中的钢笔效果, Flash5
       的贝塞尔曲线工具, 在软件 GUI 开发中一般也会提供对应的方法来实现贝赛尔曲线,
       我们熟知的 CSS 动画(animation)/过渡(transition)
-  时间函数也是通过贝塞尔曲线(三阶贝塞尔曲线)获取的.
+      时间函数也是通过贝塞尔曲线(三阶贝塞尔曲线)获取的.
     
       在 `1.2 过渡属性` 的 `transition-timing-function(过渡时间函数)`
       属性中这个 `cubic-bezier` 就是 **三阶贝塞尔曲线**,
       主要是为 `transition`, `animation` 生成速度曲线的函数, 规定是:
       `cubic-bezier(<x1>, <y1>, <x2>, <y2>)`.
-    
-  
-  我们可以从下图中简要理解一下 `cubic-bezier`:
+
+      我们可以从下图中简要理解一下 `cubic-bezier`:
   
       <img src="./images/axis.png"
-        style="margin-left: 0; width: 50%;">
+        style="margin-left: 0; width: 56%;">
         
       <img src="./images/bezier-percentage.jpg"
-        style="margin-left: 0;">
+        style="margin-left: 0; width: 56%;">
   
-  (Tip: Input percentage(输入百分比);  Output percentage(输出百分比))
+      (Tip: Input percentage(输入百分比);  Output percentage(输出百分比))
   
       从上图我我们需要知道的是 `cubic-bezier` 的取值范围:
         + (1) P0: 默认值(0, 0)
@@ -346,26 +344,22 @@
          style="margin-left: 0; border-radius: 4px; width: 76%;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-    
-
-
-
 
 #### 2.3 通过 transform 实现 2D 转换
 - transform 2D 转换属性讲解:
     + (1) `transform: translate(X, Y)` 位移
-        - *参数*: 相对与当前位置向 水平(`X`) 或 垂直(`Y`) 方向移动, 正值向 "右下",
+        - 参数: 相对与当前位置向 水平(`X`) 或 垂直(`Y`) 方向移动, 正值向 "右下",
           负值向 "左上". 如果只写一个值, 则表示水平移动. 也可将 X/Y 轴分开写, 例如:
           `translateX()` / `translateY()`
-        - *参数取值*: 为**百分比**, 相对于自身移动. 默认中心点就是盒模型的中心点.
+        - 参数取值: 为**百分比**, 相对于自身移动. 默认中心点就是盒模型的中心点.
           (Tip: 对于网页中的 DOM 元素,初始坐标系却在当前屏幕的左上角)
     + (2) `transform: scale(x, y)` 缩放
-        - *参数*: `X` 水平方向的缩放倍数; `Y` 垂直方向的缩放倍数.
+        - 参数: `X` 水平方向的缩放倍数; `Y` 垂直方向的缩放倍数.
           如果只写一个值就是等比例缩放.
-        - *参数取值*: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
+        - 参数取值: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
           例如: `transform: scale(2, 0.5);`.
     + (3) `transform: rotate(角度)` 旋转
-        - *参数*: 表示旋转角度, 单位是 `deg`; 正值--顺时针旋转,
+        - 参数: 表示旋转角度, 单位是 `deg`; 正值--顺时针旋转,
           负值--逆时针旋转.
           示例见上面: `1.3 transition 使用基本示例` --> `示例(4)`
         - rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
