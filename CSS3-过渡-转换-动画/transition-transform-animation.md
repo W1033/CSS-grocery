@@ -206,15 +206,15 @@
       `cubic-bezier(<x1>, <y1>, <x2>, <y2>)`.
 
       我们可以从下图中简要理解一下 `cubic-bezier`:
-  
+    
       <img src="./images/axis.png"
         style="margin-left: 0; width: 56%;">
-        
+      
       <img src="./images/bezier-percentage.jpg"
         style="margin-left: 0; width: 56%;">
-  
+    
       (Tip: Input percentage(输入百分比);  Output percentage(输出百分比))
-  
+    
       从上图我我们需要知道的是 `cubic-bezier` 的取值范围:
         + (1) P0: 默认值(0, 0)
         + (2) P1: 动态取值(x1, y1)
@@ -279,11 +279,11 @@
 
   transform 的属性包括: `rotate()`/`skew()`/`scale()`/`translate()`
 
-  在 CSS3 中, 通过 transform(转换) 来实现 2D 转换 或 3D 转换.
+  在 CSS3 中, 通过 transform(转换) 来实现 2D 转换 或 3D 转换(伪 3D).
 
 #### 2.2 transform (转换/变形)的前置知识
 ##### 2.2.1 直角坐标系(2D/二维坐标系)和三维坐标系(3D)
-- **笛卡尔坐标系(直角坐标系))**
+- **笛卡尔坐标系(直角坐标系)**
     + [笛卡尔坐标系](https://www.wikiwand.com/zh/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB#/%E4%B8%89%E7%B6%AD%E7%A9%BA%E9%96%93)
       (Cartesian coordinates system, 也称直角坐标系) 在数学中是一种
       [正交坐标系](https://www.wikiwand.com/zh/%E6%AD%A3%E4%BA%A4%E5%BA%A7%E6%A8%99%E7%B3%BB),
@@ -295,24 +295,24 @@
       构成的. 在平面内, 任何一点的坐标是根据数轴上对应的点的坐标设定的. 在平面内,
       任何一点与坐标的对应关系, 类似于数轴上点与坐标的对应关系. 
     
-      直角坐标系也是我们学习初等数学时使用的坐标系.
-
+      直角坐标系也是我们学习初等数学时使用的坐标系. 
+    
       <img src="./images/coordinate.png"
             style="margin-left: 0; border-radius: 4px;
-                box-shadow: 1px 1px 3px 2px #e5e5e5">
-
+            box-shadow: 1px 1px 3px 2px #e5e5e5">
+    
       在 JavaScript 中我们获取鼠标的 `客户区坐标位置 (clientX, clientY)`,
-      `页面坐标位置(pageX, pageY)` 都是根据直角坐标系来表述相对应的概念,
-      但在浏览器中, **坐标轴的原点 `(0, 0)` 是在浏览器视口的左上角**,
+      `页面坐标位置(pageX, pageY)` 都是根据直角坐标系来表述相对应的概念; 但在浏览器中,
+      **坐标轴的原点 `(0, 0)` 是在浏览器视口的左上角**,
       而且 **Y 轴的正/负朝向和数学的直角坐标系统是相反的**, 如下图:
-
+      
       <img src="./images/web-coordinate.png"
             style="margin-left: 0; border-radius: 4px;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
-    
+      
       (Hint: 老铁们, 截图有没有很眼熟?:) 你想的没错, 就是来自 "红宝石书"
       的 `13.4.3 鼠标与滚轮事件`)
-- **三维坐标系统**:
+- **三维坐标系统(数学)**:
     + 直角坐标系也可以推广至三维空间与高维空间(higher dimension).
       在原本的二维直角标系, 再添加一个垂直于 x-轴 和 y-轴 的坐标轴,
       称为 **z-轴**.假若, 这三个坐标轴满足
@@ -324,26 +324,18 @@
 
       <img src="./images/right-handed-coorination.png"
             style="margin-left: 0; width: 50%;">
+- **transform 3D 坐标系**
+    + 在 2D Canvas API 和 CSS transform(转换)中,
+      它们建立模型所使用的三维坐标系基于数学上的三维坐标系统,
+      唯一的不同是 **y轴的正向向下**(见下图); 你可能也注意到了,
+      上面的关于浏览器原点坐标的的截图中, y 轴的正向也是向下的,
+      你可能会问, 为什么在 2D Canvas 和 CSS 中 y 轴都是正向在下,
+      实际上这是因为它们都是基于 HTML 的 y 轴正向向下的坐标约定,
+      而这个约定本身是使用的 windows 系统的坐标体系的后代. 
 
-- **WebGL 三维图形渲染技术**
-    + 在个人计算机上使用最广泛的两种三维图形渲染技术是 Direct3D 和 OpenGL,
-      Direct3D 是微软 DirectX 技术的一部分, 是一套由微软控制的编程接口,
-      主要用户是 Windows 平台. 而 OpenGL 由于其开放性和免费性,
-      在多个平台被广泛的引用.
-
-      WebGL 根植于 OpenGL, 它实际上从 OpenGL 的一个特殊的版本 OpenGL ES
-      中派生来的. WebGL 内嵌在浏览器中, 你不必安装插件和库就可以使用它,
-      而且它是基于浏览器的, 你可以在多个平台上运行 WebGL 程序.
-
-      基于 WebGL 开发 3D 图形图像, 首先 3D 图形的绘制必须在一个 3D 坐标系统中,
-      此处的 3D 坐标系统也即是 "3 维坐标系统", 即在 2D 坐标系统(笛卡尔坐标)
-      的基础上多了一个 Z 轴用来表述深度,
-      比如说一个物体在绘制时在屏幕之内或之外多远距离. 用图标表示如下:
-      
-      <img src="./images/3d-coordinate-system.png"
-         style="margin-left: 0; border-radius: 4px; width: 76%;
+      <img src="./images/transform-3d-coordinate.png"
+        style="margin-left: 0; border-radius: 4px; width: 66%;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
-
 
 #### 2.3 通过 transform 实现 2D 转换
 - transform 2D 转换属性讲解:
