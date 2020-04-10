@@ -5,25 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style src="../../typo.css"></style>
+    <link rel="stylesheet" href="../../typo.css">
     <style type="text/css">
+        .box-packing {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 6px;
+            margin: 50px;
+            background-color: #bee9d3;
+        }
         .box {
-            width: 140px;
-            line-height: 120px;
+            width: 200px;
+            line-height: 200px;
             background-color: #66cc99;
-            border-radius: 4px;
-            margin: 50px auto;
-            font-size: 32px;
+            font-size: 46px;
+            border-radius: 6px;
             text-align: center;
-            
             transition: all 1s; 
         }
         .box:hover {
-            transform: skew(45deg);
+            transform: rotateX(45deg);
+        }
+        .show-font {
+            position: absolute;
+            left: 52px;
+            top: 52px;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
-    <div class="box">box</div>
+    <div class="box-packing">
+        <div class="box">box</div>
+    </div>
+    <p class="show-font">box-packing 盒子包装</p>
 </body>
 </html>

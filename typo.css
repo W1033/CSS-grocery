@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+/* 防止用户自定义背景颜色对网页的影响, 添加让用户可以自定义字体 */
 html {
   color: #333;
   background: #fff;
@@ -9,7 +9,7 @@ html {
   text-rendering: optimizelegibility;
 }
 
-/* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等，推荐在 <html> 中添加 .borderbox 这个 class */
+/* 如果你的项目仅支持 IE9+ | Chrome | Firefox 等, 推荐在 <html> 中添加 .borderbox 这个 class */
 html.borderbox *, html.borderbox *:before, html.borderbox *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -17,13 +17,17 @@ html.borderbox *, html.borderbox *:before, html.borderbox *:after {
 }
 
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
-body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form,
+fieldset, legend, input, textarea, p, blockquote, th, td, hr, button,
+article, aside, details, figcaption, figure, footer, header, menu,
+nav, section {
   margin: 0;
   padding: 0;
 }
 
 /* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
-article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+article, aside, details, figcaption, figure, footer, header,
+menu, nav, section {
   display: block;
 }
 
@@ -34,7 +38,7 @@ audio, canvas, video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
-    font: 300 1em/1.8 PingFang SC, Menlo, Roboto Mono, Source Sans Pro, Monaco, courier, monospace;
+     font: 300 1em/1.8 -apple-system, source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
   /* font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif; */
 }
 
@@ -44,7 +48,7 @@ input::-moz-focus-inner {
   border: 0;
 }
 
-/* 去掉各Table cell 的边距并让其边重合 */
+/* 去掉各 Table cell 的边距并让其边重合 */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -71,14 +75,14 @@ blockquote {
   }
 }
 
-/* Firefox 以外，元素没有下划线，需添加 */
+/* Firefox 以外, 元素没有下划线, 需添加 */
 acronym, abbr {
   border-bottom: 1px dotted;
   font-variant: normal;
   text-decoration: none;
 }
 
-/* 添加鼠标问号，进一步确保应用的语义是正确的（要知道，交互他们也有洁癖，如果你不去掉，那得多花点口舌） */
+/* 添加鼠标问号, 进一步确保应用的语义是正确的（要知道, 交互他们也有洁癖, 如果你不去掉, 那得多花点口舌） */
 abbr {
   cursor: help;
 }
@@ -93,7 +97,7 @@ address, caption, cite, code, dfn, em, th, var {
   font-weight: 400;
 }
 
-/* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
+/* 去掉列表前的标识, li 会继承, 大部分网站通常用列表来很多内容, 所以应该当去 */
 ul, ol {
   list-style: none;
 }
@@ -115,7 +119,7 @@ sub, sup {
 }
 
 :root sub, :root sup {
-  vertical-align: baseline; /* for ie9 and other modern browsers */
+  vertical-align: baseline; /* for IE9 and other modern browsers */
 }
 
 sup {
@@ -145,22 +149,25 @@ a:hover {
   text-decoration: none;
 }
 
-/* 默认不显示下划线，保持页面简洁 */
+/* 默认不显示下划线, 保持页面简洁 */
 ins, a {
   text-decoration: none;
 }
 
-/* 专名号：虽然 u 已经重回 html5 Draft，但在所有浏览器中都是可以使用的，
- * 要做到更好，向后兼容的话，添加 class="typo-u" 来显示专名号
- * 关于 <u> 标签：http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
- * 被放弃的是 4，之前一直搞错 http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
- * 一篇关于 <u> 标签的很好文章：http://html5doctor.com/u-element/
+/* 
+ * - 专名号: 虽然 u 已经重回 html5 Draft, 但在所有浏览器中都是可以使用的, 
+ *   要做到更好, 向后兼容的话, 添加 class="typo-u" 来显示专名号
+ *   关于 <u> 标签:
+ *   http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
+ *   被放弃的是 4, 之前一直搞错
+ *   http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
+ *   一篇关于 <u> 标签的很好文章: http://html5doctor.com/u-element/
  */
 u, .typo-u {
   text-decoration: underline;
 }
 
-/* 标记，类似于手写的荧光笔的作用 */
+/* 标记, 类似于手写的荧光笔的作用 */
 mark {
   background: #fffdd1;
   border-bottom: 1px solid #ffedce;
@@ -248,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.35;
 }
 
-/* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
+/* 标题应该更贴紧内容, 并与其他块区分, margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
 .typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-h5, .typo-h6 {
   margin-top: 1.2em;
@@ -276,7 +283,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.2em;
 }
 
-/* 在文章中，应该还原 ul 和 ol 的样式 */
+/* 在文章中, 应该还原 ul 和 ol 的样式 */
 .typo ul, .typo-ul {
   margin-left: 1.3em;
   list-style: disc;
@@ -296,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
   list-style: circle;
 }
 
-/* 同 ul/ol，在文章中应用 table 基本格式 */
+/* 同 ul/ol, 在文章中应用 table 基本格式 */
 .typo table th, .typo table td, .typo-table th, .typo-table td, .typo table caption {
   border: 1px solid #ddd;
   padding: 0.5em 1em;
@@ -326,7 +333,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
-/* 着重号，只能在少量（少于100个字符）且全是全角字符的情况下使用 */
+/* 着重号, 只能在少量（少于100个字符）且全是全角字符的情况下使用 */
 .typo-em {
   position: relative;
 }
