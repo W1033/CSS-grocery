@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>word-break 和 overflow-wrap</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style type="text/css">
+        .white-space-test {
+            width: 99%;
+            padding-left: 0.625em;
+            padding-top: 1.25em;
+            min-height: 20em;
+            margin: 20px auto;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .white-space-test div {
+            width: 5em;
+            padding: 0.625em;
+            min-height: 6em;
+            margin-right: 1.25em;
+            margin-bottom: 1.25em;
+            background: #66cc99;
+            border-radius: 4px;
+            float: left;
+        }
+        .word-break-normal {
+            word-break: normal
+        }
+        .word-break-break-all {
+           word-break: break-all;
+        }
+        .word-break-keep-all {
+            word-break: keep-all;
+        }
+
+        .overflow-wrap-normal {
+            overflow-wrap: normal;
+        }
+        .overflow-wrap-break-word {
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="white-space-test typo">
+         <div class="word-break-normal">
+            <h3>word-break(断字): normal</h3>
+            <p>
+                Hi&nbsp;&nbsp;,
+                This is a incomprehensibility long word.
+                <br/>
+                你好&nbsp;&nbsp;,
+                这是一个不可思议的长单词.
+            </p>
+         </div>   
+         <div class="word-break-break-all">
+            <h3>word-break: break-all</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>   
+         <div class="word-break-keep-all">
+            <h3>word-break: keep-all</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>   
+         <div class="overflow-wrap-normal">
+            <h3>overflow-wrap(自动换行): normal</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>
+         <div class="overflow-wrap-break-word">
+            <h3>overflow-wrap: break-word</h3>
+            <p>
+                Hi&nbsp;&nbsp;,
+                This is a incomprehensibility long word.
+                <br/>
+                你好&nbsp;&nbsp;,
+                这是一个不可思议的长单词.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

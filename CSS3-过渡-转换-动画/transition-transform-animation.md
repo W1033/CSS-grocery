@@ -257,7 +257,7 @@
         </html>
       ```
       我们可以在浏览器中看到, 当鼠标移到元素上时, 元素开始向右移动, 开始比较慢, 
-  之后则比较快, 移开时按原曲线回到原点. 
+      之后则比较快, 移开时按原曲线回到原点. 
     
       你也可以更该贝塞尔曲线的值, 例如:
       `transition:  all 2s cubic-bezier(.17, .86, .73, .14);`
@@ -266,7 +266,7 @@
 
 ### 2. CSS3 transform(转换)
 - 参考文章有:
-    + [CSS3动画详解（图文教程）](https://www.cnblogs.com/qianguyihao/p/8435182.html)
+    + [CSS3动画详解(图文教程)](https://www.cnblogs.com/qianguyihao/p/8435182.html)
     + [3D坐标系统](http://materliu.github.io/Programming-3D-Applications-With-HTML5-and-WebGL/Chapter1-Introduction/3D-Coordinate-Systems.html)
     + [学会使用CSS3 transform 变形](https://juejin.im/post/5d0fe233e51d4550bf1ae888#heading-17)
 #### 2.1 transform 是什么?
@@ -351,9 +351,33 @@
         - 参数取值: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
           例如: `transform: scale(2, 0.5);`.
     + (3) `transform: rotate(角度)` 旋转
-        - 参数: 表示旋转角度, 单位是 `deg`; 正值--顺时针旋转,
-          负值--逆时针旋转.
-          示例见上面: `1.3 transition 使用基本示例` --> `示例(4)`
+        - 参数: 表示旋转角度, 单位是 `deg`; 正值--顺时针旋转, 负值--逆时针旋转.
+          示例: [./过渡转化动画-Demos/transform-rotate.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转化动画-Demos/transform-rotate.html)
+        - 可能会有一部分小伙伴跟我一样, 感觉 `rotateX()`, `rotateY()`,
+          `rotate()` 应该是这么这么旋转的, 一看示例就蒙圈,
+          在此试着用图文的方式讲解一下旋转的过程.
+        
+          (1) 我们先看 `rotateX(45deg)` 的旋转效果图:
+          
+          <img src="./images/rotateX.png"
+                style="margin-left: 0; border-radius: 4px;
+                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+              
+          是不是仍然不太明白为什么绕 `x` 轴旋转后, 最后 box 却是纵向缩小了?
+              
+          实际上是因为, 这种旋转是根据 "图(1) 3D 坐标系" 来实现的,
+          我们根据下图来解说一下:
+
+          <img src="./images/rotate-x-axis.png"
+                style="margin-left: 0; border-radius: 4px;
+                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+          
+          上图是一个绕 `x` 轴旋转的图示. 假设我们需要从点 `(x, y, z)` 绕 `x`
+          轴旋转 $\theta$ 角到点 `(x', y', z')`, 那么, 旋转过程中, `x`
+          的坐标值始终都是固定不变的. 因此, 我们可以把它当做是在 `x = x'`
+          这个平面上进行旋转, 从而退化成一个 2D 旋转的问题. 上图右边的 2 个矩阵,
+          上面那个是 2D 旋转矩阵, 而地下那个只是把该矩阵延伸到 3D 空间而已
+
         - rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
           如果想**改变元素旋转的坐标原点**, 可以用 `transform-origin` 属性. 格式如下:
           `transform-origin: 水平坐标 垂直坐标`.

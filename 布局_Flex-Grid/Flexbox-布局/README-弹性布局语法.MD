@@ -157,7 +157,7 @@
       |center |  交叉轴的中点对齐.|
       |baseline |  项目的第一行文字的基线对齐.|
       |stretch(默认值) |  如果项目位设置高度或设为 auto, 将占满整个容器的高度.|
-6. **`align-content [堆栈伸缩行]`**: (align content 对齐内容)
+6. **`align-content [堆栈伸缩行]`**: (align content 内容对齐)
     + 指定容器中存在多行情况下, 在交叉轴上, 行间对齐方式. {1}
       
       Note: 标注 {1} 来自 [Flex 排版源码分析](https://juejin.im/post/5ad1c4a8f265da2389262828)

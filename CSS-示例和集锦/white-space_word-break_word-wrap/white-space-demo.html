@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>white-space 属性测试页面</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style type="text/css">
+        .white-space-test {
+            width: 99%;
+            padding-left: 0.625em;
+            padding-top: 1.25em;
+            min-height: 20em;
+            margin: 20px auto;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .white-space-test div {
+            width: 15em;
+            padding: 0.625em;
+            min-height: 6em;
+            margin-right: 1.25em;
+            margin-bottom: 1.25em;
+            background: #66cc99;
+            border-radius: 4px;
+            float: left;
+        }
+        .white-space-normal {
+            white-space: normal
+        }
+        .white-space-nowrap {
+            white-space: nowrap;
+            /* width: 30em !important; */
+        }
+        .white-space-pre {
+            white-space: pre;
+        }
+        .white-space-pre-wrap {
+            white-space: pre-wrap;
+        }
+        .white-space-pre-line {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="white-space-test typo">
+         <div class="white-space-normal">
+            <h3>white-space: normal</h3>
+            <p>
+                Hi&nbsp;&nbsp;,
+                This is a incomprehensibility long word.
+                <br/>
+                你好&nbsp;&nbsp;,
+                这是一个不可思议的长单词.
+            </p>
+         </div>   
+         <div class="white-space-nowrap">
+            <h3>white-space: nowrap</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>   
+         <div class="white-space-pre-default">
+            <h3>white-space: pre</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>   
+         <div class="white-space-pre-wrap">
+            <h3>white-space: pre-wrap</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>
+         <div class="white-space-pre-line">
+            <h3>white-space: pre-line</h3>
+             <p>
+                 Hi&nbsp;&nbsp;,
+                 This is a incomprehensibility long word.
+                 <br/>
+                 你好&nbsp;&nbsp;,
+                 这是一个不可思议的长单词.
+             </p>
+         </div>
+    </div>
+</body>
+</html>

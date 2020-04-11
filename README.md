@@ -1,14 +1,21 @@
 # CSS grocery(CSS 杂货店)
 
+> [待学文章列表](https://github.com/chokcoco/iCSS)
+
+- 备份本仓库在本地计算机的相对路径: `File:///Users/WANG/Github-clone/`
+
+
 ## Table Of Content
-0. HTML 
+0. HTML 知识
 1. css 的 `box-sizing` 属性
 2. box-shadow 属性:
-3. CSS 单位  
+3. CSS 单位和使用
 4. css 强制换行和超出隐藏
 5. 表格清除格与格之前的间距的样式
 6. 响应式网页的头部:
 7. 各种平台样式兼容问题
+8. Flex(弹性)布局语法
+9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
 
 
 
@@ -33,90 +40,51 @@
     + He collapsed on the way to school. 他上学路上晕倒了. 
     + the collapse of plans. 计划失败
     + the collapse of modern society. 现在社会的崩溃. 
+- **preserve [prɪ'zɝv] --vt.保留, 保存; 维持; 禁猎. n.保护区; 禁猎区.**
+    + preserve(vt) historical places. 保存史迹.
+    + preserve(vt) one's health. 保持健康
+    + preserve(vt) order. 维持秩序.
+    + preserve food. 保藏食物.
+- **incomprehensibility [in,kɔm-prihensə'biləti] --n.不可理解, 不可思议**
+
 
 ## Content
 
-### 0. HTML
-#### 0.1 HTML5 新增元素
-- 新增的结构元素
-    + 结构元素分为: 主体结构元素 和 非主体结构元素
-        - 主体结构元素:
-            + (1) `article`
-            + (2) `aside`
-            + (3) `nav`
-            + (4) `pubdate`
-            + (5) `section`
-            + (6) `time`
-            + (7) `figure`. 
-        - 非主体结构元素: 
-            + `address`
-            + `header`
-            + `hgroup`
-            + `footer`
-            + `main`
-- 新增的其他元素: 
-    + (1) `video` 元素: 用于定义视频, 实现播放视频资源. 
-    + (2) `audio` 元素: 用于定义音频、实现播放音频资源. 
-    + (3) `embed`
-    + (4) `mark`: 高亮显示
-    + (5) `progress`
-    + (6) `ruby` 
-        - `rp`
-        - `rt`
-    + (7) `wbr` 软换行
-    + (8) `canvas`: 用于定义自定义图像. 它只是一个容器画布, 绘制图形时需要使用脚本. 
-    + (9) `command`
-    + (10) `details`: 与 summary 元素配合使用
-        - 示例:
-        - Firefox 不支持, Chrome & Safari 支持
-          ```html
-             <details>
-                <summary>农夫与蛇</summary>
-                一个农夫在寒冷的冬天里看见一条蛇冻僵了, 觉得它很可怜, 就把它拾起来, 小心翼翼地
-                揣进怀里, 用暖热的身体温暖着它. 那条蛇受到了暖气, 渐渐复苏了, 又恢复了生机. 等到
-                它彻底苏醒过来, 便立即恢复了本性, 用尖利的毒牙狠狠地咬了恩人一口, 使他受到了致命
-                的创伤. 农夫临死的时候痛悔地说: “我可怜恶人, 不辨好坏, 结果害了自己, 遭到这样的
-                报应.  如果有来世 , 我绝不怜惜像毒蛇一样的恶人. ”
-            </details>
-          ```
-    + 11、`datalist`
-    + 12、`datagrid`
-    + 13、`keygen`
-    + 14、`output`
-    + 15、`source`: 为媒体元素（video 和 audio）引入媒介资源. 
-    + 16、`menu`
+### 0. HTML 知识
+- 见当前仓库: [CSS-grocery/HTML-Knowledge.md](File:///Users/WANG/Github-clone/CSS-grocery/HTML-Knowledge.md)
 
 ### 1. css 的 `box-sizing` 属性
-- `box sizing`(盒子大小) 属性, 包含 2 个值:
-    + `border box`(边框盒子): 告诉浏览器去理解你设置的 border 和 padding
-    + `content box`(内容盒子): 是默认值. 如果元素为 100px,
-      那么这个元素的内容就会有 100px, 任何 border 和 padding 都会增加到元素宽度的外围.
-  
-  ```css
-    /* - apply a natural box layout model to all elements, 
-     *   but allowing components to change */
-    html {
-        box-sizing: border-box;
-    }
-    html.borderbox *, html.borderbox *:before, html.borderbox *:after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-  ```
+- `box-sizing`(盒子大小) 属性, 包含 2 个值:
+    + `content-box`(内容盒子): 是默认值. 如果元素为 100px,
+      那么这个元素的内容就会有 100px, 任何 `border` 和 `padding` 都会增加到元素宽度的外围.
+    + `border-box`(边框盒子): 告诉浏览器去理解你设置的 `border` 和 `padding`,
+      即这两个属性不计在默认设置的 `width` 之内.
+      ```css
+        /* - apply a natural box layout model to all elements, 
+         *   but allowing components to change */
+        html {
+            box-sizing: border-box;
+        }
+        html.borderbox *, html.borderbox *:before, html.borderbox *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+      ```
 - 示例见: `./《CSS 揭秘》/2nd chapter 背景与边框/2-0 box-sizing.html`
 
 ### 2. `box-shadow` 属性:
-  ```css
-      .box {
-          /* - 横向阴影1px, 纵向阴影1px, 模糊半径3px, 阴影展开半径2px, 颜色值. */
-          box-shadow: 1px 1px 3px 2px #cfcecf;
-          box-shadow: 0 .05em .25em rgba(0, 0, 0, .5);
-      }
+- ```css
+    .box {
+        /* - 横向阴影1px, 纵向阴影1px, 模糊半径3px, 阴影展开半径2px, 颜色值. */
+        box-shadow: 1px 1px 3px 2px #cfcecf;
+        box-shadow: 0 .05em .25em rgba(0, 0, 0, .5);
+    }
   ```
 
-### 3 CSS 单位  
-- | 单位   | 解释 |
+### 3 CSS 单位和使用
+- 常见 CSS 单位和解释
+  | 单位   | 解释 |
   | ----  | ---- |
   | `%`   | 百分比|
   | `px`  | 像素. 计算机屏幕上的一个点为 1px. |
@@ -125,16 +93,124 @@
   | `rpx` | 微信小程序相对单位. 1rpx = 屏幕宽度/750px. 在 750px 的设计稿上, 1rpx = 1px |
   | `pt`  | 略 |
   | `ex`  | 略 |
+- 一般情况下, 浏览器的默认字体大小是**16px**, 所有未经调整的浏览器都符合
+  `1em = 16px`.
+  
+  目前(2020 年), 我用 MacOS 下的 Chrome 查看 "虎嗅", "Vue 官网",
+  "WikiWand" 网站时, 发现默认的字体大小都是 16px, 也就是说他们并没有修改默认字体,
+  但仍然有很多网站的默认字体是 14px, 所以网站中究竟设置多大字体,
+  还是根据设计师的要求来. 接下来我们分别说一下这两种尺寸的使用:
+    + (1) 设置默认字体是 14px. 为了在写代码时方便, 我们可以在 CSS 中这样设置:
+      ```css
+        html {
+            /* - 默认 16px = 100%, 那么 1px = 6.25%;
+             *   62.5% 就是 10px */
+            font-size: 62.5%;
+        }
+        body {
+            /* - 当前 em 相对单位是相对于父元素 html 来的, 由于 html 中
+             *   font-size = 10px  所以当前 1em = 10px, 
+             *   1.4em = 14px. 这样就给 body 初始化了 14px 的字体. */
+            font-size: 1.4em;
+        }
+      ```
+    + (2) 设置默认字体是 16px:
+      ```css
+        /* - 由于浏览器默认字体就是 16px, 所以此处直接写 1em = 16px 即可,
+         *   1em = 16px ==> 1.6px = 0.1em ==> 0.25em = 4px
+         *   1px = 0.0625em
+         *   10px = 0.625em
+         *   14px = 0.875em
+         *   16px = 1em 
+         *   18px = 1.125em
+         *   20px = 1.25em
+         *   30px = 0.875em
+         *   40px = 2.5em
+         *   60px = 3.75em
+         *   80px = 5em
+         *   100px = 6.25em
+         *   200px = 12.5em 
+         */
+        body {
+            /* - 300 为 font-weight; 1.8 为 line-height */
+            font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei,
+            Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+        }
+      ```
 
 ### 4. css 强制换行和超出隐藏
 - [参考文章](https://juejin.im/post/5b8905456fb9a01a105966b4)
-- ```css
+- (1) `white-space(空白空间): normal / nowrap / pre / pre-wrap / pre-line.`
+  这个属性是**用来控制空白字符显示的**, 同时还能控制是否自动换行. 它有 5 个值: 
+    + (1) `normal`(默认值): 只有空格换行, 单词不换行.
+    + (2) `nowrap`: 永不换行
+    + (3) `pre`: 它其实是 `preserve` 的缩写. 即空格(`&nbsp;`)和换行(`<br/>`)
+      全部被保留.
+    + (4) `pre-wrap`: 它其实是 `preserve` + `wrap`, 即保留空格和换行符,
+      且可以自动换行. (Tip: 从下图可以看出, 这种展示效果可能是你在网页中最不想看到的.)
+    + (5) `pre-line`: 它其实是 `preserve new line` + `wrap`. 即合并空格,
+      但是换行符可以发挥作用.
+      ./CSS-示例和集锦/white-space_word-break_word-wrap/white-space-demo.html
+    + 测试文件见当前仓库: 
+        <a href="./CSS-示例和集锦/white-space_word-break_word-wrap/white-space-demo.html">
+            ./示例和集锦/white-space_word-break_word-wrap/white-space-demo.html
+        </a>
+      ```html
+        <!-- 默认样式如下 -->
+        <div class="white-space-normal">
+            <h3>white-space: normal</h3>
+            <p>
+                Hi&nbsp;&nbsp;,
+                This is a incomprehensibility long word.
+                <br/>
+                你好&nbsp;&nbsp;,
+                这是一个不可思议的长单词.
+            </p>
+        </div>   
+      ```
+    + 样式效果如下:
+      <img src="./readme-images/white-space.png" style="margin-left: 0;">
+    + 添加一个表格作为总结:  
+      | 属性值 | 换行符 | 空格 | 自动换行 | `<br/>`, `&nbsp;` |
+      |:------|:------|:------|:------|:------|
+      |`normal`  | $\times$ | $\times$ (合并) | $\surd$| $\surd$ |
+      |`nowrap`  | $\times$ | $\times$ (合并) | $\surd$| $\surd$ |
+      |`pre`     | $\surd$ | $\surd$ | $\surd$| $\surd$ |
+      |`pre-wrap`| $\surd$ | $\surd$ | $\surd$| $\surd$ |
+      |`pre-line`| $\surd$ | $\times$ (合并) | $\surd$| $\surd$ |
+- (2) `word-break: normal / break-all / keep-all;` ( word break (断字):
+  这个属性是控制单词如何被拆分换行的.) 它有三个值:
+    + (2.1) `normal`:  不拆分单词, 但是空格会换行.
+    + (2.2) `break-all`(打破一切): **所有单词碰到边界一律拆分换行.**
+      不管你是 `incomprehensibility` 这样一行都显示不下的单词, 还是
+      `long` 这样很短的单词, 只要碰到边界, 都会被强制拆分换行.
+      所以使用 `word-break: break-all` 时要慎重.
+    + (2.3) `keep-all`(保留全部): **所有单词一律不拆分换行**. 注意,
+      这里的 "单词" 包括连续的中文字符(还有日文, 韩文等),
+      或者可以理解为**只有空格可以触发自动换行**.
+    + 测试文件见:  
+      <a href="./CSS-示例和集锦/white-space_word-break_word-wrap/word-break_overflow-wrap.html">
+            ./示例和集锦/white-space_word-break_word-wrap/word-break_overflow-wrap.html
+        </a>
+    + 样式效果如下: 
+      <img src="./readme-images/word-break_overflow-wrap.png"
+        style="margin-left: 0;">
+- (3) `overflow-wrap(溢出包裹): normal / break-word`.
+   `word-wrap(自动换行)` 又叫 `overflow-wrap`: 这个属性是
+  **控制长度超过一行的单词如何被拆分换行**, 实际上是作为 `word-break` 的互补,
+  它有 2 个值: 
+    + (3.1) `normal`: 不拆分单词
+    + (3.2) `break-word`: **只有当一个单词一整行都显示不下时才会拆分换行该单词**.
+      (Hint: 网页中完美的解决换行的方法.)
+    + Tip: `word-wrap` 属性原本属于微软的一个私有属性, 在 CSS3 
+      现在的文本规范草案中已经被重命名为 `overflow-wrap`. `word-wrap`
+      现在被当作 `overflow-wrap` 的别名. 稳定的 Chrome 版本支持这种新语法.
+- 使用 <br/>
+  ```css
+    /* 强制文本换行 */
     .textwrap, .textwrap td, .textwrap th {
-        word-break: break-all;
         word-wrap: break-word;
-        
-        /* - white space(空白空间): pre-wrap 只对中文起作用, 强制换行. */
-        white-space: pre-wrap;
+        word-break: break-all;
     }
   ```
 
@@ -142,7 +218,7 @@
 - ```css
     table {
         border-collapse: collapse;
-        border-sapcing: 0;
+        border-spacing: 0;
     }
   ```
 
@@ -162,26 +238,22 @@
     </body>
     </html>
   ```
-    + `viewport` 网页默认的宽度和高度;
-    + `width = device-width`网页宽度默认等于屏幕宽度;
-    + `initial-scale=1` 原始缩放比例为 1.0, 即网页初始大小占屏幕面积的 100%,
-    + `maximum-scale` 允许用户缩放到的最大比例,
-    + `user-scalable` 允许用户是否可以手动缩放.
+    + `viewport`: 视口;
+    + `width = device-width`: 网页宽度默认等于屏幕宽度;
+    + `initial-scale=1`: 原始缩放比例为 1.0, 即网页初始大小占屏幕面积的 100%,
+    + `maximum-scale`: 允许用户缩放到的最大比例,
+    + `user-scalable`: 允许用户是否可以手动缩放.
 
 ### 7. 各种平台样式兼容问题
 - 忽略将页面中的数字识别为电话号码, 忽略 android 平台中对邮箱地址的识别
   ```html
     <meta content="telephone=no, email=no" name="format-detection">
   ```
-- 解决点击 `input`, `textarea` 出现边框的问题
+- 去除 Chrome `input` 和 `textarea` 的默认边框, 以及点击时的聚焦边框:
   ```css
-    input:focus, input:active, input:link, input:visited {
+    input, button, select, textarea{ outline: none; }
+    input:focus, input:active, textarea:focus, textarea:active,{
         outline:none;
-        border:0;
-    }
-    textarea:focus, textarea:active, textarea:link, textarea:visited {
-        outline:none;
-        border:0;
     }
   ```
 - 解决 ios 端 `button` 圆角和渐变的问题
@@ -200,16 +272,16 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
   ```
-- 去除 chrome 下 `input` 和 `textarea` 的聚焦边框: 
-  ```css
-    input, button, select, textarea{ outline: none; }
-  ```
 - 去除 chrome 下 `textarea` 可拖动放大的问题:
   ```css
     textarea{ resize: none; }
   ```
 
+### 8. Flex(弹性)布局语法
+- 见当前仓库: [CSS-grocery/布局_Flex-Grid/Flexbox-布局/README-弹性布局语法.MD](File:///Users/WANG/Github-clone/CSS-grocery/布局_Flex-Grid/Flexbox-布局/README-弹性布局语法.MD)
 
+### 9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
+- 见当前仓库: [CSS3-过渡-转换-动画/transition-transform-animation.md](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/transition-transform-animation.md)
 
 
 ### JavaScript 动画和 CSS 动画该如果抉择
@@ -239,3 +311,4 @@
   那么你应该使用 js 动画, 这样你的动画可以保持高效, 并且你的工作流也更可控.
   所以, 在实现一些小的交互动效的时候, 就多考虑考虑 CSS 动画. 对于一些复杂控制的动画,
   使用 javascript 比较可靠. 
+

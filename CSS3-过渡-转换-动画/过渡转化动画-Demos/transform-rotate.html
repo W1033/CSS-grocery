@@ -1,13 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style type="text/css">
+        .container {
+            display: flex;
+            padding: 1.25em;
+            padding-bottom: 2.5em;
+            justify-content: space-around;
+            align-items: center;
+            overflow: hidden;
+            background: #e7e7e7;
+        }
+        .box-packing {
+            height: 12.5em;
+            width: 12.5em;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+        .box {
+            width: 100%;
+            height: 100%;
+            font-size: 1em;
+            line-height: 12.5em;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 1s; 
+        }
+
+        .container :nth-child(1) {
+            background: #d2e0fa;
+        }
+        .container :nth-child(1) p {
+            background-color: #74a1fc;
+        }
+        .container :nth-child(1) p:hover {
+            transform: rotateX(45deg);
+        }
+
+        .container :nth-child(2) {
+            background: #91d28b;
+        }
+        .container :nth-child(2) p {
+            background-color: #226727;
+        }
+        .container :nth-child(2) p:hover {
+            transform: rotateY(45deg);
+        }
+
+        .container :nth-child(3) {
+            background: #fcae66;
+        }
+        .container :nth-child(3) p {
+            background-color: #ac6342;
+        }
+        .container :nth-child(3) p:hover {
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
 <body>
-
+    <div class="container">
+        <div class="box-packing ">
+            <p class="box blue-box">rotateX(45deg)</p>
+        </div>
+        <div class="box-packing">
+            <p class="box">rotateY(45deg)</p>
+        </div>
+        <div class="box-packing">
+            <p class="box">rotateX(45deg)</p>
+        </div>
+    </div>
 </body>
 </html>
