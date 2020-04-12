@@ -32,11 +32,11 @@
             transition: all 1s;
 
             /* - 旋转时，以盒子底部的中心为坐标原点 */
-            /* transform-origin: center bottom; */
+            transform-origin: center bottom;
         }
         .box:hover {
-            /* - 鼠标悬停时让元素逆时针旋转 405 deg */
-            transform: rotateX(45deg);
+            /* - 鼠标悬停时让元素顺时针旋转 45deg */
+            transform: rotate(45deg);
         }
         .bg-box {
             z-index: 0;

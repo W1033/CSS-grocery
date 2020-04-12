@@ -14,7 +14,7 @@
             justify-content: space-around;
             align-items: center;
             overflow: hidden;
-            background: #e7e7e7;
+            background: #fff;
         }
         .box-packing {
             height: 12.5em;
@@ -39,40 +39,40 @@
             background-color: #74a1fc;
         }
         .container :nth-child(1) p:hover {
-            transform: rotateX(45deg);
+            transform: rotateX(-45deg);
         }
 
         .container :nth-child(2) {
-            background: #91d28b;
+            background: #c6f9c1;
         }
         .container :nth-child(2) p {
-            background-color: #226727;
+            background-color: #66cc99;
         }
         .container :nth-child(2) p:hover {
-            transform: rotateY(45deg);
+            transform: rotateY(-45deg);
         }
 
         .container :nth-child(3) {
-            background: #fcae66;
+            background: #e6cac5;
         }
         .container :nth-child(3) p {
-            background-color: #ac6342;
+            background-color: #d49488;
         }
         .container :nth-child(3) p:hover {
-            transform: rotate(45deg);
+            transform: rotateZ(-45deg);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="box-packing ">
-            <p class="box blue-box">rotateX(45deg)</p>
+            <p class="box blue-box">rotateX(-45deg)</p>
         </div>
         <div class="box-packing">
-            <p class="box">rotateY(45deg)</p>
+            <p class="box">rotateY(-45deg)</p>
         </div>
         <div class="box-packing">
-            <p class="box">rotateX(45deg)</p>
+            <p class="box">rotate(-45deg)</p>
         </div>
     </div>
 </body>

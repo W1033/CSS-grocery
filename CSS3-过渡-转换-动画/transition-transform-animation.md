@@ -1,9 +1,9 @@
-# CSS3 过渡(transiton), 转换(transform)和动画(animation)
+# CSS3 过渡(transition), 转换(transform)和动画(animation)
 
 
 ## 目录(Table Of Contents)
 1. CSS3 transition(过渡)
-    + 1.1 transitioin(过渡)介绍
+    + 1.1 transition(过渡)介绍
     + 1.2 transition 的 4 个属性值
     + 1.3 transition 使用基本示例
     + 1.4 贝塞尔曲线讲解
@@ -35,7 +35,7 @@
       这个集装箱的容量是 1000 立方米.
 - **volume ['vɒljuːm] --n.体积; 卷; 音量.**
     + the volume of water in a lake. 湖内水的容积.
-    + He truned up[down] the volume on the television. 
+    + He turned up[down] the volume on the television. 
       他把电视机的音量调大[小]了.
     + Our school has a library of 100,000 volumes.
       我们学校有一所藏书十万册的图书馆
@@ -66,7 +66,7 @@
     + Can you translate(vt) an English sentence into Japanese?
       你能把把英文句子翻译成日文?
     + How would you translate(vt) his conduct? 你如何解释它的举动呢?
-    + I transalted(vt) his silence as a refusal.
+    + I translated(vt) his silence as a refusal.
       我把它的缄默解释为拒接.
     + I could hardly translate(vt) my thoughts into words.
       我几乎不能把我的想法用言语表达出来.
@@ -84,7 +84,7 @@
 
 ## 内容(Content)
 ### 1. CSS3 transition(过渡)
-#### 1.1 transitioin(过渡)介绍
+#### 1.1 transition(过渡)介绍
 - CSS3 的 transition(属性) 允许元素的 css 属性值在一定的时间内在不同状态之间平滑过渡
   (补间动画), 经常用来制作动画效果.
     + 补间动画: 自动完成从起始状态到终止状态的过渡. 不用管中间的状态.
@@ -178,11 +178,11 @@
          *   伪类被移除,其内部的所有属性也被移除. 
          */
         transition: all 2s;
-        }
-        .box:hover {
-            /* - 鼠标悬停时让元素逆时针旋转 405 deg */
-            transform: rotate(-405deg);
-        }
+    }
+    .box:hover {
+        /* - 鼠标悬停时让元素逆时针旋转 405 deg */
+        transform: rotate(-405deg);
+    }
   ```
   
 
@@ -195,12 +195,12 @@
       终止点(也称锚点)和控制点组成, 通过调整控制点,
       通过一定方式绘制的贝塞尔曲线形状会发生变化. 后面会具体介绍绘制的方法.
     
-      在计算机图形学中贝赛尔曲线的运用很广泛, 例如 Photoshop 中的钢笔效果, Flash5
+      在计算机图形学中贝赛尔曲线的运用很广泛, 例如 PhotoShop 中的钢笔效果, Flash5
       的贝塞尔曲线工具, 在软件 GUI 开发中一般也会提供对应的方法来实现贝赛尔曲线,
       我们熟知的 CSS 动画(animation)/过渡(transition)
-      时间函数也是通过贝塞尔曲线(三阶贝塞尔曲线)获取的.
+      的时间函数(xxx-timing-function)也是通过贝塞尔曲线(三阶贝塞尔曲线)获取的.
     
-      在 `1.2 过渡属性` 的 `transition-timing-function(过渡时间函数)`
+      上面 `1.2 过渡属性` 的 `transition-timing-function(过渡时间函数)`
       属性中这个 `cubic-bezier` 就是 **三阶贝塞尔曲线**,
       主要是为 `transition`, `animation` 生成速度曲线的函数, 规定是:
       `cubic-bezier(<x1>, <y1>, <x2>, <y2>)`.
@@ -229,48 +229,43 @@
       [此文](https://juejin.im/post/5b854e1451882542fe28a53d)
   
 - 1.4.2 使用示例
-    + 测试示例:
-      ```html
-        <!DOCTYPE html>
-        <html lang="zh-cn">
-        <head>
-            <meta charset="UTF-8">
-            <title>Document</title>
-            <style>
-                .transform {
-                    width: 50px;
-                    height: 50px;
-                    background-color: #ed3;
-                    -webkit-transition:  all 2s;
-                            transition:  all 2s;
-                }
-                .transform:hover {
-                    /* - transform (转换) 下面会讲 */
-                    -webkit-transform:  translateX(100px);
-                            transform:  translateX(100px);
-                }
-            </style>
-        </head>
-        <body>
-            <div class="transform"></div>
-        </body>
-        </html>
-      ```
-      我们可以在浏览器中看到, 当鼠标移到元素上时, 元素开始向右移动, 开始比较慢, 
-      之后则比较快, 移开时按原曲线回到原点. 
-    
-      你也可以更该贝塞尔曲线的值, 例如:
-      `transition:  all 2s cubic-bezier(.17, .86, .73, .14);`
-      自行在浏览器中查看运行效果.
+  ```html
+    <!DOCTYPE html>
+    <html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .transform {
+                width: 50px;
+                height: 50px;
+                background-color: #ed3;
+                -webkit-transition:  all 2s;
+                        transition:  all 2s;
+            }
+            .transform:hover {
+                /* - transform (转换) 下面会讲 */
+                -webkit-transform:  translateX(100px);
+                        transform:  translateX(100px);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="transform"></div>
+    </body>
+    </html>
+  ```
+  我们可以在浏览器中看到, 当鼠标移到元素上时, 元素开始向右移动, 开始比较慢, 
+  之后则比较快, 移开时按原曲线回到原点. 
+
+  你也可以更该贝塞尔曲线的值, 例如:
+  `transition:  all 2s cubic-bezier(.17, .86, .73, .14);`
+  自行在浏览器中查看运行效果. 
 
 
 ### 2. CSS3 transform(转换)
-- 参考文章有:
-    + [CSS3动画详解(图文教程)](https://www.cnblogs.com/qianguyihao/p/8435182.html)
-    + [3D坐标系统](http://materliu.github.io/Programming-3D-Applications-With-HTML5-and-WebGL/Chapter1-Introduction/3D-Coordinate-Systems.html)
-    + [学会使用CSS3 transform 变形](https://juejin.im/post/5d0fe233e51d4550bf1ae888#heading-17)
 #### 2.1 transform 是什么?
-- transform(转换)是 CSS3 中具有颠覆性的一个特性, 可以实现元素的
+- transform(转换)是 CSS3 中具有颠覆性的一个特性, 它可以实现元素的
   `位移(translate)`, `旋转(rotate)`, `倾斜(skew)`, `缩放(scale)`,
   甚至支持矩阵方式.
 
@@ -322,7 +317,7 @@
       
       用图表示右手定则, 如下所示:
 
-      <img src="./images/right-handed-coorination.png"
+      <img src="./images/right-handed-coordination.png"
             style="margin-left: 0; width: 50%;">
 - **transform 3D 坐标系**
     + 在 2D Canvas API 和 CSS transform(转换)中,
@@ -331,7 +326,7 @@
       上面的关于浏览器原点坐标的的截图中, y 轴的正向也是向下的,
       你可能会问, 为什么在 2D Canvas 和 CSS 中 y 轴都是正向在下,
       实际上这是因为它们都是基于 HTML 的 y 轴正向向下的坐标约定,
-      而这个约定本身是使用的 windows 系统的坐标体系的后代. 
+      而这个约定本身是使用 windows 系统的坐标体系的后代. 
 
       <img src="./images/transform-3d-coordinate.png"
         style="margin-left: 0; border-radius: 4px; width: 66%;
@@ -351,43 +346,85 @@
         - 参数取值: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
           例如: `transform: scale(2, 0.5);`.
     + (3) `transform: rotate(角度)` 旋转
-        - 参数: 表示旋转角度, 单位是 `deg`; 正值--顺时针旋转, 负值--逆时针旋转.
-          示例: [./过渡转化动画-Demos/transform-rotate.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转化动画-Demos/transform-rotate.html)
+        - 参数: 表示旋转角度, 单位是 `deg`; **正值--顺时针旋转**,
+          **负值--逆时针旋转**.  
+          示例: [./过渡转换动画-Demos/transform-rotate.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/transform-rotate.html)
         - 可能会有一部分小伙伴跟我一样, 感觉 `rotateX()`, `rotateY()`,
-          `rotate()` 应该是这么这么旋转的, 一看示例就蒙圈,
-          在此试着用图文的方式讲解一下旋转的过程.
-        
-          (1) 我们先看 `rotateX(45deg)` 的旋转效果图:
+          `rotate()` 在脑里设想应该是怎样怎样旋转的, 但是一看示例瞬间蒙圈,
+          最纳闷的是在 google 搜索也没有很全面的讲解; 鉴于此,
+          此处就试着用图文的方式讲解一下旋转的过程; 若有错误之处, 请大神留言,
+          一定及时更改.(抱拳)
+
+          **(3-1)** 我们先看 `rotateX(-45deg)` 的旋转效果图:
           
           <img src="./images/rotateX.png"
-                style="margin-left: 0; border-radius: 4px;
-                    box-shadow: 1px 1px 3px 2px #e5e5e5">
-              
-          是不是仍然不太明白为什么绕 `x` 轴旋转后, 最后 box 却是纵向缩小了?
-              
+              style="margin-left: 0; border-radius: 4px;
+                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+          
+          看了上图可能不太明白为什么绕 `x` 轴旋转后, 最后 box 却是纵向缩小了?
+          
           实际上是因为, 这种旋转是根据 "图(1) 3D 坐标系" 来实现的,
           我们根据下图来解说一下:
 
           <img src="./images/rotate-x-axis.png"
-                style="margin-left: 0; border-radius: 4px;
-                    box-shadow: 1px 1px 3px 2px #e5e5e5">
-          
+              style="margin-left: 0; border-radius: 4px;
+                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+        
           上图是一个绕 `x` 轴旋转的图示. 假设我们需要从点 `(x, y, z)` 绕 `x`
           轴旋转 $\theta$ 角到点 `(x', y', z')`, 那么, 旋转过程中, `x`
           的坐标值始终都是固定不变的. 因此, 我们可以把它当做是在 `x = x'`
-          这个平面上进行旋转, 从而退化成一个 2D 旋转的问题. 上图右边的 2 个矩阵,
-          上面那个是 2D 旋转矩阵, 而地下那个只是把该矩阵延伸到 3D 空间而已
+          这个平面上进行的旋转, 从而退化成一个 2D 旋转的问题. 上图右边的 2 个矩阵,
+          上面是 2D 旋转矩阵, 下面的只是把该矩阵延伸到 3D 空间而已. 因为 `x`
+          轴是旋转轴, 实际上是在 `yOz` 平面上做 2D 旋转. (tip: 此段笔记来自
+          [3D中的旋转变换](https://jermmy.xyz/2017/03/28/2017-3-28-rotate-in-3D/)).
 
-        - rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
+          <img src="./images/2d-rotateX.png"
+              style="margin-left: 0; border-radius: 4px;
+                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+          上图是在 Geogebra resource 看到的
+          [Angle between Two Planes(面面角)](https://www.geogebra.org/m/svWvwpvA)
+          的示例, 虽然这个示例和咱们的旋转示例不太吻合, 但是用来解释上面的
+          `(x, y, z)` 绕 `x` 轴旋转 $\theta$ 角到点 `(x', y', z')`
+          的运行轨迹我觉得更明了, 我们可以把图中的 `QP` 当做 `x` 轴,
+          从这个图的角度是不是已经可以理解 `rotateX` 了?!!         
+          
+          **(3-2)** 接着来看 `rotateY(-45deg)` 的旋转效果:
+
+          <img src="./images/rotateY.png"
+              style="margin-left: 0; border-radius: 4px;
+                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+          旋转路径如下图:
+
+          <img src="./images/rotate-y-axis.png"
+              style="margin-left: 0; border-radius: 4px;
+                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+          观察图中的 `θ` 角应该可以看出旋转过程, 此处就省略叙述了.
+          
+          **(3-3)** 最后来看 `rotateZ(-45deg)` 的旋转效果:
+
+          <img src="./images/rotate.png"
+                style="margin-left: 0; border-radius: 4px;
+                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+          旋转路径如下图:
+
+          <img src="./images/rotate-z-axis.png"
+                style="margin-left: 0; border-radius: 4px;
+                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+        - **Notice:** rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
           如果想**改变元素旋转的坐标原点**, 可以用 `transform-origin` 属性. 格式如下:
           `transform-origin: 水平坐标 垂直坐标`.
 
           例如: `transform-origin: 50px 50px;` /
           `transform-origin: center bottom;`
           
-          示例见: `./过渡转化动画-Demos/transform-origin.html`
+          示例见: `./过渡转换动画-Demos/transform-origin.html`
     + (4) `transform: skew(角度)` 倾斜
-      
+        
         - 参数: 和 (3) 中的参数一致. 
 
 #### 2.4 通过 transform 实现 3D 转换
