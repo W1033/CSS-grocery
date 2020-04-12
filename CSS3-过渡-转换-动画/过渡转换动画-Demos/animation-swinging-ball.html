@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation 实现摆动的小球 (钟摆效果)</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style>
+        .sphere {
+            width: 3.75em;
+            height: 3.75em;
+            line-height: 3.75em;
+            text-align: center;
+            background: #9485FD;
+            border-radius: 100%;
+            margin: 280px auto;
+            background: radial-gradient(circle at top center, #c6bff6, #6959d8, #372a91);
+            transform-origin: center -200px;
+            animation: clock 4s infinite linear;
+            position: relative;
+        }
+        .sphere::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            width: 1px;
+            height: 200px;
+            border-left: 1px #9485FD dashed;
+        }
+        @keyframes clock {
+            0% {
+                transform: rotate(0deg)
+            }
+            25% {
+                transform: rotate(30deg)
+            }
+            50% {
+                transform: rotate(0deg)
+            }
+            75% {
+                transform: rotate(-30deg)
+            }
+            100% {
+                transform: rotate(0deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 小球摆动效果运用了动画原理, 以及 transform-origin 原理 (很重要).
+        首先, 先确定好球的变形中心点，然后在添加动画效果. -->
+    <div class="sphere">sphere</div>
+</body>
+</html>

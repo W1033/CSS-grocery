@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation progress bar</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style>
+        .progress-bar {
+            height: 0.625em;
+            margin: 1.25em;
+            width: 40em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            background: linear-gradient(#66cc99, #66cc99);
+            background-repeat: no-repeat;
+            background-size: 0;
+            animation: move 3s linear forwards;
+            animation-delay: -1s;
+        }
+        @keyframes move {
+            100% {
+                background-size: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+</body>
+</html>

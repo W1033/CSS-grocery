@@ -12,9 +12,7 @@
 2. CSS3 transform(转换)
     + 2.1 transform 是什么?
     + 2.2 transform 转变(/变形)的前置知识
-        - 2.2.1 直角坐标系(2D/二维坐标系)和三维坐标系(3D)
-    + 2.3 通过 transform 来实现 2D 转换
-    + 2.4 通过 transform 来实现 3D 转换
+    + 2.3 通过 transform 实现 2D/3D 转换
 3. CSS3 animation(动画)
 
 
@@ -79,6 +77,17 @@
       从不同的方面审视, 我们每个人都是不同的.     
 - **coordinate [kəuˈɔ:dineit] --n.<数>坐标  --vt.协调, 配合**
     + 3D Cartesian Coordinate System. 三维直角坐标系
+- **infinite ['ɪnfɪnɪt] --adj.无穷的, 无限的；无数的. --n.无限, 无穷大**
+- **forward ['fɔrwɚd] --adv.向前; 在前; ...以后. --adj.向前的; 前面的; 早的.**
+    + look forward(adv) 向前看.
+    + step forward(adv) two paces [take two steps forward].
+      向前走两步.
+    + He drew his chair a little forward(adv) and sat down on it.
+      他把椅子向前拉一些, 然后坐下去.
+    + from this time forward(adv). 从今以后, 从此
+    + from that day forward(adv). 从那天以后.
+    + forward(adj) speed. 前进速度.
+    + forward(adj) planning. 未来的计划.
 
 
 
@@ -277,8 +286,7 @@
   在 CSS3 中, 通过 transform(转换) 来实现 2D 转换 或 3D 转换(伪 3D).
 
 #### 2.2 transform (转换/变形)的前置知识
-##### 2.2.1 直角坐标系(2D/二维坐标系)和三维坐标系(3D)
-- **笛卡尔坐标系(直角坐标系)**
+- **(1) 笛卡尔坐标系(直角坐标系)**
     + [笛卡尔坐标系](https://www.wikiwand.com/zh/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB#/%E4%B8%89%E7%B6%AD%E7%A9%BA%E9%96%93)
       (Cartesian coordinates system, 也称直角坐标系) 在数学中是一种
       [正交坐标系](https://www.wikiwand.com/zh/%E6%AD%A3%E4%BA%A4%E5%BA%A7%E6%A8%99%E7%B3%BB),
@@ -307,7 +315,7 @@
       
       (Hint: 老铁们, 截图有没有很眼熟?:) 你想的没错, 就是来自 "红宝石书"
       的 `13.4.3 鼠标与滚轮事件`)
-- **三维坐标系统(数学)**:
+- **(2) 三维坐标系统(数学)**:
     + 直角坐标系也可以推广至三维空间与高维空间(higher dimension).
       在原本的二维直角标系, 再添加一个垂直于 x-轴 和 y-轴 的坐标轴,
       称为 **z-轴**.假若, 这三个坐标轴满足
@@ -319,7 +327,7 @@
 
       <img src="./images/right-handed-coordination.png"
             style="margin-left: 0; width: 50%;">
-- **transform 3D 坐标系**
+- **(3) transform 3D 坐标系**
     + 在 2D Canvas API 和 CSS transform(转换)中,
       它们建立模型所使用的三维坐标系基于数学上的三维坐标系统,
       唯一的不同是 **y轴的正向向下**(见下图); 你可能也注意到了,
@@ -332,102 +340,300 @@
         style="margin-left: 0; border-radius: 4px; width: 66%;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-#### 2.3 通过 transform 实现 2D 转换
-- transform 2D 转换属性讲解:
-    + (1) `transform: translate(X, Y)` 位移
-        - 参数: 相对与当前位置向 水平(`X`) 或 垂直(`Y`) 方向移动, 正值向 "右下",
-          负值向 "左上". 如果只写一个值, 则表示水平移动. 也可将 X/Y 轴分开写, 例如:
-          `translateX()` / `translateY()`
-        - 参数取值: 为**百分比**, 相对于自身移动. 默认中心点就是盒模型的中心点.
-          (Tip: 对于网页中的 DOM 元素,初始坐标系却在当前屏幕的左上角)
-    + (2) `transform: scale(x, y)` 缩放
-        - 参数: `X` 水平方向的缩放倍数; `Y` 垂直方向的缩放倍数.
-          如果只写一个值就是等比例缩放.
-        - 参数取值: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
-          例如: `transform: scale(2, 0.5);`.
-    + (3) `transform: rotate(角度)` 旋转
-        - 参数: 表示旋转角度, 单位是 `deg`; **正值--顺时针旋转**,
-          **负值--逆时针旋转**.  
-          示例: [./过渡转换动画-Demos/transform-rotate.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/transform-rotate.html)
-        - 可能会有一部分小伙伴跟我一样, 感觉 `rotateX()`, `rotateY()`,
-          `rotate()` 在脑里设想应该是怎样怎样旋转的, 但是一看示例瞬间蒙圈,
-          最纳闷的是在 google 搜索也没有很全面的讲解; 鉴于此,
-          此处就试着用图文的方式讲解一下旋转的过程; 若有错误之处, 请大神留言,
-          一定及时更改.(抱拳)
+#### 2.3 通过 transform 实现 2D/3D(伪 3D) 转换
++ (1) `transform: translate(x, y)` 位移
+    - 参数: 相对与当前位置向 水平(`x`) 或 垂直(`y`) 方向移动, 正值向 **右下**,
+        负值向 **左上**. 如果只写一个值, 则表示水平移动. 也可将 X/Y 轴分开写, 例如:
+        `translateX()` / `translateY()`
+    - 参数取值: 为**百分比**, 相对于自身移动. 默认中心点就是盒模型的中心点.
++ (2) `transform: scale(x, y)` 缩放
+    - scale 具有 3 种情形:
+        + (a) `scaleX(30deg)`: 
+        + (b) `scaleY(y)`
+        + (c) `scale(x, y)`: 
+    - 参数: `x` 水平方向的缩放倍数; `y` 垂直方向的缩放倍数. 如果只写一个值就是等比例缩放.
+    - 参数取值: 大于 **1** 放大, 小于 **1** 缩小. 不能为百分比.
+        例如: `transform: scale(2, 0.5);`.
++ (3) `transform: rotate(角度)`: 通过指定一个角度对元素进行
+  2D rotation(2D 旋转), 需先有 `transform-origin` 属性的定义,
+  若不指定 `transform-origin`, 默认是以盒子的正中心为坐标原点.
+    - 具有 3 种情形:
+        + (a) `rotateX(30deg)`: 
+        + (b) `rotateY(y)`
+        + (c) `rotate(x, y)`
+    - 参数: 表示旋转角度, 单位是 `deg`; **正值--顺时针旋转**, **负值--逆时针旋转**.
+      <br/>
+      示例: [./过渡转换动画-Demos/transform-rotate.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/transform-rotate.html)
+    - 可能会有一部分小伙伴跟我一样, 感觉 `rotateX()`, `rotateY()`,
+      `rotate()` 在脑里设想应该是怎样怎样旋转的, 但是一看示例瞬间蒙圈,
+      最纳闷的是在 google 搜索也没有很全面的讲解; 鉴于此,
+      此处就试着用图文的方式讲解一下旋转的过程; 若有错误之处, 请大神留言,
+      一定及时更改.(抱拳)
 
-          **(3-1)** 我们先看 `rotateX(-45deg)` 的旋转效果图:
-          
-          <img src="./images/rotateX.png"
-              style="margin-left: 0; border-radius: 4px;
-                  box-shadow: 1px 1px 3px 2px #e5e5e5">
-          
-          看了上图可能不太明白为什么绕 `x` 轴旋转后, 最后 box 却是纵向缩小了?
-          
-          实际上是因为, 这种旋转是根据 "图(1) 3D 坐标系" 来实现的,
-          我们根据下图来解说一下:
+      **(3-1)** 我们先看 `rotateX(-45deg)` 的旋转效果图:
+      
+      <img src="./images/rotateX.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
+      
+      看了上图可能不太明白为什么绕 `x` 轴旋转后, 最后 box 却是纵向缩小了?
+      
+      实际上是因为, 这种旋转是根据 "图(1) 3D 坐标系" 来实现的,
+      我们根据下图来解说一下:
 
-          <img src="./images/rotate-x-axis.png"
-              style="margin-left: 0; border-radius: 4px;
-                  box-shadow: 1px 1px 3px 2px #e5e5e5">
-        
-          上图是一个绕 `x` 轴旋转的图示. 假设我们需要从点 `(x, y, z)` 绕 `x`
-          轴旋转 $\theta$ 角到点 `(x', y', z')`, 那么, 旋转过程中, `x`
-          的坐标值始终都是固定不变的. 因此, 我们可以把它当做是在 `x = x'`
-          这个平面上进行的旋转, 从而退化成一个 2D 旋转的问题. 上图右边的 2 个矩阵,
-          上面是 2D 旋转矩阵, 下面的只是把该矩阵延伸到 3D 空间而已. 因为 `x`
-          轴是旋转轴, 实际上是在 `yOz` 平面上做 2D 旋转. (tip: 此段笔记来自
-          [3D中的旋转变换](https://jermmy.xyz/2017/03/28/2017-3-28-rotate-in-3D/)).
+      <img src="./images/rotate-x-axis.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
+    
+      上图是一个绕 `x` 轴旋转的图示. 假设我们需要从点 `(x, y, z)` 绕 `x`
+      轴旋转 $\theta$ 角到点 `(x', y', z')`, 那么, 旋转过程中, `x`
+      的坐标值始终都是固定不变的. 因此, 我们可以把它当做是在 `x = x'`
+      这个平面上进行的旋转, 从而退化成一个 2D 旋转的问题. 上图右边的 2 个矩阵,
+      上面是 2D 旋转矩阵, 下面的只是把该矩阵延伸到 3D 空间而已. 因为 `x`
+      轴是旋转轴, 实际上是在 `yOz` 平面上做 2D 旋转. (tip: 此段笔记来自
+      [3D中的旋转变换](https://jermmy.xyz/2017/03/28/2017-3-28-rotate-in-3D/)).
 
-          <img src="./images/2d-rotateX.png"
-              style="margin-left: 0; border-radius: 4px;
-                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <img src="./images/2d-rotateX.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-          上图是在 Geogebra resource 看到的
-          [Angle between Two Planes(面面角)](https://www.geogebra.org/m/svWvwpvA)
-          的示例, 虽然这个示例和咱们的旋转示例不太吻合, 但是用来解释上面的
-          `(x, y, z)` 绕 `x` 轴旋转 $\theta$ 角到点 `(x', y', z')`
-          的运行轨迹我觉得更明了, 我们可以把图中的 `QP` 当做 `x` 轴,
-          从这个图的角度是不是已经可以理解 `rotateX` 了?!!         
-          
-          **(3-2)** 接着来看 `rotateY(-45deg)` 的旋转效果:
+      上图是在 Geogebra resource 看到的
+      [Angle between Two Planes(面面角)](https://www.geogebra.org/m/svWvwpvA)
+      的示例, 虽然这个示例和咱们的旋转示例不太吻合, 但是用来解释上面的
+      `(x, y, z)` 绕 `x` 轴旋转 $\theta$ 角到点 `(x', y', z')`
+      的运行轨迹我觉得更明了, 我们可以把图中的 `QP` 当做 `x` 轴,
+      从这个图的角度是不是已经可以理解 `rotateX` 了?!!       
+      
+      **(3-2)** 接着来看 `rotateY(-45deg)` 的旋转效果:
 
-          <img src="./images/rotateY.png"
-              style="margin-left: 0; border-radius: 4px;
-                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <img src="./images/rotateY.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-          旋转路径如下图:
+      旋转路径如下图:
 
-          <img src="./images/rotate-y-axis.png"
-              style="margin-left: 0; border-radius: 4px;
-                  box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <img src="./images/rotate-y-axis.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-          观察图中的 `θ` 角应该可以看出旋转过程, 此处就省略叙述了.
-          
-          **(3-3)** 最后来看 `rotateZ(-45deg)` 的旋转效果:
+      观察图中的 `θ` 角应该可以看出旋转过程, 此处就省略叙述了.
+      
+      **(3-3)** 最后来看 `rotate(-45deg)` 的旋转效果: 在 2D 旋转中,
+      我们使用 `rotate(-45deg)` 旋转, 实际上是绕着 `z` 轴旋转的,
+      从下面的图二便可以看出.
 
-          <img src="./images/rotate.png"
-                style="margin-left: 0; border-radius: 4px;
-                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <img src="./images/rotate.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
 
-          旋转路径如下图:
+      旋转路径如下图:
 
-          <img src="./images/rotate-z-axis.png"
-                style="margin-left: 0; border-radius: 4px;
-                    box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <img src="./images/rotate-z-axis.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
+    - **Notice:** rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
+      如果想**改变元素旋转的坐标原点**, 可以用 `transform-origin` 属性. 格式如下:
+      `transform-origin: 水平坐标 垂直坐标`.
 
-        - **Notice:** rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
-          如果想**改变元素旋转的坐标原点**, 可以用 `transform-origin` 属性. 格式如下:
-          `transform-origin: 水平坐标 垂直坐标`.
-
-          例如: `transform-origin: 50px 50px;` /
-          `transform-origin: center bottom;`
-          
-          示例见: `./过渡转换动画-Demos/transform-origin.html`
-    + (4) `transform: skew(角度)` 倾斜
-        
-        - 参数: 和 (3) 中的参数一致. 
-
-#### 2.4 通过 transform 实现 3D 转换
+      例如: `transform-origin: 50px 50px;` /
+      `transform-origin: center bottom;`
+      
+      示例见: `./过渡转换动画-Demos/transform-origin.html`
++ (4) `transform: skew(角度)` 倾斜
+    - skew 也 translate, scale 一样也具有 3 种情形:
+        + (a) `skewX(30deg)`: 使元素在水平方向倾斜 (绕 `x` 轴倾斜)
+        + (b) `skewY(y)`: 使元素在垂直方向倾斜 (绕 `y` 轴倾斜)
+        + (c) `skew(x, y)`: 使元素在水平和垂直方向同时倾斜 (绕 `z` 轴倾斜)
+    - 我们看一个示例: `transform: skew(30deg, 10deg)`, 效果如下图:
+      <br/>
+      <img src="./images/skewZ.png"
+            style="margin-left: 0; border-radius: 4px;
+                box-shadow: 1px 1px 3px 2px #e5e5e5">
+      <br/>
+      Tip: 如果不太理解, 请参考上面的 transform 3D 坐标系.
++ (5) `transform: matrix(, , , , , )`: 以一个含六值的 `(a, b, c, d, e, f)`
+  变换矩阵的形式指定一个 2D 变换, 相当于直接应用一个 `[a b c d e f]` 变换矩阵.
+  就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素,
+  此属性值使用涉及到数学中的矩阵, 我在这里只是简单的说一下 transform
+  有这么一个属性值, 如果有感兴趣的朋友可以去了解更深层次的使用方法.
 
 ### 3. CSS3 animation(动画)
+- 动画是 CSS3 中具有颠覆性的特征, 可通过设置 **多个节点** 来精确控制一个或一组动画,
+  常用来实现复杂的动画效果.
+- 定义动画的步骤.
+    + (1) 通过 `@keyframes` 定义动画;
+    + (2) 将这段动画通过百分比, 分割成多个节点; 然后各节点中分别定义属性;
+    + (3) 在指定元素里, 通过 `animation` 属性调用动画.
+- `animation` 属性是下面 8 个属性的简写:
+  |    属性   |   介绍   |
+  |:---------|:---------|
+  |`animation-name` | 指定 `@keyframes` 动画名. |
+  |`animation-duration` | 动画持续时间. |
+  |`animation-iteration-count` | 动画的执行次数. |
+  |`animation-direction` | 指定动画的运动方向. 默认是 `normal` |
+  |`animation-timing-function` | 指定动画的速度曲线. 默认是 `ease`. |
+  |`animation-fill-mode` | 指定动画的填充模式. 默认是 `none`. |
+  |`animation-play-state` | 指定动画的播放状态, 正在运行或暂停. 默认是 `running`. |
+  |`animation-delay` | 指定动画的延迟时间, 即动画何时开始, 默认是 0. |
+- 属性值解说: 
+    + (1) `animation-name`
+    + (2) `animation-duration`
+        - **Notice**: (1) 和 (2) 是必选项, 且顺序固定.
+    + (3) `animation-iteration-count`
+        - (1) `number` 设置一个具体的数字, 表示执行 number 次;
+        - (3) `infinite` 无限次
+    + (4) `animation-direction` 它的意思说指定动画按照指定顺序来播放
+      `@keyframes` 定义的关键帧. 其值有:
+        - (1) `normal` 默认值。
+        - (2) `reverse` 表示动画反向播放.
+        - (3) `alternate` 表示正向和反向交叉进行.
+        - (4) `alternate-reverse` 表示反向和正向交叉进行.
+    + (5) `animation-timing-function`: 除了 `三阶贝塞尔` 曲线外, 还有一个
+      `steps()`.
+        - `steps()`: 表示动画不是连续执行, 而是间断地分成几步来执行.
+          可以用来实现逐帧动画. 示例见:
+          [./过渡转换动画-Demos/animation-infinite/infinite-animation.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/animation-infinite/infinite-animation.html)
+    + (6) `animation-fill-mode(动画填充模式)`
+        + 例如 `animation: move 6s linear both;` 声明中的 `both`. 它是属性
+          `animation-fill-mode` 的一个值. 这个属性容易被忽略, 然而却是 CSS
+          动画比较重要的一个属性. 直译为动画填充模式, 具体说的是什么呢?
+        
+          `@keyframes` 只是定义了动画过程中每一帧的值, 然而在动画开始前和动画结束后,
+          元素处于什么状态呢? `animation-fill-mode` 给出了这种状态的定义.
+          它有 4 个值:
+            + (1) `none` 默认值.
+            + (2) `forwards`: 表示动画完成后, 元素状态保持为最后一帧的状态.
+            + (3) `backwards`: 表示有动画延迟时, 动画开始前,
+              元素状态保持为第一帧的状态.
+            + (4) `both`: 表示上述二者效果都有
+          
+          举个例子: div 从 100px 处移动到 200px 处的关键帧定义为:
+          ```css
+            @keyframes move {
+                0% { transform: translate(100px, 0); }
+                100% { transform: translate(200px, 0); }
+            }
 
+            .box {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #66cc99;
+                animation: move 1s linear;
+                animation-fill-mode: forwards;
+            }
+          ```
+          (a). 设置动画填充模式为 `forwards` 时, 动画最后停留在 200px 处.
+          <br/>
+          (b). 如果设置动画延迟 1s 后执行, 且填充模式为 `backwards` 时,
+          可以看到动画在开始前是处于 100px 处, 动画结束后回到 0px 处.
+          ```css
+            .box {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #66cc99;
+                animation: move 1s linear;
+                animation-fill-mode: backwards;
+                animation-delay: 1s;
+            }
+          ```
+          (c). 最后如果设置填充模式为 `both` 的情形; 动画结束后,
+          保持动画最后一帧的状态, 这个太有用了, 比我我们可以实现一个进度条:
+          示例:
+          ```css
+            .progress-bar {
+                height: 0.625em;
+                margin: 1.25em;
+                width: 40em;
+                border: 1px solid #ccc;
+                border-radius: 1em;
+                background: linear-gradient(#66cc99, #66cc99);
+                background-repeat: no-repeat;
+                background-size: 0;
+                animation: move 3s linear forwards;
+            }
+            @keyframes move {
+                100% {
+                    background-size: 100%;
+                }
+            }
+          ``` 
+          ```html
+            <div class="progress-bar"></div>
+          ```
+          上面提到了可以使用 `animation-delay` 设置延迟时间. 不为大家注意的是,
+          延迟可以为负数. 负延迟表示动画仿佛开始前就已经运行过了那么长时间. 
+          
+          拿上述进度条为例子, 原动画用了 2s 是从 0% 加载到 100% 的.
+          如果设置延迟为 -1s. 这动画会从 50% 加载到 100%. 仿佛已经运行了 1s
+          一样, 
+          ```css
+            .progress-bar{
+                /* ... */
+                animation-delay: -1s;
+            }
+          ```
+
+
+          
+    + (7) `animation-play-state`
+    + (8) `animation-delay`
+  <br/>
+- 示例:
+    + ```css
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 100px;
+            text-align: center;
+            line-height: 100px;
+            background-color: #f54343;
+            /* - 调用动画 */
+            /* animation: move1 1s alternate linear 3; */
+            animation: move2 4s;
+        }
+
+        /* - 方式一: 定义一组动画. */
+        @keyframes move1 {
+            0% {
+                transform: translateX(0px) rotate(0deg);
+            }
+            100% {
+                transform: translateX(500px) rotate(555deg);
+            }
+        }
+
+        /* - 方式二: 定义多组动画 */
+        @keyframes move2 {
+            0% {
+                transform: translateX(0px) translateY(0px);
+                background-color: #f54343;
+                border-radius: 0;
+            }
+            25% { transform: translateX(500px) translateY(0px); }
+
+            /* - 动画执行到 50% 的时候, 背景色变成绿色, 形状变成圆形. */
+            50% {
+                /* - 虽然两个方向都有translate, 但其实只是Y轴上移动了200px. 
+                 *   因为X轴的500px是相对最开始的原点来说的. 可以理解成此时的
+                 *   translateX 是保存了之前的位移. */
+                transform: translateX(500px) translateY(200px);
+                background-color: green;
+                border-radius: 50%;
+            }
+            75% { transform: translateX(0px) translateY(200px); }
+
+            /* - 动画执行到 100% 的时候, 背景色还原为红色, 形状还原为正方形*/
+            100% {
+                /* - 坐标归零, 表示回到原点. */
+                transform: translateX(0px) translateY(0px);
+                background-color: #f54343;
+                border-radius: 0;
+            }
+        }
+      ```
+      ```html
+        <div class="box"></div>
+      ```
+      
