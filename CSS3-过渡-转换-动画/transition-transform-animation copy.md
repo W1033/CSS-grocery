@@ -221,11 +221,11 @@
       `cubic-bezier(<x1>, <y1>, <x2>, <y2>)`.
 
       我们可以从下图中简要理解一下 `cubic-bezier`:
-    
-      <img src="./images/axis.png"
+
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/axis.png"
         style="margin-left: 0; width: 56%;">
       
-      <img src="./images/bezier-percentage.jpg"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/bezier-percentage.jpg"
         style="margin-left: 0; width: 56%;">
     
       (Tip: Input percentage(输入百分比);  Output percentage(输出百分比))
@@ -306,7 +306,7 @@
     
       直角坐标系也是我们学习初等数学时使用的坐标系. 
     
-      <img src="./images/coordinate.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/coordinate.png"
             style="margin-left: 0; border-radius: 4px;
             box-shadow: 1px 1px 3px 2px #e5e5e5">
     
@@ -315,7 +315,7 @@
       **坐标轴的原点 `(0, 0)` 是在浏览器视口的左上角**,
       而且 **Y 轴的正/负朝向和数学的直角坐标系统是相反的**, 如下图:
       
-      <img src="./images/web-coordinate.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/web-coordinate.png"
             style="margin-left: 0; border-radius: 4px;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
       
@@ -331,7 +331,7 @@
       
       用图表示右手定则, 如下所示:
 
-      <img src="./images/right-handed-coordination.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/right-handed-coordination.png"
             style="margin-left: 0; width: 50%;">
 - **(3) transform 3D 坐标系**
     + 在 2D Canvas API 和 CSS transform(转换)中,
@@ -342,7 +342,7 @@
       实际上这是因为它们都是基于 HTML 的 y 轴正向向下的坐标约定,
       而这个约定本身是使用 windows 系统的坐标体系的后代. 
 
-      <img src="./images/transform-3d-coordinate.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/transform-3d-coordinate.png"
         style="margin-left: 0; border-radius: 4px; width: 66%;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
 
@@ -378,7 +378,7 @@
 
       **(3-1)** 我们先看 `rotateX(-45deg)` 的旋转效果图:
       
-      <img src="./images/rotateX.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotateX.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
       
@@ -387,7 +387,7 @@
       实际上是因为, 这种旋转是根据 "图(1) 3D 坐标系" 来实现的,
       我们根据下图来解说一下:
 
-      <img src="./images/rotate-x-axis.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotate-x-axis.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
     
@@ -399,7 +399,7 @@
       轴是旋转轴, 实际上是在 `yOz` 平面上做 2D 旋转. (tip: 此段笔记来自
       [3D中的旋转变换](https://jermmy.xyz/2017/03/28/2017-3-28-rotate-in-3D/)).
 
-      <img src="./images/2d-rotateX.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/2d-rotateX.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
 
@@ -412,13 +412,13 @@
       
       **(3-2)** 接着来看 `rotateY(-45deg)` 的旋转效果:
 
-      <img src="./images/rotateY.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotateY.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
 
       旋转路径如下图:
 
-      <img src="./images/rotate-y-axis.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotate-y-axis.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
 
@@ -428,13 +428,13 @@
       我们使用 `rotate(-45deg)` 旋转, 实际上是绕着 `z` 轴旋转的,
       从下面的图二便可以看出.
 
-      <img src="./images/rotate.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotate.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
 
       旋转路径如下图:
 
-      <img src="./images/rotate-z-axis.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/rotate-z-axis.png"
           style="margin-left: 0; border-radius: 4px;
           box-shadow: 1px 1px 3px 2px #e5e5e5">
     - **Notice:** rotate 旋转时, 默认是以盒子的正中心为坐标原点的.
@@ -452,7 +452,7 @@
         + (c) `skew(x, y)`: 使元素在水平和垂直方向同时倾斜 (绕 `z` 轴倾斜)
     - 我们看一个示例: `transform: skew(30deg, 10deg)`, 效果如下图:
       <br/>
-      <img src="./images/skewZ.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/skewZ.png"
             style="margin-left: 0; border-radius: 4px;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
       <br/>
@@ -597,7 +597,7 @@
       ```
       效果为下图:
 
-      <img src="./images/progress-bar-paused.png"
+      <img src="https://github.com/Watermelon1033/CSS-grocery/raw/master/CSS3-%E8%BF%87%E6%B8%A1-%E8%BD%AC%E6%8D%A2-%E5%8A%A8%E7%94%BB/images/progress-bar-paused.png"
             style="margin-left: 0; border-radius: 4px;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
     + (8) `animation-delay`: 和 (6) `animation-fill-mode` 一起讲解了.
