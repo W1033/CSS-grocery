@@ -16,8 +16,6 @@
 3. CSS3 animation(动画)
 
 
-
-
 ## 生词(New Words)
 - **transition [træn'zɪʃən] --n.过渡; 转换; 变迁**
     + transition animation. 过渡动画
@@ -94,7 +92,10 @@
         这个过程需要四到五此反复. 
     + Iterators are just objects with a specific interface designed for 
         iteration. 迭代器是一种特殊对象, 它具有一些专门为迭代过程设计的专有接口. 
-
+- **alternate ['ɔːltəneɪt] --adj.轮流的; 交替的; 间隔的. vt&vi.轮流; 交替; 交流**
+    + That was a week of alternate(adj) rain and sunshine.
+      那是晴雨天交替的一周.
+    + Alternate(adj) hop and fear. 时喜时忧.
 
 
 ## 内容(Content)
@@ -484,13 +485,15 @@
 - 属性值解说: 
     + (1) `animation-name`
     + (2) `animation-duration`
+        
         - **Notice**: (1) 和 (2) 是必选项, 且顺序固定.
     + (3) `animation-iteration-count(动画迭代次数)`
         - (1) `number` 设置一个具体的数字, 表示执行 number 次;
         - (3) `infinite` 无限次
     + (4) `animation-direction` 让动画按照指定顺序来播放
       `@keyframes` 定义的关键帧. 其值有:
-        - (1) `normal` 默认值。
+      
+        - (1) `normal` 默认值.
         - (2) `reverse` 表示动画反向播放.
         - (3) `alternate` 表示正向和反向交叉进行.
         - (4) `alternate-reverse` 表示反向和正向交叉进行.
@@ -583,9 +586,9 @@
           示例见: [./过渡转换动画-Demos/animation-progress-bar.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/animation-progress-bar.html)
     + (7) `animation-play-state`(动画播放状态): 这个属性用来控制动画的播放状态,
       有 2 个值:
-        - (1) `running` 表示播放, 默认值.
+    - (1) `running` 表示播放, 默认值.
         - (2) `paused` 表示暂停.
-
+    
       仍然看上面的实例:
       ```css
         .progress-bar {
@@ -594,13 +597,13 @@
             animation-delay: -1s;
             animation-play-state: paused;
         }
-      ```
+  ```
       效果为下图:
-
+    
       <img src="./images/progress-bar-paused.png"
             style="margin-left: 0; border-radius: 4px;
-                box-shadow: 1px 1px 3px 2px #e5e5e5">
-    + (8) `animation-delay`: 和 (6) `animation-fill-mode` 一起讲解了.
+              box-shadow: 1px 1px 3px 2px #e5e5e5">
+  + (8) `animation-delay`: 和 (6) `animation-fill-mode` 一起讲解了.
   <br/>
 - 示例:
   ```css
@@ -658,4 +661,4 @@
   ```html
     <div class="box"></div>
   ```
-      
+  
