@@ -53,6 +53,13 @@ input::-moz-focus-inner {
   border: 0;
 }
 
+/* - 后添加, 非 typo 中的样式 */
+button, input, textarea {
+    outline: none;
+    box-shadow: none;
+}
+
+
 /* 去掉各 Table cell 的边距并让其边重合 */
 table {
   border-collapse: collapse;

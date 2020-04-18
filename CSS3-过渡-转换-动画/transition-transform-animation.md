@@ -9,6 +9,7 @@
     + 1.4 贝塞尔曲线讲解
         - 1.4.1 贝塞尔曲线简介
         - 1.4.2 使用示例
+    + 1.5 使用 JS 控制 transition(过渡)效果
 2. CSS3 transform(转换)
     + 2.1 transform 是什么?
     + 2.2 transform 转变(/变形)的前置知识
@@ -277,6 +278,10 @@
   你也可以更该贝塞尔曲线的值, 例如:
   `transition:  all 2s cubic-bezier(.17, .86, .73, .14);`
   自行在浏览器中查看运行效果. 
+
+#### 1.5 使用 JS 控制 transition(过渡)效果
+- 示例见文件: `../../JS-book-learning/《JavaScript高级程序设计》/Chapter11-DOM扩展/JS添加和删除class方法总结.md`
+  内的 `1.5 使用 JS 控制 transition(过渡)效果`
 
 
 ### 2. CSS3 transform(转换)
