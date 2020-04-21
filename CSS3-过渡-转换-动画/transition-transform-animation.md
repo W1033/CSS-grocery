@@ -591,7 +591,7 @@
           示例见: [./过渡转换动画-Demos/animation-progress-bar.html](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/过渡转换动画-Demos/animation-progress-bar.html)
     + (7) `animation-play-state`(动画播放状态): 这个属性用来控制动画的播放状态,
       有 2 个值:
-    - (1) `running` 表示播放, 默认值.
+        - (1) `running` 表示播放, 默认值.
         - (2) `paused` 表示暂停.
     
       仍然看上面的实例:
@@ -602,7 +602,7 @@
             animation-delay: -1s;
             animation-play-state: paused;
         }
-  ```
+      ```
       效果为下图:
     
       <img src="./images/progress-bar-paused.png"
