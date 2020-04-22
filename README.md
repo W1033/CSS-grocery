@@ -4,6 +4,8 @@
 
 - 备份本仓库在本地计算机的相对路径: `File:///Users/WANG/Github-clone/`
 
+- [CSS 参考手册 - 在线](https://css.doyoe.com/)
+
 
 ## Table Of Content
 0. HTML 知识
@@ -282,6 +284,22 @@
 
 ### 9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
 - 见当前仓库: [CSS3-过渡-转换-动画/transition-transform-animation.md](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/transition-transform-animation.md)
+
+
+### 9. `list-style`
+- ```css
+    .list-item {
+        /* - MDN: 将这个元素的外部显示类型变为 block 盒，并将内部显示类型变为多个
+         *   list-item inline 盒.
+         * - 上面 MDN 说的大致意思就是: 把 li 编程 block, 其内部元素显示为
+         *   display: inline.
+         */
+        display: list-item;
+        /* - list-style: list-style-type list-style-position list-style-image*/
+        list-style: disc outside none;
+    }
+  ```
+
 
 
 ### JavaScript 动画和 CSS 动画该如果抉择
