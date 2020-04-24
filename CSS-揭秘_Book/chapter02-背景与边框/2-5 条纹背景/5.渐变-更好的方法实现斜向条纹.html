@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS线性渐变 + background-size</title>
+    <style type="text/css">
+        *{
+            margin:0; padding:0; border:0;
+            font: 14px/1.5 "PingFangSC", Helvetica Neue, Helvetica, Arial, sans-serif;
+            border-radius:4px;
+            box-sizing: border-box;  outline: none;
+        }
+        #box{
+            width:60%; height:100vh;
+            margin: 0 auto;
+
+            /* linear-gradient实现的斜向条纹角度更改为60deg,网格就乱掉了，所以在css3中给了给了更好的解决方法：
+                repeating-linear-gradient(); */
+            /* 但是这种实现在chrome下 60deg 出现锯齿,但是45deg确没有*/
+
+            /* 1.方法- */
+            /*background: repeating-linear-gradient(45deg, #79b, #79b 15px, #58a 0, #58a 30px);*/
+
+            /* 2.方法二  1~15px有颜色, 15-30px是透明*/
+            background:#58a;
+            background-image:repeating-linear-gradient(45deg,
+                    hsla(0, 0%, 100%, .1),
+                    hsla(0, 0%, 100%, .1) 15px,
+                    transparent 0, transparent 30px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

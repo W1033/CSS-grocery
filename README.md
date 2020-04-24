@@ -53,7 +53,7 @@
 ## Content
 
 ### 0. HTML 知识
-- 见当前仓库: [CSS-grocery/HTML-Knowledge.md](File:///Users/WANG/Github-clone/CSS-grocery/HTML-Knowledge.md)
+- 见当前仓库: [./HTML-Knowledge/html-knowledge-readme.md](File:///Users/WANG/Github-clone/CSS-grocery//HTML-Knowledge/html-knowledge-readme.md)
 
 ### 1. css 的 `box-sizing` 属性
 - `box-sizing`(盒子大小) 属性, 包含 2 个值:
@@ -85,66 +85,13 @@
   ```
 
 ### 3 CSS 单位和使用
-- 常见 CSS 单位和解释
-  | 单位   | 解释 |
-  | ----  | ---- |
-  | `%`   | 百分比|
-  | `px`  | 像素. 计算机屏幕上的一个点为 1px. |
-  | `em`  | 相对单位. 相对于父元素计算, 假如某个 p 元素为 `font-size:12px`,在它内部的 span 标签, 设置 `font-size: 2em`, 那么,  这时候的 span 字体大小为 12*2 = 24px. |
-  | `rem` | 相对单位.  相对于根元素 html 的 `font-size`. 例如 html 为 `font-size: 12px`, 那么其内的 div 设置为 `font-size: 2rem`, div 字体大小就为 24px. |
-  | `rpx` | 微信小程序相对单位. 1rpx = 屏幕宽度/750px. 在 750px 的设计稿上, 1rpx = 1px |
-  | `pt`  | 略 |
-  | `ex`  | 略 |
-- 一般情况下, 浏览器的默认字体大小是**16px**, 所有未经调整的浏览器都符合
-  `1em = 16px`.
-  
-  目前(2020 年), 我用 MacOS 下的 Chrome 查看 "虎嗅", "Vue 官网",
-  "WikiWand" 网站时, 发现默认的字体大小都是 16px, 也就是说他们并没有修改默认字体,
-  但仍然有很多网站的默认字体是 14px, 所以网站中究竟设置多大字体,
-  还是根据设计师的要求来. 接下来我们分别说一下这两种尺寸的使用:
-    + (1) 设置默认字体是 14px. 为了在写代码时方便, 我们可以在 CSS 中这样设置:
-      ```css
-        html {
-            /* - 默认 16px = 100%, 那么 1px = 6.25%;
-             *   62.5% 就是 10px */
-            font-size: 62.5%;
-        }
-        body {
-            /* - 当前 em 相对单位是相对于父元素 html 来的, 由于 html 中
-             *   font-size = 10px  所以当前 1em = 10px, 
-             *   1.4em = 14px. 这样就给 body 初始化了 14px 的字体. */
-            font-size: 1.4em;
-        }
-      ```
-    + (2) 设置默认字体是 16px:
-      ```css
-        /* - 由于浏览器默认字体就是 16px, 所以此处直接写 1em = 16px 即可,
-         *   1em = 16px ==> 1.6px = 0.1em ==> 0.25em = 4px
-         *   1px = 0.0625em
-         *   10px = 0.625em
-         *   14px = 0.875em
-         *   16px = 1em 
-         *   18px = 1.125em
-         *   20px = 1.25em
-         *   30px = 0.875em
-         *   40px = 2.5em
-         *   60px = 3.75em
-         *   80px = 5em
-         *   100px = 6.25em
-         *   200px = 12.5em 
-         */
-        body {
-            /* - 300 为 font-weight; 1.8 为 line-height */
-            font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei,
-            Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-        }
-      ```
+- 见当前仓库: [./CSS-单位/css-utils-readme.md](File:///Users/WANG/Github-clone/CSS-grocery/./CSS-单位/css-utils-readme.md)
 
 ### 4. css 强制换行和超出隐藏
 - [参考文章](https://juejin.im/post/5b8905456fb9a01a105966b4)
 - (1) `white-space(空白空间): normal / nowrap / pre / pre-wrap / pre-line.`
   这个属性是**用来控制空白字符显示的**, 同时还能控制是否自动换行. 它有 5 个值: 
-    + (1) `normal`(默认值): 只有空格换行, 单词不换行.
+    + (1) `normal`(默认值): 只有空格换行, 单词不换行. [tip: 最常用]
     + (2) `nowrap`: 永不换行
     + (3) `pre`: 它其实是 `preserve` 的缩写. 即空格(`&nbsp;`)和换行(`<br/>`)
       全部被保留.
@@ -152,11 +99,10 @@
       且可以自动换行. (Tip: 从下图可以看出, 这种展示效果可能是你在网页中最不想看到的.)
     + (5) `pre-line`: 它其实是 `preserve new line` + `wrap`. 即合并空格,
       但是换行符可以发挥作用.
-      ./CSS-示例和集锦/white-space_word-break_word-wrap/white-space-demo.html
-    + 测试文件见当前仓库: 
-        <a href="./CSS-示例和集锦/white-space_word-break_word-wrap/white-space-demo.html">
-            ./示例和集锦/white-space_word-break_word-wrap/white-space-demo.html
-        </a>
+    + 测试文件见当前仓库:
+      <a href="./CSS-示例和集锦/white-space_word-break_word-wrap/white-space-demo.html">
+        ./示例和集锦/white-space_word-break_word-wrap/white-space-demo.html
+      </a>
       ```html
         <!-- 默认样式如下 -->
         <div class="white-space-normal">
@@ -190,24 +136,27 @@
     + (2.3) `keep-all`(保留全部): **所有单词一律不拆分换行**. 注意,
       这里的 "单词" 包括连续的中文字符(还有日文, 韩文等),
       或者可以理解为**只有空格可以触发自动换行**.
-    + 测试文件见:  
+    + 测试文件见:
       <a href="./CSS-示例和集锦/white-space_word-break_word-wrap/word-break_overflow-wrap.html">
-            ./示例和集锦/white-space_word-break_word-wrap/word-break_overflow-wrap.html
-        </a>
+        ./示例和集锦/white-space_word-break_word-wrap/word-break_overflow-wrap.html
+      </a>
     + 样式效果如下: 
       <img src="./readme-images/word-break_overflow-wrap.png"
         style="margin-left: 0;">
-- (3) `overflow-wrap(溢出包裹): normal / break-word`.
-   `word-wrap(自动换行)` 又叫 `overflow-wrap`: 这个属性是
-  **控制长度超过一行的单词如何被拆分换行**, 实际上是作为 `word-break` 的互补,
+- (3) `word-wrap(自动换行): normal / break-word`. 又叫 `overflow-wrap(溢出包裹)`:
+  这个属性是**控制长度超过一行的单词如何被拆分换行**, 实际上是作为 `word-break` 的互补,
   它有 2 个值: 
     + (3.1) `normal`: 不拆分单词
     + (3.2) `break-word`: **只有当一个单词一整行都显示不下时才会拆分换行该单词**.
       (Hint: 网页中完美的解决换行的方法.)
-    + Tip: `word-wrap` 属性原本属于微软的一个私有属性, 在 CSS3 
-      现在的文本规范草案中已经被重命名为 `overflow-wrap`. `word-wrap`
-      现在被当作 `overflow-wrap` 的别名. 稳定的 Chrome 版本支持这种新语法.
-- 使用 <br/>
+  
+  Tip: `word-wrap` 属性原本属于微软的一个私有属性, 在 CSS3
+  现在的文本规范草案中已经被重命名为 `overflow-wrap`. `word-wrap` 现在被当作
+  `overflow-wrap` 的别名. 稳定的 Chrome 版本支持这种新语法.
+  
+  样式效果见: 上图的最后两个 div
+
+  使用示例: 
   ```css
     /* 强制文本换行 */
     .textwrap, .textwrap td, .textwrap th {
@@ -286,7 +235,7 @@
 - 见当前仓库: [CSS3-过渡-转换-动画/transition-transform-animation.md](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/transition-transform-animation.md)
 
 
-### 9. `list-style`
+### 10. `list-style`
 - ```css
     .list-item {
         /* - MDN: 将这个元素的外部显示类型变为 block 盒，并将内部显示类型变为多个
@@ -300,6 +249,23 @@
     }
   ```
 
+### 11.
+- 清楚浮动的几种方式:
+    + (1). 给父级元素添加伪元素 :after/:before (推荐)。
+       - ```css
+           .box:after {
+               content: '';
+               display: block;
+               clear: both;
+           }
+         ```
+    + (2). 给父容器添加 `overflow: hidden/auto;` 包裹子元素。
+       - 如果子元素的高度大于父元素，设置了 overflow: hidden; 会导致子元素显示
+         不完整。
+    + (3). 或者给子元素添加一个空元素，设置 style:'clear: both'; 但是这个也有
+      问题，如果利用：.box > li {} 这样统一给 li 添加了样式，利用
+      `<li style="clear:both;"></li>` 这种写法，并不能清楚浮动，所以最好的
+      解决方案就是第一种。
 
 
 ### JavaScript 动画和 CSS 动画该如果抉择
