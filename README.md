@@ -229,7 +229,7 @@
   ```
 
 ### 8. Flex(弹性)布局语法
-- 见当前仓库: [CSS-grocery/布局_Flex-Grid/Flexbox-布局/README-弹性布局语法.MD](File:///Users/WANG/Github-clone/CSS-grocery/布局_Flex-Grid/Flexbox-布局/README-弹性布局语法.MD)
+- 见当前仓库: [CSS-grocery/布局-Layout/Flexbox-布局/README-弹性布局语法.MD](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/Flexbox-布局/README-弹性布局语法.MD)
 
 ### 9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
 - 见当前仓库: [CSS3-过渡-转换-动画/transition-transform-animation.md](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/transition-transform-animation.md)
