@@ -2,15 +2,17 @@
 
 
 ## Catalog
-1. `CSS 像素` / `逻辑像素` / `渲染像素` / `物理像素` 都是指什么?
-    + 1.1 `逻辑像素(logic point/device point/device pixel) / 点(points)`:
+1. `逻辑像素` / `渲染像素` / `物理像素` 都是指什么?
+    + 1.1 `逻辑像素(logic point/device point)` / `点(points)`:
     + 1.2 `渲染像素 (Rendered Pixels)`:
     + 1.3 `物理像素 (Physical Pixels)` / `设备像素(Device Pixel)`: 
+    + 1.4 `物理设备(Physical Device)`
 2. CSS 中的 `px` 到底是什么?
 3. `PPI (pixel per inch)` 像素密度
 4. 面向 `逻辑像素` 开发的基本流程
 5. 关于 `px` 的一些疑问
 6. 什么是 "响应式" 和 "自适应" 布局?
+7. 如何在 vx (`vw`/`vh`), vxxx(`vmax`/`vmin`) 和 `px` 之间自由切换.
 
 
 
@@ -58,6 +60,10 @@
     + He is always responsive to my requests.
       对于我的要求他总是作出积极的应答.
     + I've had no responsive to my letter. 我还没有回信.
+- **adaptive [ə'dæptɪv] --adj.适应的; 适合的.**
+    + adaptive design. 自适应(适应时)设计.
+    + adaptive control system. 自适应控制系统.
+
 
 
 
@@ -66,7 +72,7 @@
     + (1) [知乎: 为什么很多web项目还是使用 px, 而不是 rem?](https://www.zhihu.com/question/313971223/answer/628236155)
       中 `猫5号` 的回答.
     + (2) 《高性能响应式Web开发实战》中第二章中的内容
-    + (2) 
+    + (3) 
   
 - **本文观点:**
   
@@ -80,15 +86,28 @@
   (3) 本文遵循: 不同尺寸的屏幕(手机 / 平板 / 笔记本), 同等观看距离下,
   大屏看的更多而非看的更大的设计实践来进行布局.
 
-### 1. `CSS 像素` / `逻辑像素` / `渲染像素` / `物理像素` 都是指什么?
+### 1. `逻辑像素` / `渲染像素` / `物理像素` 都是指什么?
 - 我们从下图开始说起, 请先看图 2-1:
   
   <img src="css-layout-images/display-point-pixel.png"
     style="margin-left: 0; border-radius: 4px;
         box-shadow: 1px 1px 3px 2px #e5e5e5">
   
-  上图 2-1 是部分 iPhone 设备的 `逻辑像素`, `渲染像素`, `物理像素` 的指标,
-  看了应该清晰这 3 这之间的关系了.
+  上图 2-1 是部分 iPhone 设备的 `逻辑像素`, `渲染像素`, `物理像素` 的指标.
+
+  **Notice**: 请仔细看图 2-1 中的蓝色箭头是朝下的,
+  而且从每个版块左侧的描述也显示这张图应该从上往下看, 但是根据
+  [参考文章 (1)](https://www.zhihu.com/question/313971223/answer/628236155)
+  中的讲解的顺序和此图是相反的; 不过我个人的观点是偏向于图 2-1 的执行顺序,
+  你可能会有疑惑, `渲染像素` 和 `逻辑像素`
+  这些软件层面的实现不应该是根据物理硬件, 即显示设备的 `物理像素` 来实现的吗? 
+  这种想法在此处我不能断定是对是错; 不过我们来看这一下这篇文章
+  [计算机是如何显示一个像素的](https://zhuanlan.zhihu.com/p/32136704),
+  如果你看完了, 大概会有一个和我相同的看法, 那就是计算机在显示设备上渲染一个像素之前,
+  几乎做的所有工作都是在 CPU / 内存 / 显卡 这几个设备之间来进行协同工作的,
+  最后在显示设备上显示, 是在所有的软件层面的工作完成之后, 才和显示设备对接的,
+  也就是说至少在这里, 它们没有绝对的依赖关系.
+
 #### 1.1 `逻辑像素(logic point / device point / device pixel)` / `点(points)`:
 - 从图 2-1 左侧的描述可以看出 `逻辑像素` 的定义:
   **根据数学坐标空间中的抽象 `点(point)` 为单位来指定所有图形的坐标.**
@@ -99,8 +118,8 @@
   
   + `PPI` 见下面的 [3. PPI (pixel per inch) 像素密度]()
   
-  在 Windows 上, 可以通过 *显示设置* 缩放比例来调整部分应用的逻辑像素. 对于 Linux,
-可以通过 x 和 wayland 的缩放比例来调整.
+  在 Windows 上, 可以通过 *显示设置* 缩放比例来调整部分应用的逻辑像素.
+  对于 Linux, 可以通过 x 和 wayland 的缩放比例来调整.
   
   但是, 这个 `逻辑像素` 是一个纯软件的方案, 如果部分软件不遵循开发规则,
   或者使用老旧的 API, 就可能出现 `逻辑像素` 不合理, 导致缩放问题.
@@ -117,9 +136,18 @@
   在浏览器中得到的 `screen.width` 仍然符合上述的尺寸.
 
 #### 1.2 `渲染像素 (Rendered Pixels)`:
-- `渲染像素` 是系统基于 `逻辑像素` 进行对应倍增 (1x, 2x 或 3x) 而得到的结果. 
+- 基于`点(point)`的图形被渲染为像素, 此过程被称为栅格化. 对 1.1 的 `逻辑像素`
+  进行对应倍增(render at 3x/2x/1x) 而得到的结果就是 `渲染像素`. 
 
 #### 1.3 `物理像素 (Physical Pixels)` / `设备像素(Device Pixel)`: 
+- 一般情况下, 设备屏幕的像素, 即此处的 `物理像素`/`设备像素` 是和 1.2 `渲染像素`
+  是相同的, 但是也会有低于 `渲染像素` 的情况, 例如图 2-1 中, iPhone6+, 6s+, 7, 8
+  这些设备的 `物理像素` 就是 `渲染像素` 降采样(downsampling / 1.15 倍)
+  后得到的.
+
+#### 1.4 `物理设备(Physical Device)`
+- 经过上面 3 步后, 最后在物理屏幕上显示计算出来的像素, `PPI`(讲解在下面)
+  的数字告诉你在 1 英寸中能容纳多少像素, 从而在现实世界中会出现多少像素.
 
 
 ### 2. CSS 中的 `px` 到底是什么?
@@ -269,53 +297,91 @@ $\quad$ Tip: 请先看完 [2. CSS 中的 px 到底是什么?]().
     + 一句话概括就是, `rem` 是等比缩放的解决方案; 它违背了, 在不同的设备,
       同样观看距离下, 大屏应该看到更多内容, 而非大屏看到更大内容的设计实践.
 
-### 6. 什么是 "响应式" 和 "自适应" 布局?
-- 我们先来看 "响应式布局":
+### 6. 什么是 "响应式(responsive)" 和 "自适应(adaptive)" 布局?
+- 先看图来对比一下: 
 
-  先上一张 gif 图来看一下, 
-
-  <img src="./css-layout-images/responsive-layout.gif"
-    style="margin-left: 0; border-radius: 4px; width:66%;
+  <img src="./css-layout-images/compare-adaptive-responsive.png"
+    style="margin-left: 0; border-radius: 4px;
         box-shadow: 1px 1px 3px 2px #e5e5e5"> 
+  
+  响应式设计(Responsive Web Design (RWD)) 总结起来可以概括为:
+    + (1) 媒体查询, 边界断点的规则设定 (Media queries && break point)
+    + (2) 内容的可伸缩效果 (Flexible visuals)
+    + (3) 流式网格布局 (Fluid grids)
+    + (4) 主要内容呈现及图片的高质量 (Main content and high quality)
+  
+  自适应设计(Adaptive Web Design (AWD)): Adaptive Design 是 Aaron Gustafson
+  的书的标题. 他认为 AWD 在包括 RWD 的 CSS 媒体查询技术以外, 也要用 JS 来操作
+  HTML 来更适应移动设备的能力. AWD 有可能会针对移动端用户减去内容, 减去功能.
+  AWD 可以在服务器端进行优化, 把优化过的内容送到终端上.
+
+  从定义上而言, RWD 是一套代码, 适用于所有屏幕. 而 AWD 则是多端多套代码.
 
 
 
----------
----------
----------
+### 7. 如何在 vx (`vw`/`vh`), vxxx(`vmax`/`vmin`) 和 `px` 之间自由切换.
+- vx, vxxx 布局很麻烦, 但是如果我真的需要在网页中即使用 vx 又需要使用 `px`
+  单位的时候该怎么办呢? 
 
+  这是[本文](https://www.zhihu.com/question/313971223/answer/628236155)
+  的作者给出的一个 rdp-loader 的解决方案, 此处的 rdp(relative device point
+  相对设备点), 作者说是因为想不到更好的目前还没有用到的单位. 下面是源码:
+  (**Warning**: 下面的 JS 我还没测试和验证...)
+  ```js
+    // - `g`: 表示全局匹配.
+    // - `()`: 捕获型分组.
+    // - `+`: 匹配前面的元字符(子表达式)一次或多次
+    // - `[]`: 匹配这个集合中的任何一个字符
+    // - `\d`: 匹配 0-9 的任何数字. 等价于 `[0-9]`
+    // - `.`: 匹配除回车符(`\r`)和换行符(`\n`)之外的任何单个字符.
+    // - 总结: 全局匹配 捕获型分组 和 字符rdp, 分组内的操作是
+    //   匹配一个集合一次或多次, 集合内部是 匹配数字0-9 和
+    //   除去回车符和换行符之外的任何单个字符.
+    const r = /([\d.]+)rdp/g;
+    const loaderUtils = require('loader-utils');
+    const defaultOptions = {
+        useRpx: false,
+        size: 375
+    };
+    module.exports = function(content) {
+        this.cacheable();
+        // - `...`: ES6 的扩展运算符(spread operator), 用来 '卸除'
+        //   特定数组的中括号或特定对象的大括号
+        const options = {
+            ...defaultOptions,
+            ...(loaderUtils.getOptions(this))
+        };
+        const rpxDPI = 2;
+        const rpxSize = 375;
+        // - 750 / 100
+        // - 375 * 2 / 100 / 2
+        return content.replace(r, (_, number) => {
+            return options.useRpx 
+                ? `${(+number) * rpxSize * rpxDPI / options.size}rpx`
+                    : `${((+number) / (options.size / 100)).toFixed(5)}vmin`
+        })
+    }
+  ```
+  这个 webpack loader 可以嵌入小程序或者 web mobile 进行开发, 使用 `逻辑像素`
+  的写法就可以转换成 `vmin` 或者 `rpx`.
 
-### 图 2-1 中英文对照
-1. Point(点 / 逻辑像素: point / device point / device pixel):
-- At the beginning, coordinates of all drawings are specified in points.
-  (首先, 以点为单位指定所有图形的坐标.)
-- Points are abstract units, they only make sense in this mathematical
-  coordinate space.
-  (点是抽象单位, 它们仅在数学坐标空间中有意义.)
+  其中包含 2 个参数:
+    + `userRpx` 在小程序中使用
+    + `size` 就是设计稿的基准 `逻辑像素`.
+  
+  如果在开发时想用等比缩放的布局时, 就用 `rdp`,如果想使用基于 `逻辑像素`
+  布局的时候就用 `px`, 全称无缝切换. 例如:
+  ```css
+    .ele {
+        /* - 使用等比缩放 */
+        width: 100rdp;
 
-2. Rendered Pixels(渲染像素)
-- Point-based drawings are rendered into pixels. This process is known
-  as rasterization.
-  (基于点的图形被渲染为像素. 此过程称为栅格化.)
-    + 栅格化(Rasterisation): 栅格化是将 `矢量图形` 格式表示的图像转换成 `位图`
-      以用于显示器或者打印机输出的过程. 总体上来说, 格栅化这个术语可以用于任何将
-      `矢量图形` 转换成 `位图` 的过程.
-- Point coordinates are multiplied by scale factor to get pixel
-  coordinates. Higher scale factors result in higher level of detail.
-  (点坐标乘以比例因子(`render at 3x/2x/1x`)可以得到像素坐标. 比例因子越高,
-  细节程度越高.)
+        /* - 使用逻辑像素 */
+        width: 100px;
+    }
+  ```
+  虽然提供了 vx, vxxx 的方案, 但注意一点, 什么时候使用 vx, vxxx 的布局方案?
 
-3. Physical Pixels(物理像素)
-- The device screen may have lower pixel resolution than the image
-  rendered in previous step.
-  (设备屏幕的像素分辨率可能低于上一步中渲染的图像.)
-- Before the image can be displayed, it must be downsampled(resized)
-  to lower pixel resolution.
-  (在显示图像之前, 必须先对其进行降采样(调整大小)以降低像素分辨率.)
+  本文的作者建议是: 几乎不用, 因为暂时为止, 作者说想不到什么场景是必须使用等比缩放的情况.
 
-4. Physical Device (物理设备)
-- Finally, computed pixels are displayed on the physical screen.
-  (最后, 在物理屏幕上显示计算出来的像素.)
-- The PPI number tells you how many pixels fit into one inch and
-  thus how large the pixels appear in the real world.
-  (PPI 的数字告诉你在 1 英寸中能容纳多少像素, 从而在现实世界中会出现多少像素.)
+  希望 vx, vxxx 不要成为下一个 `rem`, 希望大家为 `viewport` 和 `px` 正名.
