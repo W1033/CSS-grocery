@@ -73,8 +73,10 @@
     }
     .default-div {
         margin: 6px 0 6px 12px;
-        min-height: 600px;
-        min-width: 600px;
+        min-width:260px;
+        max-width: 360px;
+        min-height: 260px;
+        max-height: 360px;
         padding: 0 10px;
         float: left;
         background: #fafafa;

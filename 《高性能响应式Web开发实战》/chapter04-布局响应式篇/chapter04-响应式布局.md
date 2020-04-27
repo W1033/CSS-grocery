@@ -24,7 +24,7 @@
     + 4.5.1 标题
     + 4.5.2 正文内容
 - 小结        
-    
+  
 
 
 ## 生词 (New Words)
@@ -45,7 +45,7 @@
 - (1): 与(and) -- 使用and关键字可以将媒体类型和多个媒体特征联系起来，只要当
   这些条件全部为真时，该媒体查询才算成立，该媒体查询的样式才会生效。例如:
   ```css
-    /* - min-width 不小于(大于) */
+    /* - min-width 最小(即: 不小于) */
     @media (min-width: 320px) and (orientation: landscape) {
         .sidebar {
             display: none;

@@ -55,6 +55,10 @@
     + thus and thus. 如此这般
     + Thus they judged that he was guilty. 因此他们判断他有罪.
     + Thus much is certain. (至少)这些是确实的.
+- **ratio ['reɪʃɪəʊ] --n.比率, 比值**
+    + amplification ratio 放大比率
+    + calculate the ratios to one decimal place. 比率计算至小数点后第一位. 
+    + It defines the aspect ratio of the image. 它定义了图像的纵横比
 - **responsive [rɪ'spɒnsɪv] --adj.响应的; 应答的.**
     + Responsive layout. 响应式设计
     + He is always responsive to my requests.
@@ -63,7 +67,10 @@
 - **adaptive [ə'dæptɪv] --adj.适应的; 适合的.**
     + adaptive design. 自适应(适应时)设计.
     + adaptive control system. 自适应控制系统.
-
+- **illustration [ɪlə'streɪʃ(ə)n]{UK} --n.插图; 例证; 插画**
+    + illustration design. 插图设计
+    + He used photographs as illustration for his talk.
+      他用照片为他的演讲作图片说明.
 
 
 
@@ -95,6 +102,10 @@
   
   上图 2-1 是部分 iPhone 设备的 `逻辑像素`, `渲染像素`, `物理像素` 的指标.
 
+  **Additional info:** 此图名为
+  [The Ultimate Guide To iPhone Resolutions](https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions)
+  [iPhone 分辨率终极指南]
+
   **Notice**: 请仔细看图 2-1 中的蓝色箭头是朝下的,
   而且从每个版块左侧的描述也显示这张图应该从上往下看, 但是根据
   [参考文章 (1)](https://www.zhihu.com/question/313971223/answer/628236155)
@@ -104,8 +115,8 @@
   这种想法在此处我不能断定是对是错; 不过我们来看这一下这篇文章
   [计算机是如何显示一个像素的](https://zhuanlan.zhihu.com/p/32136704),
   如果你看完了, 大概会有一个和我相同的看法, 那就是计算机在显示设备上渲染一个像素之前,
-  几乎做的所有工作都是在 CPU / 内存 / 显卡 这几个设备之间来进行协同工作的,
-  最后在显示设备上显示, 是在所有的软件层面的工作完成之后, 才和显示设备对接的,
+  几乎所有工作都是在 CPU / 内存 / 显卡 几个设备之间协同处理的,
+  在此其间并没有关联显示设备, 所有软件层面的工作完成之后才和显示设备对接,
   也就是说至少在这里, 它们没有绝对的依赖关系.
 
 #### 1.1 `逻辑像素(logic point / device point / device pixel)` / `点(points)`:
@@ -178,7 +189,7 @@
   `逻辑像素`(414 x 896 points) 的 3 倍 (3dpr).
 
   我们不用关心在不同设备上一个 `CSS 像素` 会匹配多少个 `物理像素`,
-  浏览器会根据 `DPR (device point(/pixel) ratio)` 即 `渲染像素` 与
+  浏览器会根据 `DPR (device point(/pixel) ratio 设备像素比)` 即 `渲染像素` 与
   `逻辑像素` 的比, 为我们适配:
     + 我们仍拿图 2-1 的 iPhone Xs Max 来作计算一下 `dpr` -->
       $1242 \div 414 = 3$ 即我们所说的 **三倍屏, 3X** 意思就是 `3dpr`. 
@@ -252,11 +263,53 @@
 
 ### 4. 面向 `逻辑像素` 开发的基本流程
 $\quad$ Tip: 请先看完 [2. CSS 中的 px 到底是什么?]().
-- (1) 在 `head` 中设置 `width=device-with` 的 `viewport`.
+- (1) 在 `head` 中设置 `width=device-width` 的 `viewport`.
 - (2) 在 CSS 中使用 `px`.
 - (3) 在适当的场景使用 flex 布局, 或者配合 `vw` 进行自适应.
 - (4) 在**跨设备类型的时候** (PC $\Longleftrightarrow$ 手机
   $\Longleftrightarrow$ 平板) 使用媒体查询.
+  例如下面的代码通过媒体查询定义几套样式:
+  ```css
+    /* - max-width(最大宽度: 即不大于) */
+    @media screen and (max-width: 960px) {
+        body {
+            background-color: #ff6699;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        body {
+            background-color: #00ff66;
+        }
+    }
+    @media screen and (max-width: 550px) {
+        body {
+            background-color: #6633ff;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        body {
+            background-color: #ffff00;
+        }
+    }
+  ```
+  上面的代码分别对分辨率为 0 ~ 320px, 320px ~ 550px, 550px ~ 768px 以及
+  768px ~ 960px 的屏幕设置了不同的背景颜色.
+
+  如果我们想给不同屏幕的手机设置不同的 @2x / @3x (2倍图 / 3倍图) 高清图,
+  在不同分辨率的媒体查询内定义即可; 不过对于 `img` 标签也有另外一种方式,
+  即使用 `srcset` 配合 1x / 2x 像素密度描述符来添加高清图.
+  `srcset` 可以根据不同的 `dpr(设备像素比)` 来拉取对应尺寸的图片. 例如:
+  ```html
+    <div class="illustration">
+        <img src="illustration-small.png"
+            srcset="images/illustration-small.png 1x,
+                    images/illustration-big.png 2x"
+            style="max-width: 500px"
+            >
+    </div>
+  ```
+  不过总体来说, `srcset` 也不是一种完美的解决方案, 更多内容请参考:
+  `《高新能Web开发实战》` 第 5 章 -- 响应式图片.
 - (5) 在跨设备类型, 如果交互差异很大的情况下, 考虑分开项目开发.
   
   那么 `viewport` `width=device-width` 是什么意思? 其实就是让 `viewport`

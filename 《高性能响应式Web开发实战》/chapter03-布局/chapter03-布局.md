@@ -30,14 +30,15 @@
 ### 3.1 写在编码前的话
 #### 3.1.1 写出好的代码 
 - Bob Nystrom 在他的叙述游戏开发中的设计模式的图书《Game Programming Patterns》
-  中有一段关于程序架构的描述我认为是非常精妙的:  
+  中有一段关于程序架构的描述我认为是非常精妙的:
+  
   The first key piece is that architecture is about change. Someone has
   to be modifying the codebase. If no one is touching the code -- whether
   because it's perfect and complete or so wretched no one will sully their
   editor with it -- its design is irrelevant. The measure of a design 
   is how easily it accommodates changes.  
-  译文如下:  
-  关键点是架构存在的意义是为了适应变化. 总会有人更新代码. 如果没有人再碰代码 -- 无论是
+  
+  译文:  关键点是架构存在的意义是为了适应变化. 总会有人更新代码. 如果没有人再碰代码 -- 无论是
   因为代码已经完美, 还是项目已完成, 或是代码过于糟糕而没有人愿意再编辑, 那么也就不存在
   设计的问题了. 衡量设计优劣的标尺是它适应变化的难易程度.
 - 他认为`架构存在的意义是为了适应变化`. 如果你编写的程序是一次性的, 不会再有程序员修改代码,

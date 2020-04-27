@@ -11,7 +11,7 @@
 0. HTML 知识
 1. css 的 `box-sizing` 属性
 2. box-shadow 属性:
-3. CSS 单位和使用
+3. CSS 像素`px`和相对单位`em`/`rem`/`%`/`vh|vw`
 4. css 强制换行和超出隐藏
 5. 表格清除格与格之前的间距的样式
 6. 响应式网页的头部:
@@ -75,6 +75,7 @@
       ```
 - 示例见: `./《CSS 揭秘》/2nd chapter 背景与边框/2-0 box-sizing.html`
 
+
 ### 2. `box-shadow` 属性:
 - ```css
     .box {
@@ -84,8 +85,11 @@
     }
   ```
 
-### 3 CSS 单位和使用
-- 见当前仓库: [./CSS-单位/css-utils-readme.md](File:///Users/WANG/Github-clone/CSS-grocery/./CSS-单位/css-utils-readme.md)
+
+### 3. CSS 像素`px`和相对单位`em`/`rem`/`%`/`vh|vw`
+- [./布局-Layout/css-像素px详解和布局基础.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/css-像素px详解和布局基础.md)
+- [./布局-Layout/css-相对单位.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/css-相对单位.md)
+
 
 ### 4. css 强制换行和超出隐藏
 - [参考文章](https://juejin.im/post/5b8905456fb9a01a105966b4)
@@ -165,6 +169,7 @@
     }
   ```
 
+
 ### 5. 去掉表格(Table cell)的边距并让其边重合
 - ```css
     table {
@@ -173,27 +178,32 @@
     }
   ```
 
+
 ### 6. 响应式网页的头部:
 - ```html
     <!doctype html>
     <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width,
-                user-scalabel=no, initial-scale=1.0,
+                user-scalable=no, initial-scale=1.0,
                 maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equive="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
     </head>
     <body>
-
     </body>
     </html>
   ```
-    + `viewport`: 视口;
-    + `width = device-width`: 网页宽度默认等于屏幕宽度;
-    + `initial-scale=1`: 原始缩放比例为 1.0, 即网页初始大小占屏幕面积的 100%,
-    + `maximum-scale`: 允许用户缩放到的最大比例,
-    + `user-scalable`: 允许用户是否可以手动缩放.
+  | 属性名 |  描述  |
+  |:------|:------|
+  | `viewport` | 视口 |
+  | `width = device-width` | 定义布局视口的宽度, 单位为像素. 宽度默认等于屏幕宽度(即: CSS 像素宽度); |
+  | `height` = 正整数 | 定义布局视口的高度, 单位为像素. 很少使用. |
+  | `initial-scale` = [0, 10] | 初始缩放比例, 1 表示不缩放. |
+  | `maximum-scale`= [0, 10] | 最大缩放比例|
+  | `minimum-scale`= [0, 10] | 最小缩放比例|
+  | `user-scalable` = yes/no | 允许用户是否可以手动缩放. |
+
 
 ### 7. 各种平台样式兼容问题
 - 忽略将页面中的数字识别为电话号码, 忽略 android 平台中对邮箱地址的识别
@@ -228,8 +238,10 @@
     textarea{ resize: none; }
   ```
 
+
 ### 8. Flex(弹性)布局语法
 - 见当前仓库: [CSS-grocery/布局-Layout/Flexbox-布局/README-弹性布局语法.MD](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/Flexbox-布局/README-弹性布局语法.MD)
+
 
 ### 9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
 - 见当前仓库: [CSS3-过渡-转换-动画/transition-transform-animation.md](File:///Users/WANG/Github-clone/CSS-grocery/CSS3-过渡-转换-动画/transition-transform-animation.md)
@@ -248,6 +260,7 @@
         list-style: disc outside none;
     }
   ```
+
 
 ### 11.
 - 清楚浮动的几种方式:
