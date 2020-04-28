@@ -17,14 +17,15 @@
       the authoring(vt-ing) of both is complete.
       CSS 为网页带来了样式的后期绑定(late-binding):
       直到内容(content)和样式(styles)两者的创作都完成之后, 它们才会融合在一起.
+- **axis ['æksɪs] --n.轴; 坐标轴; 轴线; 中心线.**
+    + The earth turns on its axis. 地球自转.
 
 
 ## Content
 ### 1. CSS `px` 像素概述
 - `px` 像素见: `./css-像素px详解和布局基础.md`
 
-
-### 3. CSS 相对单位
+### 2. CSS 相对单位
 - **Warning**: 下面这些所有的相对单位(relative units) 都是根据 `px` 像素而言的, 
   但 `px` 也不是绝对像素(absolute units), `px` 像素的详解见上面
   `### 1. CSS px 像素概述`.
@@ -47,7 +48,7 @@
   
   **1inch = 25.4mm = 2.54cm = 6pc = 72pt = 96px.**
   
-  因此 16px = 12pt (16 / 96 * 72). 设计时通常更熟悉点(point)的使用,
+  因此 16px = 12pt (16 / 96 * 72). 设计师通常更熟悉点(point)的使用,
   而开发人员更习惯像素.
 
 
@@ -66,14 +67,15 @@
   对于子元素的 `height` / `width` 来说, 这确实是正确的, 但是根据 CSS
   的盒模型, 除了这两个属性外, 还有 `padding` / `border` / `margin` 等等属性;
   那么这些属性设置成百分比, 是根据父元素的哪些属性呢? 此外还有 `border-radius` /
-  `translate` 等属性中的百分比由相对于什么呢? 我们使用下面的表格来分类
+  `translate` 等属性中的百分比又相对于什么呢? 我们使用下面的表格来分类
   
   | 属性 | 百分比的相对参考对象 |
   | :------ | :------ |
   | `width`/`height`/ `line-height` 的百分比 | 相对于直接父元素的`width`/`height`|
-  | 若子元素绝对定位, `top`/`bottom`/`left`/`right` 的百分比 | 相对于设置了 `position:relative` 的长辈元素 |
+  | 若子元素绝对定位(`position:absolute`), `top`/`bottom`/`left`/`right` 的百分比 | 相对于设置了 `position:relative` 的长辈元素 |
   |`margin`/`padding` 的百分比 | 无论是垂直方向还是水平方向, 都**相对于直接父元素的 `width`**, 与父元素的 `height` 无关 |
   |`border-radius`/`translate` 的百分比 | 相对于元素自身的宽度. |
+  |`background-position` 的百分比 | 需要尺寸差计算. 更多讲解见鑫旭大神的这篇[文章](https://www.zhangxinxu.com/wordpress/2015/03/background-object-position-value-percent/) |
 
 - 下面给出一个参考示例: (请自建文件在浏览器中查看.)
   ```html
@@ -126,9 +128,8 @@
 
             console.log("width:", getCss(square, "width"));  // 180px
             console.log("height:", getCss(square, "height"));  // 160px
-            
-            console.log("border-radius:", getCss(square, "borderRadius"));  // 5%
 
+            console.log("border-radius:", getCss(square, "borderRadius"));  // 5%
             console.log("line-height:", getCss(square, "lineHeight"));  // 160px
 
             console.log("margin-top:", getCss(square, "marginTop"));  // 36px
@@ -137,23 +138,45 @@
     </body>
     </html>
   ```
+  **Additional Info**: 不知你有没有注意到, 上面 `border-radius` 的输出是
+  `5%` 而不是 `px`, 实际上 `border-radius` 可能要比我们知道的复杂,
+  我们都知道 `border-radius` 是下面 4 个属性的简写:  
+  (tip: (左)上 --> 右(上) --> 下(右) --> (下)左 => `上/右/下/左`)
+  ```css
+    .box {
+        border-top-left-radius: 水平半径 垂直半径;;
+        border-top-right-radius: 水平半径 垂直半径;;
+        border-bottom-right-radius: 水平半径 垂直半径;;
+        border-bottom-left-radius: 水平半径 垂直半径;;
+    }
+  ```
+  如你所见, 这 4 个属性的值却是由 2 个值组成的, 只是我们平时写的是复合值,
+  例如: `border-top-left-radius:4px`.
+  
+  水平半径和垂直半径如下图:
+
+  <img src="./css-layout-images/border-radius.png"
+    style="margin-left: 0; border-radius: 4px;
+        box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+  `border-radius` 更详细讲解请见鑫旭大神的这篇文章
+  [CSS3 border-radius知多少？](https://www.zhangxinxu.com/wordpress/2015/11/css3-border-radius-tips/?shrink=1)
+
 - 百分比(`%`)单位的缺点:
     + (1) 计算困难.
-    + (2) 元素各个属性, 设置相对百分比的对象不确定, 比如 `width`/`height`
+    + (2) 元素各个属性, 设置百分比的相对对象不确定, 比如 `width`/`height`
       相对于父元素的 `width`/`height`, 而 `margin`/`padding`
       不管垂直还是水平方向都相对父元素的 `width`, `border-radius`
       则是相对于元素自身等等, 造成使用百分比单位容易使布局问题变得复杂.
 
 
 #### 3.2  单位 `em`
+##### (1) 在网页中给字体设置 `em` 单位
 - 一般情况下, 浏览器的默认字体大小是**16px**, 所有未经调整的浏览器都符合
   `1em = 16px`.
-  
-  目前(2020 年), 我用 MacOS 下的 Chrome 查看 "虎嗅", "Vue 官网",
-  "WikiWand" 网站时, 发现默认的字体大小都是 16px, 也就是说他们并没有修改默认字体,
-  但仍然有很多网站的默认字体是 14px, 所以网站中究竟设置多大字体,
-  还是根据设计师的要求来. 接下来我们分别说一下这两种尺寸的使用:
-    + (1) 设置默认字体是 14px. 为了在写代码时方便, 我们可以在 CSS 中这样设置:
+  目前已有很多网站使用浏览器的默认字体大小, 但仍有很多网站改为 14px,
+  所以网站中设置多大字体, 还是根据设计师的要求来吧. 下面说一下通用设置:
+    + (1) 设置默认字体为 `14px`:
       ```css
         html {
             /* - 默认 16px = 100%, 那么 1px = 6.25%; 10px = 62.5% */
@@ -166,10 +189,10 @@
             font-size: 1.4em;
         }
       ```
-    + (2) 设置默认字体是 16px:
+    + (2) `16px` 为默认字体大小, 不用设置. 下面为一个参考设置(`typo.css`):
       ```css
         /* - 由于浏览器默认字体就是 16px, 所以此处直接写 1em = 16px 即可,
-         *   1em = 16px       1.6px = 0.1em      0.25em = 4px
+         *   1em = 16px       0.1em = 1.6px      0.25em = 4px
          *   1px = 0.0625em;  10px = 0.625em;    14px = 0.875em
          *   16px = 1em;      18px = 1.125em;    20px = 1.25em
          *   30px = 1.5em     40px = 2.5em       60px = 3.75em
@@ -181,8 +204,146 @@
             Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
         }
       ```
-- CSS 为网页带来了样式的后期绑定(late-binding): 直到内容(content) 和
-  样式(styles) 两者的创作都完成之后, 它们才会融合在一起.
+##### (2) `em` 值相对元素
+- `em` 单位的使用, 总体来说是比 `%`(百分号) 容易, 它没有 `%` 那么多相对参考对象.
+
+  子元素的 `em` 值相对于父元素的 `font-size` 来计算.
+  如果某个 p 元素设置 `font-size: 12px`, 在它内部的 span 标签, 根据有没有设置
+  `font-size` 分为 2 种情况:
+    + (1) 如果子元素 span 没有设置 `font-size` 就会继承父元素的 `font-size` 值;
+      此种情况是最容易理解的, 此时子元素可设置的所有属性, 都是根据父元素的
+      `12px` 为基础来进行计算的, 包括 `width`/ `height` / `line-height` /
+      `padding` / `margin` / ......
+    + (3) 如果子元素设置字体大小为 `font-size: 1.3em`
+      (因为父元素的 1em = 12px 所以 1px = 1 $\div$ 12 = 0.083em;
+      1.3em = 16px), 到此时, 浏览器已经计算出当前 span 的字号大小为 16px,
+      那么接下来在 span 内部的其他属性值都会根据这个 16px = 1em 再去计算其他值,
+      是的, 你没有看错, 所有的其他值: `width`/ `height` / `line-height` /
+      `padding` / `margin` / `border-radius` / `border` / ......
+
+      此处给一个《CSS揭秘》第一章的示例: 
+      ```vue
+        <template>
+            <div id="example-121" class="default-div">
+                <h2>1.2.1 尽量减少代码重复</h2>
+                <button class="bad-example-btn">Yes!</button>
+                <button class="good-example-btn">Yes!</button>
+            </div>
+        </template>
+        <style scoped>
+            button {
+                margin: 10px;
+            }
+            .bad-example-btn {
+                padding: 6px 16px;
+                border: 1px solid #446d88;
+                background: #58a linear-gradient(#77a0bb, #58a);
+                border-radius: 4px;
+                box-shadow: 0 1px 5px gray;
+                color: white;
+                text-shadow: 0 -1px 1px #335166;
+                font-size: 20px;
+                line-height: 30px;
+            }
+            .good-example-btn {
+                /* - 假设父级元素的字体大小是 16px
+                *   1em = 16px ==> 1.6px = 0.1em ==> 0.25em = 4px
+                *   1px = 0.0625em
+                *   10px = 0.625em
+                *   20px = 1.25em,
+                *   30px = 1.875em
+                *
+                * - 当前 font-size 根据父元素 16px 换打算后 20px = 125% = 1.25em.
+                *   那么从此刻开始, 请牢记下面 class 的 width / height /
+                *   border-radius / padding / margin / border-radius ......
+                *   都会根据 1em = 20px 来计算, 此时
+                *   1px = 0.05em  2px = 0.1em   3px = 0.15em
+                *   4px = 0.2em   5px = 0.25em  6px = 0.3em
+                *   10px = 0.5em  20px = 1em    30px = 1.5em
+                */
+                font-size: 125%;
+                /* - 此处为了查看效果, 更改了样式. */
+                line-height: 1.5;     /* 30px */
+                width: 4em;           /* 80px */
+                height: 2em;          /* 40px */
+                padding: .3em .8em;
+                border-radius: .2em; /* 4px */
+                border: 1px solid #446d88;
+                background: #58a linear-gradient(#77a0bb, #58a);
+            }
+        </style>
+      ```
+##### (3) 使用 `em` 单位的另一个问题: 字号收缩问题.
+- 当我们在多层嵌套的元素内设置 `em` 单位的字号时, 会产生意想不到的效果.
+  要弄清楚每个元素的实际值, 需要查看元素一层一层往上查看级元素的 `font-size` 值.
+  当我们在多个 DOM 层级间设置了多个 `em` 单位的 `font-size`, 那计算起来真是灾难.
+  
+  下面是一个在第一个 ul 上设置了 0.8em 字号的嵌套 ul 列表, 然而内部嵌套的 ul
+  文字在逐步缩小! 正是因为 `em` 带来的这一类烦人的问题, 开发者才对 `em` 避而远之.
+
+  示例效果图:
+  
+  <img src="./css-layout-images/font-size-em-ul.png"
+    style="margin-left: 0; border-radius: 4px; width:66%;">
+
+  代码如下:
+  ```css
+    .wrapper {
+        font-size: 42px;
+        min-width: 320px;
+        min-height: 260px;
+        background: #d49499;
+        border-radius: 4px;
+        padding: 20px;
+        margin: 20px;
+        float: left;
+        line-height: 100%;
+    }
+    .wrapper ul {
+        margin-left: 30px;
+        font-size: 0.8em;
+        list-style:disc;
+    }
+  ```
+  ```html
+    <div class="wrapper">
+        <ul class="first-ul">
+            <li class="item1">li item:1
+                <ul>
+                    <li>sub li num:1</li>
+                    <ul>
+                        <li>sub sub li num:1
+                            <ul>
+                                <li>sub sub sub li num:1</li>
+                                <ul>
+                                    <li>sub sub sub sub li num:1</li>
+                                </ul>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </li>
+        </ul>
+    </div>
+  ```
+  那么如何解决嵌套 ul 字体在逐层缩小的问题提, 只需要在嵌套列表的第二个 ul 里设置
+  `font-size: 1em` 即可:
+  
+  ```css
+    .wrapper ul ul {
+        font-size: 1em;
+    }
+  ```
+##### (4) 应该在什么情况下使用 `em` 单位?
+- 总体上来说, 我们在网页中用到的一般是 14px ~ 26px 之间的字体,
+  那么在几种固定尺寸的字体之间来设置 `em` 单位的字体, 不是太复杂的事情,
+  `em` 在自适应的页面中, 比如:
+    - 液晶显示屏 $\iff$ 笔记本;
+    - 笔记本 $\iff$ 平板
+    - 移动 Mobile
+  
+  都是合适的布局单位, 对于一个页面要适应所有屏幕的情况, 我们只能使用 @media(媒体查询),
+  再配合 `px` / `em` / `vh/vw` 根据不同需求具体对待.
 
 
 #### 3.3 `rem` 

@@ -34,7 +34,7 @@
     }
 
     /* --------- */
-    
+
     h1, h2, h3, h4 {
         margin: 5px 0;
         font-size: 1.4em;
@@ -50,20 +50,7 @@
         outline: none;
         box-shadow: none;
     }
-    button {
-        line-height: 16px;
-        padding: 3px 6px;
-        margin: 6px 6px 6px 0;
-        cursor: pointer;
-        border-radius: 4px;
-        text-align: center;
-        background-color: #fafafa;
-        border: none;
-    }
-    button:hover {
-        background-color: #e2e6ea;
-        color: #222629;
-    }
+
     input {
         min-width:120px;
         line-height: 26px;
@@ -82,5 +69,5 @@
         background: #fafafa;
         overflow: hidden;
     }
-    
+
 </style>

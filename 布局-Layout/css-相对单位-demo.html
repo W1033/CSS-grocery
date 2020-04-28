@@ -12,7 +12,7 @@
         .box {
             margin: 6px 0 6px 12px;
             width: 360px;
-            height: 320px;
+            height: 260px;
             padding: 0 10px;
             float: left;
             background: lightsalmon;
@@ -29,13 +29,54 @@
             overflow: hidden;
             float: left;
             background-color: #33cc99;
-            border: 1px solid #cccc00;
+            /*border: 1px solid #cccc00;*/
+        }
+        
+        .wrapper {
+            font-size: 20px;
+            min-width: 320px;
+            min-height: 260px;
+            background: #d49499;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px;
+            float: left;
+            line-height: 100%;
+        }
+        .wrapper ul {
+            margin-left: 30px;
+            /* - 20 x 0.8 = 16px */
+            font-size: 0.8em;
+            list-style:disc;
+        }
+        .wrapper ul ul {
+            font-size: 1em;
         }
     </style>
 </head>
 <body>
     <div class="box">
         <p class="square">方块</p>
+    </div>
+
+    <div class="wrapper">
+        <ul class="first-ul">
+            <li class="item1">li item:1
+                <ul>
+                    <li class="sub-item1">sub li num:1</li>
+                    <ul>
+                        <li class="sub-sub-item1">sub sub li num:1
+                            <ul>
+                                <li class="sub-sub-sub-item1">sub sub sub li num:1</li>
+                                <ul>
+                                    <li class="sub-sub-sub-sub-item1">sub sub sub sub li num:1</li>
+                                </ul>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </li>
+        </ul>
     </div>
 
     <script>
@@ -49,6 +90,9 @@
         console.log("height:", getCss(square, "height"));  // 160px
 
         console.log("border-radius:", getCss(square, "borderRadius"));  // 5%
+        console.log("border-top-left-radius:", getCss(square, "borderTopLeftRadius"));  // 5%
+        console.log("border-top-left-radius-left:", getCss(square, "borderTopLeftRadiusLeft"));  // 5%
+        console.log("border-top-right-radius:", getCss(square, "borderTopRightRadius"));  // 5%
 
         console.log("line-height:", getCss(square, "lineHeight"));  // 160px
 
