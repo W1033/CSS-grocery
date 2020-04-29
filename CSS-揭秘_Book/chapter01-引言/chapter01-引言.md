@@ -190,6 +190,7 @@
   <img src="./chapter01-images/1-9-10-11-12.png"
     style="margin-left: 0; border-radius: 4px; width: 50%;
         box-shadow: 1px 1px 3px 2px #e5e5e5">
+
 - 与此类似, 在字体设计领域广为人知的是, 圆形的字形(比如 0) 与矩形字形相比,
   需要稍微放大一些, 因为我们倾向于把圆形感知得比其实际尺寸更小一些.
   你也可以在 `图 1-10` 中体验一下.
@@ -247,6 +248,10 @@
       加上常规的文本折行行为, 都可以实现这一点.
     + (6) 在使用多列文本时, 指定 `column-width`(列宽) 而不是指定
       `column-count`(列数), 这样它就可以在较小的屏幕上自动显示为单列布局.
+
+  <img src="./chapter01-images/tips-px-em.png"
+    style="margin-left: 0; border-radius: 4px; width:50%;
+        box-shadow: 1px 1px 3px 2px #e5e5e5">
     
   总的来说, 我们的思路是尽最大努力实现弹性可伸缩的布局,
   并在媒体查询的各个断点区间内指定相应的尺寸.
