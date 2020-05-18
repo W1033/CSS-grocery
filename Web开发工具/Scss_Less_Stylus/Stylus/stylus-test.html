@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../typo.css">
+    <style>
+        .container {
+            width: 90%; 
+            min-height: 260px;
+            background: #fafafa;
+            border-radius: 6px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        button {
+            border-radius: 1px 2px/3px 4px;
+            padding: 5px;
+            border: 2px solid #66cc99;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" data-cus="foo bar baz">
+        Container
+        <div class="foo">
+            <p class="bar">
+                <p class="baz">
+                    <input type="text">
+                </p>
+            </p>
+        </div>
+        <button>我是按钮</button>
+    </div>
+
+    <script type="text/javascript">
+        let attr = document.querySelector('.container');
+        console.log(attr.getAttribute("data-cus"));
+    </script>
+</body>
+</html>

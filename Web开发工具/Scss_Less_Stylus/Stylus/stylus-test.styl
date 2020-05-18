@@ -1,0 +1,145 @@
+*
+    margin 0
+    padding 0
+
+.box
+    width 100px
+    height 100px
+    background #66cc99
+
+textarea
+input
+    color #a7a7a7
+    &:hover
+        color #000
+
+box-shadow()
+    -webkit-box-shadow arguments
+    -moz-box-shadow arguments
+    box-shadow arguments
+    html.ie8 &,
+    html.ie7 &,
+    html.ie6 &
+        border 2px solid arguments[length(arguments) - 1]
+body
+    #login
+        box-shadow 1px 1px 3px #eee
+
+
+font-size = 14px
+font-stack = "Lucida Grande", Arial, sans-serif
+
+body
+    font font-size font-stack
+
+
+#logo
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 150px
+    height: 80px
+    margin-left: -(@width / 2)
+    margin-top: -(@height / 2)
+
+position()
+    position: arguments
+    z-index: 1 unless @z-index
+
+// #my-logo
+//     z-index: 20
+//     position: absolute
+// #your-logo
+//     position: absolute
+
+
+// vendor(prop, args)
+//     -webkit-{prop}: args
+//     -moz-{prop}: args
+//     {prop}: args
+// border-radius()
+//     vendor('border-radius', arguments)
+// box-shadow()
+//     vendor('box-shadow', arguments)
+// button
+//     box-shadow: 1px 1px 2px 3px #fafafa
+//     border-radius: 1px 2px/3px 4px
+
+
+// table
+//     for row in 1 2 3 4 5
+//         tr:nth-child({row})
+//             height:10px*row
+
+
+// list = 1 2 3
+// .lists
+//     z-index: list[0]    // => 1
+    
+// .lists-test2
+      // => 3. 3(list.length) + (-1) = 2 => list[2] = 3 
+//     z-index: list[-1]   
+
+
+// add(a, b = unit(a, px))
+//    return a + b
+// .default-parameters
+//     padding: add(15px)  
+
+
+// subtract(a, b)
+//     return a - b
+// .named-parameter
+//         padding: subtract(b: 10, a: 25)
+
+
+// add(a, b = a)
+//     a = unit(a, px)
+//     b = unit(b, px)
+//     return a + b
+
+// .fun-body
+//     font-size: add(15%, 10deg)
+
+
+// sizes()
+//     return 15px 10px
+
+// .multi-returns
+//     font-size: sizes()[0]
+
+
+// add(a, b)
+//     return a + b
+// sub(a, b)
+//     return a - b
+// invoke(a, b, fn)
+//     return fn(a, b)
+// .fun
+//     padding: invoke(5, 10, add)
+//     margin: invoke(5, 10, sub)
+
+
+// sort(list, fn = null)
+//     // default sort function
+//     if fn == null
+//         fn = @(a, b) {
+//             a > b
+//         }
+//     // bubble sort
+//     for $i in 1..length(light) - 1
+//         for $j in 0..$i - 1
+//             if fn(list[$i], list[$j])
+//                 $temp = list[$i]
+//                 list[$i] = list[$j]
+//                 list[$j] = $temp
+//     return list
+// sort('e', 'c', 'f', 'a', 'b', 'd')  // => 'a', 'b'', 'c', 'd', 'e', 'f'
+
+// sort(5 3 6 1 2 4, @(a, b){
+//     a < b
+// })      // => 6 5 4 3 2 1
+
+
+.red-color
+    color: red(#c00, 255)
