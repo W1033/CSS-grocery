@@ -1,7 +1,9 @@
 # Stylus 
 
-- [Stylus 官网文档]()
+- [Stylus 官网文档](https://stylus.bootcss.com/)
 
+- **Important Warning:** 下面的笔记本不是完整文档,
+  只是一些常用语法的书写, 完整文档请参考官网文档.
 
 ## Catalog
 0. Stylus 安装
@@ -121,6 +123,14 @@
     + by contrast. 对照之下.
     + What a contrast(n) between them! 他们之间的差别多大!
     + contrast(vt) two things. 使两物相对比.
+- **delimiter [dɪ'lɪmɪtɚ] --n.分隔符; 定界符**
+    + field demimiter. 字段分隔符.
+    + boundary delimiter. 边界分隔符.
+- **literal ['lɪt(ə)r(ə)l] --adj.文字(上)的, 字面的, 逐字的**
+    + a literal error. 错字, 排错字
+    + in the literal sense of the word. 按那字的字面意义. 
+    + a literal translation. 逐字翻译, 直译. 
+
 
 
 ## 前置知识 (Pre-knowledge)
@@ -873,6 +883,8 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
   ```
 
 ##### 1.7 Built-in Functions(内置函数)
+$\quad$ **WARNING:** 这个章节的笔记并没有做完, 因为内置函数实在太多了,
+而且也不知道这些到底会不会用得到, 所有函数的列表已经列出, 如果将来有用自己查找对应函数即可!
 - <span style="color: red">(1) Color Functions(颜色函数)</span>
     + (1.1) `red(color[, value])`: 返回给定颜色中的红色比重,
       或将红色比重值设置为可选的第二个参数.
@@ -999,7 +1011,7 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
     + (1.24) `tint(color, amount)`: 将给定的颜色与白色混合. 
       ```stylus
         tint(#fd0cc7, 66%)          // => #feaceb
-      ``` 
+      ```
     + (1.25) `shade(color, amount)` 将给定的颜色与黑色混合
       ```stylus
         shade(#fd0cc7, 66%)         // => #560443
@@ -1014,34 +1026,307 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
       根据 `Lea Verou` 的 "对比度" 脚本. 略......
     + (1.28) `transparentify(top[, bottom, alpha])`: 透明度有关. 略...
 - <span style="color: red">(2) Fath Functions(路径函数)</span>
-    + (2.1) `basename(path[, ext])`: 
-    + (2.2) `dirname(path)`:
-    + (2.3) `extname(path)`:
-    + (2.4) `pathjoin(...)`
-- <span style="color: red">(3) List / Hash Functions(列表 / 哈希 函数)</span>
+    + (2.1) `basename(path[, ext])`: 返回路径的 basename(基本名).
+      第二个参数是可选的, 作用为移除拓展名.
+      ```stylus
+        basename('images/foo.png')  // => "foo.png"
+        basename('images/foo.png', '.png')  // "foo"
+      ```
+    + (2.2) `dirname(path)`: 返回路径的目录名.
+      ```stylus
+        dirname('images/foo.png')   // => "images"
+      ```
+    + (2.3) `extname(path)`: 返回路径的文件扩展名, 包括点.
+      ```stylus
+        extname('images/foo.png')   // => ".png"
+      ```
+    + (2.4) `pathjoin(...)`: 执行拼接路径
+      ```stylus
+        pathjoin('images', 'foo.png')   // => "images/foo.png"
+
+        path = 'images/foo.png'
+        ext = extname(path)
+        pathjoin(dirname(path), basename(path, ext) + _thumb + ext)
+        // => "images/foo_thumb.png"
+      ```
+- <span style="color: red">(3) List/Hash Functions(列表/哈希 函数)</span>
+    + (3.1) `push(expr, args...)`: 把第二个及其以后的参数(arguments)
+      传给第一个表达式(expression). 别名为 `append()`
+      ```stylus
+        nums = 1 2
+        // - tip: 实际上就是推入项到数组. 这里不得不说一下 stylus 写法的问题,
+        //   上面的 nums = 1 2 直接写成 nums = [1, 2] 不好吗? 这样最少和下面
+        //   推入 3, 4, 5 这样每项之间添加逗号的写法是一致的, 现在感觉为强行省略而省略.
+        push(nums, 3, 4, 5)
+      ```
+    + (3.2) `pop(expr)`: 从表达式的末尾推出一个值.
+      ```stylus
+        nums = 4 5 3 2 1
+        num = pop(nums)
+        nums                    // => 4 5 3 2
+        num                     // => 1
+      ```
+    + (3.3) `shift(expr)`: 从表达式的开头推出一个值.
+      ```stylus
+        nums = 4 5 3 2 1
+        num = shift(nums)
+        nums                    // => 5 3 2 1
+        num                     // => 4
+      ```
+    + (3.4) `unshift(expr, args...)`: 将一个或多个值添加到表达式的开头.
+      又名 `prepend()`
+      ```stylus
+        nums = 4 5
+        unshift(nums, 3, 2, 1)
+        nums                    // => 1 2 3 4 5
+      ```
+    + (3.5) `index(list, value)`: 返回列表中要搜索值的索引(从 0 开始).
+      ```stylus
+        list = 1 2 3
+        index(list, 2)              // => 1
+        index(1px solid red, red)   // => 2
+      ```
+    + (3.6) `keys(pairs)`: 返回给定键值对中的键
+      ```stylus
+        pairs = (one 1) (two 2) (three 3)
+        keys(pairs)                 // => one two three
+      ```
+    + (3.7) `values(pairs)`: 返回给定键值对中的值
+      ```stylus
+        pairs = (one 1) (two 2) (three 3)
+        values(pairs)               // => 1 3 43
+      ```
+    + (3.8) `list-separator(list)`
+    + (3.9) `length([expr])`: 返回给定表达式的长度
+    + (3.10) `last(expr)`: 返回给定表达式的最后一个值.
 - <span style="color: red">(4) Unit Functions(单元函数)</span>
+    + (4.1) `typeof(node)`: 字符串性质返回 `node` 类型. 别名有 `type-of`
+      和 `type`,
+      ```stylus
+        type(12)            // => 'unit'
+        typeof(12)          // => 'unit
+        typeof(#fff)        // => 'rgba'
+        type-of(#fff)       // => 'rgba'
+      ```
+    + (4.2) `unit(val[, type])`: 返回 `unit` 类型的字符串或空字符串,
+      或者赋予 `type` 值而无需单位转换.
+      ```stylus
+        unit(10)            // => ''
+        unit(15in)          // => 'in'
+        unit(15%, 'px')     // => 15px
+        unit(15%, px)       // => 15px
+      ```
+    + (4.3) `percentage(num)`
 - <span style="color: red">(5) Math Functions(数学函数)</span>
+    + (5.1) `abs(unit)`: 绝对值.
+    + (5.2) `ceil(unit)`: 向上取整
+    + (5.3) `floor(unit)`: 向下取整
+    + (5.4) `round(unit)`: 四舍五入取整
+    + (5.5) `sin(angle)`: 
+    + (5.6) `cos(angle)`
+    + (5.7) `tan(angle)`
+    + (5.8) `min(a, b)`: 取较小值
+    + (5.9) `max(a, b)`: 取较大值
+    + (5.10) `even(unit)`: 是否为偶数
+    + (5.11) `odd(unit)`: 是否为奇数
+    + (5.12) `sum(nums)`: 求和
+    + (5.13) `avg(nums)`: 求平均数
+    + (5.14) `range(start, stop[, step])`
+    + (5.15) `base-convert(num, base, width)`
 - <span style="color: red">(6) String Functions(字符串函数)</span>
+    + (6.1) `match(pattern, string[, flags])`: 检测 `string`
+      是否匹配给定的 `pattern`(模式)
+      ```stylus
+        match('^foo(bar)?', foo)            // => true
+        match('^foo(bar)?', foobar)         // => true
+      ```
+    + (6.2) `replace(pattern, replacement, val)`
+    + (6.3) `join(delim, vals...)`: 把给定的值使用分隔符(delimiter)连接 
+    + (6.4) `split(delim, val)`
+    + (6.5) `substr(val, start, length)`
+    + (6.6) `slice(val, start[, end])`
+    + (6.7) `unquote(str | ident)`: 去除给定 string 的引号, 返回字面量节点
+    + (6.8) `convert(str)`
+    + (6.9) `s(fmt, ...)`
 - <span style="color: red">(7) Utility Functions(实用函数)</span>
+    + (7.1) `called-from` 属性
+    + (7.2) `current-media()`
+    + (7.3) `+cache(keys...)`
+    + (7.4) `+prefix-classes(prefix)`
+    + (7.5) `lookup(name)`
+    + (7.6) `define(name, expr[, global])`
+    + (7.7) `operate(op, left, right)`: 在左(left)和右(right)
+      操作对象上执行给定的操作(operation).
+    + (7.8) `selector()`
+    + (7.9) `selector-exists(selector)`
+    + (7.10) `opposite-position(positions)`: 返回给定位置(position)
+      相反内容.
+    + (7.11) `image-size(path)`: 返回指定路径(path) 图片的宽(width)和
+      高(height). 向上查找路径的方法和 `@import` 一样, `paths` 设置的时候改变.
+    + (7.12) `embedurl(path[, encoding])`
+    + (7.13) `add-property(name, expr)`
 - <span style="color: red">(8) Console Functions(控制台函数)</span>
+    + (8.1) `warn(msg)`: 使用给定的信息, 发出警告, 并不退出.
+    + (8.2) `error(msg)`: 使用给定的信息, 发出错误, 并退出.
+    + (8.3) `p(expr)`: 检查给定的表达式
 - <span style="color: red">(8) External File Functions(外部文件函数)</span>
-##### 1.8 Rest parameters (剩余参数)
+  
+    + (9.1) `json(path[, options])`
 
+##### 1.8 Rest parameters (剩余参数 / 其余参数)
+- <span style="color: red">(1) `args...`</span> Stylus 支持 `name...`
+  形式的剩余参数. 这在处理浏览器私有属性, 如 `-moz` 或 `-webkit` 的时候很有用. 
 
+  下面这个例子中, 所有的参数(1px, 2px, ...)都被一个 args 参数给简单消化了:
+  ```stylus
+    box-shadow(args...)
+        -webkit-box-shadow args
+        -moz-box-shadow args
+        box-shadow args
+    #log
+        box-shadow 1px 2px 5px #eee
+  ```
+  生成为:
+  ```css
+    #login {
+        -webkit-box-shadow: 1px 2px 5px #eee;
+        -moz-box-shadow: 1px 2px 5px #eee;
+        box-shadow: 1px 2px 5px #eee;
+    }
+  ```
+  如果我们想指定特定的参数, 如 `x-offset`, 我们可以使用 `args[0]`, 或者,
+  我们可能希望重新定义混入.
+  ```stylus
+    box-shadow(offset-x, args...)
+        got-offset-x offset-x
+        -webkit-box-shadow args
+        -moz-box-shadow args
+        box-shadow args
+    #log
+        box-shadow 1px 2px 5px #eee
+  ```
+  生成为:
+  ```css
+    #login {
+        got-offset-x: 1px;
+        -webkit-box-shadow: 1px 2px 5px #eee;
+        -moz-box-shadow: 1px 2px 5px #eee;
+        box-shadow: 1px 2px 5px #eee;
+    }
+  ```
+- <span style="color: red">(2) `arguments`</span> `arguments`: 
+  `arguments` 变量可以实现表达式的精确传递, 包括逗号等等.
+  这可以弥补 `args...` 参数的一些不足, 见下面的例子:
+  ```stylus
+    box-shadow(args...)
+        -webkit-box-shadow args
+        -moz-box-shadow args
+        box-shadow args
+    #login
+        box-shadow #ddd 1px 1px, #eee 2px 2px 
+  ```
+  生成为:
+  ```css
+    #login {
+        -webkit-box-shadow: #ddd 1px 1px #eee 2px 2px;
+        -moz-box-shadow: #ddd 1px 1px #eee 2px 2px;
+        box-shadow: #ddd 1px 1px #eee 2px 2px;
+    }
+  ```
+  逗号被忽略了, 我们现在使用 `arguments` 重新定义这个混合书写.
+  ```stylus
+    box-shadow()
+        -webkit-box-shadow arguments
+        -moz-box-shadow arguments
+        box-shadow arguments
+    #login
+        box-shadow #ddd 1px 1px, #eee 2px 2px 
+  ```
+  生成为:
+  ```css
+    #login {
+        -webkit-box-shadow: #ddd 1px 1px, #eee 2px 2px;
+        -moz-box-shadow: #ddd 1px 1px, #eee 2px 2px;
+        box-shadow: #ddd 1px 1px, #eee 2px 2px;
+    }
+  ```
+  现在, 结果便是我们想要的了.
 ##### 1.9 注释 (comment)
-
+$\quad$ Stylus 支持三种注释方式: 单行注释、多行注释和多行缓冲注释.
+- <span style="color: red">(1) 单行注释</span>: 单行注释和 JavaScript
+  中的注释方式一样, 不会输出到最终的 CSS 中:
+  ```stylus
+    // I'm a comment!
+    body
+        padding 5px // some awesome padding
+  ```
+- <span style="color: red">(2) 多行注释</span>: 多行注释看起来有点像 CSS
+  的常规注释. 然而, 它们只有在 `compress` 选项未被启用的时候才会被输出.
+  ```stylus
+    /*
+     * Adds the given numbers together
+     */
+     add(a, b)
+        return a + b
+  ```
+- <span style="color: red">(3) 多行缓冲注释</span>: 以 `/*!`
+  开头的多行注释将被输出. 这其实是告诉 stylus 无论是否压缩(开启 `compress` 选项)
+  都直接输出此注释.
+  ```stylus
+    /*!
+     * Adds the given numbers together
+     */
+     add(a, b)
+        return a + b
+  ```
 
 ##### 1.10 Conditionals (条件句)
+$\quad$条件语句提供对静态语言的控制流, 并提供条件导入(), mixin, 函数等。以下示例仅是示例, 不建议使用:)
 
+如果/否则, 如果/否则
+if条件可以按您期望的那样工作, 只需接受一个表达式, 则在为true时评估以下块。典型的else, if和else标记与if一起用作备用。
 
 ##### 1.11 Hashes (哈希)
+- (1) 定义:
+  可以使用大括号来定义哈希对象并用冒号来区分键和值:
+  ```stylus
+    foo = {
+        bar: baz,
+        'baz': raz,
+        '0': rrr
+    }
+  ```
+  使用 "方括号" 和 字符串 来为其赋值:
+  ```stylus
+    foo = {}
+    foo['bar'] = baz
+    foo['baz'] = raz
+  ```
+  请注意, 然不能在花括号定义中使用变量和插值, 但可以在方括号内使用变量:
+  ```stylus
+    foo = {}
+    bar = 'baz'
+    foo[baz] = raz
 
+    foo.baz     // => raz
+  ```
+- (2) 取值: 和 js 中对象的取值方式相同, 有 2 种方式: 点表示法 和 方括号表示法.
+  ```stylus
+    foo = {bar: 'baz'}
+    foo.bar     // => "baz"
+    foo['bar']  // => "baz"
+  ```
 
 ##### 1.12 Iteration (迭代)
 
 
 ##### 1.13 `@import` and `@require`
+- Stylus支持字面 `@import` CSS, 也支持其他 Stylus 样式的动态导入.
+  ```stylus
+    @import "reset.css"
 
+    @import "~assets/stylus/variable";
+  ```
 
 ##### 1.14 `@media`
 
@@ -1065,13 +1350,53 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
 
 
 ##### 1.21 CSS Literal (CSS 字面量)
+- 不管什么原因, 如果遇到 Stylus 搞不定的特殊需求, 你都可以使用 `@css`
+  直接书写普通的 CSS 代码：
+  ```stylus
+    @css {
+        .ie-opacity {
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=25);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=25)";
+        }
+    }
+  ```
+  编译为:
+  ```css
+    .ie-opacity {        
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=25);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=25)";
+    }
+  ```
 
-
-##### 1.22 CSS Style Syntax (CSS 格式解析)
+##### 1.22 CSS Style Syntax (CSS 样式解析)
 
 
 ##### 1.23 Char Escaping (字符转码)
-
+- Stylus 能让你对字符转码. 这可以将字符变为标识符(identifiers), 继而输出为字面量. 
+  例如:
+  ```stylus
+    body
+        padding 1 \+ 2
+  ```
+  编译为:
+  ```css
+    body {
+        padding: 1 + 2;
+    }
+  ```
+  注意, 当用作属性时, stylus 需要将 `/` 用括号括起来:
+  ```stylus
+    body 
+        font 14px/1.4
+        font (14px/1.4)
+  ```
+  编译为:
+  ```css
+    body {
+        font: 14px/1.4;
+        font: 10px;
+    }
+  ```
 
 ##### 1.24 Executable (可执行的)
 
@@ -1137,13 +1462,4 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
     $font-size-medium-x = 15px
     $font-size-large = 18px
     $font-size-large-x = 22px
-```
-    ### (2.3) 在 `*.styl` 中引入其他 `*.styl` 文件
-    ```stylus
-    // - index.styl
-    @import "reset.styl"
-    @import "base.styl"
-    @import "icon.styl"
-```
-
 ```
