@@ -129,8 +129,10 @@
 #### 1.3 transition 使用基本示例
 - 示例 (1): 向宽度, 高度和转换(transform)添加过渡效果:
   ```css
-    div {
+  
+  div {
         transition: width 2s, height 2s, transform 2s;
+        transform: rotate(-45deg);
         /* 带有浏览器前缀的兼容写法省略 ... */
     }
   ```
@@ -284,7 +286,7 @@
   内的 `1.5 使用 JS 控制 transition(过渡)效果`
 
 
-### 2. CSS3 transform(转换)
+### 2. CSS3 transform(转换/变形)
 #### 2.1 transform 是什么?
 - transform(转换)是 CSS3 中具有颠覆性的一个特性, 它可以实现元素的
   `位移(translate)`, `旋转(rotate)`, `倾斜(skew)`, `缩放(scale)`,
@@ -490,7 +492,7 @@
 - 属性值解说: 
     + (1) `animation-name`
     + (2) `animation-duration`
-        
+      
         - **Notice**: (1) 和 (2) 是必选项, 且顺序固定.
     + (3) `animation-iteration-count(动画迭代次数)`
         - (1) `number` 设置一个具体的数字, 表示执行 number 次;

@@ -4,7 +4,7 @@
 
 
 #### 什么情况下用 translate() 而不用绝对定位？什么时候情况相反？
-- `trasform: translate()` translate 是 transform 的一个值。改变 transform 或 
+- `transform: translate()` translate 是 transform 的一个值。改变 transform 或 
   opacity 不会触发浏览器重新布局 (reflow) 或 重绘 (repaint), 只会触发复合
   (compositions)。而改变绝对定位会触发重新布局，进而触发重绘和复合。 transform 使浏览器为
   元素创建一个 GPU 图层，但改变绝对定位会使用 CPU。因此 translate() 更高效，可以缩短平滑
@@ -12,7 +12,7 @@
 - 当使用 translate() 时，元素仍然占据其原始空间 (有点像 position:relative;),这与改变
   绝对定位不同。
   
-#### 清楚浮动的几种方式:
+#### 清除浮动的几种方式:
 + 默认 html 布局:
     - ```html
         <div class='container'>
