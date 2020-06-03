@@ -88,27 +88,81 @@
   但不能把该属性留空. 因为 `href` 属性值为空的链接的行为跟正常链接不一样.
 
 
-
-
 ### 1. css 的 `box-sizing` 属性
 - `box-sizing`(盒子大小) 属性, 包含 2 个值:
-    + `content-box`(内容盒子): 是默认值. 如果元素为 100px,
-      那么这个元素的内容就会有 100px, 任何 `border` 和 `padding` 都会增加到元素宽度的外围.
-    + `border-box`(边框盒子): 告诉浏览器去理解你设置的 `border` 和 `padding`,
-      即这两个属性不计在默认设置的 `width` 之内.
+    + `content-box`(内容盒子): 是默认值. 元素的宽高不包含 `border` 和 `padding`.
+    + `border-box`(边框盒子):  `border` 和 `padding`
+      包含在元素的宽高之内.
       ```css
-        /* - apply a natural box layout model to all elements, 
-         *   but allowing components to change */
         html {
-            box-sizing: border-box;
-        }
-        html.borderbox *, html.borderbox *:before, html.borderbox *:after {
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
+            /* - 现在实践规定都是使用 border-box */
             box-sizing: border-box;
         }
       ```
-- 示例见: `./《CSS 揭秘》/2nd chapter 背景与边框/2-0 box-sizing.html`
+- 示例:
+  ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                font-size: 16px;
+            }
+            .container {
+                width: 76%;
+                margin: 20px auto;
+                min-height: 460px;
+                padding: 2%;
+                background:rgb(212, 226, 172);
+                overflow: hidden;
+            }
+            .box-wrapper {
+                width: 200px;
+                height: 200px;
+                border-radius: 5px;
+                float: left;
+                margin-left: 20px;
+                background: lightsalmon;
+            }
+            .box {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                padding: 10px;
+                background: #fafafa;
+                border: 2px solid #66cc99;
+                border-radius: 4px;
+            }
+            .con-box {
+                box-sizing: content-box;
+            }
+            .bor-box {
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p class="box-wrapper">
+                <span class="box con-box">内容盒子 content-box</span>
+            </p>
+            <p class="box-wrapper">
+                <span class="box bor-box">边框盒子 border-box</span>
+            </p>
+        </div>
+    </body>
+    </html>
+  ```
+  <img src="./images-css-knowledge-set/box-sizing.png"
+        style="margin-left: 0; border-radius: 4px; width: 66%;
+                box-shadow: 1px 1px 3px 2px #e5e5e5">
 
 
 ### 2. `box-shadow` 属性:
@@ -285,9 +339,9 @@
 ### 10. `list-style`
 - ```css
     .list-item {
-        /* - MDN: 将这个元素的外部显示类型变为 block 盒，并将内部显示类型变为多个
+        /* - MDN: 将这个元素的外部显示类型变为 block 盒, 并将内部显示类型变为多个
          *   list-item inline 盒.
-         * - 上面 MDN 说的大致意思就是: 把 li 编程 block, 其内部元素显示为
+         * - 上面 MDN 说的大致意思就是: 把 li 变成 block, 其内部元素显示为
          *   display: inline.
          */
         display: list-item;
@@ -295,6 +349,46 @@
         list-style: disc outside none;
     }
   ```
+
+### 11. letter-spacing / word-spacing
+- `letter-spacing` 添加字母之间的空白; `word-spacing` 添加每个单词之间的空白.
+
+
+
+### 12. @font-face
+- `@font-face` CSS at-rule 指定用于显示文本的自定义字体; 字体可以从 "远程服务器" 或
+  "用户本地安装的字体"" 加载. 如果提供了 `local()` 函数, 从用户本地查找指定的字体名称,
+  如果找到了匹配项, 本地字体就会被使用. 否则, 字体就会使用 `url()` 函数下载的资源.
+
+  通过允许作者提供他们自己的字体, `@font-face` 让设计内容成为了一种可能,
+  同时并不会被所谓的 "网络-安全字体" 所限制. 
+  
+  例如如下示例:
+  ```html
+    <html>
+    <head>
+        <title>Web Font Sample</title>
+        <style type="text/css" media="screen, print">
+            @font-face {
+            font-family: "Bitstream Vera Serif Bold";
+            src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+            }
+            
+            body { font-family: "Bitstream Vera Serif Bold", serif }
+        </style>
+    </head>
+    <body>
+        This is Bitstream Vera Serif Bold.
+    </body>
+    </html>
+  ```
+
+
+
+
+
+
+
 
 
 ### JavaScript 动画和 CSS 动画该如果抉择

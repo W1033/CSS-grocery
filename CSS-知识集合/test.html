@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 16px;
+        }
+        .container {
+            width: 76%;
+            margin: 20px auto;
+            min-height: 460px;
+            padding: 2%;
+            background:rgb(212, 226, 172);
+            overflow: hidden;
+        }
+        .box-wrapper {
+            width: 200px;
+            height: 200px;
+            border-radius: 5px;
+            float: left;
+            margin-left: 20px;
+            background: lightsalmon;
+        }
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            background: #fafafa;
+            border: 2px solid #66cc99;
+            border-radius: 4px;
+        }
+        .con-box {
+            box-sizing: content-box;
+        }
+        .bor-box {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="box-wrapper">
+            <span class="box con-box">内容盒子 content-box</span>
+        </p>
+        <p class="box-wrapper">
+            <span class="box bor-box">边框盒子 border-box</span>
+        </p>
+    </div>
+</body>
+</html>

@@ -4,6 +4,7 @@
 ## Table Of Contents
 1. HTML5 新增元素
 2. `<img>` 标签的 `hspace` 和 `vspace` 属性可以设置图像周围的空间。
+3. `<code>` 标签
 
 ## New Words
 
@@ -65,4 +66,10 @@
   使用示例:
   ```html
     <img src="w3school.gif" hspace="30" vspace="30" />
+  ```
+
+### 3. `<code>` 标签
+- `<code>` 元素呈现一段计算机代码. 默认情况下, 它以浏览器的默认等宽字体显示. 例如:
+  ```html
+    <p>Regular text. <code>This is code.</code> Regular text.</p>
   ```
