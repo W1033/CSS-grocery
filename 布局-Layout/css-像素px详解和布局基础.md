@@ -159,7 +159,7 @@
 
 ### 2. CSS 中的 `px` 到底是什么?
 - 实际上 `px` 是 `viewport(视口大小) 像素` (也称: `CSS 像素`).
-    + 注: `viewport 像素` 如果对应到 js 中, 说的就是 `可视窗口` 即
+    + 注: `viewport 像素` 如果对应到 js 中, 说的就是 `可视窗口(viewport)` 即
       `window.innerWidth`/`window.innerHeight` 中看到的显示像素.
       `CSS 像素` 这个称呼来自《高性能响应式Web开发实战》, 因为觉得叫 `CSS 像素`
       更容易理解, 此处添加进来, 你可选择你自己喜欢的称呼.)

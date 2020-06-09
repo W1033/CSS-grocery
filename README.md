@@ -53,3 +53,11 @@
         font-family: "Open Sans",sans-serif;
     }
   ```
+- 虎嗅字体样式:
+  ```css
+    body {
+        font-family: PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+        letter-spacing: .7px;
+        font-weight: 400;
+    }
+  ```
