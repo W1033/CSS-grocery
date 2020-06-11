@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 伪类</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style>
+        .input-wrapper {
+            width: 300px; min-height: 160px; 
+            background: #fafafa; 
+            margin: 20px; padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        p { margin-bottom: 5px; }
+
+        .user-input { text-indent: 10px; font-size: 14px;}
+
+        /* - 我们使用 CSS 的 `+`(紧邻同胞选择符), 可以实现当鼠标移动到 input
+         *   的父元素 span 时, 让 span 的下一个同级节点 div.callout-wall
+         *   显示, 这样就不用添加 js 来实现元素的显示和隐藏了.
+         */
+        .user-input-parent:hover + .callout-wall { display: block; }
+
+        .callout-wall { position: absolute; top: 85px; display: none; }
+        .callout {
+            position: relative; font-size: 12px;
+            width: 220px; padding: 6px;
+            line-height: 16px; border-radius: 4px;
+            margin-top: 2px; background: #fbe5d3;
+        }
+        .callout::before {
+            content: ''; position: absolute;
+            top: -.4em; left: 1em; 
+            padding: .35em; background: inherit; 
+            border: inherit; border-right: 0; 
+            border-bottom: 0; transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="input-wrapper">
+        <p>Your username: </p>
+        <span class="user-input-parent">
+            <input type="text" class="user-input" placeholder="请输入用户名">
+        </span>
+        <div class="callout-wall">
+            <p class="callout">
+                Only letters, numbers, underscores (_) and hyphens(-) allowed!
+            </p>
+        </div>
+    </div>
+</body>
+</html>
