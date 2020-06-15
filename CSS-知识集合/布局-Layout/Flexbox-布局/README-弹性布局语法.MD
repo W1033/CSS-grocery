@@ -98,7 +98,7 @@
     + flex-direction 允许你更改伸缩容器的主轴方向, 默认是row. 它有 4 个值: 
       ```css
         .box {
-            flex-direction: row | row-reverse | colum | colum-reverse;
+            flex-direction: row | row-reverse | column | column-reverse;
         }
       ```
       | 属性值 | 描述 |
