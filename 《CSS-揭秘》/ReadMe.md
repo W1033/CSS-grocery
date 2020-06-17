@@ -2,10 +2,7 @@
 [希] Lea Verou 著  
 CSS魔法 译
 
-- Hint: 2016 年 4 月中文版本便已出版, 当前 2020 年, 其中很多 CSS
-  属性在浏览器中应该已经可以正常使用,
-  每章节笔记会尽量标出各个浏览器对不同属性的支持情况.
-- 在线浏览器兼容信息查询网站: [Can I Use...?](http://caniuse.com)
+- CSS 属性在线兼容信息查询: [Can I Use...?](http://caniuse.com)
 
 
 ## Catalog

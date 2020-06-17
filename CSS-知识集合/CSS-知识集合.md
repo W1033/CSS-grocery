@@ -90,8 +90,11 @@
   **Hint:** 实际上这个页面内导航的 ID, 在 CSS 语法中叫做 `:target` 伪类, 
   关于伪类的语法, 详见: `../《CSS设计指南》/chapter02-CSS工作原理` 的 `2.6` 节.
 
-
 ### 1. css 的 `box-sizing` 属性
+- **Added:** 什么是盒模型? 
+    + 简单地说每个 html 标签都是一个方块，然后这个方块又包着几个小方块. 分别是: `margin`、`border`、`padding`、`content`. 它们的关系是 margin 包着 border 包着padding 包着 content. 就像盒子一层一层地包着一样，这就是我们所说的盒模型。
+	+ 盒子的大小为 content + padding + border 即(内容的(width) + 内边距的再加上边框)，而不加上margin.
+
 - `box-sizing`(盒子大小) 属性, 包含 2 个值:
     + `content-box`(内容盒子): 是默认值. 元素的宽高不包含 `border` 和 `padding`.
     + `border-box`(边框盒子):  `border` 和 `padding`
@@ -179,8 +182,8 @@
 
 
 ### 3. CSS 像素`px`和相对单位`em`/`rem`/`%`/`vh|vw`
-- [../布局-Layout/css-像素px详解和布局基础.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/css-像素px详解和布局基础.md)
-- [../布局-Layout/css-相对单位.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/css-相对单位.md)
+- [../布局-Layout/CSS单位/CSS-像素px详解和布局基础.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/CSS单位/CSS-像素px详解和布局基础.md)
+- [../布局-Layout/CSS单位/CSS-相对单位.md](File:///Users/WANG/Github-clone/CSS-grocery/布局-Layout/CSS单位/CSS-相对单位.md)
 
 
 ### 4. css 强制换行和超出隐藏
@@ -373,8 +376,8 @@
         <title>Web Font Sample</title>
         <style type="text/css" media="screen, print">
             @font-face {
-            font-family: "Bitstream Vera Serif Bold";
-            src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+            	font-family: "Bitstream Vera Serif Bold";
+            	src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
             }
             
             body { font-family: "Bitstream Vera Serif Bold", serif }
@@ -388,8 +391,9 @@
 
 
 
+### 13. background-position
 
-
+- `background-position` 属性，是所有背景属性中最复杂的. 属性有5个关键字值，分别是: `top`、`left`、`bottom`、`right` 和 `center`. 关键字中的任意两个组合起来都可以作为该属性的值. 比如，top right 表示把图片放在元素的右上角位置，center center 把图片放在元素的中心位置。
 
 
 

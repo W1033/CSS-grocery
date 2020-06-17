@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no,
+            initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../typo.css">
+    <style type="text/css">
+        :root {
+            /* - 使用 calc() 定义字号: 
+             *     + 0.5em = 0.5 * 16 = 8px, 保证了最小字号;
+             *     + 1vw = 当前视图宽度的 1/100.
+             */
+            font-size: calc(0.5em + 1vw);
+        }
+        .panel {
+            /* - 注意: 此处的 font 字体单位为 rem */
+            font-size: 1rem;
+            padding: 1em; margin: 1em;
+            border-radius: 0.5em;
+            border: 1px solid #999;
+        }
+        .panel > h2 {
+            margin-top: 0; font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h2>Single-origin</h2>
+        <div class="panel-body">
+            We have built partnerships with small farms around the
+            world to hand-select beans at the peak of season.
+            We then carefully roast in
+            <a href="/batch-size">small batches</a> to maximize
+            their potential.
+        </div>
+    </div>
+</body>
+</html>
