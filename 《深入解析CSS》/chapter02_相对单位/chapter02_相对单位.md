@@ -28,5 +28,44 @@
 
 
 ## Content
-- 此章节需要做的笔记整合在: `../../CSS-知识集合/布局-Layout/CSS单位/CSS-相对单位.md`
-  文件中, 请移步此文件查看.
+- 此章节需要做的笔记整合在:
+  `../../CSS-知识集合/布局-Layout/CSS单位/CSS-相对单位.md` 文件中,
+  请移步此文件查看.
+
+### 2.5 无单位的数值和行高
+- 有些属性允许无单位的值(即一个不指定单位的数). 支持这种值的属性包括
+  `line-height`, `z-index`、`font-weight`(700 等于 bold, 400 等于 normal,
+  等等). 任何长度单位(如 `px`, `em`, `rem`)都可以用无单位的值 0,
+  因为这些情况下单位不影响计算值, 即 0px、 0%、 0em 均相等. 
+  
+  **警告** 一个无单位的 0 只能用于长度值和百分比, 比如内边距、边框和宽度等,
+  而不能用于角度值, 比如度, 或者时间相关的值, 比如秒. 
+  
+  `line-height` 属性比较特殊, 它的值既可以有单位也可以无单位.
+  **通常我们应该使用无单位的数值**, 因为它们继承的方式不一样.
+  我们在网页中加上一些文字, 看看无单位的行高会如何影响样式.
+  将代码清单 2-20 添加到网页中. 
+  ```html
+    <body>
+        <p class="about-us">
+        We have built partnerships with small farms around the world
+        to hand-select beans at the peak of season. We then carefully
+        roast in small batches to maximize their potential.
+        </p>
+    </body>
+  ```
+  接下来给 body 元素指定一个行高, 允许它被网页上其他元素继承.
+  不管在网页设置了什么字号, 这种方式都会按照预期显示.
+
+  将下面代码清单 2-21 添加到样式表中. 这个段落继承了行高 1.2.
+  因为段落字号是 32px (2em × 16px，浏览器默认字号),
+  所以此时行高的计算值为 38.4px (32px×1.2). 每行文字之间都会有一个合理的间距:
+  ```js
+    body {
+        // - 后代元素会继承无单位的值.
+        line-height: 1.2;
+    }
+    .about-us {
+        font-size: 2em;
+    }
+  ```

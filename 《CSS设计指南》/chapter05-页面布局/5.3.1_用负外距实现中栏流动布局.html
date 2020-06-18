@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.1_用负外距实现中栏流动布局</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style>
+        body {
+            /* - 1em = 16px;
+             *     + 1px = 0.0625em;
+             *     + 4px = 0.25em;
+             *     + 5px = 0.315em; (约等于 0.32em)
+             *     + 6px = 0.375em;
+             *     + 10px = 0.625em; (写为 0.62)
+             *     + 20px = 1.25em; 
+             */
+            font-size: 1em;
+        }
+        
+        .main-wrapper { min-width: 600px; max-width: 1280px; margin: 0 auto; }
+        header{ padding: .32em .62em; background: #39b54a; }
+        header h1 { font-size: 2.5rem; color: #fff; }
+
+        /* - (1) 三栏外包装(包围全部三栏) */
+        .three-column-wrap { width: 100%; overflow: auto;}
+        /* - (2) 两栏外包装(包围左栏和中栏) */
+        .two-column-wrap {
+            /* - (3) 设置当前两栏外包装的 margin-right 为最右侧一栏宽度的负值.
+             *   这样既可以把右栏拉到区块外边距腾出的位置上. 
+             */
+            float: left; width: 100%;
+            margin-right: -260px;
+            background: lightsalmon;
+        }
+
+        nav { 
+            float: left; width: 160px; background: lightcoral;
+            padding: 1.25em 0;
+        }
+        /* - 让子元素和边栏保持一定距离的边界. */
+        nav > * { margin: 0 .625em; }
+        nav li { margin-left: 1.8em; }
+        nav a { font-weight: 800; font-size: .7em; color: #fff; }
+
+        article { 
+            width: auto;
+            /* - (4) 给当前居中的流动栏设置左右外边距,
+             *   宽度分别等于第一栏和第三栏的 width 宽度. 你可能会有疑问,
+             *   上面 (2) 中不是已经给 two-column-wrap 设置了
+             *   margin-right: -260px 让第 3 栏正常显示在布局中了吗,
+             *   为什么还要给当前的中栏设置 margin-left/margin-right? 
+             *   答: 因为第一栏的(nav) 和第三栏的(aside) 现在的布局都是
+             *   浮动(float)的, 只有当前第二栏是正常布局, 浮动布局已经不再
+             *   正常的文档流中了, 所以如果我们不给当前第二栏设置 margin-left
+             *   和 margin-right, 那么第一栏和第三栏的内容就会覆盖在第二栏的上面.
+             *   具体效果请自行注释查看.
+             */ 
+            margin-left: 160px;
+            margin-right: 260px;
+            background: #fff; padding: 1.25em 0;
+        }
+        article > * { margin: 0 1.25em; }
+        article h2, ol { font-weight: 700; font-size: 1.25rem; }
+        article ol li {
+            display: list-item;
+            list-style: decimal inside none;
+        }
+        article h3 { font-size: 1.15rem; }
+        article p, li { font-weight: 300; font-size: 1rem; }
+        article code { font-size: .9rem; }
+
+        /* - 第三栏 aside 也需要 float */
+        aside {
+            float:left; width: 260px; background:moccasin;
+            padding: 1.25em 0;
+        }
+        aside > * { margin: 0 .625em; }
+        aside p { line-height: 1.5em; }
+
+        footer { clear: both; width: 100%; text-align: center; background: #000; }
+        footer p { font-weight: 600; font-size: .7rem; color: #fff; }
+        footer a { font-size: 1rem; color: #ffed53; }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header>
+            <h1>A Three-Column Fluid Center Layout</h1>
+        </header>
+
+        <div class="three-column-wrap">
+            <!-- start two-column-wrap -->
+            <div class="two-column-wrap">
+                <nav>
+                    <ul>
+                        <li><a href="#">Nav Link 1</a></li>
+                        <li><a href="#">Nav Link 2</a></li>
+                    </ul>
+                </nav>
+
+                <article>
+                    <h2>About This Layout</h2>
+                    <p>
+                        <strong>
+                            This page is styled with 
+                            <abbr title="Cascading Style Sheets">CSS</abbr>.
+                            This layout uses negative margins to create this
+                            feature-rich layout.
+                        </strong>
+                    </p>
+                    <h3>Key Features</h3>
+                    <p>Resize this page to see the following:</p>
+                    <ol>
+                        <li>
+                            The center content column changes width as you
+                            change the browser width.
+                        </li>
+                        <li>
+                            The <code>min-width</code> setting prevents the
+                            content being crushed down to nothing; once the
+                            content reaches minimum width, the layout gets
+                            no narrower.
+                        </li>
+                        <li>
+                            The <code>max-width</code> setting prevents the
+                            content getting too wide; once it reaches maximum
+                            width, the layout gets no wider and the auto margins
+                            center the layout in the browser window.
+                        </li>
+                        <li>
+                            The footer sits below whichever column is longest.
+                        </li>
+            </ol>
+                </article>
+            </div>
+            <!-- end two-column-wrap -->
+            
+            <aside>
+                <h3>Sidebar Area</h3>
+                <p>
+                    This column has a negative margin applied to it to draw it
+                    inside of the full width content div. A positive margin on
+                    the content div ensures there will be room for it.
+                </p>
+            </aside>
+        </div>
+
+        <footer>
+            <p>
+                A CSS template from
+                <a href="http://www.stylinwithcss.com">
+                    <em>Stylin' with CSS, Third Edition</em>
+                </a>
+                by Charles Wyke-Smith
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

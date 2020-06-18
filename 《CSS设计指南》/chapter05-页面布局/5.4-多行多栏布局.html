@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4-多行多栏布局</title>
+    <link rel="stylesheet" href="../../typo.css">
+    <style>
+        body {
+            /* - 1em = 16px;
+             *     + 1px = 0.0625em;
+             *     + 4px = 0.25em;
+             *     + 5px = 0.315em; (约等于 0.32em)
+             *     + 6px = 0.375em;
+             *     + 10px = 0.625em; (写为 0.62)
+             *     + 20px = 1.25em; 
+             */
+            font-size: 1em;
+            letter-spacing: 0;
+        }
+        #wrapper {
+            min-width: 660px; max-width: 1260px; margin: 0 auto;
+            overflow: hidden; border: 1px solid #fafafa;
+        }
+
+        header {
+            background: #a292ac;
+            padding: .2em .625em;
+        }
+        header h1 { font-size: 2.5em; color: #fff; }
+        
+        nav {
+            background: #f7923a;  padding: .2em .625em;
+        }
+
+        section#branding {
+            min-height:6em; max-height: 12em;
+            background-color: #fafafa;
+        }
+        section#branding img {
+            display: block; 
+        }
+
+        /* - feature-area */
+        section#feature-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 4px solid #f7be84;
+        }
+        section#feature-area article {
+            flex: 1 1 auto;
+            padding: .625em 0;
+            background: #fff;
+        }
+        section#feature-area article .inner {
+            margin: .625em 1.25em;
+            padding: 1.25em;
+            background: #fff;
+            border: 5px solid;
+        }
+        section#feature-area article:nth-child(2) {
+            background:#e5e8ed;
+        }
+        section#feature-area article:nth-child(1) .inner {
+            border-color:#d7dd6f;
+        }
+        section#feature-area article:nth-child(2) .inner {
+            border-color:#f6dec5;
+        }
+        section#feature-area article:nth-child(3) .inner {
+            border-color:#d1d8e4;
+        }
+
+        /* - promo-area */
+        #promo-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 4px solid #f7be84;
+        }
+        #promo-area  article{
+            flex: 1 1 auto;
+            padding: .625em 0;
+            background: #fff;
+        }
+        #promo-area article .inner {
+            margin: .625em 1em;
+            padding: 1em;
+            background: #e5e8ed;
+        }
+        #promo-area article p {
+            font-weight:300;
+            font-size:1em;
+            line-height:1.5em;
+            color:#616161;
+        }
+
+        footer {
+            clear: both;
+            text-align: center;
+            background:#6b5678;
+        }
+        footer p {
+            font-weight:600;
+            font-size:.7em;
+            color:#fff;
+        }
+        footer a {
+            font-weight:700italic;
+            font-size:1em;
+            color:#f7be84;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Full-width content</h1>
+        </header>
+        <nav>
+            <p>Navigation menus go here</p>
+        </nav>
+
+        <section id="branding">
+            <img src="#" alt="Grand Canyon">
+        </section>
+
+        <!-- feature area 特征区域 -->
+        <section id="feature-area">
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor.</p>
+                </div>
+            </article>
+            
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor.</p>
+                </div>
+            </article>
+            
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor.</p>
+				</div>
+            </article>
+        </section>
+        <!-- end feature-area -->
+
+        <!-- promotion area 宣传区域 -->
+        <section id="promo-area">
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor. Nam consequat ullamcorper eros, sed bibendum metus faucibus sit amet.</p>
+                </div>
+            </article>
+            
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor. Nam consequat ullamcorper eros, sed bibendum metus faucibus sit amet.</p>
+                </div>
+            </article>
+            
+            <article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor. Nam consequat ullamcorper eros, sed bibendum metus faucibus sit amet.</p>
+                </div>
+            </article>
+        	<article>
+                <div class="inner">
+                    <p>Integer at neque in magna lacinia bibendum sit amet sit amet dolor. Nam consequat ullamcorper eros, sed bibendum metus faucibus sit amet.</p>
+                </div>
+            </article>
+        </section>
+        <!-- end promo-area -->
+
+        <footer>
+            <p>
+                A CSS template from 
+                <a href="http://www.stylinwithcss.com">
+                    <em>Stylin' with CSS, Third Edition</em>
+                </a>
+                by Charles Wyke-Smith
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -15,7 +15,7 @@
 7. 各种平台样式兼容问题
 8. Flex(弹性)布局语法
 9. CSS3 过渡(transition), 转换(transform), 动画(animation)讲解
-
+10. CSS Style Guides(CSS 样式指南)
 
 
 ## New Words
@@ -93,7 +93,7 @@
 ### 1. css 的 `box-sizing` 属性
 - **Added:** 什么是盒模型? 
     + 简单地说每个 html 标签都是一个方块，然后这个方块又包着几个小方块. 分别是: `margin`、`border`、`padding`、`content`. 它们的关系是 margin 包着 border 包着padding 包着 content. 就像盒子一层一层地包着一样，这就是我们所说的盒模型。
-	+ 盒子的大小为 content + padding + border 即(内容的(width) + 内边距的再加上边框)，而不加上margin.
+	+ 注意: **盒子的大小为 content + padding + border 即(内容的(width) + 内边距的再加上边框)，而不加上margin.**
 
 - `box-sizing`(盒子大小) 属性, 包含 2 个值:
     + `content-box`(内容盒子): 是默认值. 元素的宽高不包含 `border` 和 `padding`.
@@ -356,8 +356,35 @@
     }
   ```
 
-### 11. letter-spacing / word-spacing
-- `letter-spacing` 添加字母之间的空白; `word-spacing` 添加每个单词之间的空白.
+### 10 CSS Style Guides
+- > 来源 [CSS Style Guides](https://css-tricks.com/css-style-guides/)
+
+- (1) As a rule of thumbs, don't nest further than 3 levels deep.
+   If you find yourself going further, think about reorganizing your
+   rules(either the specificity needed, or the layout of the nesting).
+   
+   根据经验, 嵌套深度不得超过 3 层. 如果你发现自己的布局已经是这样了,
+   请考虑重新组织规则(所需的特殊性和嵌套的布局).
+
+- (2) Unit-less `line-height` is preferred because it does not inherit
+  a percentage value of its parent element, but instead is based on a 
+  multiplier of the `font-size`.
+
+  无单位的 `line-height` 是优选的, 因为它不继承父元素的百分比值,
+  而是基于所述文字大小的乘数.
+    + 详细示例见: `../《深入解析CSS》/chapter02_相对单位/` -->
+      `2.5 无单位的数值和行高`
+
+- (3) Use ID and class names that are as short as possible but
+  as long as(只要) necessary. 
+  使用尽可能短的 ID 和 class 名, 但前提是只要有必要.
+    + 例如: `#nav` not `#navigation`, `.author` not `.atr`.
+      注意这里的 `author` 缩写成 `atr` 便不是必要的; 
+      还有一点请注意, 一般不建议在 CSS 样式中使用 `id`.
+- (4) 
+- (5)
+- (6) 
+  ...... 未写完, 有时间继续....
 
 
 
