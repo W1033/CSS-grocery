@@ -56,6 +56,20 @@
         footer { clear: both; width: 100%; text-align: center; background: #000; }
         footer p { font-weight: 600; font-size: .7rem; color: #fff; }
         footer a { font-size: 1rem; color: #ffed53; }
+        
+        .model {
+            border-radius: 4px;        
+        }
+        .model th,td {
+
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 14px;
+            text-align: center;
+            line-height: 2;
+            padding: 3px 6px;
+        }
     </style>
 </head>
 <body>
@@ -104,6 +118,50 @@
                     The footer sits below whichever column is longest.
                 </li>
             </ol>
+
+
+
+
+            <table class="model">
+                <tr>
+                    <th>OSI 七层网络模型</th>
+                    <th>TCP/IP 四层概念模型</th>
+                    <th>对应网络协议</th>
+                </tr>
+                <tr>
+                    <td>应用层 (Application)</td>
+                    <td rowspan="3">应用层</td>
+                    <td>HTTP, TFTP, FTP, NFS, WAIS, SMTP</td>
+                </tr>
+                <tr>
+                    <td>表示层 (Presentation)</td>
+                    <td>Telnet, Rlogin, SNMP, Gopher</td>
+                </tr>
+                <tr>
+                    <td>会话层 (Transport)</td>
+                    <td>SMTP, DNS</td>
+                </tr>
+                <tr>
+                    <td>传输层 (Transport)</td>
+                    <td>传输层</td>
+                    <td>TCP, UDP</td>
+                </tr>
+                <tr>
+                    <td>网络层 (Network) </td>
+                    <td>网络层</td>
+                    <td>IP, ICMP, ARP, RARP, AKP, UUCP</td>
+                </tr>
+                <tr>
+                    <td>数据链路层 (Data Link)</td>
+                    <td rowspan="2">数据链路层</td>
+                    <td>FDDI, Ethernet, Arpanet, PDN, SLIP, PPP</td>
+                </tr>
+                <tr>
+                    <td>物理层 (Physical)</td>
+                    <td>IEEE 802.1A, IEEE 802.2 到 IEEE 802.11</td>
+                </tr>
+            </table>
+
         </article>
 
         <aside>
