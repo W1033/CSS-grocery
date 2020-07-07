@@ -58,8 +58,9 @@
 ## 内容 (Content)
 ### (1) Flex(弹性盒子) 布局是什么?
 - 弹性盒子 (Flexible Box 或 Flexbox), 是一种用于在页面上布置元素的"布局模式", 
-  使得当页面布局必须适应不同的屏幕尺寸和不同的显示设备时, 元素可预测地运行. 弹性盒子模型
-  提供了对 块模型 的改进, 因为它不使用浮动, flex 容器的边缘也不会与其内容的边缘折叠.   
+  使得当页面布局必须适应不同的屏幕尺寸和不同的显示设备时, 元素可预测地运行.
+  弹性盒子模型提供了对块模型的改进, 因为它不使用浮动, flex
+  容器的边缘也不会与其内容的边缘折叠.
   
   弹性布局用来为盒装模型提供最大的灵活性.任何一个容器都可以指定为 Flex 布局. 代码如下:
   ```css
@@ -169,18 +170,20 @@
         /* - 通过 MDN 的文档可以看出这个属性有很多情况 (详细见同级目录:
          *   `align-content.html`), 不过最常用的应该是下面 7 个. */
         .box {
+            /* - 注意: 如果这个属性的前提是在容器上添加 flex-wrap */
+            flex-wrap: wrap; 
             align-content: stretch | flex-start | flex-end | center 
                 | space-between | space-around | space-evenly;
         }
       ```
       图一
-
+      
       <img src="./images/bg2015071012.png"  style="width: 60%; margin-left:0;">
       
       图二: (代码示例见同级目录 `align-content_simplify.html`)  
       
       <img src="./images/align-content.png" style="margin-left:0;">
-
+      
       | 属性值 | 描述 |
       |:------|:------|
       |stretch (默认) | 行在交叉轴上的大小进行拉伸, 铺满容器.|
@@ -220,8 +223,8 @@
       属性为 0 的不缩小, 为 1 等比例缩小.
 
       <img src="./images/bg2015071015.jpg" style="width: 76%; margin-left:0;">
-4. **`flex-basis (弹性基础)`** 执行项目样式在主轴的初始大小, auto 的含义是参考 width
-   或 height 的大小.
+4. **`flex-basis (弹性基础)`** 执行项目样式在主轴的初始大小, auto
+   的含义是参考 width 或 height 的大小.
     + ```css
         .item {
             flex-basis: auto;

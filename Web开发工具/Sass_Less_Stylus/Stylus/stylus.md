@@ -1430,17 +1430,42 @@ if条件可以按您期望的那样工作, 只需接受一个表达式, 则在�
     + `reset.styl`
     + `variable.styl`
 ### (2.1) 在 Vue 的单文件组件中引入 stylus
-```vue
+- 如果在 `vue.config.js` 中配置了别名:
+  ```js
+    const path = require("path");
+    const resolve = (dir) => path.join(__dirname, dir);
+
+    const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
+
+    module.exports = {
+        publicPath: './',
+        chainWebpack: config => {
+            // - 修复热重载(hot module reload)
+            config.resolve.symlinks(true);
+
+            // 添加别名
+            config.resolve.alias
+                .set("@", resolve("src"))
+                .set("@assets", resolve("src/assets"))
+                .set("@components", resolve("src/components"))
+                .set("@views", resolve("src/views"))
+                .set("@router", resolve("src/router"))
+                .set("@store", resolve("src/store"))
+        },
+    }
+  ```
+  那么在 `*.vue` 组件中引入的方式为:
+  ```vue
     <template>
-        <div>
-        </div>
+        <div></div>
     </template>
-    <script>
-    </script>
+
+    <script></script>
+    
     <style scoped lang="stylus" rel="stylesheet/stylus">
-        @import "~assets/stylus/variable";
+        @import "~@assets/stylus/variable";
     </style>
-```
+  ```
 ### (2.2) 定义变量
 ```stylus
     // - variable.styl 

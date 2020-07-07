@@ -62,7 +62,7 @@
   后面我还会给大家展示这两个伪元素的其他用法,
   比如在应用它们的元素外面附着一个动态的新元素, 从而得到一种有趣的布局效果. 
 - (2) 实际上, 上面 (1) 中的用法并不是 `::before` 和 `::after` 伪元素的常用用法,
-  下面我们举两个示例, 说一下它们两个的常用用法.
+  下面我们举几个示例, 说一下它们两个的常用用法.
     + 示例(1): 来自《CSS揭秘》
       
       我们先看效果图:
@@ -138,7 +138,7 @@
        <img src="./css-pseudo-element-images/1-9.png"
             style="margin-left: 0; border-radius: 4px; width: 66%;
                 box-shadow: 1px 1px 3px 2px #e5e5e5">
-       
+      
        png 图片无法展示动画, 请直接 copy 代码在页面中查看.
 
       ```html
@@ -228,7 +228,7 @@
                     tab.addEventListener('click', function(event){
                         // - 我们会点击很多次 li, 但不能让 nums 数组内保存的 index
                         //   索引无限增长, 所以设置一个长度, 如果大于此长度,
-                        //   我们就从前面弹出项, 但至少只保留 2 项.
+                        //   我们就从前面弹出项, 我们设置只保留 2 项.
                         if (nums.length >= 3) {
                             for (let i = nums.length; i >= 2; i--) {
                                 nums.shift();
@@ -271,3 +271,18 @@
         </body>
         </html>
       ```
+    + 示例(3): 此示例来自 Vuex 的官方 todos 示例,
+      图中红框的部分皆是使用伪元素来实现的, 注意, 虽然 '示例(2)' 中给元素添加的是
+      `::before` 伪元素, 而此例中使用的是 `::after`, 但是并没有实质的不同,
+      因为不管是 `::before` 还是 `::after` 都要使用绝对定位,
+      绝对定位可以相对当前元素, 也可以相对父元素, 看距离元素最近的
+      `position:relative` 样式的设置.
+      
+      <img src="./css-pseudo-element-images/pseudo.png"
+        style="margin-left: 0; border-radius: 4px; width: 66%;
+                box-shadow: 1px 1px 3px 2px #e5e5e5">
+
+      具体的代码实现见:
+      `../../../Vue-learning/Vue-Examples/vuex-example/src/views/todos.vue`
+
+
