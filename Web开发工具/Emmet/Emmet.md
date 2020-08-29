@@ -37,7 +37,7 @@
 ### 3. Emmet 常用语法
 - > [参考文章](https://www.cnblogs.com/summit7ca/p/6944215.html)
 - 语法的基本规则如下:
-  | 用法 | 说明 | 
+  | 用法 | 说明 |
   |:---  |:--- |
   | E (`element`)| 代表 HTML 标签 |
   | E#id | 代表 id 属性 |
