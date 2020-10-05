@@ -23,7 +23,7 @@
 - **Notice:** 一个冒号(`:`)表示伪类, 两个冒号(`::`)表示 CSS3 新增的伪元素.
   尽管浏览器目前都支持对 CSS 1 和 CSS 2 的伪元素使用一个冒号, 
   但希望你能习惯于用双冒号代替单冒号, 因为这些单冒号的伪元素最终可能都会被淘汰掉.
-  更多相关信息, 可以参见这里:  http://www.w3.org/TR/2005/WD-css3- selectors-20051215/#pseudo-elements. 
+  更多相关信息, 可以参见这里:  http://www.w3.org/TR/2005/WD-css3-selectors-20051215/#pseudo-elements. 
 
 #### 2.7.1. `::first-letter` 伪元素
 - `e::first-letter`. 比如, 以下 CSS 规则:
