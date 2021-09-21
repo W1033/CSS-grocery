@@ -2,8 +2,7 @@
 
 - [Stylus 官网文档](https://stylus.bootcss.com/)
 
-- **Important Warning:** 下面的笔记本不是完整文档,
-  只是一些常用语法的书写, 完整文档请参考官网文档.
+**Important Warning:** 下面的笔记本不是完整文档, 只是一些常用语法的书写, 完整文档请参考官网文档.
 
 ## Catalog
 0. Stylus 安装
@@ -55,7 +54,6 @@
 - **comment ['kɒment] --n.评论, 注释  --v.评论；注释**
     + Comment is needless. 解释是不必要的. 
     + add comments or explanations. 加注释或说明. 
-    + the top commenter, a bottom-pinner,    
 - **iteration [ˌɪtə'reɪʃn] --n.迭代, 重复, 反复**
     + Let's listen to the next iteration of this theme. 我们来听下一段主题. 
     + So this process takes about four or five iterations.
@@ -165,7 +163,7 @@
 - 使用 npm 来安装
   ```shell
     # - 全局安装
-    # - Mac 是使用 nvm 安装的 node, 所以 node 默认的 npm 包管理器也是在 nvm
+    # - Mac 是使用 nvm 安装的 node, 所以 node 默认的 npm 包管理器也是 nvm
     #   目录下: /Users/WANG/.nvm/versions/node/v13.11.0/lib/node_modules/stylus/bin/stylus
     npm install stylus -g
   ```
@@ -368,7 +366,7 @@
       ```stylus
         pad(n)
             margin (-n)
-
+      
         body
             pad(5px)
       ```
@@ -401,7 +399,7 @@
 - (1) 变量: 我们可以将表达式赋值给变量, 然后在整个样式表中使用变量:
   ```stylus
     font-size = 14px
-
+  
     body
         font font-size Arial, sans-serif
   ```
@@ -415,7 +413,7 @@
   ```stylus
     font-size = 14px
     font-stack = "Lucida Grande", Arial, sans-serif
-
+  
     body
         font font-size font-stack
   ```
@@ -475,7 +473,7 @@
     position()
         position: arguments
         z-index: 1 unless @z-index
-
+  
     #my-logo
         z-index: 20
         position: absolute
@@ -533,7 +531,7 @@
         -webkit-border-radius: 1px 2px/3px 4px;
         -moz-border-radius: 1px 2px/3px 4px;
         border-radius: 1px 2px/3px 4px;
-
+  
         /* - 上面的 box-shadow 等价于下面 4 行 */
         /* border-top-left-radius: 1px 3px;
         border-top-right-radius: 2px 4px;
@@ -623,7 +621,7 @@
   ```stylus
     nums = 1 2 3
     1 in nums   // => true
-
+  
     5 in nums   // => false
   ```
 - (9) 条件赋值 `?= / :=`: 条件赋值运算符 `?=` 别名 `:=`,
@@ -653,10 +651,10 @@
 - (11) 变量是否定义: `is` : 这个运算符仅仅检查我们的定义的变量是否有值. 例如:
   ```stylus
     foo is defined      // => false 因为 foo 未定义
-
+  
     foo = 15px
     foo is defined      // => true
-
+  
     #fff is defined     // => 'invalid "is defined" check on non-variable #fff' (无效的 "定义", 请检查非变量 #fff)
   ```
   - **Notice**: 这里的笔记并不是 Stylus 官网 `Operators(运算符)` 的全部内容,
@@ -774,7 +772,7 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
             return lower
         else
             return qual
-
+  
     // - 用法
     compare(5, 2)   // => higher
     compare(1, 5)   // => lower
@@ -786,9 +784,9 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
   ```stylus
     add(a, b = a)
         return a + b
-
+  
     plus = add
-
+  
     plus(1, 2)      // => 3
   ```
 - <span style="color: red">(8) 函数作为变量使用</span>: 和 JS 语法一样,
@@ -834,9 +832,9 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
                     list[$i] = list[$j]
                     list[$j] = $temp
         return list
-
+  
     sort('e', 'c', 'f', 'a', 'b', 'd')  // => 'a', 'b'', 'c', 'd', 'e', 'f'
-
+  
     sort(5 3 6 1 2 4, @(a, b){
         a < b
     })      // => 6 5 4 3 2 1
@@ -878,7 +876,7 @@ $\quad$**Notice:** Stylus 的函数返回值前面默认是不写 `return` 的,
   若要查看函数或混合(mixin) 所能接受的参数, 请使用 `p()` 函数:
   ```stylus
     p(rgba)
-
+  
     // - 输出 inspect: rgba(red, green, blue, alpha) 
   ```
 
@@ -1043,7 +1041,7 @@ $\quad$ **WARNING:** 这个章节的笔记并没有做完, 因为内置函数实
     + (2.4) `pathjoin(...)`: 执行拼接路径
       ```stylus
         pathjoin('images', 'foo.png')   // => "images/foo.png"
-
+      
         path = 'images/foo.png'
         ext = extname(path)
         pathjoin(dirname(path), basename(path, ext) + _thumb + ext)
@@ -1307,7 +1305,7 @@ if条件可以按您期望的那样工作, 只需接受一个表达式, 则在�
     foo = {}
     bar = 'baz'
     foo[baz] = raz
-
+  
     foo.baz     // => raz
   ```
 - (2) 取值: 和 js 中对象的取值方式相同, 有 2 种方式: 点表示法 和 方括号表示法.
@@ -1324,7 +1322,7 @@ if条件可以按您期望的那样工作, 只需接受一个表达式, 则在�
 - Stylus支持字面 `@import` CSS, 也支持其他 Stylus 样式的动态导入.
   ```stylus
     @import "reset.css"
-
+  
     @import "~assets/stylus/variable";
   ```
 
@@ -1434,15 +1432,15 @@ if条件可以按您期望的那样工作, 只需接受一个表达式, 则在�
   ```js
     const path = require("path");
     const resolve = (dir) => path.join(__dirname, dir);
-
+  
     const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
-
+  
     module.exports = {
         publicPath: './',
         chainWebpack: config => {
             // - 修复热重载(hot module reload)
             config.resolve.symlinks(true);
-
+  
             // 添加别名
             config.resolve.alias
                 .set("@", resolve("src"))
@@ -1459,7 +1457,7 @@ if条件可以按您期望的那样工作, 只需接受一个表达式, 则在�
     <template>
         <div></div>
     </template>
-
+  
     <script></script>
     
     <style scoped lang="stylus" rel="stylesheet/stylus">
