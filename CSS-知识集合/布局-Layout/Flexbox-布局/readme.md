@@ -1,5 +1,6 @@
 # Flex 弹性布局
 
+
 ## 目录 (Catalog)
 - (1) Flex(弹性盒子) 布局是什么?
 - (2) Flex 布局基本概念
@@ -13,26 +14,21 @@
 - **wrap [ræp] --v.包裹, 包**
     + word wrap 自动换行
     + line wrap  n.自动换行
-    + He wrapped his favorite books in paper.
-      他把自己最喜欢的书用纸包起来. 
+    + He wrapped his favorite books in paper. 他把自己最喜欢的书用纸包起来. 
 - **justify ['dʒʌstə'fai] (us) --vt.证明(...是正当的), 辩护.**
     + justify content 证明内容合理
     + The end justifies the means. (谚语)为达目的不择手段.
-    + That you were drunk does not justify your violating the rule.
-      喝醉酒并不能成为你违规的理由.
-    + You're trying to justify your own weakness.  
-      你只是在为自己的软弱寻找借口.
+    + That you were drunk does not justify your violating the rule. 喝醉酒并不能成为你违规的理由.
+    + You're trying to justify your own weakness.  你只是在为自己的软弱寻找借口.
 - **align [ə'laɪn] --vt.排列, 调整; 使一致. --vi.成一条线**
     + align item. 对齐项目
     + horizontal align. 水平对齐
-    + How should we highlight the labels and how should we align them?
-      我们应该怎么样高亮标签, 应该怎么样排列它们?
+    + How should we highlight the labels and how should we align them? 我们应该怎么样高亮标签, 应该怎么样排列它们?
 - **flow [fləʊ] --vi.流, 流动. --vt.淹没. --n.流量, 流动, 泛滥**
     + to flow southwestward. 往西南方流. 
     + flow control. 流量控制
 - **stretch [strɛtʃ] --vt.拉长, 拉伸. --vi.伸展, 扩展, 延伸. --n.伸出, 伸开**
-    + I stretched(vt) the pair of gloves to make them fit.  
-      我撑开那双手套以使之方便戴上.
+    + I stretched(vt) the pair of gloves to make them fit.  我撑开那双手套以使之方便戴上.
     + He stretched(vt) the rope tight. 他把绳索拉紧.
     + at full stretch(n). 尽全力地.
     + a wide stretch(n) of grass land. 一大片草原.
@@ -54,43 +50,39 @@
     + This cloth does not shrink(vi) in the wash. 这块不洗了不会缩水.
     + flex (up) with cold. 因寒冷而蜷缩身体.
 
-
 ## 内容 (Content)
+
 ### (1) Flex(弹性盒子) 布局是什么?
-- 弹性盒子 (Flexible Box 或 Flexbox), 是一种用于在页面上布置元素的"布局模式", 
-  使得当页面布局必须适应不同的屏幕尺寸和不同的显示设备时, 元素可预测地运行.
-  弹性盒子模型提供了对块模型的改进, 因为它不使用浮动, flex
-  容器的边缘也不会与其内容的边缘折叠.
-  
-  弹性布局用来为盒装模型提供最大的灵活性.任何一个容器都可以指定为 Flex 布局. 代码如下:
-  ```css
-    /* - 只需要在元素上添加 display:flex 属性即可 */
-    .box {
-        display: flex;
-    }
-    /* - 行内元素也可以使用 Flex 布局 */
-    .box {
-        display: inline-flex;
-    }
-  ```
+
+弹性盒子 (Flexible Box 或 Flexbox), 是一种用于在页面上布置元素的"布局模式", 使得当页面布局必须适应不同的屏幕尺寸和不同的显示设备时, 元素可预测地运行。弹性盒子模型提供了对块模型的改进, 因为它不使用浮动, flex容器的边缘也不会与其内容的边缘折叠.
+
+弹性布局用来为盒装模型提供最大的灵活性.任何一个容器都可以指定为 Flex 布局. 代码如下:
+```css
+/* - 只需要在元素上添加 display:flex 属性即可 */
+.box {
+    display: flex;
+}
+/* - 行内元素也可以使用 Flex 布局 */
+.box {
+    display: inline-flex;
+}
+```
 
 ### (2) Flex 布局基本概念
-- 弹性布局可以通过调整其内部元素的宽高, 从而在任何显示设备上实现对可用显示空间最佳填充
-  的能力. 弹性容器扩展其内部元素来填充可用空间, 或将其收缩来避免溢出.
-  
-  采用 Flex 布局的元素称为 Flex 容器(**flex container**), 简称 "容器". 它的所有
-  子元素自动成为容器成员, 称为 Flex 项目(**flex item**),简称 "项目".  
-  
-  ![弹性容器描述](./images/flexbox.png)  
-  
-  每个弹性容器(flex-container) 默认包含 2 根轴(axis):
-    + (1) 主轴(main axis): 弹性项目(flex item) 沿其依次排列的那根轴称为主轴.
-        - 主轴的开始位置(与边框的交叉点)叫做 main start, 结束位置叫做 main end.
-    + (2) 交叉轴/侧轴(cross axis): 垂直于主轴的轴为交叉轴.
-        - 交叉轴的开始位置叫做(cross start), 结束位置叫做(cross end).
-  
-  项目默认沿主轴排列. 单个项目占据的主轴空间叫做 main size, 占据的 侧轴/交叉轴 空间
-  叫做 cross size.
+弹性布局可以通过调整其内部元素的宽高, 从而在任何显示设备上实现对可用显示空间最佳填充的能力. 弹性容器扩展其内部元素来填充可用空间, 或将其收缩来避免溢出.
+
+采用 Flex 布局的元素称为 Flex 容器(**flex container**), 简称 "容器". 它的所有子元素自动成为容器成员, 称为 Flex 项目(**flex item**),简称 "项目".  
+
+![弹性容器描述](./images/flexbox.png)  
+
+每个弹性容器(flex-container) 默认包含 2 根轴(axis):
+  + (1) 主轴(main axis): 弹性项目(flex item) 沿其依次排列的那根轴称为主轴.
+      - 主轴的开始位置(与边框的交叉点)叫做 main start, 结束位置叫做 main end.
+  + (2) 交叉轴/侧轴(cross axis): 垂直于主轴的轴为交叉轴.
+      - 交叉轴的开始位置叫做(cross start), 结束位置叫做(cross end).
+
+项目默认沿主轴排列. 单个项目占据的主轴空间叫做 main size, 占据的 侧轴/交叉轴 空间
+叫做 cross size.
 
 ### (3) 弹性容器(flex container) 的属性: 设置在弹性容器上的属性有 6 个.
 > [主要来源:阮一峰博客](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)  
