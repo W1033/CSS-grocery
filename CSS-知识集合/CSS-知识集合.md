@@ -2,15 +2,6 @@
 
 
 
-
-> CSS 在线参考手册：
-> 
-> 中文：https://techbrood.com/cssref#animation
-> 
-> 英文完整版: https://www.w3schools.com/cssref/index.php
-
-
-
 ## New Words
 
 compatible `/kəm'pætɪb(ə)l/` --adj.兼容的, 共存的
