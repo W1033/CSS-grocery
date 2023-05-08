@@ -1,76 +1,24 @@
 # CSS 像素 px 详解和布局基础
 
 
-## Catalog
-1. `逻辑像素` / `渲染像素` / `物理像素` 都是指什么?
-    + 1.1 `逻辑像素(logic point/device point)` / `点(points)`:
-    + 1.2 `渲染像素 (Rendered Pixels)`:
-    + 1.3 `物理像素 (Physical Pixels)` / `设备像素(Device Pixel)`: 
-    + 1.4 `物理设备(Physical Device)`
-2. CSS 中的 `px` 到底是什么?
-3. `PPI (pixel per inch)` 像素密度
-4. 面向 `逻辑像素` 开发的基本流程
-5. 关于 `px` 的一些疑问
-6. 什么是 "响应式" 和 "自适应" 布局?
-7. 如何在 vx (`vw`/`vh`), vxxx(`vmax`/`vmin`) 和 `px` 之间自由切换.
-
-
 
 ## New Words
-- **density ['densɪtɪ] --n.密度, 浓度**
-    + population density. 人口密度
-    + a population density of 50 per square kilometer.  
-      每平方公里 50 人的人口密度
-- **coordinate [kəuˈɔ:dineit] --n.<数>坐标  --vt.协调, 配合**
-    + It defines how all the lengths and coordinates used inside the SVG
-            should be scaled to fit the total space available. 
-        它定义了如何缩放 SVG 内部使用的所有长度和坐标以适应可用的总空间. 
-    + It defines the origin of the SVG coordinate system, the point 
-      where x=0 and y=0.  它定义了 SVG 坐标系的原点,  即 x=0 和 y=0 的点. 
-    + Polar coordinates 极坐标
-- **specify ['spesɪfaɪ] --vt.指定, 列举**
-    + explicitly specifies 明确指定
-- **abstract ['æbstrækt] --n.抽象, 摘要, 文摘.  --v.提取  --adj.抽象的**
-    + an abstract concept. 抽象概念. 
-    + Your words are so abstract to me. 你的话对我来说太抽象了. 
-    + Well, it can get really abstract. 这东西太抽象了. 
-- **mathematic [ˌmæθə'mætɪk] = mathematical --adj.数学的, 精确的**
-    + mathematic model 数学模型
-    + Mathematic Programming 数学规划
-- **make sense --有意义; 讲得通; 言之有理**
-    + It all started to make sense. 这一切都开始变得有意义.
-    + Points are abstract units, they only make sense in this
-      mathematical coordinate space.  
-      点是抽象单位, 它们仅在数学坐标空间中有意义.
-- **multiply ['mʌltɪplaɪ] --vt & vi.乘**
-    + We all know how to multiply by then. 我们都知道怎样乘以10.
-    + I asked you to multiply fourteen by nineteen. 我要你将 14 乘以 19. 
-- **factor ['fæktɚ]{US} --n.因子; 因素; 要素; 系数**
-    + a factor of happiness. 幸福的因素.
-    + Luck was a factor in his success. 幸运是他成功的一个因素.
-    + a common factor. 公因子, 公因数
-    + the factor of safety. 安全因数.
-- **thus [ðʌs] --adv.从而; 因此; 这样**
-    + thus and so. (美)这样
-    + thus and thus. 如此这般
-    + Thus they judged that he was guilty. 因此他们判断他有罪.
-    + Thus much is certain. (至少)这些是确实的.
-- **ratio ['reɪʃɪəʊ] --n.比率, 比值**
-    + amplification ratio 放大比率
-    + calculate the ratios to one decimal place. 比率计算至小数点后第一位. 
-    + It defines the aspect ratio of the image. 它定义了图像的纵横比
-- **responsive [rɪ'spɒnsɪv] --adj.响应的; 应答的.**
-    + Responsive layout. 响应式设计
-    + He is always responsive to my requests.
-      对于我的要求他总是作出积极的应答.
-    + I've had no responsive to my letter. 我还没有回信.
-- **adaptive [ə'dæptɪv] --adj.适应的; 适合的.**
-    + adaptive design. 自适应(适应时)设计.
-    + adaptive control system. 自适应控制系统.
-- **illustration [ɪlə'streɪʃ(ə)n]{UK} --n.插图; 例证; 插画**
-    + illustration design. 插图设计
-    + He used photographs as illustration for his talk.
-      他用照片为他的演讲作图片说明.
+- density `/'densɪtɪ/` -n.密度, 浓度。
+- coordinate `/koʊˈɔːrdɪneɪt/` -vt.使协调；使调和。 -adj.同等的，并列的。 -n.〈数〉坐标
+- specify `/'spesɪfaɪ/` -vt.指定, 列举
+- abstract `/'æbstrækt/` -n.抽象，摘要。 -adj.抽象的
+- mathematic `/ˌmæθə'mætɪk/` = mathematical -adj.数学的, 精确的
+- make sense  -有意; 讲得通; 言之有理
+- multiply `/'mʌltɪplaɪ/` -vt & vi.乘，（使）相乘；（使）增加。
+- factor `/'fæktɚ/` -n.因子; 因素; 要素; 系数
+- thus `/ðʌs/` -adv.从而; 因此; 这样
+- ratio `/'reɪʃɪəʊ/` -n.比率, 比值
+- responsive `/rɪ'spɒnsɪv/` -adj.响应的; 应答的.
+- adaptive `/ə'dæptɪv/` -adj.适应的; 适合的.
+- illustration `/ɪlə'streɪʃ(ə)n/` -n.插图; 例证; 插画
+
+
+
 
 
 
@@ -81,7 +29,7 @@
     + > (2) 《高性能响应式Web开发实战》中第二章中的内容
     
 - **本文观点:**
-    
+  
     + (1) 不建议修改`viewport`(视口大小),
       致使`viewport`的`width`不等于`device-width`的方案(会导致 bug).
     + (2) 不建议读者使用 **以`rem`或者小程序`rpx`来实现等比缩放**为主的布局手段,
@@ -427,7 +375,7 @@ $\quad$ Tip: 请先看完 [2. CSS 中的 px 到底是什么?]().
     .ele {
         /* - 使用等比缩放 */
         width: 100rdp;
-
+  
         /* - 使用逻辑像素 */
         width: 100px;
     }
