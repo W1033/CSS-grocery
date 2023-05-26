@@ -51,6 +51,7 @@
 ## Content
 
 ### 2.1 剖析 CSS 规则
+
 #### CSS 规则命名惯例
 
 
@@ -143,35 +144,35 @@
     }
   ```
 ##### 2.6.1.2 `:focus` 伪类
-- `e:focus`: 在这个以及后续的例子中, `e`(element) 表示任何元素, 如
-  `p`/`h1`/`section`.等等.
+`e:focus`: 在这个以及后续的例子中, `e`(element) 表示任何元素, 如 `p`/`h1`/`section`.等等.
 
-  表单中的文本字段在用户单击它时会获得焦点, 然后用户才能在其中输入字符. 
-  下面的规则:
-  ```css
-    input:focus {border: 1px solid blue;}
-  ```
-  会在光标位于 `input` 字段中时, 为该字段添加一个蓝色边框. 
-  这样可以让用户明确地知道输入的字符会出现在哪里. 
+表单中的文本字段在用户单击它时会获得焦点, 然后用户才能在其中输入字符.  下面的规则:
+
+```css
+input:focus {border: 1px solid blue;}
+```
+会在光标位于 `input` 字段中时, 为该字段添加一个蓝色边框.  这样可以让用户明确地知道输入的字符会出现在哪里. 
+
 ##### 2.6.1.3 `:target` 伪类
-- `e:target`: 如果用户点击一个指向页面中其他元素的链接,
-  则那个元素就是目标(target), 可以用 `:target` 伪类选中它. 对于下面这个链接
-  ```js
-    <a href="#more_info">More Information</a>
-  ```
-  位于页面其他地方. ID 为 `more_info` 的那个元素就是目标. 该元素可能是这样的:
-  ```html
-    <h2 id="more_info">This is the information you are looking for.</h2>
-  ```
-  那么, 如下 CSS 规则
-  ```css
-    #more_info:target {background:#eee;}
-  ```
-  会在用户单击链接转向 ID 为 `more_info` 的元素时, 为该元素添加浅灰色背景. 
 
-  维基百科在其引证中大量使用了 `:target` 伪类. 
-  维基百科的引证链接就是正文里那些不起眼的数字链接. 引证本身则位于长长的页面的最下方.
-  如果没有 `:target` 应用的突出显示, 很难知道你点击的链接对应着一大堆引证中的哪一个. 
+`e:target`: 如果用户点击一个指向页面中其他元素的链接, 则那个元素就是目标(target), 可以用 `:target` 伪类选中它. 对于下面这个链接
+
+```js
+<a href="#more_info">More Information</a>
+```
+位于页面其他地方. ID 为 `more_info` 的那个元素就是目标. 该元素可能是这样的:
+```html
+<h2 id="more_info">This is the information you are looking for.</h2>
+```
+那么, 如下 CSS 规则
+```css
+  #more_info:target {background:#eee;}
+```
+会在用户单击链接转向 ID 为 `more_info` 的元素时, 为该元素添加浅灰色背景. 
+
+维基百科在其引证中大量使用了 `:target` 伪类. 
+维基百科的引证链接就是正文里那些不起眼的数字链接. 引证本身则位于长长的页面的最下方.
+如果没有 `:target` 应用的突出显示, 很难知道你点击的链接对应着一大堆引证中的哪一个. 
 
 #### 2.6.2 结构化伪类
 ##### 2.6.2.1 `:first-child` 和 `:last-child`
@@ -181,7 +182,7 @@
         ol.results li:first-child { color: blue; }
         ol.results li:last-child { color: red; }
     </style>
-
+  
     <ol class="results">
         <li>My Fast Pony</li>
         <li>Steady Trotter</li>
