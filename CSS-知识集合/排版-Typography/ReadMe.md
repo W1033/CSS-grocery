@@ -3,20 +3,20 @@
 
 
 ## New Words
-typography `/taɪ'pɑgrəfi/` -n.排版。
 
-serif `/'sɛrɪf/` -n.衬线字体
-- Sans-serif fonts have generally been considered easier to read on the screen. 无衬线字体, 一般认为它更容易在屏幕上阅读.
+typography `/taɪ'pɑgrəfi/`  -n. 排版。
+
+serif `/'sɛrɪf/`  -n. 衬线字体
+
+sans `/sænz/`  -prep. 无，没有
 
 
-
-
-
-> 下面的笔记来源：https://github.com/chokcoco/iCSS/issues/6
 
 
 
 ## ▲ 字体的分类
+
+>  此部分笔记来源：https://github.com/chokcoco/iCSS/issues/6
 
 就 Web 常用的一些字体而言，经常听说的字体类型，大致可以分为这几种：
 
@@ -134,9 +134,7 @@ Windows 平台上默认的无衬线西文字体，有多种变体，比例及字
 
 上图是 Github 代码区块的字体设置，可以看到，默认字体就是 `Consolas` ，紧接着的几个都是其它等宽字体，如果用户的系统中都没有预装这些字体，则会匹配最后一个 `monospace` ，它表示等宽字体系列，会从用户系统中的等宽字体中选取一个展示。
 
-### (4)+(5) fantasy -- 梦幻 和 cuisive -- 草体
-
-fantasy和 cuisive 字体在浏览器中不常用，在各个浏览器中有明显的差异。
+### (4)、(5) 略
 
 
 
