@@ -1,7 +1,7 @@
 # CSS3 过渡(transition), 转换(transform)和动画(animation)
 
-
 ## 目录(Table Of Contents)
+
 1. CSS3 transition(过渡)
     + 1.1 transition(过渡)介绍
     + 1.2 transition 的 4 个属性值
@@ -159,7 +159,7 @@
         background:lightcoral;
         opacity: .4; 
         transition: .6s;
-
+  
     }
     .box:hover{
         height: 260px;
@@ -300,47 +300,36 @@
   在 CSS3 中, 通过 transform(转换) 来实现 2D 转换 或 3D 转换(伪 3D).
 
 #### 2.2 transform (转换/变形)的前置知识
-- **(1) 笛卡尔坐标系(直角坐标系)**
-    + [笛卡尔坐标系](https://www.wikiwand.com/zh/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB#/%E4%B8%89%E7%B6%AD%E7%A9%BA%E9%96%93)
-      (Cartesian coordinates system, 也称直角坐标系) 在数学中是一种
-      [正交坐标系](https://www.wikiwand.com/zh/%E6%AD%A3%E4%BA%A4%E5%BA%A7%E6%A8%99%E7%B3%BB),
-      由法国数学家
-      [勒内·笛卡尔](https://www.wikiwand.com/zh/%E5%8B%92%E5%86%85%C2%B7%E7%AC%9B%E5%8D%A1%E5%B0%94)
-      引入而有此名.
-      二维的直角坐标系是由两条相互垂直, 相交于原点的
-      [数线](https://www.wikiwand.com/zh/%E6%95%B8%E7%B7%9A)
-      构成的. 在平面内, 任何一点的坐标是根据数轴上对应的点的坐标设定的. 在平面内,
-      任何一点与坐标的对应关系, 类似于数轴上点与坐标的对应关系. 
-    
-      直角坐标系也是我们学习初等数学时使用的坐标系. 
-    
-      <img src="./images/coordinate.png"
-            style="margin-left: 0; border-radius: 4px;
-            box-shadow: 1px 1px 3px 2px #e5e5e5">
-    
-      在 JavaScript 中我们获取鼠标的 `客户区坐标位置 (clientX, clientY)`,
-      `页面坐标位置(pageX, pageY)` 都是根据直角坐标系来表述相对应的概念; 但在浏览器中,
-      **坐标轴的原点 `(0, 0)` 是在浏览器视口的左上角**,
-      而且 **Y 轴的正/负朝向和数学的直角坐标系统是相反的**, 如下图:
-      
-      <img src="./images/web-coordinate.png"
-            style="margin-left: 0; border-radius: 4px;
-                box-shadow: 1px 1px 3px 2px #e5e5e5">
-      
-      (Hint: 老铁们, 截图有没有很眼熟?:) 你想的没错, 就是来自 "红宝石书"
-      的 `13.4.3 鼠标与滚轮事件`)
-- **(2) 三维坐标系统(数学)**:
-    + 直角坐标系也可以推广至三维空间与高维空间(higher dimension).
-      在原本的二维直角标系, 再添加一个垂直于 x-轴 和 y-轴 的坐标轴,
-      称为 **z-轴**.假若, 这三个坐标轴满足
-      [右手定则](https://zh.wikipedia.org/wiki/%E5%8F%B3%E6%89%8B%E5%AE%9A%E5%89%87)
-      则可得到三维的直角坐标系统; 这 z-轴与 x-轴, y-轴相互交于原点.
-      在三维空间的任何一点 P, 可以利用直角坐标(x, y, z) 来表达其位置.
-      
-      用图表示右手定则, 如下所示:
 
+- **(1) 笛卡尔坐标系(直角坐标系)**
+  
+    [笛卡尔坐标系](https://www.wikiwand.com/zh/%E7%AC%9B%E5%8D%A1%E5%B0%94%E5%9D%90%E6%A0%87%E7%B3%BB#/%E4%B8%89%E7%B6%AD%E7%A9%BA%E9%96%93)(Cartesian coordinates system, 也称直角坐标系) 在数学中是一种[正交坐标系](https://www.wikiwand.com/zh/%E6%AD%A3%E4%BA%A4%E5%BA%A7%E6%A8%99%E7%B3%BB),由法国数学家[勒内·笛卡尔](https://www.wikiwand.com/zh/%E5%8B%92%E5%86%85%C2%B7%E7%AC%9B%E5%8D%A1%E5%B0%94)引入而有此名.
+    
+    二维的直角坐标系是由两条相互垂直, 相交于原点的[数线](https://www.wikiwand.com/zh/%E6%95%B8%E7%B7%9A)构成的. 在平面内, 任何一点的坐标是根据数轴上对应的点的坐标设定的. 在平面内,任何一点与坐标的对应关系, 类似于数轴上点与坐标的对应关系. 
+    
+    直角坐标系也是我们学习初等数学时使用的坐标系. 
+    
+    <img src="./images/coordinate.png"
+          style="margin-left: 0; border-radius: 4px;
+          box-shadow: 1px 1px 3px 2px #e5e5e5">
+    
+    在 JavaScript 中我们获取鼠标的 `客户区坐标位置 (clientX, clientY), 页面坐标位置(pageX, pageY)` 都是根据直角坐标系来表述相对应的概念; 但在浏览器中, **坐标轴的原点 `(0, 0)` 是在浏览器视口的左上角**, 而且 **Y 轴的正/负朝向和数学的直角坐标系统是相反的**, 如下图:
+    
+    <img src="./images/web-coordinate.png" style="margin-left: 0; border-radius: 4px; box-shadow: 1px 1px 3px 2px #e5e5e5">
+    
+    (Hint:   截图来自 JS 高程 `13.4.3 鼠标与滚轮事件`)
+    
+- **(2) 三维坐标系统(数学)**:
+    
+    直角坐标系也可以推广至三维空间与高维空间(higher dimension). 
+    
+    在原本的二维直角标系, 再添加一个垂直于 x-轴 和 y-轴 的坐标轴，称为 **z-轴**.假若, 这三个坐标轴满足 [右手定则](https://zh.wikipedia.org/wiki/%E5%8F%B3%E6%89%8B%E5%AE%9A%E5%89%87) 则可得到三维的直角坐标系统; 这 z-轴与 x-轴, y-轴相互交于原点.
+    
+    在三维空间的任何一点 P, 可以利用直角坐标(x, y, z) 来表达其位置. 用图表示右手定则, 如下所示:
+    
       <img src="./images/right-handed-coordination.png"
             style="margin-left: 0; width: 50%;">
+    
 - **(3) transform 3D 坐标系**
     + 在 2D Canvas API 和 CSS transform(转换)中,
       它们建立模型所使用的三维坐标系基于数学上的三维坐标系统,
@@ -625,7 +614,7 @@
         /* animation: move1 1s alternate linear 3; */
         animation: move2 4s;
     }
-
+  
     /* - 方式一: 定义一组动画. */
     @keyframes move1 {
         0% {
@@ -635,7 +624,7 @@
             transform: translateX(500px) rotate(555deg);
         }
     }
-
+  
     /* - 方式二: 定义多组动画 */
     @keyframes move2 {
         0% {
@@ -644,7 +633,7 @@
             border-radius: 0;
         }
         25% { transform: translateX(500px) translateY(0px); }
-
+  
         /* - 动画执行到 50% 的时候, 背景色变成绿色, 形状变成圆形. */
         50% {
             /* - 虽然两个方向都有translate, 但其实只是Y轴上移动了200px. 
@@ -655,7 +644,7 @@
             border-radius: 50%;
         }
         75% { transform: translateX(0px) translateY(200px); }
-
+  
         /* - 动画执行到 100% 的时候, 背景色还原为红色, 形状还原为正方形*/
         100% {
             /* - 坐标归零, 表示回到原点. */
@@ -668,4 +657,3 @@
   ```html
     <div class="box"></div>
   ```
-  
